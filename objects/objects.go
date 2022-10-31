@@ -171,12 +171,13 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter) error {
 	// recurse if need be
 	if o.subObj != nil && len(o.subObj) > 0 {
 
-		subDirBase := o.guid
+		firstTry := o.getAGoodFileName()
+		subDirBase := firstTry
 		err := os.Mkdir(path.Join(filepath, subDirBase), 0644)
 		tries := 0
 		for err != nil && tries < 100 {
 			tries++
-			subDirBase = o.guid + fmt.Sprintf("_%v", tries)
+			subDirBase = fmt.Sprintf("%s_%v", firstTry, tries)
 			err = os.Mkdir(path.Join(filepath, subDirBase), 0644)
 		}
 		if tries >= 100 {
