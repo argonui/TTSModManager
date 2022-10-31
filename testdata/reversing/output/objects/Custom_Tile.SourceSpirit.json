@@ -1,0 +1,52 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "https://i.imgur.com/ktVG7oY.jpg",
+    "ImageURL": "https://i.imgur.com/RHNnFsC.jpg",
+    "WidthScale": 0
+  },
+  "Description": "Spirit Island - Spirit",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "SourceSpirit",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Tile.SourceSpirit.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Source Spirit",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 1.98,
+    "posY": -1.72,
+    "posZ": 61.45,
+    "rotX": 0.03680003,
+    "rotY": 0.0164999738,
+    "rotZ": 180.0162,
+    "scaleX": 0.011,
+    "scaleY": 1,
+    "scaleZ": 0.01
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

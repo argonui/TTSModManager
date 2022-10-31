@@ -1,0 +1,61 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "639": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100631332/B2F71D53B56A0C634D13E409E25D56A6841C1E5E/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100630956/FED4FDD481BAEE85BE4496C2339E043BF3C61FA7/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "DeckIDs": [
+    63903,
+    63902,
+    63901,
+    63900
+  ],
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "2216dc",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Deck",
+  "Nickname": "",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 15.6942,
+    "posY": 1.0433,
+    "posZ": 97.32,
+    "rotX": 0,
+    "rotY": 180.0064,
+    "rotZ": 180,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

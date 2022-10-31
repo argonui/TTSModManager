@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 46101,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "461": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100642329/961D73D95A85B1A4A2912AD8FCEC162F08441E71/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100641950/04BFE6D869E8C2A55277F4E1F6636277CFF26F77/",
+      "NumHeight": 2,
+      "NumWidth": 4,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "52d58e",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"01010000\"\nenergy=0",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "A Circuitous and Wending Journey",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -72.6388,
+    "posY": 1.1983,
+    "posZ": -3.1858,
+    "rotX": 0.0038,
+    "rotY": 180,
+    "rotZ": 180.1157,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

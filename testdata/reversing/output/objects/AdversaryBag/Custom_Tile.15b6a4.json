@@ -1,0 +1,52 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1738925945686737937/A9DC11B5C90BBD7CDB66276BD109B46FF56DDE52/",
+    "WidthScale": 0
+  },
+  "Description": "Spirit Island",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "15b6a4",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "England Build Reminder",
+  "Snap": false,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -0.4712,
+    "posY": 2.1066,
+    "posZ": 91.3424,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 0,
+    "scaleX": 0.2,
+    "scaleY": 1,
+    "scaleZ": 0.2
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

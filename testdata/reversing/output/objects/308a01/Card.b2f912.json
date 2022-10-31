@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 59011,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "590": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100594179/55D98740B74E9A09E3BD5120416330C5FF5FB732/",
+      "NumHeight": 3,
+      "NumWidth": 8,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "b2f912",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"01100100\"\nenergy=4",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "The Land Thrashes in Furious Pain",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Major",
+    "Slow"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.6133,
+    "posY": 2.2762,
+    "posZ": -5.9154,
+    "rotX": 0.0116,
+    "rotY": 181.8246,
+    "rotZ": 0.1348,
+    "scaleX": 1.532,
+    "scaleY": 1,
+    "scaleZ": 1.532
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

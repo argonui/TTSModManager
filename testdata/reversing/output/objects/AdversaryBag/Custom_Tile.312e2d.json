@@ -1,0 +1,66 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0,
+        "y": 0.2,
+        "z": 0
+      },
+      "Rotation": {
+        "x": 0,
+        "y": 0.061,
+        "z": 0
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.4133,
+    "g": 0.4133,
+    "r": 0.4133
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1245757231531106518/77039FB53A3990479F77A1CC5335819B317BA401/",
+    "WidthScale": 0
+  },
+  "Description": "Custom",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "312e2d",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Second Adversary Board",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -65.9484,
+    "posY": 1.3146,
+    "posZ": -0.3009,
+    "rotX": 359.98,
+    "rotY": 180.0035,
+    "rotZ": 0.0002,
+    "scaleX": 2.6832,
+    "scaleY": 1,
+    "scaleZ": 2.6832
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

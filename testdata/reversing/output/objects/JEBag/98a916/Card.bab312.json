@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 60613,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "606": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100597475/C66C54780818D9337796AD21C157555CE235CAC6/",
+      "NumHeight": 3,
+      "NumWidth": 8,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "bab312",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"01001111\"\nenergy=6",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Dream of the Untouched Land",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Major"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -42.7462,
+    "posY": 1.2345,
+    "posZ": 27.3436,
+    "rotX": 359.6287,
+    "rotY": 179.3671,
+    "rotZ": 3.2338,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

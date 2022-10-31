@@ -1,0 +1,52 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412769/7541A3FAECBE82CBBABBF4E963583720857BBADE/",
+    "WidthScale": 0
+  },
+  "Description": "Spirit Island",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "16ab25",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Sweden Ravage Reminder",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -69.8736,
+    "posY": 1.3353,
+    "posZ": 0.8672,
+    "rotX": 0,
+    "rotY": 179.9968,
+    "rotZ": 0,
+    "scaleX": 0.21,
+    "scaleY": 1,
+    "scaleZ": 0.2
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

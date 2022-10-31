@@ -1,0 +1,55 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomImage": {
+    "CustomToken": {
+      "MergeDistancePixels": 15,
+      "Stackable": true,
+      "StandUp": false,
+      "Thickness": 0.1
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390107843/FBCF3E1CE07DDC139D939B8725AFD30ED3DBAD2E/",
+    "WidthScale": 0
+  },
+  "Description": "[b]Blocks a specific Invader's Damage[/b] the next time they Damage the land and/or Dahan, and is then removed",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "8a818d",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Token",
+  "Nickname": "Strife",
+  "Snap": true,
+  "Sticky": false,
+  "Tags": [
+    "Highlight"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -42.5632,
+    "posY": 1.3575,
+    "posZ": 13.1299,
+    "rotX": 0.0009,
+    "rotY": 0.029,
+    "rotZ": 0,
+    "scaleX": 0.3651,
+    "scaleY": 1,
+    "scaleZ": 0.3651
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

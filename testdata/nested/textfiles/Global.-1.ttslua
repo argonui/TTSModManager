@@ -1,0 +1,5 @@
+--[[ Lua code. See documentation: http://berserk-games.com/knowledgebase/scripting/ --]]
+-- Card size used for autodealing --
+
+-- global position constants
+ENCOUNTER_DECK_POS = {-3.8, 1, 5.7}

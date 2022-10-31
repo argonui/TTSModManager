@@ -1,0 +1,46 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomPDF": {
+    "PDFPage": 0,
+    "PDFPageOffset": 0,
+    "PDFPassword": "",
+    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/1458554570423897813/A81E3B78A1FCABE3CBB054B3667E6739A38CA732/"
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "a39453",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_PDF",
+  "Nickname": "",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 102.5,
+    "posY": 0.8,
+    "posZ": 17.1,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 0,
+    "scaleX": 2.4857,
+    "scaleY": 1,
+    "scaleZ": 2.4857
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

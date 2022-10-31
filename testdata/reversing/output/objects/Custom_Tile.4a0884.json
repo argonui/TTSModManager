@@ -1,0 +1,136 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0307,
+        "y": 0.2,
+        "z": -0.3977
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0257,
+        "y": 0.2,
+        "z": -0.0803
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2495,
+        "y": 0.2,
+        "z": -0.0821
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2485,
+        "y": 0.2,
+        "z": -0.3999
+      }
+    },
+    {
+      "Position": {
+        "x": -0.469,
+        "y": 0.2,
+        "z": -0.3988
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4702,
+        "y": 0.2,
+        "z": -0.081
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6877,
+        "y": 0.2,
+        "z": -0.0802
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6866,
+        "y": 0.2,
+        "z": -0.398
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9044,
+        "y": 0.2,
+        "z": -0.4002
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1248,
+        "y": 0.2,
+        "z": -0.3961
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3381,
+        "y": 0.2,
+        "z": -0.3993
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752020953/3A2340CF18E14942F3747E9058B5C3111AC7F5A6/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752020727/E3A65527B72ADFCE491461706FDDE88D2C098C6A/",
+    "WidthScale": 0
+  },
+  "Description": "Base",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "4a0884",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Tile.4a0884.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Lightning's Swift Strike",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Base",
+    "Low",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -11.8905,
+    "posY": 1.0031,
+    "posZ": 95.19,
+    "rotX": 0,
+    "rotY": 180.0002,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

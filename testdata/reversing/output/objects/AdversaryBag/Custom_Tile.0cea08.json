@@ -1,0 +1,52 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1465311785683043384/57BA7C91EACCE693BBB4BE3269C56EE55CAFE863/",
+    "WidthScale": 0
+  },
+  "Description": "Jagged Earth Expansion",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "0cea08",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Habsburg After Build Reminder",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 37.5633,
+    "posY": 0.9711,
+    "posZ": 37.9854,
+    "rotX": -0.0001,
+    "rotY": 89.9944,
+    "rotZ": 0,
+    "scaleX": 0.21,
+    "scaleY": 1,
+    "scaleZ": 0.2
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

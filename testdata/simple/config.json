@@ -1,0 +1,12 @@
+{
+  "SaveName": "simple",
+  "ImagePath": "SCE.png",
+  "LuaScriptPath": "Global.-1.ttslua",
+  "LuaScriptState": "",
+  "TabStatesPath": "tabStates.json",
+  "MusicPlayerPath": "music.json",
+  "GridPath": "grid.json",
+  "LightingPath": "lighting.json",
+  "DecalPalletPath": "decalPallet.json",
+  "SnapPointsPath": "snapPoints.json"
+}

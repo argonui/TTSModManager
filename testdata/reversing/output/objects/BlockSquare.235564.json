@@ -1,0 +1,41 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "a": 0.3261,
+    "b": 0.466699958,
+    "g": 0.466699958,
+    "r": 0.497999966
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "235564",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "BlockSquare",
+  "Nickname": "",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -44.0425,
+    "posY": 0.8098,
+    "posZ": 55.4169,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 0,
+    "scaleX": 16.5611,
+    "scaleY": 0.06,
+    "scaleZ": 13.4082
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

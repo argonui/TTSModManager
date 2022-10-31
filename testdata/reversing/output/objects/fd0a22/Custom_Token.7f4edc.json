@@ -1,0 +1,52 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomImage": {
+    "CustomToken": {
+      "MergeDistancePixels": 15,
+      "Stackable": true,
+      "StandUp": false,
+      "Thickness": 0.1
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112364/D70D4D5B387050D91B5863EF376E4A2397C3A89F/",
+    "WidthScale": 0
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "7f4edc",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Token",
+  "Nickname": "Fear",
+  "Snap": false,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -52.4343,
+    "posY": 1.2841,
+    "posZ": 44.0238,
+    "rotX": 0.0006,
+    "rotY": 0.0333,
+    "rotZ": -0.0002,
+    "scaleX": 0.37,
+    "scaleY": 1,
+    "scaleZ": 0.37
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

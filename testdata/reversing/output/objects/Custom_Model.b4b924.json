@@ -1,0 +1,111 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.8118,
+    "g": 0.8118,
+    "r": 0.8118
+  },
+  "CustomMesh": {
+    "CastShadows": false,
+    "ColliderURL": "",
+    "Convex": true,
+    "DiffuseURL": "",
+    "MaterialIndex": 0,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+    "NormalURL": "",
+    "TypeIndex": 1
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "b4b924",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Town: 2 Health",
+  "Snap": true,
+  "States": {
+    "2": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0,
+            "y": 0.211,
+            "z": 0
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.4881,
+        "g": 0.659,
+        "r": 0.7892
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "",
+        "MaterialIndex": 1,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "58ba36",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Town: 1 Health",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -45.4941,
+        "posY": 1.6218,
+        "posZ": 31.6193,
+        "rotX": 0.0045,
+        "rotY": 180.0203,
+        "rotZ": 0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -55.766,
+    "posY": -2.1999,
+    "posZ": 56.2964,
+    "rotX": 0,
+    "rotY": 180.001,
+    "rotZ": 0,
+    "scaleX": 2.425,
+    "scaleY": 2.425,
+    "scaleZ": 2.425
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

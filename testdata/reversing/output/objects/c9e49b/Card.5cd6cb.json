@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 46100,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "461": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100642329/961D73D95A85B1A4A2912AD8FCEC162F08441E71/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100641950/04BFE6D869E8C2A55277F4E1F6636277CFF26F77/",
+      "NumHeight": 2,
+      "NumWidth": 4,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "5cd6cb",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"01011000\"\nenergy=0",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Traveler's Boon",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -72.6388,
+    "posY": 1.2429,
+    "posZ": -3.1858,
+    "rotX": 0.0027,
+    "rotY": 179.9999,
+    "rotZ": 181.7452,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

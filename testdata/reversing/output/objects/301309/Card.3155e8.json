@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 63601,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "636": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100676939/BDBAB20C0A1B993E9EEA4BC1845019A34F9DAD9E/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100676673/B4442E39EC48CC0379A726E0036A54B29E4B6523/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "3155e8",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00001100\"\nenergy=1",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Wash Away",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -122.9353,
+    "posY": 1.1753,
+    "posZ": 53.8188,
+    "rotX": 0.004,
+    "rotY": 180,
+    "rotZ": -0.0026,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

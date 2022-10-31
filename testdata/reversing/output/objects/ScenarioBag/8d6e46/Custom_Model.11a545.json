@@ -1,0 +1,60 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "CustomShader": {
+      "FresnelStrength": 0,
+      "SpecularColor": {
+        "b": 0.7463,
+        "g": 0.8129,
+        "r": 0.875
+      },
+      "SpecularIntensity": 0,
+      "SpecularSharpness": 2
+    },
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057548225690652/2F6F90EDEFC010A7AA32EB767D7ABD1E236BA48D/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1752435057675692177/2E39782B083F00F469A83F58EA653854FED63965/",
+    "NormalURL": "",
+    "TypeIndex": 0
+  },
+  "Description": "Markers used by the Scenarios Ward the Shores and Powers Long Forgotten",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "11a545",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Scenario Marker",
+  "Snap": false,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -43.6915,
+    "posY": 2.8729,
+    "posZ": 32.2919,
+    "rotX": 0.3323,
+    "rotY": 179.3195,
+    "rotZ": 0.3236,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

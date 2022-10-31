@@ -1,0 +1,43 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.0824,
+    "g": 0.0824,
+    "r": 0.0824
+  },
+  "Counter": {
+    "value": 0
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "fda8db",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Counter",
+  "Nickname": "",
+  "Snap": false,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -51.2196,
+    "posY": 1.2144,
+    "posZ": 43.9874,
+    "rotX": 359.8765,
+    "rotY": 0.0566,
+    "rotZ": 0.1635,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

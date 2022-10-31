@@ -1,0 +1,46 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomPDF": {
+    "PDFPage": 0,
+    "PDFPageOffset": 0,
+    "PDFPassword": "",
+    "PDFUrl": "http://cloud-3.steamusercontent.com/ugc/1461933996974582482/41F2C9C6278FE8ABBAC2B5468F26BF4955F7CD70/"
+  },
+  "Description": "Jagged Earth Expansion",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "640292",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_PDF",
+  "Nickname": "Rulebook",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 105.02,
+    "posY": 0.8,
+    "posZ": 7.02,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 0,
+    "scaleX": 2.4834,
+    "scaleY": 1,
+    "scaleZ": 2.4834
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 60602,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "606": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100597475/C66C54780818D9337796AD21C157555CE235CAC6/",
+      "NumHeight": 3,
+      "NumWidth": 8,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "2775f5",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"10000000\"\nenergy=5",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Focus the Land's Anguish",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Major",
+    "Slow"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -37.78,
+    "posY": 1.5608,
+    "posZ": 27.74,
+    "rotX": 359.9637,
+    "rotY": 179.1982,
+    "rotZ": 6.6682,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

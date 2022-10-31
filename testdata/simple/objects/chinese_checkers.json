@@ -1,0 +1,41 @@
+{
+      "GUID": "bd69bd",
+      "Name": "Chinese_Checkers_Piece",
+      "Transform": {
+        "posX": 73.16,
+        "posY": -0.259998322,
+        "posZ": -43.72,
+        "rotX": 0.00190076465,
+        "rotY": 180.0,
+        "rotZ": 0.000379891542,
+        "scaleX": 1.6499995,
+        "scaleY": 1.6499995,
+        "scaleZ": 1.6499995
+      },
+      "Nickname": "Flex Table Control",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": false,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "MaterialIndex": 1,
+      "LuaScriptPath": "chinesecheckers.ttslua",
+      "LuaScriptState": "{\"cd\":{\"move\":true,\"scale\":false},\"tid\":[{\"name\":\"Felt - Grey\",\"url\":\"https://i.imgur.com/N0O6aqj.jpg\"},{\"name\":\"Wood\",\"url\":\"https://i.imgur.com/iOFFsGh.jpg\"},{\"name\":\"Wood 2\",\"url\":\"https://i.imgur.com/SQ2t01d.jpg\"}]}",
+      "XmlUI": ""
+    }

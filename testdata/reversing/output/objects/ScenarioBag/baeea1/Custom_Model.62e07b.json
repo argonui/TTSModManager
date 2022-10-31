@@ -1,0 +1,60 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "CustomShader": {
+      "FresnelStrength": 0,
+      "SpecularColor": {
+        "b": 0.7463,
+        "g": 0.8129,
+        "r": 0.875
+      },
+      "SpecularIntensity": 0,
+      "SpecularSharpness": 2
+    },
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057548225894739/D670130E5E70D361D8FBC2D894ABB222EE6DC8A3/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749057496681017469/E68A8F6F693C4224261288694AE1ADBEC32119BD/",
+    "NormalURL": "",
+    "TypeIndex": 0
+  },
+  "Description": "Markers used by the Scenario Despicable Theft",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "62e07b",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Scenario Marker",
+  "Snap": false,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -14.9264,
+    "posY": 2.913,
+    "posZ": 18.3438,
+    "rotX": 359.852,
+    "rotY": 180.0088,
+    "rotZ": 0.1623,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

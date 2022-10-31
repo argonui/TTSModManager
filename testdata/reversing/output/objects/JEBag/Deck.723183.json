@@ -1,0 +1,65 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "622": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756118010/303865702F3092CCDE644633A9D06673B79C049D/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100579512/2C26031238C9A7FEBC281E70894DDDB4034FF9C4/",
+      "NumHeight": 3,
+      "NumWidth": 4,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "DeckIDs": [
+    62200,
+    62201,
+    62202,
+    62203,
+    62204,
+    62205,
+    62206,
+    62207,
+    62208,
+    62209,
+    62210
+  ],
+  "Description": "Jagged Earth Expansion",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "723183",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": true,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Deck",
+  "Nickname": "Fear",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -22.2955,
+    "posY": 1.0456,
+    "posZ": 42.6702,
+    "rotX": 0.0047,
+    "rotY": 180.0219,
+    "rotZ": 179.9992,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

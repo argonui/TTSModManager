@@ -1,0 +1,53 @@
+{
+  "Autoraise": true,
+  "CardID": 17504,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "175": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100615835/CB6A6BBE62367332C3D308439C99DEC008630C5A/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100616543/DB03F936C9FA5C8239B2AA4460EC0318309618A9/",
+      "NumHeight": 5,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": true
+    }
+  },
+  "Description": "Spirit Island",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "7ac013",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Card.7ac013.ttslua",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Rituals of Terror",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 8.8894,
+    "posY": 0.8636,
+    "posZ": 49.6592,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 1.9243,
+    "scaleY": 1,
+    "scaleZ": 1.9243
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,61 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "611": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100541054/AF7008082A9C6B682B48AD1B17C1454B49466364/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100543021/0035F925AE4D336F25B0B6A96F7F713B3D725294/",
+      "NumHeight": 2,
+      "NumWidth": 4,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "DeckIDs": [
+    61100,
+    61101,
+    61102,
+    61103,
+    61104,
+    61105,
+    61106
+  ],
+  "Description": "Jagged Earth Expansion",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "8120e0",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": true,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Deck",
+  "Nickname": "Blight Cards",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -8.3238,
+    "posY": 2.0319,
+    "posZ": 29.6721,
+    "rotX": 0,
+    "rotY": 180.0305,
+    "rotZ": 179.9999,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,62 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.8624,
+    "g": 0.5528,
+    "r": 0.5187
+  },
+  "CustomMesh": {
+    "CastShadows": false,
+    "ColliderURL": "",
+    "Convex": true,
+    "CustomShader": {
+      "FresnelStrength": 0,
+      "SpecularColor": {
+        "b": 1,
+        "g": 1,
+        "r": 1
+      },
+      "SpecularIntensity": 0,
+      "SpecularSharpness": 2
+    },
+    "DiffuseURL": "",
+    "MaterialIndex": 3,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187357178/0668709935277DAF1A003F8B2CB2C09E67828297/",
+    "NormalURL": "",
+    "TypeIndex": 7
+  },
+  "Description": "Russia Lv2+",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "3b674d",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Model_Infinite_Bag.3b674d.ttslua",
+  "MaterialIndex": -1,
+  "MeasureMovement": false,
+  "MeshIndex": -1,
+  "Name": "Custom_Model_Infinite_Bag",
+  "Nickname": "Russia Explorers",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.6204,
+    "posY": 1.257,
+    "posZ": 40.0585,
+    "rotX": 359.904,
+    "rotY": 179.8396,
+    "rotZ": 359.2655,
+    "scaleX": 1.7105,
+    "scaleY": 1.5789,
+    "scaleZ": 1.7105
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

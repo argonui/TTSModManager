@@ -1,0 +1,143 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0043,
+        "y": 0.2,
+        "z": -0.3988
+      }
+    },
+    {
+      "Position": {
+        "x": 0.0007,
+        "y": 0.2,
+        "z": -0.0813
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2232,
+        "y": 0.2,
+        "z": -0.0831
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4438,
+        "y": 0.2,
+        "z": -0.0821
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6613,
+        "y": 0.2,
+        "z": -0.0812
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8761,
+        "y": 0.2,
+        "z": -0.0836
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1029,
+        "y": 0.2,
+        "z": -0.0851
+      }
+    },
+    {
+      "Position": {
+        "x": -1.0985,
+        "y": 0.2,
+        "z": -0.3972
+      }
+    },
+    {
+      "Position": {
+        "x": -0.878,
+        "y": 0.2,
+        "z": -0.4012
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6603,
+        "y": 0.2,
+        "z": -0.3991
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4426,
+        "y": 0.2,
+        "z": -0.3998
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2221,
+        "y": 0.2,
+        "z": -0.401
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752020069/D383C574AD85433F8A00B22AA2591E6D928BE716/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752019702/33ACE95FFC0BCD3223667F6D136A3711CFF686F8/",
+    "WidthScale": 0
+  },
+  "Description": "Base",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "9138aa",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.9138aa.txt",
+  "LuaScript_path": "Custom_Tile.9138aa.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "River Surges in Sunlight",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Base",
+    "Low",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -28.6905,
+    "posY": 1.0031,
+    "posZ": 95.19,
+    "rotX": 0,
+    "rotY": 180.0007,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

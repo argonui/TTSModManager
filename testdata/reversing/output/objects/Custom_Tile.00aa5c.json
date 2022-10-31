@@ -1,0 +1,136 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.6774,
+        "y": 0.195,
+        "z": -0.0971
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4453,
+        "y": 0.195,
+        "z": -0.0996
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2197,
+        "y": 0.195,
+        "z": -0.1001
+      }
+    },
+    {
+      "Position": {
+        "x": 0.0025,
+        "y": 0.195,
+        "z": -0.0984
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3568,
+        "y": 0.195,
+        "z": -0.4213
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1277,
+        "y": 0.195,
+        "z": -0.4228
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9003,
+        "y": 0.195,
+        "z": -0.4221
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6761,
+        "y": 0.195,
+        "z": -0.4181
+      }
+    },
+    {
+      "Position": {
+        "x": 0.008,
+        "y": 0.195,
+        "z": -0.4215
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2192,
+        "y": 0.195,
+        "z": -0.4232
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4483,
+        "y": 0.195,
+        "z": -0.4238
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.1489988,
+    "g": 0.15679881,
+    "r": 0.1999988
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.195,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752079802/D5605A15150223E69FFEA8874BEBC33DE24D9E78/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752079374/C3841AC82FA0865B7F22E3770FB3B53D255BBE84/",
+    "WidthScale": 0
+  },
+  "Description": "JE",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "00aa5c",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Tile.00aa5c.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Shifting Memory of Ages",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "JE",
+    "Moderate",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -28.3998,
+    "posY": 0.9981,
+    "posZ": 72.5322,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

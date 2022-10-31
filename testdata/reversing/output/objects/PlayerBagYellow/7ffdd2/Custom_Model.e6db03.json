@@ -1,0 +1,54 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0,
+    "g": 0.3755,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848022583/E829535EC9D3A4B5E1A962555788738AFDA20FAB/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "NormalURL": "",
+    "TypeIndex": 0
+  },
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "e6db03",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00100000\"",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Fire Element",
+  "Snap": true,
+  "Sticky": false,
+  "Tags": [
+    "Destroy",
+    "Fire"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -28.8297,
+    "posY": 1.06,
+    "posZ": -15.3348,
+    "rotX": 359.2509,
+    "rotY": 358.3029,
+    "rotZ": 358.2768,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

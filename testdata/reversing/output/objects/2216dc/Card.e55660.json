@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 63902,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "639": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100631332/B2F71D53B56A0C634D13E409E25D56A6841C1E5E/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100630956/FED4FDD481BAEE85BE4496C2339E043BF3C61FA7/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "e55660",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"11100110\"\nenergy=3",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Rituals of Destruction",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -71.5795,
+    "posY": 1.1784,
+    "posZ": 53.8249,
+    "rotX": 0.0028,
+    "rotY": 180,
+    "rotZ": 179.9782,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

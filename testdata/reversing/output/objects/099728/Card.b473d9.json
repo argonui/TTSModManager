@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 45500,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "455": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100666529/02E3C3299F7ED5897C7A8128ADDFC1BBE106BDEC/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100667329/5CF8247A54B58FC83B0F27BC3DC518F4669B7ABB/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "b473d9",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00110011\"\nenergy=1",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Swallowed by the Wilderness",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -105.4031,
+    "posY": 1.1817,
+    "posZ": 9.1273,
+    "rotX": 0.0025,
+    "rotY": 180,
+    "rotZ": 180.3859,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

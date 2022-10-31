@@ -1,0 +1,116 @@
+{
+  "Autoraise": true,
+  "CardID": 59014,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "590": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100594179/55D98740B74E9A09E3BD5120416330C5FF5FB732/",
+      "NumHeight": 3,
+      "NumWidth": 8,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "152fe0",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"01100001\"\nenergy=3",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Vengeance of the Dead",
+  "SidewaysCard": false,
+  "Snap": true,
+  "States": {
+    "2": {
+      "Autoraise": true,
+      "CardID": 65000,
+      "ColorDiffuse": {
+        "b": 0.7132,
+        "g": 0.7132,
+        "r": 0.7132
+      },
+      "CustomDeck": {
+        "650": {
+          "BackIsHidden": true,
+          "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+          "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1754683565834654257/2240AD44053F45010A18A8A83BE2D227252C6433/",
+          "NumHeight": 1,
+          "NumWidth": 1,
+          "Type": 0,
+          "UniqueBack": false
+        }
+      },
+      "Description": "",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "61da6c",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": true,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "elements=\"01100001\"\nenergy=3",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "CardCustom",
+      "Nickname": "Vengeance of the Dead",
+      "SidewaysCard": false,
+      "Snap": true,
+      "Sticky": true,
+      "Tags": [
+        "Fast",
+        "Major"
+      ],
+      "Tooltip": true,
+      "Transform": {
+        "posX": -25.4581,
+        "posY": 0.9139,
+        "posZ": -15.3799,
+        "rotX": 359.8321,
+        "rotY": 180.1046,
+        "rotZ": -0.0004,
+        "scaleX": 1.53,
+        "scaleY": 1,
+        "scaleZ": 1.53
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Major"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -46.2621,
+    "posY": 2.2637,
+    "posZ": -5.7615,
+    "rotX": 359.9701,
+    "rotY": 177.6845,
+    "rotZ": 0.0695,
+    "scaleX": 1.532,
+    "scaleY": 1,
+    "scaleZ": 1.532
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

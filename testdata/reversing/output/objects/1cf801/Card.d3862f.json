@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 64601,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "646": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100699110/37F025725C413FE89C9C27CA9E3A21D8EC319EA2/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100698459/147E28BDFBA25E87E4D553C85F26662624ACE3C9/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "d3862f",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00110010\"\nenergy=2",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Asphyxiating Smoke",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -88.3442,
+    "posY": 1.2806,
+    "posZ": 31.3518,
+    "rotX": 0.0033,
+    "rotY": 179.9964,
+    "rotZ": 356.4861,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 63700,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "637": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100657357/838187942786F836B7757A18D98F1D7CFF202896/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100660608/C839F18F52E130693BDFF2A90B5E3FA21EEE0BFB/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "ea822f",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00110000\"\nenergy=2",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Shatter Homesteads",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -106.2793,
+    "posY": 1.1848,
+    "posZ": 53.813,
+    "rotX": 0.0075,
+    "rotY": 179.9996,
+    "rotZ": -0.0036,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

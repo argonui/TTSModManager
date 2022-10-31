@@ -1,0 +1,129 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0442,
+        "y": 0.2,
+        "z": -0.3986
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0413,
+        "y": 0.2,
+        "z": -0.0826
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1906,
+        "y": 0.2,
+        "z": -0.0805
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9578,
+        "y": 0.2,
+        "z": -0.0788
+      }
+    },
+    {
+      "Position": {
+        "x": -0.726,
+        "y": 0.2,
+        "z": -0.0788
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5065,
+        "y": 0.2,
+        "z": -0.0822
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2757,
+        "y": 0.2,
+        "z": -0.0854
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7314,
+        "y": 0.2,
+        "z": -0.401
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5002,
+        "y": 0.2,
+        "z": -0.4062
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2724,
+        "y": 0.2,
+        "z": -0.4045
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248753217329/CA9DEAA8E1E123A784A7B9F47525DCADFF1C92A3/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248753218421/251C36BA25667DCB2E25E2E86CF77B21B84CD71F/",
+    "WidthScale": 0
+  },
+  "Description": "JE",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "72de5c",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.72de5c.txt",
+  "LuaScript_path": "Custom_Tile.72de5c.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Vengeance as a Burning Plague",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "High",
+    "JE",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 5.2002,
+    "posY": 1.0031,
+    "posZ": 72.5307,
+    "rotX": 0,
+    "rotY": 180.0002,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

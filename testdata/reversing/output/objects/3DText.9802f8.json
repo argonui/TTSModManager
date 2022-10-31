@@ -1,0 +1,49 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "9802f8",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "3DText",
+  "Nickname": "",
+  "Snap": true,
+  "Sticky": true,
+  "Text": {
+    "Text": "Dahan",
+    "colorstate": {
+      "b": 0.1765,
+      "g": 0.8627,
+      "r": 0.1882
+    },
+    "fontSize": 56
+  },
+  "Tooltip": true,
+  "Transform": {
+    "posX": -40.25274,
+    "posY": 0.9607002,
+    "posZ": 42.1944,
+    "rotX": 90,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,62 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.2247,
+    "g": 0.2247,
+    "r": 0.6539
+  },
+  "CustomMesh": {
+    "CastShadows": false,
+    "ColliderURL": "",
+    "Convex": false,
+    "CustomShader": {
+      "FresnelStrength": 0,
+      "SpecularColor": {
+        "b": 1,
+        "g": 1,
+        "r": 1
+      },
+      "SpecularIntensity": 0,
+      "SpecularSharpness": 2
+    },
+    "DiffuseURL": "",
+    "MaterialIndex": 3,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109273/C7A11826B9B262A78CFF39368C2510F4A7433416/",
+    "NormalURL": "",
+    "TypeIndex": 7
+  },
+  "Description": "England Lv5",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "cb7231",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Model_Infinite_Bag.cb7231.ttslua",
+  "MaterialIndex": -1,
+  "MeasureMovement": false,
+  "MeshIndex": -1,
+  "Name": "Custom_Model_Infinite_Bag",
+  "Nickname": "England Cities",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.6199,
+    "posY": 1.3387,
+    "posZ": 40.6165,
+    "rotX": 359.6082,
+    "rotY": 179.8619,
+    "rotZ": 359.5603,
+    "scaleX": 0.875,
+    "scaleY": 0.875,
+    "scaleZ": 0.875
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

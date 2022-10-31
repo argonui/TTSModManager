@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 63603,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "636": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100676939/BDBAB20C0A1B993E9EEA4BC1845019A34F9DAD9E/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100676673/B4442E39EC48CC0379A726E0036A54B29E4B6523/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "c01dfe",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"10001001\"\nenergy=0",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "River's Bounty",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -122.9353,
+    "posY": 1.1901,
+    "posZ": 53.8188,
+    "rotX": 0.001,
+    "rotY": 180,
+    "rotZ": 179.9728,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

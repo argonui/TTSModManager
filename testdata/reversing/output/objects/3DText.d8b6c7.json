@@ -1,0 +1,49 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "d8b6c7",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "3DText",
+  "Nickname": "",
+  "Snap": true,
+  "Sticky": true,
+  "Text": {
+    "Text": "3",
+    "colorstate": {
+      "b": 0.1373,
+      "g": 0.7137,
+      "r": 1
+    },
+    "fontSize": 64
+  },
+  "Tooltip": true,
+  "Transform": {
+    "posX": -38.2317123,
+    "posY": 0.9594,
+    "posZ": 47.7077,
+    "rotX": 90,
+    "rotY": 0,
+    "rotZ": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

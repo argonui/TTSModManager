@@ -1,0 +1,56 @@
+{
+  "Autoraise": true,
+  "CardID": 62714,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "627": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270426772/7D1A356297110F487F9759829AC15B2D15041422/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270425836/1E70B00AD6B8C49301E672767A57126B3C91BDE6/",
+      "NumHeight": 4,
+      "NumWidth": 4,
+      "Type": 0,
+      "UniqueBack": true
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "72c176",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "cardInvaderType=\"SM\"\ncardInvaderStage=3",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Invader Card"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -51.78,
+    "posY": 1.0085,
+    "posZ": 54.06,
+    "rotX": 0.0032,
+    "rotY": 180.0152,
+    "rotZ": 180.003,
+    "scaleX": 1.0981,
+    "scaleY": 1,
+    "scaleZ": 1.0981
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

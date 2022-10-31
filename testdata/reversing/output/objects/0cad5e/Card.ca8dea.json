@@ -1,0 +1,56 @@
+{
+  "Autoraise": true,
+  "CardID": 56306,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "563": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756118010/303865702F3092CCDE644633A9D06673B79C049D/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100570113/561B10322908E2F94B6A6452691A407911D0D0A7/",
+      "NumHeight": 4,
+      "NumWidth": 4,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "ca8dea",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": true,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fear"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -51.22,
+    "posY": 1.0418,
+    "posZ": 44.54,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": -0.0002,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,41 @@
+{
+  "Autoraise": true,
+  "CardID": 65012,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "3b3b2c",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": true,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -48.9799,
+    "posY": 1.4673,
+    "posZ": 49.6369,
+    "rotX": 349.8804,
+    "rotY": 179.977,
+    "rotZ": 179.9949,
+    "scaleX": 1.3657,
+    "scaleY": 1,
+    "scaleZ": 1.3657
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

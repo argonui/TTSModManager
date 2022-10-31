@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 60607,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "606": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100597475/C66C54780818D9337796AD21C157555CE235CAC6/",
+      "NumHeight": 3,
+      "NumWidth": 8,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "367d61",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00101100\"\nenergy=5",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Spill Bitterness into the Earth",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Major"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -42.262,
+    "posY": 1.2576,
+    "posZ": 27.7443,
+    "rotX": 0.009,
+    "rotY": 179.495,
+    "rotZ": 8.5596,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

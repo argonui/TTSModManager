@@ -1,0 +1,52 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0,
+    "g": 0.3755,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848022583/E829535EC9D3A4B5E1A962555788738AFDA20FAB/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "NormalURL": "",
+    "TypeIndex": 7
+  },
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "9af62a",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Model_Infinite_Bag.9af62a.ttslua",
+  "MaterialIndex": -1,
+  "MeasureMovement": false,
+  "MeshIndex": -1,
+  "Name": "Custom_Model_Infinite_Bag",
+  "Nickname": "Fire Element",
+  "Snap": false,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 78.2665,
+    "posY": 1.9712,
+    "posZ": -19.318,
+    "rotX": 0.0044,
+    "rotY": 180.0001,
+    "rotZ": 0,
+    "scaleX": 0.7,
+    "scaleY": 0.7,
+    "scaleZ": 0.7
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,54 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.8391,
+    "g": 0.4237,
+    "r": 0.1983
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932596329702298/A506113CA23809C5D314B2010E9129C7084DE53D/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "NormalURL": "",
+    "TypeIndex": 0
+  },
+  "Description": "Use these for when a  powers/events/growths which gift elements, or when you reveal an element on your presence tracks",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "d440a5",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00001000\"",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Water Element",
+  "Snap": true,
+  "Sticky": false,
+  "Tags": [
+    "Destroy",
+    "Water"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -26.4446,
+    "posY": 1.1257,
+    "posZ": -15.1253,
+    "rotX": 353.3042,
+    "rotY": 0.3638,
+    "rotZ": -0.0053,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 45103,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "451": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100697331/1687E2697F80832F8BA9B5EFE0B9A26877B02217/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100696831/B5B5F8E8734383EAF9D0A6E87466AD8362C23FCB/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "b39513",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00110100\"\nenergy=2",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Rain of Ash",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -121.8069,
+    "posY": 1.2443,
+    "posZ": 20.3914,
+    "rotX": 359.9634,
+    "rotY": 180.0021,
+    "rotZ": 357.8164,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

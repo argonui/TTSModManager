@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 64302,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "643": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100673700/F67AD2E37BDE215C91AE4F36822D1B00262DD87E/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100673228/3042F918A3306913BC05C6A0BA8DE4BA1EED89EB/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "92ce54",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00001100\"\nenergy=0",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Swallow the Land-Dwellers",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -72.5,
+    "posY": 1.1838,
+    "posZ": 43.98,
+    "rotX": 0.0038,
+    "rotY": 179.9962,
+    "rotZ": 180.0036,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,47 @@
+{
+  "Autoraise": false,
+  "ColorDiffuse": {
+    "b": 0.423997462,
+    "g": 0.7233,
+    "r": 0.99849993
+  },
+  "CustomAssetbundle": {
+    "AssetbundleSecondaryURL": "",
+    "AssetbundleURL": "chry.me/tts/3droom/hardwood_table.unity3d",
+    "LoopingEffectIndex": 0,
+    "MaterialIndex": 1,
+    "TypeIndex": 4
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "33c4af",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Assetbundle",
+  "Nickname": "",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 87.8,
+    "posY": 0.81,
+    "posZ": -29.9,
+    "rotX": 0.0044,
+    "rotY": 179.9997,
+    "rotZ": 0,
+    "scaleX": 2.3,
+    "scaleY": 0.01,
+    "scaleZ": 1.42
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

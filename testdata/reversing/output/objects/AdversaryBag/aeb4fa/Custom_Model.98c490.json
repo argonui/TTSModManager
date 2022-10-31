@@ -1,0 +1,311 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0,
+        "y": 0.2365,
+        "z": -0.0001
+      },
+      "Tags": []
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.2247,
+    "g": 0.2247,
+    "r": 0.6539
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "CustomShader": {
+      "FresnelStrength": 0.4,
+      "SpecularColor": {
+        "b": 0.0421,
+        "g": 0.0421,
+        "r": 0.6746
+      },
+      "SpecularIntensity": 0.2,
+      "SpecularSharpness": 7
+    },
+    "DiffuseURL": "",
+    "MaterialIndex": 0,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+    "NormalURL": "",
+    "TypeIndex": 1
+  },
+  "Description": "Buildings have +1 health",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "98c490",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Town: 0 Damage",
+  "Snap": true,
+  "States": {
+    "2": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0,
+            "y": 0.2365,
+            "z": 0
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.5329,
+        "g": 0.9511,
+        "r": 0.9557
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "",
+        "MaterialIndex": 0,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "d624f1",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Town: 1 Damage",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -72.0222,
+        "posY": 1.4622,
+        "posZ": -9.9884,
+        "rotX": 0.0044,
+        "rotY": 180,
+        "rotZ": 0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
+      },
+      "Value": 0,
+      "XmlUI": ""
+    },
+    "3": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0,
+            "y": 0.211,
+            "z": 0
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.5329,
+        "g": 0.9511,
+        "r": 0.9557
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "",
+        "MaterialIndex": 0,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "ab5f10",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Town: 2 Damage",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -70.6887,
+        "posY": 1.6186,
+        "posZ": -9.9576,
+        "rotX": 0.0044,
+        "rotY": 180.0048,
+        "rotZ": 0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
+      },
+      "Value": 0,
+      "XmlUI": ""
+    },
+    "4": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0,
+            "y": 0.2365,
+            "z": 0
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.8118,
+        "g": 0.8118,
+        "r": 0.8118
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "",
+        "MaterialIndex": 0,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "8d90d9",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Town: 3 Damage",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -69.3824,
+        "posY": 1.4622,
+        "posZ": -9.9944,
+        "rotX": 0.0044,
+        "rotY": 180,
+        "rotZ": 0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
+      },
+      "Value": 0,
+      "XmlUI": ""
+    },
+    "5": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0,
+            "y": 0.211,
+            "z": 0
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.8526,
+        "g": 0.8805,
+        "r": 0.8898
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "",
+        "MaterialIndex": 0,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "Town in lands without Blight are Durable: they have +2 Health, and \"Destroy Town\" effects instead deal 2 Damage (to Town only) per Town they could Destroy. (\"Destroy all Town\" works normally.)",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "58ba36",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Town: 4 Damage",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -67.9906,
+        "posY": 1.6186,
+        "posZ": -9.9686,
+        "rotX": 0.0044,
+        "rotY": 180.0131,
+        "rotZ": 0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": true,
+  "Tags": [
+    "Highlight"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -44.5807,
+    "posY": 3.0528,
+    "posZ": 30.3206,
+    "rotX": -0.0009,
+    "rotY": 269.9843,
+    "rotZ": 0.0038,
+    "scaleX": 2.425,
+    "scaleY": 2.425,
+    "scaleZ": 2.425
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

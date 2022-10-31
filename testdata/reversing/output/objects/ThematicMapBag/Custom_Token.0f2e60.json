@@ -1,0 +1,55 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.8157,
+    "g": 0.8157,
+    "r": 0.8157
+  },
+  "CustomImage": {
+    "CustomToken": {
+      "MergeDistancePixels": 15,
+      "Stackable": false,
+      "StandUp": false,
+      "Thickness": 0.395
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248751948495/DBF2E8A416F5CE350E43BF25F508ED5F8DD26C05/",
+    "WidthScale": 0
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "0f2e60",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Token.0f2e60.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Token",
+  "Nickname": "SW",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Thematic"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -43.2175,
+    "posY": 1.6133,
+    "posZ": 50.8939,
+    "rotX": 356.716,
+    "rotY": 179.9883,
+    "rotZ": 0.2495,
+    "scaleX": 6.5,
+    "scaleY": 1,
+    "scaleZ": 6.5
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

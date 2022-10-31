@@ -1,0 +1,60 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "CustomShader": {
+      "FresnelStrength": 0,
+      "SpecularColor": {
+        "b": 0.7463,
+        "g": 0.8129,
+        "r": 0.875
+      },
+      "SpecularIntensity": 0,
+      "SpecularSharpness": 2
+    },
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1749057548225682553/941F6C09F17F1F8B7CF614D91190479AD9819B10/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1752435057675692177/2E39782B083F00F469A83F58EA653854FED63965/",
+    "NormalURL": "",
+    "TypeIndex": 0
+  },
+  "Description": "Use these to track the uses of your special rule \"Pour Down Power Across The Land\"",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "867bfc",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Spare Piece",
+  "Snap": false,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 69.1555,
+    "posY": 0.9978,
+    "posZ": 75.0761,
+    "rotX": 0,
+    "rotY": 179.9999,
+    "rotZ": 0,
+    "scaleX": 0.8,
+    "scaleY": 1,
+    "scaleZ": 0.8
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

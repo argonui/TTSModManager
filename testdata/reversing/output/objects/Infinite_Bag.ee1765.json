@@ -1,0 +1,42 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 0.372598737,
+    "r": 0.305898756
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "ee1765",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MaterialIndex": -1,
+  "MeasureMovement": false,
+  "MeshIndex": -1,
+  "Name": "Infinite_Bag",
+  "Nickname": "Blight",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 52.698,
+    "posY": 1.0586,
+    "posZ": 86.1924,
+    "rotX": 0,
+    "rotY": 90.0218048,
+    "rotZ": 359.9926,
+    "scaleX": 0.75,
+    "scaleY": 0.5,
+    "scaleZ": 0.75
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

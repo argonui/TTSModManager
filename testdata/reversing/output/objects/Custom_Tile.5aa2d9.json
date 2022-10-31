@@ -1,0 +1,136 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0562,
+        "y": 0.2,
+        "z": -0.4018
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9677,
+        "y": 0.2,
+        "z": -0.4082
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9736,
+        "y": 0.2,
+        "z": -0.088
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5076,
+        "y": 0.2,
+        "z": -0.4017
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2833,
+        "y": 0.2,
+        "z": -0.4047
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1972,
+        "y": 0.2,
+        "z": -0.407
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5142,
+        "y": 0.2,
+        "z": -0.0832
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7454,
+        "y": 0.2,
+        "z": -0.0861
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0614,
+        "y": 0.2,
+        "z": -0.0892
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2854,
+        "y": 0.2,
+        "z": -0.0913
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7397,
+        "y": 0.2,
+        "z": -0.407
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752038986/1137984142BF204E7CADF0ACE8E9ED51A26DA622/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752038544/942F15E8A6CC8F8F0A68B1802CED0333654C4357/",
+    "WidthScale": 0
+  },
+  "Description": "JE",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "5aa2d9",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.5aa2d9.txt",
+  "LuaScript_path": "Custom_Tile.5aa2d9.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Stone's Unyielding Defiance",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "JE",
+    "Moderate",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 55.448,
+    "posY": 1.0031,
+    "posZ": 83.96,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

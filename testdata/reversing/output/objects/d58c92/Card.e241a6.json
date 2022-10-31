@@ -1,0 +1,56 @@
+{
+  "Autoraise": true,
+  "CardID": 54600,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "546": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100588859/B4EC2F9E7E1B82EA09701A01507FF57F77790D97/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100354030/A48EDCBFBA55551B11DF72EAC9CA2BE3E3B49C3D/",
+      "NumHeight": 2,
+      "NumWidth": 2,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "e241a6",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Resilience",
+  "SidewaysCard": false,
+  "Snap": false,
+  "Sticky": true,
+  "Tags": [
+    "Aspect"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -70.26,
+    "posY": 1.1407,
+    "posZ": 49.02,
+    "rotX": 359.9922,
+    "rotY": 180.0001,
+    "rotZ": 180.0081,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

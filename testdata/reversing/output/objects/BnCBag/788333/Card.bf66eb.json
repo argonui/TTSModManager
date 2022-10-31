@@ -1,0 +1,108 @@
+{
+  "Autoraise": true,
+  "CardID": 58203,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "582": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100541054/AF7008082A9C6B682B48AD1B17C1454B49466364/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100540057/DB8DCCA9FFEC91FB9088092F54B5DC8011FE267F/",
+      "NumHeight": 2,
+      "NumWidth": 4,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "bf66eb",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": true,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "blight=2\nimmediate=true",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Aid from Lesser Spirits",
+  "SidewaysCard": false,
+  "Snap": true,
+  "States": {
+    "2": {
+      "Autoraise": true,
+      "CardID": 64900,
+      "ColorDiffuse": {
+        "b": 0.7132,
+        "g": 0.7132,
+        "r": 0.7132
+      },
+      "CustomDeck": {
+        "649": {
+          "BackIsHidden": true,
+          "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100541054/AF7008082A9C6B682B48AD1B17C1454B49466364/",
+          "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1798600432057027175/204F5367E0E24B38C5FF931568965BE5B35BCDD3/",
+          "NumHeight": 1,
+          "NumWidth": 1,
+          "Type": 0,
+          "UniqueBack": false
+        }
+      },
+      "Description": "",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "ad5b9a",
+      "Grid": true,
+      "GridProjection": false,
+      "Hands": true,
+      "HideWhenFaceDown": true,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "blight=2\nimmediate=true\n",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "CardCustom",
+      "Nickname": "Aid from Lesser Spirits",
+      "SidewaysCard": false,
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": 52.94,
+        "posY": 0.8636,
+        "posZ": 19.9,
+        "rotX": 0,
+        "rotY": 180,
+        "rotZ": 0,
+        "scaleX": 1.53,
+        "scaleY": 1,
+        "scaleZ": 1.53
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": 57.4071,
+    "posY": 1.9847,
+    "posZ": 28.6179,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

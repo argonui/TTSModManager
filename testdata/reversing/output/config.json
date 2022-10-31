@@ -1,0 +1,47 @@
+{
+  "CameraStates_path": "CameraStates.json",
+  "ComponentTags_path": "ComponentTags.json",
+  "CustomUIAssets_path": "CustomUIAssets.json",
+  "Date": "7/29/2021 1:30:48 PM",
+  "DecalPallet": [],
+  "EpochTime": 1627561848,
+  "GameComplexity": "Medium Complexity",
+  "GameMode": "Spirit Island [By MJ \u0026 iakona]",
+  "GameType": "Game",
+  "Gravity": 0.5,
+  "Grid_path": "Grid.json",
+  "Hands": {
+    "DisableUnused": false,
+    "Enable": true,
+    "Hiding": 2
+  },
+  "Lighting_path": "Lighting.json",
+  "LuaScriptState_path": "LuaScriptState.txt",
+  "LuaScript_path": "LuaScript.ttslua",
+  "MusicPlayer_path": "MusicPlayer.json",
+  "Note_path": "Note.txt",
+  "PlayArea": 1,
+  "PlayerCounts": [
+    1,
+    6
+  ],
+  "PlayingTime": [
+    30,
+    180
+  ],
+  "SaveName": "Spirit Island - [By MJ \u0026 iakona]",
+  "Sky": "Sky_Forest",
+  "SnapPoints_path": "SnapPoints.json",
+  "TabStates_path": "TabStates.json",
+  "Table": "Table_None",
+  "Tags": [
+    "Cooperative Games",
+    "Thematic Games",
+    "Board Games",
+    "Strategy Games",
+    "Scripting"
+  ],
+  "Turns_path": "Turns.json",
+  "VersionNumber": "v13.1.1",
+  "XmlUI_path": "XmlUI.txt"
+}

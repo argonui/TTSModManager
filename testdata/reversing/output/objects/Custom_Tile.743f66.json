@@ -1,0 +1,136 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0544,
+        "y": 0.2,
+        "z": -0.4055
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0568,
+        "y": 0.2,
+        "z": -0.0104
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4862,
+        "y": 0.2,
+        "z": 0.0018
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9028,
+        "y": 0.2,
+        "z": 0.0029
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3301,
+        "y": 0.2,
+        "z": -0.0049
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3411,
+        "y": 0.2,
+        "z": -0.4135
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9087,
+        "y": 0.2,
+        "z": -0.4143
+      }
+    },
+    {
+      "Position": {
+        "x": -1.117,
+        "y": 0.2,
+        "z": -0.2135
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6936,
+        "y": 0.2,
+        "z": -0.206
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4886,
+        "y": 0.2,
+        "z": -0.4152
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2768,
+        "y": 0.2,
+        "z": -0.2088
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752088179/E938B43FF0D0F372CB87CEE145E4A78EEA4FF4B8/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752087897/EBD579078AECEB4B2FD948E94AE2CE23B4D35872/",
+    "WidthScale": 0
+  },
+  "Description": "JE",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "743f66",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.743f66.txt",
+  "LuaScript_path": "Custom_Tile.743f66.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Finder of Paths Unseen",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "JE",
+    "Spirit",
+    "Very High"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 89.2033,
+    "posY": 1.0031,
+    "posZ": 72.53,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

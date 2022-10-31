@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 58927,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "589": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756115964/5577A639021512840E77A6FD8D2DF79DB4E1AEE5/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100606894/4B5F85F8DC3EA9823258E7D82FBB197EBC14D5E8/",
+      "NumHeight": 4,
+      "NumWidth": 10,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "cf4d1f",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"00100001\"\nenergy=0",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Savage Mawbeasts",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Minor",
+    "Slow"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -46.1034,
+    "posY": 2.2466,
+    "posZ": -10.7276,
+    "rotX": 0.0031,
+    "rotY": 182.4284,
+    "rotZ": 359.9917,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

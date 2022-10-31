@@ -1,0 +1,56 @@
+{
+  "Autoraise": true,
+  "CardID": 64800,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "648": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1718660736964014717/46594BD698E461DF10BE671C1B8B9298CFBC6544/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1718660736964009982/83E366C9AD769E6E17A6CEDC9956B8B645E5871B/",
+      "NumHeight": 2,
+      "NumWidth": 2,
+      "Type": 0,
+      "UniqueBack": true
+    }
+  },
+  "Description": "Spirit Island",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "969897",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Terror II",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fear"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -42.8199,
+    "posY": 0.8534049,
+    "posZ": 56.3,
+    "rotX": -4.04520328e-9,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 1.532,
+    "scaleY": 1,
+    "scaleZ": 1.532
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

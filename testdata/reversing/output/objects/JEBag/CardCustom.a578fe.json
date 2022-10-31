@@ -1,0 +1,53 @@
+{
+  "Autoraise": true,
+  "CardID": 56101,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "561": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368728105/AE4E09228AB051596D9C5D4C604C65C324CB6CF9/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368728616/4376A3B21338EDF7AC7602E4440DE8EA9CF0FD90/",
+      "NumHeight": 2,
+      "NumWidth": 2,
+      "Type": 0,
+      "UniqueBack": true
+    }
+  },
+  "Description": "Jagged Earth Expansion",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "a578fe",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "CardCustom",
+  "Nickname": "Stage III Command",
+  "SidewaysCard": true,
+  "Snap": false,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -22.4855,
+    "posY": 2.1083,
+    "posZ": 69.4064,
+    "rotX": 0,
+    "rotY": 89.9867,
+    "rotZ": 180,
+    "scaleX": 1.05,
+    "scaleY": 1,
+    "scaleZ": 1.05
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

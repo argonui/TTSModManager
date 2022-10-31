@@ -1,0 +1,52 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1461933130017943917/A6DA6B98F353E06AE9BF8BA006F620310F39C5B5/",
+    "WidthScale": 0
+  },
+  "Description": "Custom",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "135124",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Ravage Reminder Tile",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -69.3951,
+    "posY": 1.3147,
+    "posZ": 0.9681,
+    "rotX": 0,
+    "rotY": 180.0001,
+    "rotZ": 0,
+    "scaleX": 0.21,
+    "scaleY": 1,
+    "scaleZ": 0.2
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

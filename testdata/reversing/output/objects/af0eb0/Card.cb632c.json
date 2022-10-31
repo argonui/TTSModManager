@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 45403,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "454": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100681295/0B7D49D46BFE7E2DF8445C01423CD0E77F2190A8/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100680840/DF01DCC52AC95A5245BDCC16EF07B0B8F5A80293/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "cb632c",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"01010100\"\nenergy=0",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Elemental Teachings",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -123.0972,
+    "posY": 1.2093,
+    "posZ": 9.1583,
+    "rotX": 359.9924,
+    "rotY": 179.9997,
+    "rotZ": 359.9531,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

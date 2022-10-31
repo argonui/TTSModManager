@@ -1,0 +1,53 @@
+{
+  "Autoraise": true,
+  "CardID": 59301,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "593": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1738926067615542032/0C9C1CD32F8540AAAB9578B2140B0CD3FBBDB4FB/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1738926067615541619/7FC2DE1D675D045D258D758DAD3EEB54DAD3FE2E/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": true
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "f9f49b",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Card.f9f49b.ttslua",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Progression",
+  "SidewaysCard": false,
+  "Snap": false,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -13.8004,
+    "posY": 1.0167,
+    "posZ": 97.32,
+    "rotX": 0,
+    "rotY": 179.9941,
+    "rotZ": 180,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

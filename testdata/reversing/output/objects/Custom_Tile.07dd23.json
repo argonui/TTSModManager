@@ -1,0 +1,136 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0395,
+        "y": 0.2,
+        "z": -0.1396
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0404,
+        "y": 0.2,
+        "z": 0.1398
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2601,
+        "y": 0.2,
+        "z": -0.1386
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2637,
+        "y": 0.2,
+        "z": 0.1378
+      }
+    },
+    {
+      "Position": {
+        "x": -0.481,
+        "y": 0.2,
+        "z": -0.1405
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4813,
+        "y": 0.2,
+        "z": 0.1388
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7018,
+        "y": 0.2,
+        "z": -0.1397
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7023,
+        "y": 0.2,
+        "z": 0.1399
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9223,
+        "y": 0.2,
+        "z": -0.1386
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9227,
+        "y": 0.2,
+        "z": 0.1406
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1426,
+        "y": 0.2,
+        "z": -0.1403
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752026882/55FF0151193B157FF85F9FC2D773662DC8D8FCA0/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752026612/7D49A46284F88ED0488056863CA611F31A4305C7/",
+    "WidthScale": 0
+  },
+  "Description": "Base",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "07dd23",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.07dd23.txt",
+  "LuaScript_path": "Custom_Tile.07dd23.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Ocean's Hungry Grasp",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Base",
+    "High",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 89.0044,
+    "posY": 1.0031,
+    "posZ": 95.19,
+    "rotX": 0,
+    "rotY": 179.9997,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

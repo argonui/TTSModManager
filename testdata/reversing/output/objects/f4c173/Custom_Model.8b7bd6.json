@@ -1,0 +1,129 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.0006,
+        "y": 0.2526,
+        "z": 0.0066
+      },
+      "Tags": []
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673611100766887017/300AD488BEA8000EAA56CB3B2CE1AA8E902BD01F/",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/868489312390111963/0AC11EE484D224283CEC63161D50D292D9296010/",
+    "NormalURL": "",
+    "TypeIndex": 1
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "8b7bd6",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Dahan: 0 Damage",
+  "Snap": true,
+  "States": {
+    "2": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0.0319,
+            "y": 0.1771,
+            "z": 0.0204
+          },
+          "Tags": []
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 1,
+        "g": 1,
+        "r": 1
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/868489312390112018/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "MaterialIndex": 1,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189694576224611/98DAA0C081A86976E4BF7A3A735B65FFE7D3DB17/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "c0d874",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Dahan: 1 Damage",
+      "Snap": true,
+      "Sticky": true,
+      "Tags": [
+        "Dahan"
+      ],
+      "Tooltip": true,
+      "Transform": {
+        "posX": -47.279,
+        "posY": 1.228,
+        "posZ": 27.9567,
+        "rotX": 0.0044,
+        "rotY": 180.0051,
+        "rotZ": 0,
+        "scaleX": 1.9,
+        "scaleY": 1.9,
+        "scaleZ": 1.9
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": true,
+  "Tags": [
+    "Dahan",
+    "Highlight"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -56.1221,
+    "posY": 2.1578,
+    "posZ": 31.429,
+    "rotX": 0,
+    "rotY": 180.0055,
+    "rotZ": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

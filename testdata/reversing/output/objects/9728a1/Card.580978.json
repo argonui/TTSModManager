@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 64403,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "644": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100648742/85D22C29BD271E3F3E7C6A5E5E1C8BF99D6BB3F8/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100652321/B8F820145E7BF4CFE0FBB508BAB3D088C2AC06DF/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "580978",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"11000010\"\nenergy=1",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Boon of Growing Power",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Slow",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -123.1214,
+    "posY": 1.3144,
+    "posZ": 31.4499,
+    "rotX": 0.0027,
+    "rotY": 179.9999,
+    "rotZ": 184.0357,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

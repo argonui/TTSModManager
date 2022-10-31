@@ -1,0 +1,53 @@
+{
+  "Autoraise": true,
+  "CardID": 200,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "2": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368463552/3E76DC1C8E31B9E8C1E69852274EFB2AC799F253/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1738926104368463552/3E76DC1C8E31B9E8C1E69852274EFB2AC799F253/",
+      "NumHeight": 1,
+      "NumWidth": 1,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "Habsburg Lv 5",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "d90af8",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "CardCustom",
+  "Nickname": "Invader Reminder Card",
+  "SidewaysCard": false,
+  "Snap": false,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.6204,
+    "posY": 1.2734,
+    "posZ": 40.6202,
+    "rotX": 359.6537,
+    "rotY": 179.9993,
+    "rotZ": 179.5204,
+    "scaleX": 1.05,
+    "scaleY": 1,
+    "scaleZ": 1.05
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

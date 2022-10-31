@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 64101,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "641": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100675405/0A5C95BD5A29D2E6E16F4F74A234790CE1B283BB/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100675096/2D6011511DE2FA7BCED3BC6DC22F428D7C224B4B/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "6bf28e",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"01000010\"\nenergy=1",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Gift of Proliferation",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -106.3752,
+    "posY": 1.1954,
+    "posZ": 42.5094,
+    "rotX": 0.0166,
+    "rotY": 180,
+    "rotZ": 180.1648,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

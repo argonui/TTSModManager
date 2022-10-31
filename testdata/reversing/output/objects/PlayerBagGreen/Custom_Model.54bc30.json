@@ -1,0 +1,50 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472357873/CF2B89112AF7A9242CA8C6D2FEEECC3C6C1BE05C/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "NormalURL": "",
+    "TypeIndex": 0
+  },
+  "Description": "Flip this to the side with a check mark if you are Ready to move on to the next phase in the turn. These are mainly used to keep all players on the same page. When all players' Ready Tokens are flipped, they will unflip.",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "54bc30",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Ready Token",
+  "Snap": false,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -17.5138,
+    "posY": 1.9712,
+    "posZ": 35.0765,
+    "rotX": 0.0044,
+    "rotY": 179.9688,
+    "rotZ": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

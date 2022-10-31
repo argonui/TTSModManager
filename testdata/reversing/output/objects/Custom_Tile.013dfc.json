@@ -1,0 +1,129 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0469,
+        "y": 0.2,
+        "z": -0.2224
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2779,
+        "y": 0.2,
+        "z": -0.2277
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5042,
+        "y": 0.2,
+        "z": -0.2275
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7342,
+        "y": 0.2,
+        "z": -0.2234
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9585,
+        "y": 0.2,
+        "z": -0.2266
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9584,
+        "y": 0.2,
+        "z": 0.049
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7342,
+        "y": 0.2,
+        "z": 0.0518
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5045,
+        "y": 0.2,
+        "z": 0.0526
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2784,
+        "y": 0.2,
+        "z": 0.0552
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0469,
+        "y": 0.2,
+        "z": 0.0569
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752086444/1130398DC64D9AB9FE1DCCF010A13B27639A0657/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752086200/EF4CBEFF4098527BB01139541AC14F1B60E9E866/",
+    "WidthScale": 0
+  },
+  "Description": "JE",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "013dfc",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.013dfc.txt",
+  "LuaScript_path": "Custom_Tile.013dfc.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Fractured Days Split the Sky",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "JE",
+    "Spirit",
+    "Very High"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 55.6034,
+    "posY": 1.0031,
+    "posZ": 72.53,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

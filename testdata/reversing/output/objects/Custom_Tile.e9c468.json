@@ -1,0 +1,136 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0451,
+        "y": 0.2,
+        "z": -0.3996
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0425,
+        "y": 0.2,
+        "z": -0.1112
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2631,
+        "y": 0.2,
+        "z": -0.1101
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2599,
+        "y": 0.2,
+        "z": -0.402
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4865,
+        "y": 0.2,
+        "z": -0.4006
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4837,
+        "y": 0.2,
+        "z": -0.1091
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7048,
+        "y": 0.2,
+        "z": -0.1141
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7043,
+        "y": 0.2,
+        "z": -0.4028
+      }
+    },
+    {
+      "Position": {
+        "x": -0.931,
+        "y": 0.2,
+        "z": -0.4013
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9191,
+        "y": 0.2,
+        "z": -0.1104
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1429,
+        "y": 0.2,
+        "z": -0.1122
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752023938/6C850C40E9AB2A0987B3DA877F2974F272212EF8/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752023580/B4376D9C0BEE5604B1598D83846E3235E04F65A2/",
+    "WidthScale": 0
+  },
+  "Description": "Base",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "e9c468",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.e9c468.txt",
+  "LuaScript_path": "Custom_Tile.e9c468.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Thunderspeaker",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Base",
+    "Moderate",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 38.6044,
+    "posY": 1.0031,
+    "posZ": 95.19,
+    "rotX": 0,
+    "rotY": 179.9997,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,73 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0,
+        "y": 1.1409,
+        "z": -0.0001
+      },
+      "Tags": []
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.8679,
+    "g": 0.6744,
+    "r": 0.796
+  },
+  "CustomMesh": {
+    "CastShadows": false,
+    "ColliderURL": "",
+    "Convex": true,
+    "CustomShader": {
+      "FresnelStrength": 0.4,
+      "SpecularColor": {
+        "b": 1,
+        "g": 1,
+        "r": 1
+      },
+      "SpecularIntensity": 0.2,
+      "SpecularSharpness": 2
+    },
+    "DiffuseURL": "",
+    "MaterialIndex": 0,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187357178/0668709935277DAF1A003F8B2CB2C09E67828297/",
+    "NormalURL": "",
+    "TypeIndex": 1
+  },
+  "Description": "They are unable to be removed by fear cards and instead will be pushed",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "a4a8d5",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Explorer: 0 Damage",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Highlight"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -48.9447,
+    "posY": 2.6618,
+    "posZ": 28.2371,
+    "rotX": 0,
+    "rotY": -0.0018,
+    "rotZ": 0,
+    "scaleX": 1.0947,
+    "scaleY": 1.0105,
+    "scaleZ": 1.0947
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

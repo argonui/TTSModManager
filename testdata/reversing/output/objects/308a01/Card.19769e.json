@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 59001,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "590": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100594179/55D98740B74E9A09E3BD5120416330C5FF5FB732/",
+      "NumHeight": 3,
+      "NumWidth": 8,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "19769e",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"10001000\"\nenergy=5",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Cleansing Floods",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Major",
+    "Slow"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -46.1448,
+    "posY": 2.1565,
+    "posZ": -5.8272,
+    "rotX": 359.944,
+    "rotY": 178.9048,
+    "rotZ": 0.0711,
+    "scaleX": 1.532,
+    "scaleY": 1,
+    "scaleZ": 1.532
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

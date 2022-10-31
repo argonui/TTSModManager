@@ -1,0 +1,125 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0,
+        "y": 0.2365,
+        "z": 0
+      },
+      "Tags": []
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.8526,
+    "g": 0.8805,
+    "r": 0.8898
+  },
+  "CustomMesh": {
+    "CastShadows": false,
+    "ColliderURL": "",
+    "Convex": true,
+    "DiffuseURL": "",
+    "MaterialIndex": 0,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+    "NormalURL": "",
+    "TypeIndex": 1
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "116aa3",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Town: 0 Damage",
+  "Snap": true,
+  "States": {
+    "2": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0,
+            "y": 0.211,
+            "z": 0
+          },
+          "Tags": []
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.8526,
+        "g": 0.8805,
+        "r": 0.8898
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "",
+        "MaterialIndex": 0,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "58ba36",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Town: 1 Damage",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -52.4343,
+        "posY": 1.6215,
+        "posZ": 28.4168,
+        "rotX": 0.0045,
+        "rotY": 179.9993,
+        "rotZ": 0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": true,
+  "Tags": [
+    "Highlight"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -55.7757,
+    "posY": 3.0413,
+    "posZ": 34.7371,
+    "rotX": 359.8213,
+    "rotY": 270.0003,
+    "rotZ": 0.043,
+    "scaleX": 2.425,
+    "scaleY": 2.425,
+    "scaleZ": 2.425
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

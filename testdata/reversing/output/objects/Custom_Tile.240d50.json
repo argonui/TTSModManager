@@ -1,0 +1,129 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0374,
+        "y": 0.2,
+        "z": -0.3933
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0419,
+        "y": 0.2,
+        "z": -0.0813
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2602,
+        "y": 0.2,
+        "z": -0.3982
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2565,
+        "y": 0.2,
+        "z": -0.0807
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4789,
+        "y": 0.2,
+        "z": -0.3972
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4832,
+        "y": 0.2,
+        "z": -0.0792
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6998,
+        "y": 0.2,
+        "z": -0.3993
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7068,
+        "y": 0.2,
+        "z": -0.078
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9234,
+        "y": 0.2,
+        "z": -0.398
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9228,
+        "y": 0.2,
+        "z": -0.0761
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752022681/6E20C30007CBEFF5175FE01B8C83CAA903B845DA/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752022479/7B26FE0F62F07912F69F306C5ED4092803AD7731/",
+    "WidthScale": 0
+  },
+  "Description": "Base",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "240d50",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Tile.240d50.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Vital Strength of the Earth",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Base",
+    "Low",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 21.7095,
+    "posY": 1.0031,
+    "posZ": 95.19,
+    "rotX": 0,
+    "rotY": 180.0008,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,173 @@
+[
+  {
+    "AbsolutePosition": {
+      "x": -26.9417,
+      "y": 34.2025,
+      "z": -32.4694
+    },
+    "Distance": 36.9263,
+    "Position": {
+      "x": -26.9417,
+      "y": -2.5,
+      "z": -28.4099
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  },
+  {
+    "AbsolutePosition": {
+      "x": -4.7167,
+      "y": 34.2025,
+      "z": -32.4694
+    },
+    "Distance": 36.9263,
+    "Position": {
+      "x": -4.7167,
+      "y": -2.5,
+      "z": -28.4099
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  },
+  {
+    "AbsolutePosition": {
+      "x": 18.0908,
+      "y": 34.2025,
+      "z": -32.4694
+    },
+    "Distance": 36.9263,
+    "Position": {
+      "x": 18.0908,
+      "y": -2.5,
+      "z": -28.4099
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  },
+  {
+    "AbsolutePosition": {
+      "x": 41.2101,
+      "y": 34.2025,
+      "z": -32.4694
+    },
+    "Distance": 36.9263,
+    "Position": {
+      "x": 41.2101,
+      "y": -2.5,
+      "z": -28.4099
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  },
+  {
+    "AbsolutePosition": {
+      "x": 63.8771,
+      "y": 34.2025,
+      "z": -32.4694
+    },
+    "Distance": 36.9263,
+    "Position": {
+      "x": 63.8771,
+      "y": -2.5,
+      "z": -28.4099
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  },
+  {
+    "AbsolutePosition": {
+      "x": 87.3366,
+      "y": 34.2025,
+      "z": -32.4694
+    },
+    "Distance": 36.9263,
+    "Position": {
+      "x": 87.3366,
+      "y": -2.5,
+      "z": -28.4099
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  },
+  {
+    "AbsolutePosition": {
+      "x": 29.1437,
+      "y": 70.1079,
+      "z": 19.8765
+    },
+    "Distance": 73.0506,
+    "Position": {
+      "x": 29.1437,
+      "y": -2.5,
+      "z": 27.9072
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  },
+  {
+    "AbsolutePosition": {
+      "x": -42.0723,
+      "y": 62.8965,
+      "z": 11.8626
+    },
+    "Distance": 65.7953,
+    "Position": {
+      "x": -42.0723,
+      "y": -2.5,
+      "z": 19.0957
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  },
+  {
+    "AbsolutePosition": {
+      "x": 101.6487,
+      "y": 62.8965,
+      "z": 11.8626
+    },
+    "Distance": 65.7953,
+    "Position": {
+      "x": 101.6487,
+      "y": -2.5,
+      "z": 19.0957
+    },
+    "Rotation": {
+      "x": 83.6885,
+      "y": 0,
+      "z": 0
+    },
+    "Zoomed": false
+  }
+]

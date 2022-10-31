@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 63602,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "636": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100676939/BDBAB20C0A1B993E9EEA4BC1845019A34F9DAD9E/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100676673/B4442E39EC48CC0379A726E0036A54B29E4B6523/",
+      "NumHeight": 2,
+      "NumWidth": 3,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "22b2f3",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"10001010\"\nenergy=0",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Boon of Vigor",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Unique"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -122.9374,
+    "posY": 1.243,
+    "posZ": 53.8185,
+    "rotX": 0.0024,
+    "rotY": 180.0056,
+    "rotZ": 182.3028,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

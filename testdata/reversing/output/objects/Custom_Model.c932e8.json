@@ -1,0 +1,53 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.249997467,
+    "g": 0.249997467,
+    "r": 0.249997467
+  },
+  "CustomMesh": {
+    "CastShadows": false,
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "NormalURL": "",
+    "TypeIndex": 5
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "c932e8",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Model.c932e8.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Add Deep Slumber Snap Points",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Spirit Setup"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 18.7874,
+    "posY": 1.1531,
+    "posZ": 82.354,
+    "rotX": 0,
+    "rotY": 359.8642,
+    "rotZ": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

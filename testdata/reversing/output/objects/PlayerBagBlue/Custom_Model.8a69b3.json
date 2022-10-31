@@ -1,0 +1,128 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 0.0345,
+    "r": 0
+  },
+  "CustomMesh": {
+    "CastShadows": false,
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "NormalURL": "",
+    "TypeIndex": 5
+  },
+  "Description": "A piece showing where a spirit lives in a land",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "8a69b3",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Blue's Presence",
+  "Snap": true,
+  "States": {
+    "2": {
+      "AttachedDecals": [
+        {
+          "CustomDecal": {
+            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1752434562676881841/9B1B1859A3BCE1EE2EC77AE688E13E937CB08F09/",
+            "Name": "Blue's Sacred Site",
+            "Size": 1
+          },
+          "Transform": {
+            "posX": 0,
+            "posY": -0.14,
+            "posZ": 0,
+            "rotX": 90,
+            "rotY": 180,
+            "rotZ": 0,
+            "scaleX": 3,
+            "scaleY": 3,
+            "scaleZ": 3
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 1,
+        "g": 0.0345,
+        "r": 0
+      },
+      "CustomMesh": {
+        "CastShadows": false,
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+        "Convex": true,
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "MaterialIndex": 1,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+        "NormalURL": "",
+        "TypeIndex": 5
+      },
+      "Description": "A piece showing where a spirit lives in a land",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "520d53",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": true,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Blue's Presence",
+      "Snap": true,
+      "Sticky": false,
+      "Tags": [
+        "Presence"
+      ],
+      "Tooltip": true,
+      "Transform": {
+        "posX": -48.7552,
+        "posY": 1.06,
+        "posZ": 47.6656,
+        "rotX": 0,
+        "rotY": 179.9896,
+        "rotZ": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "scaleZ": 1
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": false,
+  "Tags": [
+    "Presence"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.7199,
+    "posY": 1.3951,
+    "posZ": 46.9883,
+    "rotX": 0,
+    "rotY": 179.9896,
+    "rotZ": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

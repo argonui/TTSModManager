@@ -1,0 +1,43 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.9913,
+    "g": 0.9913,
+    "r": 0.9913
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "bddbfb",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScriptState": "",
+  "LuaScript_path": "Bag.bddbfb.ttslua",
+  "MaterialIndex": -1,
+  "MeasureMovement": false,
+  "MeshIndex": -1,
+  "Name": "Bag",
+  "Nickname": "Counting Bag",
+  "Number": 0,
+  "Snap": false,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.1658,
+    "posY": 1.0996,
+    "posZ": 42.1925,
+    "rotX": 358.2485,
+    "rotY": 180.2857,
+    "rotZ": 359.2602,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

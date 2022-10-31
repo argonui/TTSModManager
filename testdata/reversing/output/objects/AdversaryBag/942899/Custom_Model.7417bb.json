@@ -1,0 +1,193 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0,
+        "y": 0.2365,
+        "z": -0.0001
+      },
+      "Tags": []
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.2247,
+    "g": 0.2247,
+    "r": 0.6539
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "CustomShader": {
+      "FresnelStrength": 0.4,
+      "SpecularColor": {
+        "b": 0.0421,
+        "g": 0.0421,
+        "r": 0.6746
+      },
+      "SpecularIntensity": 0.2,
+      "SpecularSharpness": 7
+    },
+    "DiffuseURL": "",
+    "MaterialIndex": 0,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+    "NormalURL": "",
+    "TypeIndex": 1
+  },
+  "Description": "Buildings have +1  health",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "7417bb",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Town: 0 Damage",
+  "Snap": true,
+  "States": {
+    "2": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0,
+            "y": 0.2365,
+            "z": 0
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.8526,
+        "g": 0.8805,
+        "r": 0.8898
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "",
+        "MaterialIndex": 0,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307684479/71C2450B51569ECFE51845D95C40EAE4CC2C38A6/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "a1d4e8",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Town: 1 Damage",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -63.8742,
+        "posY": 1.462,
+        "posZ": -12.7904,
+        "rotX": 0.0045,
+        "rotY": 180.0015,
+        "rotZ": 0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
+      },
+      "Value": 0,
+      "XmlUI": ""
+    },
+    "3": {
+      "AttachedSnapPoints": [
+        {
+          "Position": {
+            "x": 0,
+            "y": 0.211,
+            "z": 0
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.8526,
+        "g": 0.8805,
+        "r": 0.8898
+      },
+      "CustomMesh": {
+        "CastShadows": true,
+        "ColliderURL": "",
+        "Convex": true,
+        "DiffuseURL": "",
+        "MaterialIndex": 0,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1008189904307703179/F17AF54A2BF3E3BEA606B024C015B47ECC8C319E/",
+        "NormalURL": "",
+        "TypeIndex": 1
+      },
+      "Description": "",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "0cd53a",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Town: 2 Damage",
+      "Snap": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "Transform": {
+        "posX": -62.5326,
+        "posY": 1.6183,
+        "posZ": -12.7902,
+        "rotX": 0.0045,
+        "rotY": 180.0076,
+        "rotZ": 0,
+        "scaleX": 2.425,
+        "scaleY": 2.425,
+        "scaleZ": 2.425
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": true,
+  "Tags": [
+    "Highlight"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -42.1627,
+    "posY": 3.0536,
+    "posZ": 33.7729,
+    "rotX": 0.0004,
+    "rotY": 269.9987,
+    "rotZ": 0,
+    "scaleX": 2.425,
+    "scaleY": 2.425,
+    "scaleZ": 2.425
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

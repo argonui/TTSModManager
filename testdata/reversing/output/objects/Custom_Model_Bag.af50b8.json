@@ -1,0 +1,66 @@
+{
+  "Autoraise": true,
+  "Bag": {
+    "Order": 0
+  },
+  "ColorDiffuse": {
+    "b": 0.1803976,
+    "g": 0.1803976,
+    "r": 0.1803976
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+    "Convex": false,
+    "CustomShader": {
+      "FresnelStrength": 0,
+      "SpecularColor": {
+        "b": 0.5,
+        "g": 0.5,
+        "r": 0.5
+      },
+      "SpecularIntensity": 0.1,
+      "SpecularSharpness": 2
+    },
+    "DiffuseURL": "",
+    "MaterialIndex": 0,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/863986017479109580/1CE7C1EB846FF96FA3A1317A9C80733B46D450D5/",
+    "NormalURL": "",
+    "TypeIndex": 6
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "af50b8",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Custom_Model_Bag.af50b8.ttslua",
+  "MaterialIndex": -1,
+  "MeasureMovement": false,
+  "MeshIndex": -1,
+  "Name": "Custom_Model_Bag",
+  "Nickname": "Blight",
+  "Number": 0,
+  "Snap": false,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -38.329,
+    "posY": 1.15,
+    "posZ": 3.699,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": -0.0001,
+    "scaleX": 0.675,
+    "scaleY": 0.675,
+    "scaleZ": 0.675
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 59004,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "590": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756106070/736448A6571971F3549683E82544314E66488DCC/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100594179/55D98740B74E9A09E3BD5120416330C5FF5FB732/",
+      "NumHeight": 3,
+      "NumWidth": 8,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "de9b6f",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"01010000\"\nenergy=4",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Terrifying Nightmares",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Major"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -46.2492,
+    "posY": 2.1831,
+    "posZ": -5.6802,
+    "rotX": 359.9428,
+    "rotY": 179.9773,
+    "rotZ": 0.0593,
+    "scaleX": 1.532,
+    "scaleY": 1,
+    "scaleZ": 1.532
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

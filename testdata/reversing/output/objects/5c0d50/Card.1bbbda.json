@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 58934,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "589": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756115964/5577A639021512840E77A6FD8D2DF79DB4E1AEE5/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100606894/4B5F85F8DC3EA9823258E7D82FBB197EBC14D5E8/",
+      "NumHeight": 4,
+      "NumWidth": 10,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "1bbbda",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"10001100\"\nenergy=1",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Encompassing Ward",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Minor"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.917,
+    "posY": 1.9456,
+    "posZ": -10.651,
+    "rotX": 359.9846,
+    "rotY": 183.4072,
+    "rotZ": 359.8588,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

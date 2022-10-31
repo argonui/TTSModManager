@@ -1,0 +1,53 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1753560381472358853/D72E5ECC21282BD751BEC11B05D39C6656CC0921/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1749061746121830431/DE000E849E99F439C3775E5C92E327CE09E4DB65/",
+    "NormalURL": "",
+    "TypeIndex": 5
+  },
+  "Description": "Pays for Power Cards. Carries over from turn to turn.",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "0312d1",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "3 Energy",
+  "Snap": false,
+  "Sticky": false,
+  "Tags": [
+    "Destroy"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -44.0017,
+    "posY": 1.17,
+    "posZ": 59.6263,
+    "rotX": 0,
+    "rotY": 179.98,
+    "rotZ": 0,
+    "scaleX": 0.7,
+    "scaleY": 1,
+    "scaleZ": 0.7
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

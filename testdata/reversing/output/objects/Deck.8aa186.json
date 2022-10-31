@@ -1,0 +1,60 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "627": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270426772/7D1A356297110F487F9759829AC15B2D15041422/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559899270425836/1E70B00AD6B8C49301E672767A57126B3C91BDE6/",
+      "NumHeight": 4,
+      "NumWidth": 4,
+      "Type": 0,
+      "UniqueBack": true
+    }
+  },
+  "DeckIDs": [
+    62709,
+    62710,
+    62711,
+    62712,
+    62713,
+    62714
+  ],
+  "Description": "Spirit Island",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "8aa186",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Deck",
+  "Nickname": "Stage III",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -46.1787,
+    "posY": 0.8896149,
+    "posZ": 55.5808,
+    "rotX": 4.37632863e-9,
+    "rotY": 180.0117,
+    "rotZ": 180,
+    "scaleX": 1.0981,
+    "scaleY": 1,
+    "scaleZ": 1.0981
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

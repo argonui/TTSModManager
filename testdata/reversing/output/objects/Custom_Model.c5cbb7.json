@@ -1,0 +1,50 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0,
+    "g": 0.8513,
+    "r": 1
+  },
+  "CustomMesh": {
+    "CastShadows": true,
+    "ColliderURL": "",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1747932530848003345/A0139159D20B8012E78D0AB7E6861C403CC7C8E2/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1747932530847955752/9AFCE5ED45E9AD8F572BA91EE17D27703EE5E3D1/",
+    "NormalURL": "",
+    "TypeIndex": 0
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "c5cbb7",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Sun Element",
+  "Snap": false,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -43.03,
+    "posY": 0.8031,
+    "posZ": 21.67,
+    "rotX": 0,
+    "rotY": 180.0147,
+    "rotZ": 0,
+    "scaleX": 0.55,
+    "scaleY": 0.55,
+    "scaleZ": 0.55
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,52 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 1,
+    "g": 1,
+    "r": 1
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/868489312394412878/9B1AD63B0EB828C362E1199D02197825F9E27D53/",
+    "WidthScale": 0
+  },
+  "Description": "Branch \u0026 Claw Expansion",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "be2c91",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "France Build Reminder",
+  "Snap": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -69.7605,
+    "posY": 1.3147,
+    "posZ": 0.5422,
+    "rotX": 0,
+    "rotY": 179.9917,
+    "rotZ": 0,
+    "scaleX": 0.21,
+    "scaleY": 1,
+    "scaleZ": 0.2
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

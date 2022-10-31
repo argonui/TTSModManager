@@ -1,0 +1,143 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0018,
+        "y": 0.2,
+        "z": 0.8177
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2281,
+        "y": 0.2,
+        "z": 0.8197
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4602,
+        "y": 0.2,
+        "z": 0.8241
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4573,
+        "y": 0.2,
+        "z": 0.5589
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2285,
+        "y": 0.2,
+        "z": 0.5511
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0026,
+        "y": 0.2,
+        "z": 0.5566
+      }
+    },
+    {
+      "Position": {
+        "x": 0.2147,
+        "y": 0.2,
+        "z": -0.0437
+      }
+    },
+    {
+      "Position": {
+        "x": 0.4485,
+        "y": 0.2,
+        "z": -0.0481
+      }
+    },
+    {
+      "Position": {
+        "x": 0.2167,
+        "y": 0.2,
+        "z": 0.2317
+      }
+    },
+    {
+      "Position": {
+        "x": 0.452,
+        "y": 0.2,
+        "z": 0.2359
+      }
+    },
+    {
+      "Position": {
+        "x": 0.4054,
+        "y": 0.2,
+        "z": -0.2812
+      }
+    },
+    {
+      "Position": {
+        "x": 0.4047,
+        "y": 0.2,
+        "z": -0.5328
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752085761/CA48D652FD0ACF84E60C3A82506F597B4BA0A22A/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752085482/E9BBF5F34B2A3398E2F64A826F86F21B70FEF7F1/",
+    "WidthScale": 0
+  },
+  "Description": "JE",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "74d027",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.74d027.txt",
+  "LuaScript_path": "Custom_Tile.74d027.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Starlight Seeks Its Form",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "JE",
+    "Spirit",
+    "Very High"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 38.8034,
+    "posY": 1.0031,
+    "posZ": 72.53,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

@@ -1,0 +1,128 @@
+{
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.094,
+    "g": 0.1,
+    "r": 0.856
+  },
+  "CustomMesh": {
+    "CastShadows": false,
+    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+    "Convex": true,
+    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+    "MaterialIndex": 1,
+    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+    "NormalURL": "",
+    "TypeIndex": 5
+  },
+  "Description": "A piece showing where a spirit lives in a land",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "ff326c",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Custom_Model",
+  "Nickname": "Red's Presence",
+  "Snap": true,
+  "States": {
+    "2": {
+      "AttachedDecals": [
+        {
+          "CustomDecal": {
+            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1752434562676874388/C51FB839BC19E2E94CE837708F00B462DAC1C89D/",
+            "Name": "Red's Sacred Site",
+            "Size": 1
+          },
+          "Transform": {
+            "posX": 0,
+            "posY": -0.14,
+            "posZ": 0,
+            "rotX": 90,
+            "rotY": 180,
+            "rotZ": 0,
+            "scaleX": 3,
+            "scaleY": 3,
+            "scaleZ": 3
+          }
+        }
+      ],
+      "Autoraise": true,
+      "ColorDiffuse": {
+        "b": 0.094,
+        "g": 0.1,
+        "r": 0.856
+      },
+      "CustomMesh": {
+        "CastShadows": false,
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396953/5051CA52D59177D530AB21763CF178BB2E249E7B/",
+        "Convex": true,
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187541899/89C51F8E0D934D1D57087E7E6AE4522B7CE8D869/",
+        "MaterialIndex": 1,
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/1673610911187396692/B6ECCABF6AD6DDDC3F81C555D2036BED1F2F48FD/",
+        "NormalURL": "",
+        "TypeIndex": 5
+      },
+      "Description": "A piece showing where a spirit lives in a land",
+      "DragSelectable": true,
+      "GMNotes": "",
+      "GUID": "d7e23f",
+      "Grid": false,
+      "GridProjection": false,
+      "Hands": false,
+      "HideWhenFaceDown": false,
+      "IgnoreFoW": false,
+      "LayoutGroupSortIndex": 0,
+      "Locked": false,
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "MeasureMovement": false,
+      "Name": "Custom_Model",
+      "Nickname": "Red's Presence",
+      "Snap": true,
+      "Sticky": false,
+      "Tags": [
+        "Presence"
+      ],
+      "Tooltip": true,
+      "Transform": {
+        "posX": -46.1456,
+        "posY": 1.042,
+        "posZ": 33.8171,
+        "rotX": 0.0045,
+        "rotY": 179.9948,
+        "rotZ": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "scaleZ": 1
+      },
+      "Value": 0,
+      "XmlUI": ""
+    }
+  },
+  "Sticky": false,
+  "Tags": [
+    "Presence"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.5426,
+    "posY": 1.3951,
+    "posZ": 48.5483,
+    "rotX": 0,
+    "rotY": 179.9948,
+    "rotZ": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "scaleZ": 1
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

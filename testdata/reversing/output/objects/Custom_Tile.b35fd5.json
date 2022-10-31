@@ -1,0 +1,129 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0409,
+        "y": 0.2,
+        "z": -0.4011
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9641,
+        "y": 0.2,
+        "z": -0.4173
+      }
+    },
+    {
+      "Position": {
+        "x": -0.7305,
+        "y": 0.2,
+        "z": -0.4149
+      }
+    },
+    {
+      "Position": {
+        "x": -0.507,
+        "y": 0.2,
+        "z": -0.4075
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2769,
+        "y": 0.2,
+        "z": -0.4098
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2747,
+        "y": 0.2,
+        "z": -0.0856
+      }
+    },
+    {
+      "Position": {
+        "x": -0.5016,
+        "y": 0.2,
+        "z": -0.0828
+      }
+    },
+    {
+      "Position": {
+        "x": -0.734,
+        "y": 0.2,
+        "z": -0.0773
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9607,
+        "y": 0.2,
+        "z": -0.0932
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0496,
+        "y": 0.2,
+        "z": -0.0816
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752080962/2CFE74C5565454EEC6089930AEFE36141C28396E/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752080720/AAD226B7A849FEBA8809AF55F49AEEC01617E7BC/",
+    "WidthScale": 0
+  },
+  "Description": "JE",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "b35fd5",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.b35fd5.txt",
+  "LuaScript_path": "Custom_Tile.b35fd5.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Lure of the Deep Wilderness",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "JE",
+    "Moderate",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -11.5998,
+    "posY": 1.0031,
+    "posZ": 72.5307,
+    "rotX": 0,
+    "rotY": 180.0032,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

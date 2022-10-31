@@ -1,0 +1,129 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": -0.0338,
+        "y": 0.2,
+        "z": -0.3849
+      }
+    },
+    {
+      "Position": {
+        "x": -0.0343,
+        "y": 0.2,
+        "z": -0.0661
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2544,
+        "y": 0.2,
+        "z": -0.3839
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2516,
+        "y": 0.2,
+        "z": -0.0681
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4753,
+        "y": 0.2,
+        "z": -0.3858
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4782,
+        "y": 0.2,
+        "z": -0.067
+      }
+    },
+    {
+      "Position": {
+        "x": -0.696,
+        "y": 0.2,
+        "z": -0.385
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6993,
+        "y": 0.2,
+        "z": -0.072
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9166,
+        "y": 0.2,
+        "z": -0.3839
+      }
+    },
+    {
+      "Position": {
+        "x": -0.9207,
+        "y": 0.2,
+        "z": -0.0713
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752029775/422F03AB75EA8F0805D10A5CF362C1218FBCDDA4/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752029467/B0F666B34B1168C995BEA7A4E95705790654E9F0/",
+    "WidthScale": 0
+  },
+  "Description": "B\u0026C",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "4c061f",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.4c061f.txt",
+  "LuaScript_path": "Custom_Tile.4c061f.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Heart of the Wildfire",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "BnC",
+    "High",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 4.9835,
+    "posY": 1.0031,
+    "posZ": 83.96,
+    "rotX": 0,
+    "rotY": 180.0091,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

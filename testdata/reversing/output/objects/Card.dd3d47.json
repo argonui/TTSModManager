@@ -1,0 +1,53 @@
+{
+  "Autoraise": true,
+  "CardID": 63400,
+  "ColorDiffuse": {
+    "b": 0.7098,
+    "g": 0.7098,
+    "r": 0.7098
+  },
+  "CustomDeck": {
+    "634": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100342545/228003F5EF9715D920A6D0348B10767AAD4D46C7/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100342241/4BF5B68EB7976EFE607B87EC08093DCBDFCE43C7/",
+      "NumHeight": 4,
+      "NumWidth": 2,
+      "Type": 0,
+      "UniqueBack": true
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "dd3d47",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState": "",
+  "LuaScript_path": "Card.dd3d47.ttslua",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Prussia",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": false,
+  "Tooltip": true,
+  "Transform": {
+    "posX": -0.2228,
+    "posY": 0.8636,
+    "posZ": 55.7917,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 0,
+    "scaleX": 1.9278,
+    "scaleY": 1,
+    "scaleZ": 1.9278
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

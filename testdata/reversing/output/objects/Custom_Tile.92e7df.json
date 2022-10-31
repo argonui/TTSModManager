@@ -1,0 +1,143 @@
+{
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.0176,
+        "y": 0.2,
+        "z": -0.4246
+      }
+    },
+    {
+      "Position": {
+        "x": 0.018,
+        "y": 0.2,
+        "z": -0.16
+      }
+    },
+    {
+      "Position": {
+        "x": -1.3514,
+        "y": 0.2,
+        "z": -0.1518
+      }
+    },
+    {
+      "Position": {
+        "x": -1.1222,
+        "y": 0.2,
+        "z": -0.1596
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8947,
+        "y": 0.2,
+        "z": -0.1545
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6636,
+        "y": 0.2,
+        "z": -0.1516
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4393,
+        "y": 0.2,
+        "z": -0.1523
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2103,
+        "y": 0.2,
+        "z": -0.1551
+      }
+    },
+    {
+      "Position": {
+        "x": -0.4377,
+        "y": 0.2,
+        "z": -0.4251
+      }
+    },
+    {
+      "Position": {
+        "x": -0.6667,
+        "y": 0.2,
+        "z": -0.424
+      }
+    },
+    {
+      "Position": {
+        "x": -0.8908,
+        "y": 0.2,
+        "z": -0.4288
+      }
+    },
+    {
+      "Position": {
+        "x": -0.2123,
+        "y": 0.2,
+        "z": -0.427
+      }
+    }
+  ],
+  "Autoraise": true,
+  "ColorDiffuse": {
+    "b": 0.151798815,
+    "g": 0.1602988,
+    "r": 0.200298786
+  },
+  "CustomImage": {
+    "CustomTile": {
+      "Stackable": false,
+      "Stretch": true,
+      "Thickness": 0.2,
+      "Type": 0
+    },
+    "ImageScalar": 1,
+    "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752037490/A99328AFC5A11FEF41FBB4545292CE7A26B4E72C/",
+    "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1617312248752032415/22942DBD41EFFFC38398F2375A32B14001CF1798/",
+    "WidthScale": 0
+  },
+  "Description": "JE",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "92e7df",
+  "Grid": true,
+  "GridProjection": false,
+  "Hands": false,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": true,
+  "LuaScriptState_path": "Custom_Tile.92e7df.txt",
+  "LuaScript_path": "Custom_Tile.92e7df.ttslua",
+  "MeasureMovement": false,
+  "Name": "Custom_Tile",
+  "Nickname": "Volcano Looming High",
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "JE",
+    "Moderate",
+    "Spirit"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": 38.6449,
+    "posY": 1.0031,
+    "posZ": 83.96,
+    "rotX": 0,
+    "rotY": 180,
+    "rotZ": 180,
+    "scaleX": 5.46,
+    "scaleY": 1,
+    "scaleZ": 5.46
+  },
+  "Value": 0,
+  "XmlUI": ""
+}

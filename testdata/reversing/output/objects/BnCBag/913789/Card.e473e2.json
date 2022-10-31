@@ -1,0 +1,57 @@
+{
+  "Autoraise": true,
+  "CardID": 58408,
+  "ColorDiffuse": {
+    "b": 0.7132,
+    "g": 0.7132,
+    "r": 0.7132
+  },
+  "CustomDeck": {
+    "584": {
+      "BackIsHidden": false,
+      "BackURL": "http://cloud-3.steamusercontent.com/ugc/1617312248756115964/5577A639021512840E77A6FD8D2DF79DB4E1AEE5/",
+      "FaceURL": "http://cloud-3.steamusercontent.com/ugc/1753559826100603742/0429826970D11CBD54B14173335E5994E5D761AA/",
+      "NumHeight": 4,
+      "NumWidth": 8,
+      "Type": 0,
+      "UniqueBack": false
+    }
+  },
+  "Description": "",
+  "DragSelectable": true,
+  "GMNotes": "",
+  "GUID": "e473e2",
+  "Grid": false,
+  "GridProjection": false,
+  "Hands": true,
+  "HideWhenFaceDown": false,
+  "IgnoreFoW": false,
+  "LayoutGroupSortIndex": 0,
+  "Locked": false,
+  "LuaScript": "elements=\"11010000\"\nenergy=0",
+  "LuaScriptState": "",
+  "MeasureMovement": false,
+  "Name": "Card",
+  "Nickname": "Portents of Disaster",
+  "SidewaysCard": false,
+  "Snap": true,
+  "Sticky": true,
+  "Tags": [
+    "Fast",
+    "Minor"
+  ],
+  "Tooltip": true,
+  "Transform": {
+    "posX": -45.1864,
+    "posY": 1.2456,
+    "posZ": 28.3164,
+    "rotX": 359.9852,
+    "rotY": 181.4528,
+    "rotZ": 3.3552,
+    "scaleX": 1.53,
+    "scaleY": 1,
+    "scaleZ": 1.53
+  },
+  "Value": 0,
+  "XmlUI": ""
+}
