@@ -26,7 +26,7 @@ var (
 
 const (
 	textSubdir    = "src"
-	jsonSubdir    = "json"
+	jsonSubdir    = "modsettings"
 	objectsSubdir = "objects"
 )
 
