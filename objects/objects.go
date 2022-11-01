@@ -3,7 +3,6 @@ package objects
 import (
 	"ModCreator/bundler"
 	"ModCreator/file"
-	"log"
 	"path"
 	"regexp"
 
@@ -107,7 +106,11 @@ func (o *objConfig) print(l file.LuaReader) (j, error) {
 		if err != nil {
 			return j{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptPath, err)
 		}
-		o.data["LuaScript"] = encoded
+		bundleReqs, err := bundler.Bundle(encoded, l)
+		if err != nil {
+			return nil, fmt.Errorf("Bundle(%s) : %v", encoded, err)
+		}
+		o.data["LuaScript"] = bundleReqs
 	}
 	if o.luascriptstatePath != "" {
 		encoded, err := l.EncodeFromFile(o.luascriptstatePath)
@@ -117,13 +120,14 @@ func (o *objConfig) print(l file.LuaReader) (j, error) {
 		o.data["LuaScriptState"] = encoded
 	}
 
-	replaced, err := l.ReplaceRequire(o.data["LuaScript"].(string))
-	if o.data["GUID"] == "15bb07" {
-		log.Printf("printing 15bb07 with script <%s>", o.data["LuaScript"])
-	}
-	o.data["LuaScript"] = replaced
-	if err != nil {
-		return j{}, fmt.Errorf("l.ReplaceRequire(%s) : %v", o.data["LuaScript"], err)
+	if s, ok := o.data["LuaScript"]; ok {
+		if str, ok := s.(string); ok && str != "" {
+			bundleReqs, err := bundler.Bundle(str, l)
+			if err != nil {
+				return nil, fmt.Errorf("Bundle(%s) : %v", str, err)
+			}
+			o.data["LuaScript"] = bundleReqs
+		}
 	}
 
 	subs := []j{}
@@ -160,7 +164,7 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter) error {
 	if rawscript, ok := o.data["LuaScriptState"]; ok {
 		if script, ok := rawscript.(string); ok {
 			if len(script) > 80 {
-				createdFile := o.getAGoodFileName() + ".txt"
+				createdFile := path.Join(filepath, o.getAGoodFileName()+".luascriptstate")
 				o.data["LuaScriptState_path"] = createdFile
 				l.EncodeToFile(script, createdFile)
 				delete(o.data, "LuaScriptState")
