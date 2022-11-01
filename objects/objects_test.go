@@ -1,11 +1,56 @@
 package objects
 
 import (
+	"fmt"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
-func TestName(t *testing.T) {
+type fakeLuaReader struct {
+	fs map[string]string
+}
 
+func (f *fakeLuaReader) EncodeFromFile(s string) (string, error) {
+	if _, ok := f.fs[s]; !ok {
+		return "", fmt.Errorf("fake file <%s> not found", s)
+	}
+	return f.fs[s], nil
+}
+
+func TestObjPrinting(t *testing.T) {
+	for _, tc := range []struct {
+		o    *objConfig
+		want j
+	}{
+		{
+			o: &objConfig{
+				guid: "123456",
+				data: j{
+					"GUID": "123456",
+				},
+			},
+			want: j{
+				"GUID": "123456",
+			},
+		},
+	} {
+		l := &fakeLuaReader{
+			fs: map[string]string{
+				"core/AgendaDeck.ttslua": "var a = 42;",
+			},
+		}
+		got, err := tc.o.print(l)
+		if err != nil {
+			t.Errorf("printing %v, got %v", tc.o, err)
+		}
+		if diff := cmp.Diff(tc.want, got); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
+	}
+}
+
+func TestName(t *testing.T) {
 	for _, tc := range []struct {
 		data            j
 		guid, subObjDir string
