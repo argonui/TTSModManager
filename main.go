@@ -14,9 +14,9 @@ import (
 )
 
 var (
-	config  = flag.String("config", "testdata/simple", "a directory containing tts mod configs")
+	config  = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
 	rev     = flag.Bool("reverse", false, "Instead of building a json from file structure, build file structure from json.")
-	modfile = flag.String("ttsmodfile", "", "where to read from when reversing.")
+	modfile = flag.String("modfile", "", "where to read from when reversing.")
 
 	expectedStr       = []string{"SaveName", "Date", "VersionNumber", "GameMode", "GameType", "GameComplexity", "Table", "Sky", "Note", "LuaScript", "LuaScriptState", "XmlUI"}
 	expectedObj       = []string{"TabStates", "MusicPlayer", "Grid", "Lighting", "Hands", "ComponentTags", "Turns"}
