@@ -163,7 +163,7 @@ func compareObjs(t *testing.T, guid string, a, b map[string]interface{}) error {
 
 func TestDiff(t *testing.T) {
 	if *altModfile == "" || *modfile == "" {
-		t.Errorf("No file provided to test")
+		// if run automatically, ignore this test
 		return
 	}
 	err := compareDelta(t, *modfile, *altModfile)
