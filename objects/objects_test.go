@@ -2,20 +2,37 @@ package objects
 
 import (
 	"fmt"
+	"log"
+	"path"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
 )
 
-type fakeLuaReader struct {
-	fs map[string]string
+type fakeFiles struct {
+	fs   map[string]string
+	data map[string]j
 }
 
-func (f *fakeLuaReader) EncodeFromFile(s string) (string, error) {
+func (f *fakeFiles) EncodeFromFile(s string) (string, error) {
 	if _, ok := f.fs[s]; !ok {
 		return "", fmt.Errorf("fake file <%s> not found", s)
 	}
 	return f.fs[s], nil
+}
+func (f *fakeFiles) WriteObj(data map[string]interface{}, path string) error {
+	f.data[path] = data
+	return nil
+}
+func (f *fakeFiles) WriteObjArray(data []map[string]interface{}, path string) error {
+	return fmt.Errorf("unimplemented")
+}
+func (f *fakeFiles) EncodeToFile(script, file string) error {
+	f.fs[file] = script
+	return nil
+}
+func (f *fakeFiles) CreateDir(a, b string) (string, error) {
+	return a + b, nil
 }
 
 func TestObjPrinting(t *testing.T) {
@@ -35,7 +52,7 @@ func TestObjPrinting(t *testing.T) {
 			},
 		},
 	} {
-		l := &fakeLuaReader{
+		l := &fakeFiles{
 			fs: map[string]string{
 				"core/AgendaDeck.ttslua": "var a = 42;",
 			},
@@ -49,6 +66,94 @@ func TestObjPrinting(t *testing.T) {
 		}
 	}
 }
+
+func TestObjPrintingToFile(t *testing.T) {
+	type fileContent struct {
+		file, content string
+	}
+	for _, tc := range []struct {
+		o       *objConfig
+		folder  string
+		want    j
+		wantLSS fileContent
+	}{
+		{
+			o: &objConfig{
+				guid: "123456",
+				data: j{
+					"GUID": "123456",
+				},
+			},
+			folder: "foo",
+			want: j{
+				"GUID": "123456",
+			},
+		}, {
+			o: &objConfig{
+				guid: "123456",
+				data: j{
+					"LuaScriptState": "fav color = green",
+					"GUID":           "123456",
+				},
+			},
+			folder: "foo",
+			want: j{
+				"GUID":           "123456",
+				"LuaScriptState": "fav color = green",
+			},
+			// want no LSS file because it's short
+		}, {
+			o: &objConfig{
+				guid: "123456",
+				data: j{
+					"LuaScriptState": "fav color = green fav color = green fav color = green fav color = green fav color = green",
+					"GUID":           "123456",
+				},
+			},
+			folder: "foo",
+			want: j{
+				"GUID":                "123456",
+				"LuaScriptState_path": "foo/123456.luascriptstate",
+			},
+			wantLSS: fileContent{
+				file:    "foo/123456.luascriptstate",
+				content: "fav color = green fav color = green fav color = green fav color = green fav color = green",
+			},
+		},
+	} {
+		ff := &fakeFiles{
+			fs:   map[string]string{},
+			data: map[string]j{},
+		}
+		err := tc.o.printToFile(tc.folder, ff, ff, ff)
+		if err != nil {
+			t.Errorf("printing %v, got %v", tc.o, err)
+		}
+		got, ok := ff.data[path.Join(tc.folder, tc.o.getAGoodFileName()+".json")]
+		if !ok {
+			log.Printf("%v\n", ff.data)
+			t.Fatalf("data not found in fake files as expected")
+
+		}
+		if diff := cmp.Diff(tc.want, got); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
+
+		// compare lua script state
+		if tc.wantLSS.file != "" {
+			got, ok := ff.fs[tc.wantLSS.file]
+			if !ok {
+				log.Printf("fs: %v", ff.fs)
+				log.Printf("data %v", ff.data)
+				t.Errorf("wanted luascript state %s, didn't find", tc.wantLSS.file)
+			}
+			if diff := cmp.Diff(tc.wantLSS.content, got); diff != "" {
+				t.Errorf("want != got:\n%v\n", diff)
+			}
+		}
+	}
+}
+
 
 func TestName(t *testing.T) {
 	for _, tc := range []struct {
