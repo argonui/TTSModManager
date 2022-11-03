@@ -2,9 +2,11 @@ package file
 
 import (
 	"fmt"
+
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+
 )
 
 type fakeFiles struct {

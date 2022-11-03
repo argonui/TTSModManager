@@ -154,6 +154,7 @@ func TestObjPrintingToFile(t *testing.T) {
 	}
 }
 
+
 func TestName(t *testing.T) {
 	for _, tc := range []struct {
 		data            j
