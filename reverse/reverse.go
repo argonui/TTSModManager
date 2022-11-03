@@ -25,22 +25,24 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 		if !ok {
 			return fmt.Errorf("expected string value in key %s, got %v", strKey, rawVal)
 		}
-		strVal, err := bundler.Unbundle(strVal)
-		if err != nil {
-			return fmt.Errorf("bundler.Unbundle(%s)\n: %v", strVal, err)
+		ext := ".luascriptstate"
+		if strKey == "LuaScript" {
+			ext = ".ttslua"
+
+			unbundled, err := bundler.Unbundle(strVal)
+			if err != nil {
+				return fmt.Errorf("bundler.Unbundle(script from <%s>)\n: %v", basePath, err)
+			}
+			strVal = unbundled
 		}
 		// decide if creating a separte file is worth it
 		if len(strVal) < 80 {
 			continue
 		}
 
-		ext := ".txt"
-		if strKey == "LuaScript" {
-			ext = ".ttslua"
-		}
 		createdFile := strKey + ext
 
-		err = lua.EncodeToFile(strVal, createdFile)
+		err := lua.EncodeToFile(strVal, createdFile)
 		if err != nil {
 			return fmt.Errorf("lua.EncodeToFile(<value>, %s) : %v", createdFile, err)
 		}

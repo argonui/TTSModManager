@@ -150,7 +150,7 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter) error {
 		if script, ok := rawscript.(string); ok {
 			script, err := bundler.Unbundle(script)
 			if err != nil {
-				return fmt.Errorf("bundler.Unbundle(%s)\n: %v", script, err)
+				return fmt.Errorf("bundler.Unbundle(script from <%s>)\n: %v", o.guid, err)
 			}
 			if len(script) > 80 {
 				createdFile := o.getAGoodFileName() + ".ttslua"
