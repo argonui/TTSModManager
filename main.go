@@ -14,20 +14,20 @@ import (
 )
 
 var (
-	config  = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
+	moddir  = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
 	rev     = flag.Bool("reverse", false, "Instead of building a json from file structure, build file structure from json.")
 	modfile = flag.String("modfile", "", "where to read from when reversing.")
 
 	expectedStr       = []string{"SaveName", "Date", "VersionNumber", "GameMode", "GameType", "GameComplexity", "Table", "Sky", "Note", "LuaScript", "LuaScriptState", "XmlUI"}
 	expectedObj       = []string{"TabStates", "MusicPlayer", "Grid", "Lighting", "Hands", "ComponentTags", "Turns"}
-	expectedObjArr    = []string{"CameraStates", "DecalPallet", "CustomUIAssets", "SnapPoints"}
+	expectedObjArr    = []string{"CameraStates", "DecalPallet", "CustomUIAssets", "SnapPoints", "Decals"}
 	expectedObjStates = "ObjectStates"
 )
 
 const (
-	textSubdir    = "src"
-	jsonSubdir    = "modsettings"
-	objectsSubdir = "objects"
+	textSubdir     = "src"
+	modsettingsDir = "modsettings"
+	objectsSubdir  = "objects"
 )
 
 // Config is how users will specify their mod's configuration.
@@ -45,38 +45,64 @@ type ObjArray []map[string]interface{}
 // module creation is done
 type Mod struct {
 	Data Obj
+
+	lua         file.LuaReader
+	modsettings file.JSONReader
+	objs        file.JSONReader
+	objdirs     file.DirExplorer
 }
 
 func main() {
 	flag.Parse()
 
-	lua := file.NewLuaOps(path.Join(*config, textSubdir))
-	j := file.NewJSONOps(path.Join(*config, jsonSubdir))
+	lua := file.NewLuaOpsMulti(
+		[]string{path.Join(*moddir, textSubdir), path.Join(*moddir, objectsSubdir)},
+		path.Join(*moddir, objectsSubdir),
+	)
+	ms := file.NewJSONOps(path.Join(*moddir, modsettingsDir))
+	objs := file.NewJSONOps(path.Join(*moddir, objectsSubdir))
+	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))
 
 	if *rev {
-		raw, err := prepForReverse(*config, *modfile)
+		raw, err := prepForReverse(*moddir, *modfile)
 		if err != nil {
 			log.Fatalf("prepForReverse (%s) failed : %v", *modfile, err)
 		}
-		err = reverse.Write(raw, lua, j, *config, expectedStr, expectedObj, expectedObjArr)
+		r := reverse.Reverser{
+			ModSettingsWriter: ms,
+			LuaWriter:         lua,
+			ObjWriter:         objs,
+			ObjDirCreeator:    objdir,
+			StringType:        expectedStr,
+			ObjType:           expectedObj,
+			ObjArrayType:      expectedObjArr,
+			Root:              *moddir,
+		}
+		err = r.Write(raw)
 		if err != nil {
 			log.Fatalf("reverse.Write(<%s>) failed : %v", *modfile, err)
 		}
 		return
 	}
 
-	c, err := readConfig(*config)
+	c, err := readConfig(*moddir)
 	if err != nil {
-		fmt.Printf("readConfig(%s) : %v\n", *config, err)
+		fmt.Printf("readConfig(%s) : %v\n", *moddir, err)
 		return
 	}
 
-	m, err := generateMod(*config, lua, j, c)
+	m := &Mod{
+		lua:         lua,
+		modsettings: ms,
+		objs:        objs,
+		objdirs:     objdir,
+	}
+	err = m.generate(c)
 	if err != nil {
 		fmt.Printf("generateMod(<config>) : %v\n", err)
 		return
 	}
-	err = printMod(*config, m)
+	err = printMod(*moddir, m)
 	if err != nil {
 		log.Fatalf("printMod(...) : %v", err)
 	}
@@ -105,22 +131,21 @@ func readConfig(cPath string) (*Config, error) {
 	return &c, nil
 }
 
-func generateMod(p string, lua file.LuaReader, j file.JSONReader, c *Config) (*Mod, error) {
+func (m *Mod) generate(c *Config) error {
 	if c == nil {
-		return nil, fmt.Errorf("nil config")
+		return fmt.Errorf("nil config")
 	}
-	var m Mod
 
 	m.Data = c.Raw
 
 	plainObj := func(s string) (interface{}, error) {
-		return j.ReadObj(s)
+		return m.modsettings.ReadObj(s)
 	}
 	objArray := func(s string) (interface{}, error) {
-		return j.ReadObjArray(s)
+		return m.modsettings.ReadObjArray(s)
 	}
 	luaGet := func(s string) (interface{}, error) {
-		return lua.EncodeFromFile(s)
+		return m.lua.EncodeFromFile(s)
 	}
 
 	ext := "_path"
@@ -136,12 +161,12 @@ func generateMod(p string, lua file.LuaReader, j file.JSONReader, c *Config) (*M
 		tryPut(&m.Data, objarraybased+ext, objarraybased, objArray)
 	}
 
-	allObjs, err := objects.ParseAllObjectStates(path.Join(p, objectsSubdir), lua)
+	allObjs, err := objects.ParseAllObjectStates(m.lua, m.objs, m.objdirs)
 	if err != nil {
-		return nil, fmt.Errorf("objects.ParseAllObjectStates(%s) : %v", path.Join(p, objectsSubdir), err)
+		return fmt.Errorf("objects.ParseAllObjectStates(%s) : %v", "", err)
 	}
 	m.Data[expectedObjStates] = allObjs
-	return &m, nil
+	return nil
 }
 
 func tryPut(d *Obj, from, to string, fun func(string) (interface{}, error)) {
@@ -183,7 +208,7 @@ func printMod(p string, m *Mod) error {
 
 // prepForReverse creates the expected subdirectories in config path
 func prepForReverse(cPath, modfile string) (Obj, error) {
-	subDirs := []string{textSubdir, jsonSubdir, objectsSubdir}
+	subDirs := []string{textSubdir, modsettingsDir, objectsSubdir}
 
 	for _, s := range subDirs {
 		p := path.Join(cPath, s)

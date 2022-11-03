@@ -11,11 +11,26 @@ import (
 	"path"
 )
 
+// Reverser holds interfaces and configs for the reversing process
+type Reverser struct {
+	ModSettingsWriter file.JSONWriter
+	LuaWriter         file.LuaWriter
+	ObjWriter         file.JSONWriter
+	ObjDirCreeator    file.DirCreator
+
+	// expectations around types
+	StringType   []string
+	ObjType      []string
+	ObjArrayType []string
+
+	Root string
+}
+
 // Write executes the main purpose of the reverse library:
 // to take a json object and create a file struture which mimics it.
-func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, basePath string, expectedStr, expectedObj, expectedObjArray []string) error {
+func (r *Reverser) Write(raw map[string]interface{}) error {
 	pathExt := "_path"
-	for _, strKey := range expectedStr {
+	for _, strKey := range r.StringType {
 		rawVal, ok := raw[strKey]
 		if !ok {
 			log.Printf("expected string value in key %s, key not found\n", strKey)
@@ -31,7 +46,7 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 
 			unbundled, err := bundler.Unbundle(strVal)
 			if err != nil {
-				return fmt.Errorf("bundler.Unbundle(script from <%s>)\n: %v", basePath, err)
+				return fmt.Errorf("bundler.Unbundle(script from <%s>)\n: %v", r.Root, err)
 			}
 			strVal = unbundled
 		}
@@ -42,7 +57,7 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 
 		createdFile := strKey + ext
 
-		err := lua.EncodeToFile(strVal, createdFile)
+		err := r.LuaWriter.EncodeToFile(strVal, createdFile)
 		if err != nil {
 			return fmt.Errorf("lua.EncodeToFile(<value>, %s) : %v", createdFile, err)
 		}
@@ -50,7 +65,7 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 		delete(raw, strKey)
 	}
 
-	for _, objKey := range expectedObj {
+	for _, objKey := range r.ObjType {
 		rawVal, ok := raw[objKey]
 		if ok {
 			objVal, ok := rawVal.(map[string]interface{})
@@ -64,7 +79,7 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 			}
 
 			createdFile := objKey + ".json"
-			err := j.WriteObj(objVal, createdFile)
+			err := r.ModSettingsWriter.WriteObj(objVal, createdFile)
 			if err != nil {
 				return fmt.Errorf("j.WriteObj(<>, %s) : %v", createdFile, err)
 			}
@@ -73,7 +88,7 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 		}
 	}
 
-	for _, objKey := range expectedObjArray {
+	for _, objKey := range r.ObjArrayType {
 		rawVal, ok := raw[objKey]
 		if ok {
 			arr, err := convertToObjArray(rawVal)
@@ -87,7 +102,7 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 			}
 
 			createdFile := objKey + ".json"
-			err = j.WriteObjArray(arr, createdFile)
+			err = r.ModSettingsWriter.WriteObjArray(arr, createdFile)
 			if err != nil {
 				return fmt.Errorf("j.WriteObjArray(<>, %s) : %v", createdFile, err)
 			}
@@ -101,7 +116,7 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 		if err != nil {
 			return fmt.Errorf("mismatch type expectations for ObjectStates : %v", err)
 		}
-		err = objects.PrintObjectStates(path.Join(basePath, "objects"), lua, objStates)
+		err = objects.PrintObjectStates("", r.LuaWriter, r.ObjWriter, r.ObjDirCreeator, objStates)
 		if err != nil {
 			return err
 		}
@@ -109,7 +124,7 @@ func Write(raw map[string]interface{}, lua file.LuaWriter, j file.JSONWriter, ba
 	}
 
 	// write all that's Left
-	err := writeJSON(raw, path.Join(basePath, "config.json"))
+	err := writeJSON(raw, path.Join(r.Root, "config.json"))
 	return err
 }
 
