@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"log"
 	"path"
 )
 
@@ -12,6 +13,7 @@ type DirCreator interface {
 	CreateDir(relpath string, suggestion string) (string, error)
 }
 
+// DirExplorer allows files and folders to be enumerated
 type DirExplorer interface {
 	ListFilesAndFolders(relpath string) ([]string, []string, error)
 }
@@ -33,7 +35,11 @@ func (d *DirOps) CreateDir(relpath, suggestion string) (string, error) {
 	dirname := suggestion
 	err := os.Mkdir(path.Join(d.base, relpath, suggestion), 0644)
 	tries := 0
+	if os.IsExist(err) {
+		return  dirname, nil
+	}
 	for err != nil && tries < 100 {
+		log.Printf("error creating %s, trying again\n%v\n", path.Join(d.base, relpath, suggestion),err)
 		tries++
 		dirname = fmt.Sprintf("%s_%v", suggestion, tries)
 		err = os.Mkdir(path.Join(d.base, relpath, dirname), 0644)
