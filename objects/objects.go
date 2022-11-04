@@ -6,6 +6,7 @@ import (
 	"path"
 	"regexp"
 	"strings"
+	"log"
 
 	"fmt"
 )
@@ -238,6 +239,11 @@ func (d *db) addObj(o, parent *objConfig) error {
 	} else {
 		parent.subObj = append(parent.subObj, o)
 	}
+	if _, ok := d.all[o.guid]; ok {
+		log.Printf("Found duplicate guid %s\n",o.guid)
+	} else {
+		d.all[o.guid]=o
+	}
 	return nil
 }
 
@@ -266,6 +272,7 @@ func ParseAllObjectStates(l file.LuaReader, j file.JSONReader, dir file.DirExplo
 	d := db{
 		j:   j,
 		dir: dir,
+		all: map[string]*objConfig{},
 	}
 	err := d.parseFromFolder("", nil)
 	if err != nil {
