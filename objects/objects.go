@@ -6,6 +6,7 @@ import (
 	"log"
 	"path"
 	"regexp"
+	"sort"
 	"strings"
 
 	"fmt"
@@ -16,6 +17,7 @@ type objArray []map[string]interface{}
 
 type objConfig struct {
 	guid               string
+	order              int64
 	data               j
 	luascriptPath      string
 	luascriptstatePath string
@@ -23,6 +25,7 @@ type objConfig struct {
 	subObj             []*objConfig
 }
 
+// TODO can I reuse parseFromJSON?
 func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
 	d, err := j.ReadObj(filepath)
 	if err != nil {
@@ -44,6 +47,7 @@ func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
 	tryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
 	tryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
 	tryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
+	tryParseIntoInt(&o.data, "tts_mod_order", &o.order)
 
 	return nil
 }
@@ -53,6 +57,20 @@ func tryParseIntoStr(m *j, k string, dest *string) {
 		if str, ok := raw.(string); ok {
 			*dest = str
 			delete((*m), k)
+		}
+	}
+}
+func tryParseIntoInt(m *j, k string, dest *int64) {
+	if raw, ok := (*m)[k]; ok {
+		if in, ok := raw.(int64); ok {
+			*dest = in
+			delete((*m), k)
+			return
+		}
+		if fl, ok := raw.(float64); ok {
+			*dest = int64(fl)
+			delete((*m), k)
+			return
 		}
 	}
 }
@@ -73,6 +91,7 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	tryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
 	tryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
 	tryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
+	tryParseIntoInt(&o.data, "tts_mod_order", &o.order)
 
 	if trans, ok := o.data["Transform"]; ok {
 		o.data["Transform"] = Smooth(trans)
@@ -128,6 +147,9 @@ func (o *objConfig) print(l file.LuaReader) (j, error) {
 			o.data["LuaScript"] = bundleReqs
 		}
 	}
+	sort.Slice(o.subObj, func(i int, j int) bool {
+		return o.subObj[i].order < o.subObj[j].order
+	})
 
 	subs := []j{}
 	for _, sub := range o.subObj {
@@ -193,6 +215,9 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 		}
 	}
 
+	// add order to data when saving
+	o.data["tts_mod_order"] = o.order
+
 	// print self
 	fname := path.Join(filepath, o.getAGoodFileName()+".json")
 	return j.WriteObj(o.data, fname)
@@ -254,7 +279,13 @@ func (d *db) addObj(o, parent *objConfig) error {
 
 func (d *db) print(l file.LuaReader) (objArray, error) {
 	var oa objArray
+	sort.Slice(d.root, func(i int, j int) bool {
+		return d.root[i].order < d.root[j].order
+	})
 	for _, o := range d.root {
+		if o.order == -1 {
+			return nil, fmt.Errorf("Invalid order detected on obj %v", o.guid)
+		}
 		printed, err := o.print(l)
 		if err != nil {
 			return objArray{}, fmt.Errorf("obj (%s) did not print : %v", o.guid, err)
@@ -320,6 +351,7 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 
 func (d *db) parseFromFile(relpath string, parent *objConfig) (*objConfig, error) {
 	var o objConfig
+	o.order = -1
 	err := o.parseFromFile(relpath, d.j)
 	if err != nil {
 		return nil, fmt.Errorf("parseFromFile(%s) : %v", relpath, err)
@@ -331,8 +363,11 @@ func (d *db) parseFromFile(relpath string, parent *objConfig) (*objConfig, error
 // PrintObjectStates takes a list of json objects and prints them in the
 // expected format outlined by ParseAllObjectStates
 func PrintObjectStates(root string, f file.LuaWriter, j file.JSONWriter, dir file.DirCreator, objs []map[string]interface{}) error {
-	for _, rootObj := range objs {
-		oc := objConfig{}
+	for i, rootObj := range objs {
+		oc := objConfig{
+			order: int64(i),
+		}
+
 		err := oc.parseFromJSON(rootObj)
 		if err != nil {
 			return err

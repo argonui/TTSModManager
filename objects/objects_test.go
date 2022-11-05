@@ -1,6 +1,7 @@
 package objects
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"path"
@@ -19,6 +20,15 @@ func (f *fakeFiles) EncodeFromFile(s string) (string, error) {
 		return "", fmt.Errorf("fake file <%s> not found", s)
 	}
 	return f.fs[s], nil
+}
+func (f *fakeFiles) ReadObj(s string) (map[string]interface{}, error) {
+	if _, ok := f.data[s]; !ok {
+		return nil, fmt.Errorf("fake file <%s> not found", s)
+	}
+	return f.data[s], nil
+}
+func (f *fakeFiles) ReadObjArray(s string) ([]map[string]interface{}, error) {
+	return nil, fmt.Errorf("unimplemented")
 }
 func (f *fakeFiles) WriteObj(data map[string]interface{}, path string) error {
 	f.data[path] = data
@@ -50,7 +60,8 @@ func TestObjPrintToFile(t *testing.T) {
 			},
 			wantFilename: "123456.json",
 			want: j{
-				"GUID": "123456",
+				"GUID":          "123456",
+				"tts_mod_order": int64(0),
 			},
 		},
 	} {
@@ -79,9 +90,35 @@ func TestObjPrinting(t *testing.T) {
 				data: j{
 					"GUID": "123456",
 				},
+				subObj: []*objConfig{
+					{
+						guid: "1234563",
+						data: j{
+							"GUID": "1234563",
+						},
+						order: 3,
+					}, {
+						guid: "1234561",
+						data: j{
+							"GUID": "1234561",
+						},
+						order: 1,
+					}, {
+						guid: "1234562",
+						data: j{
+							"GUID": "1234562",
+						},
+						order: 2,
+					},
+				},
 			},
 			want: j{
 				"GUID": "123456",
+				"ContainedObjects": []j{
+					{"GUID": "1234561"},
+					{"GUID": "1234562"},
+					{"GUID": "1234563"},
+				},
 			},
 		}, {
 			o: &objConfig{
@@ -130,7 +167,8 @@ func TestObjPrintingToFile(t *testing.T) {
 			},
 			folder: "foo",
 			want: j{
-				"GUID": "123456",
+				"GUID":          "123456",
+				"tts_mod_order": int64(0),
 			},
 		}, {
 			o: &objConfig{
@@ -144,6 +182,7 @@ func TestObjPrintingToFile(t *testing.T) {
 			want: j{
 				"GUID":           "123456",
 				"LuaScriptState": "fav color = green",
+				"tts_mod_order":  int64(0),
 			},
 			// want no LSS file because it's short
 		}, {
@@ -158,6 +197,7 @@ func TestObjPrintingToFile(t *testing.T) {
 			want: j{
 				"GUID":                "123456",
 				"LuaScriptState_path": "foo/123456.luascriptstate",
+				"tts_mod_order":       int64(0),
 			},
 			wantLSS: fileContent{
 				file:    "foo/123456.luascriptstate",
@@ -300,4 +340,140 @@ func TestName(t *testing.T) {
 		}
 	}
 
+}
+
+func TestPrintAllObjs(t *testing.T) {
+	type wantFile struct {
+		name    string
+		content j
+	}
+	for _, tc := range []struct {
+		objs  []map[string]interface{}
+		wants []wantFile
+	}{
+		{
+			objs: []map[string]interface{}{
+				{"GUID": "123456"},
+				{"GUID": "123457"},
+			},
+			wants: []wantFile{
+				{
+					name:    "123456.json",
+					content: j{"GUID": "123456", "tts_mod_order": int64(0)},
+				}, {
+					name:    "123457.json",
+					content: j{"GUID": "123457", "tts_mod_order": int64(1)},
+				},
+			},
+		},
+	} {
+		ff := &fakeFiles{
+			data: map[string]j{},
+			fs:   map[string]string{},
+		}
+		err := PrintObjectStates("", ff, ff, ff, tc.objs)
+		if err != nil {
+			t.Fatalf("error not expected %v", err)
+		}
+		for _, w := range tc.wants {
+			got, ok := ff.data[w.name]
+			if !ok {
+				t.Errorf("wanted filename %s not present in data", w.name)
+			}
+			if diff := cmp.Diff(w.content, got); diff != "" {
+				t.Errorf("want != got:\n%v\n", diff)
+			}
+		}
+	}
+
+}
+
+func TestDBPrint(t *testing.T) {
+	ff := &fakeFiles{
+		fs:   map[string]string{},
+		data: map[string]j{},
+	}
+	for _, tc := range []struct {
+		root []*objConfig
+		want objArray
+	}{
+		{
+			root: []*objConfig{
+				&objConfig{
+					data:  j{"GUID": "123"},
+					order: 3,
+				},
+				&objConfig{
+					data:  j{"GUID": "121"},
+					order: 1,
+				},
+				&objConfig{
+					data:  j{"GUID": "122"},
+					order: 2,
+				},
+			},
+			want: objArray{
+				{"GUID": "121"},
+				{"GUID": "122"},
+				{"GUID": "123"},
+			},
+		},
+	} {
+		db := db{
+			root: tc.root,
+		}
+		got, err := db.print(ff)
+		if err != nil {
+			t.Fatalf("got unexpected err %v", err)
+		}
+		if diff := cmp.Diff(tc.want, got); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
+
+	}
+}
+
+func jn(i int) json.Number {
+	return json.Number(fmt.Sprint(i))
+}
+
+func TestParseFromFile(t *testing.T) {
+
+	ff := &fakeFiles{
+		data: map[string]j{},
+	}
+	for _, tc := range []struct {
+		name  string
+		input j
+		want  objConfig
+	}{
+		{
+			name: "mod order",
+			input: j{
+				"GUID":          "123",
+				"tts_mod_order": float64(3),
+			},
+			want: objConfig{
+				order: int64(3),
+				guid:  "123",
+				data:  j{"GUID": "123"},
+			},
+		},
+	} {
+		ff.data[tc.name] = tc.input
+		o := objConfig{}
+		err := o.parseFromFile(tc.name, ff)
+		if err != nil {
+			t.Fatalf("failed to preset data in %s\n", tc.name)
+		}
+		if diff := cmp.Diff(tc.want.data, o.data); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
+		if tc.want.guid != o.guid {
+			t.Errorf("guid mismatch want %s got %s", tc.want.guid, o.guid)
+		}
+		if tc.want.order != o.order {
+			t.Errorf("order mismatch want %v got %v", tc.want.order, o.order)
+		}
+	}
 }
