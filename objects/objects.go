@@ -190,10 +190,6 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 }
 
 func (o *objConfig) getAGoodFileName() string {
-	moreUUID := o.guid
-	if o.subObjDir != "" {
-		moreUUID = o.subObjDir
-	}
 	// only let alphanumberic, _, -, be put into names
 	reg := regexp.MustCompile("[^a-zA-Z0-9_-]+")
 
@@ -202,11 +198,11 @@ func (o *objConfig) getAGoodFileName() string {
 		keyname, err = o.tryGetNonEmptyStr("Name")
 	}
 	if err != nil {
-		return moreUUID
+		return o.guid
 	}
 
 	n := reg.ReplaceAllString(keyname, "")
-	return n + "." + moreUUID
+	return n + "." + o.guid
 }
 
 func (o *objConfig) tryGetNonEmptyStr(key string) (string, error) {

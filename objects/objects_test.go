@@ -35,6 +35,39 @@ func (f *fakeFiles) CreateDir(a, b string) (string, error) {
 	return a + b, nil
 }
 
+func TestObjPrintToFile(t *testing.T){
+	for _, tc := range []struct {
+		o    *objConfig
+		want  j
+		wantFilename string
+	}{
+		{
+			o: &objConfig{
+				guid: "123456",
+				data: j{
+					"GUID": "123456",
+				},
+			},
+			wantFilename: "123456.json",
+			want: j{
+				"GUID": "123456",
+			},
+		},
+	} {
+		ff := &fakeFiles{
+			fs: map[string]string{},
+			data: map[string]j{},
+		}
+		err := tc.o.printToFile("path/to/",ff,ff,ff )
+		if err != nil {
+			t.Errorf("printing %v, got %v", tc.o, err)
+		}
+		if diff := cmp.Diff(tc.want, ff.data["path/to/"+tc.wantFilename]); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
+	}
+}
+
 func TestObjPrinting(t *testing.T) {
 	for _, tc := range []struct {
 		o    *objConfig
@@ -46,6 +79,17 @@ func TestObjPrinting(t *testing.T) {
 				data: j{
 					"GUID": "123456",
 				},
+			},
+			want: j{
+				"GUID": "123456",
+			},
+		}, {
+			o: &objConfig{
+				guid: "123456",
+				data: j{
+					"GUID": "123456",
+				},
+				subObjDir: "Foo.123456",
 			},
 			want: j{
 				"GUID": "123456",
@@ -200,8 +244,8 @@ func TestName(t *testing.T) {
 				"Nickname": "",
 				"Name":     nil,
 			},
-			guid: "010509",
-			want: "010509",
+			guid: "010508",
+			want: "010508",
 		}, {
 			data: j{
 				"Nickname": nil,
@@ -211,31 +255,39 @@ func TestName(t *testing.T) {
 			want: "010509",
 		}, {
 			data: j{},
-			guid: "010509",
-			want: "010509",
+			guid: "010507",
+			want: "010507",
 		}, {
 			data: j{
 				"Nickname": "",
 				"Name":     "",
 			},
-			guid: "010509",
-			want: "010509",
+			guid: "010506",
+			want: "010506",
 		}, {
 			data: j{
 				"Nickname": "",
 				"Name":     "",
 			},
-			subObjDir: "010509_2",
-			guid:      "010509",
-			want:      "010509_2",
+			subObjDir: "010504_2",
+			guid:      "010504",
+			want:      "010504",
 		}, {
 			data: j{
 				"Nickname": "foo",
 				"Name":     "",
 			},
-			subObjDir: "010509_2",
-			guid:      "010509",
-			want:      "foo.010509_2",
+			subObjDir: "010503_2",
+			guid:      "010503",
+			want:      "foo.010503",
+		}, {
+			data: j{
+				"Nickname": "foo",
+				"Name":     "",
+			},
+			subObjDir: "foo.010502_2",
+			guid:      "010502",
+			want:      "foo.010502",
 		},
 	} {
 		o := objConfig{
