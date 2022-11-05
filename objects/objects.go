@@ -3,10 +3,10 @@ package objects
 import (
 	"ModCreator/bundler"
 	"ModCreator/file"
+	"log"
 	"path"
 	"regexp"
 	"strings"
-	"log"
 
 	"fmt"
 )
@@ -69,6 +69,11 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	}
 	o.guid = guid
 	o.subObj = []*objConfig{}
+
+	tryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
+	tryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
+	tryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
+
 	if rawObjs, ok := o.data["ContainedObjects"]; ok {
 		rawArr, ok := rawObjs.([]interface{})
 		if !ok {
@@ -240,9 +245,9 @@ func (d *db) addObj(o, parent *objConfig) error {
 		parent.subObj = append(parent.subObj, o)
 	}
 	if _, ok := d.all[o.guid]; ok {
-		log.Printf("Found duplicate guid %s\n",o.guid)
+		log.Printf("Found duplicate guid %s\n", o.guid)
 	} else {
-		d.all[o.guid]=o
+		d.all[o.guid] = o
 	}
 	return nil
 }

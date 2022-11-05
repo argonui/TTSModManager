@@ -35,6 +35,39 @@ func (f *fakeFiles) CreateDir(a, b string) (string, error) {
 	return a + b, nil
 }
 
+func TestObjPrintToFile(t *testing.T) {
+	for _, tc := range []struct {
+		o            *objConfig
+		want         j
+		wantFilename string
+	}{
+		{
+			o: &objConfig{
+				guid: "123456",
+				data: j{
+					"GUID": "123456",
+				},
+			},
+			wantFilename: "123456.json",
+			want: j{
+				"GUID": "123456",
+			},
+		},
+	} {
+		ff := &fakeFiles{
+			fs:   map[string]string{},
+			data: map[string]j{},
+		}
+		err := tc.o.printToFile("path/to/", ff, ff, ff)
+		if err != nil {
+			t.Errorf("printing %v, got %v", tc.o, err)
+		}
+		if diff := cmp.Diff(tc.want, ff.data["path/to/"+tc.wantFilename]); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
+	}
+}
+
 func TestObjPrinting(t *testing.T) {
 	for _, tc := range []struct {
 		o    *objConfig
@@ -153,7 +186,6 @@ func TestObjPrintingToFile(t *testing.T) {
 		}
 	}
 }
-
 
 func TestName(t *testing.T) {
 	for _, tc := range []struct {
