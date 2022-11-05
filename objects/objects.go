@@ -31,25 +31,7 @@ func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
 	if err != nil {
 		return fmt.Errorf("ReadObj(%s): %v", filepath, err)
 	}
-	o.data = d
-
-	dguid, ok := o.data["GUID"]
-	if !ok {
-		return fmt.Errorf("object at (%s) doesn't have a GUID field", filepath)
-	}
-	guid, ok := dguid.(string)
-	if !ok {
-		return fmt.Errorf("object at (%s) doesn't have a string GUID (%s)", filepath, o.data["GUID"])
-	}
-	o.guid = guid
-
-	// TODO nead ability to read from script folder
-	tryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
-	tryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
-	tryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
-	tryParseIntoInt(&o.data, "tts_mod_order", &o.order)
-
-	return nil
+	return o.parseFromJSON(d)
 }
 
 func tryParseIntoStr(m *j, k string, dest *string) {
