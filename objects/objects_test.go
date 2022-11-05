@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"path"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -42,7 +41,8 @@ func (f *fakeFiles) EncodeToFile(script, file string) error {
 	return nil
 }
 func (f *fakeFiles) CreateDir(a, b string) (string, error) {
-	return a + b, nil
+	// return the "chosen" directory name for next folder
+	return b, nil
 }
 
 func TestObjPrintToFile(t *testing.T) {
@@ -152,11 +152,15 @@ func TestObjPrintingToFile(t *testing.T) {
 	type fileContent struct {
 		file, content string
 	}
+	type jsonContent struct {
+		file    string
+		content j
+	}
 	for _, tc := range []struct {
-		o       *objConfig
-		folder  string
-		want    j
-		wantLSS fileContent
+		o        *objConfig
+		folder   string
+		wantObjs []jsonContent
+		wantLSS  fileContent
 	}{
 		{
 			o: &objConfig{
@@ -166,11 +170,77 @@ func TestObjPrintingToFile(t *testing.T) {
 				},
 			},
 			folder: "foo",
-			want: j{
-				"GUID":          "123456",
-				"tts_mod_order": int64(0),
+			wantObjs: []jsonContent{
+				{
+					file: "foo/123456.json",
+					content: j{
+						"GUID":          "123456",
+						"tts_mod_order": int64(0),
+					},
+				},
 			},
-		}, {
+		},
+		{
+			o: &objConfig{
+				guid: "123777",
+				data: j{
+					"GUID": "123777",
+				},
+				subObj: []*objConfig{
+					&objConfig{
+						guid: "1237770",
+						data: j{
+							"GUID": "1237770",
+						},
+					},
+					&objConfig{
+						guid: "1237771",
+						data: j{
+							"GUID": "1237771",
+						},
+					},
+					&objConfig{
+						guid: "1237772",
+						data: j{
+							"GUID": "1237772",
+						},
+					},
+				},
+			},
+			folder: "bar",
+			wantObjs: []jsonContent{
+				{
+					file: "bar/123777.json",
+					content: j{
+						"GUID":                  "123777",
+						"tts_mod_order":         int64(0),
+						"ContainedObjects_path": "123777",
+					},
+				},
+				{
+					file: "bar/123777/1237770.json",
+					content: j{
+						"GUID":          "1237770",
+						"tts_mod_order": int64(0),
+					},
+				},
+				{
+					file: "bar/123777/1237771.json",
+					content: j{
+						"GUID":          "1237771",
+						"tts_mod_order": int64(1),
+					},
+				},
+				{
+					file: "bar/123777/1237772.json",
+					content: j{
+						"GUID":          "1237772",
+						"tts_mod_order": int64(2),
+					},
+				},
+			},
+		},
+		{
 			o: &objConfig{
 				guid: "123456",
 				data: j{
@@ -179,13 +249,19 @@ func TestObjPrintingToFile(t *testing.T) {
 				},
 			},
 			folder: "foo",
-			want: j{
-				"GUID":           "123456",
-				"LuaScriptState": "fav color = green",
-				"tts_mod_order":  int64(0),
+			wantObjs: []jsonContent{
+				{
+					file: "foo/123456.json",
+					content: j{
+						"GUID":           "123456",
+						"LuaScriptState": "fav color = green",
+						"tts_mod_order":  int64(0),
+					},
+				},
 			},
 			// want no LSS file because it's short
-		}, {
+		},
+		{
 			o: &objConfig{
 				guid: "123456",
 				data: j{
@@ -194,10 +270,15 @@ func TestObjPrintingToFile(t *testing.T) {
 				},
 			},
 			folder: "foo",
-			want: j{
-				"GUID":                "123456",
-				"LuaScriptState_path": "foo/123456.luascriptstate",
-				"tts_mod_order":       int64(0),
+			wantObjs: []jsonContent{
+				{
+					file: "foo/123456.json",
+					content: j{
+						"GUID":                "123456",
+						"LuaScriptState_path": "foo/123456.luascriptstate",
+						"tts_mod_order":       int64(0),
+					},
+				},
 			},
 			wantLSS: fileContent{
 				file:    "foo/123456.luascriptstate",
@@ -213,14 +294,16 @@ func TestObjPrintingToFile(t *testing.T) {
 		if err != nil {
 			t.Errorf("printing %v, got %v", tc.o, err)
 		}
-		got, ok := ff.data[path.Join(tc.folder, tc.o.getAGoodFileName()+".json")]
-		if !ok {
-			log.Printf("%v\n", ff.data)
-			t.Fatalf("data not found in fake files as expected")
 
-		}
-		if diff := cmp.Diff(tc.want, got); diff != "" {
-			t.Errorf("want != got:\n%v\n", diff)
+		for _, wantFJ := range tc.wantObjs {
+			got, ok := ff.data[wantFJ.file]
+			if !ok {
+				log.Printf("%v\n", ff.data)
+				t.Fatalf("Wanted file %s, not found", wantFJ.file)
+			}
+			if diff := cmp.Diff(wantFJ.content, got); diff != "" {
+				t.Errorf("want != got:\n%v\n", diff)
+			}
 		}
 
 		// compare lua script state

@@ -207,7 +207,8 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 		}
 		o.data["ContainedObjects_path"] = subdirName
 		o.subObjDir = subdirName
-		for _, subo := range o.subObj {
+		for i, subo := range o.subObj {
+			subo.order = int64(i)
 			err = subo.printToFile(path.Join(filepath, subdirName), l, j, dir)
 			if err != nil {
 				return fmt.Errorf("printing file %s: %v", path.Join(filepath, subdirName), err)
