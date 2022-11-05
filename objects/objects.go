@@ -74,6 +74,10 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	tryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
 	tryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
 
+	if trans, ok := o.data["Transform"]; ok {
+		o.data["Transform"] = Smooth(trans)
+	}
+
 	if rawObjs, ok := o.data["ContainedObjects"]; ok {
 		rawArr, ok := rawObjs.([]interface{})
 		if !ok {
