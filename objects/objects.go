@@ -3,6 +3,7 @@ package objects
 import (
 	"ModCreator/bundler"
 	"ModCreator/file"
+	. "ModCreator/types"
 	"log"
 	"path"
 	"regexp"
@@ -18,7 +19,7 @@ type objArray []map[string]interface{}
 type objConfig struct {
 	guid               string
 	order              int64
-	data               j
+	data               J
 	luascriptPath      string
 	luascriptstatePath string
 	subObjDir          string
@@ -34,7 +35,7 @@ func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
 	return o.parseFromJSON(d)
 }
 
-func tryParseIntoStr(m *j, k string, dest *string) {
+func tryParseIntoStr(m *J, k string, dest *string) {
 	if raw, ok := (*m)[k]; ok {
 		if str, ok := raw.(string); ok {
 			*dest = str
@@ -42,7 +43,7 @@ func tryParseIntoStr(m *j, k string, dest *string) {
 		}
 	}
 }
-func tryParseIntoInt(m *j, k string, dest *int64) {
+func tryParseIntoInt(m *J, k string, dest *int64) {
 	if raw, ok := (*m)[k]; ok {
 		if in, ok := raw.(int64); ok {
 			*dest = in
@@ -70,10 +71,10 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	o.guid = guid
 	o.subObj = []*objConfig{}
 
-	tryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
-	tryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
-	tryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
-	tryParseIntoInt(&o.data, "tts_mod_order", &o.order)
+	file.TryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
+	file.TryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
+	file.TryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
+	file.TryParseIntoInt(&o.data, "tts_mod_order", &o.order)
 
 	if trans, ok := o.data["Transform"]; ok {
 		o.data["Transform"] = Smooth(trans)
@@ -100,11 +101,11 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	return nil
 }
 
-func (o *objConfig) print(l file.LuaReader) (j, error) {
+func (o *objConfig) print(l file.LuaReader) (J, error) {
 	if o.luascriptPath != "" {
 		encoded, err := l.EncodeFromFile(o.luascriptPath)
 		if err != nil {
-			return j{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptPath, err)
+			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptPath, err)
 		}
 		bundleReqs, err := bundler.Bundle(encoded, l)
 		if err != nil {
@@ -115,7 +116,7 @@ func (o *objConfig) print(l file.LuaReader) (j, error) {
 	if o.luascriptstatePath != "" {
 		encoded, err := l.EncodeFromFile(o.luascriptstatePath)
 		if err != nil {
-			return j{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptstatePath, err)
+			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptstatePath, err)
 		}
 		o.data["LuaScriptState"] = encoded
 	}
@@ -133,7 +134,7 @@ func (o *objConfig) print(l file.LuaReader) (j, error) {
 		return o.subObj[i].order < o.subObj[j].order
 	})
 
-	subs := []j{}
+	subs := []J{}
 	for _, sub := range o.subObj {
 		printed, err := sub.print(l)
 		if err != nil {

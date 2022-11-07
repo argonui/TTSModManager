@@ -4,6 +4,7 @@ import (
 	file "ModCreator/file"
 	objects "ModCreator/objects"
 	"ModCreator/reverse"
+	"ModCreator/types"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -32,19 +33,13 @@ const (
 
 // Config is how users will specify their mod's configuration.
 type Config struct {
-	Raw Obj `json:"-"`
+	Raw types.J `json:"-"`
 }
-
-// Obj is a simpler way to refer to a json map.
-type Obj map[string]interface{}
-
-// ObjArray is a simple way to refer to an array of json maps
-type ObjArray []map[string]interface{}
 
 // Mod is used as the accurate representation of what gets printed when
 // module creation is done
 type Mod struct {
-	Data Obj
+	Data types.J
 
 	lua         file.LuaReader
 	modsettings file.JSONReader
@@ -169,7 +164,7 @@ func (m *Mod) generate(c *Config) error {
 	return nil
 }
 
-func tryPut(d *Obj, from, to string, fun func(string) (interface{}, error)) {
+func tryPut(d *types.J, from, to string, fun func(string) (interface{}, error)) {
 	if d == nil {
 		log.Println("Nil objects")
 		return
@@ -207,7 +202,7 @@ func printMod(p string, m *Mod) error {
 }
 
 // prepForReverse creates the expected subdirectories in config path
-func prepForReverse(cPath, modfile string) (Obj, error) {
+func prepForReverse(cPath, modfile string) (types.J, error) {
 	subDirs := []string{textSubdir, modsettingsDir, objectsSubdir}
 
 	for _, s := range subDirs {
@@ -235,7 +230,7 @@ func prepForReverse(cPath, modfile string) (Obj, error) {
 	if err != nil {
 		return nil, err
 	}
-	var o Obj
+	var o types.J
 	err = json.Unmarshal(b, &o)
 	if err != nil {
 		return nil, err

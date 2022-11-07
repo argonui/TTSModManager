@@ -6,12 +6,14 @@ import (
 	"log"
 	"testing"
 
+	"ModCreator/types"
+
 	"github.com/google/go-cmp/cmp"
 )
 
 type fakeFiles struct {
 	fs   map[string]string
-	data map[string]j
+	data map[string]types.J
 }
 
 func (f *fakeFiles) EncodeFromFile(s string) (string, error) {
@@ -48,18 +50,18 @@ func (f *fakeFiles) CreateDir(a, b string) (string, error) {
 func TestObjPrintToFile(t *testing.T) {
 	for _, tc := range []struct {
 		o            *objConfig
-		want         j
+		want         types.J
 		wantFilename string
 	}{
 		{
 			o: &objConfig{
 				guid: "123456",
-				data: j{
+				data: types.J{
 					"GUID": "123456",
 				},
 			},
 			wantFilename: "123456.json",
-			want: j{
+			want: types.J{
 				"GUID":          "123456",
 				"tts_mod_order": int64(0),
 			},
@@ -67,7 +69,7 @@ func TestObjPrintToFile(t *testing.T) {
 	} {
 		ff := &fakeFiles{
 			fs:   map[string]string{},
-			data: map[string]j{},
+			data: map[string]types.J{},
 		}
 		err := tc.o.printToFile("path/to/", ff, ff, ff)
 		if err != nil {
@@ -82,39 +84,36 @@ func TestObjPrintToFile(t *testing.T) {
 func TestObjPrinting(t *testing.T) {
 	for _, tc := range []struct {
 		o    *objConfig
-		want j
+		want types.J
 	}{
 		{
 			o: &objConfig{
 				guid: "123456",
-				data: j{
+				data: types.J{
 					"GUID": "123456",
 				},
 				subObj: []*objConfig{
 					{
-						guid: "1234563",
-						data: j{
-							"GUID": "1234563",
-						},
-						order: 3,
-					}, {
 						guid: "1234561",
-						data: j{
+						data: types.J{
 							"GUID": "1234561",
 						},
-						order: 1,
 					}, {
 						guid: "1234562",
-						data: j{
+						data: types.J{
 							"GUID": "1234562",
 						},
-						order: 2,
+					}, {
+						guid: "1234563",
+						data: types.J{
+							"GUID": "1234563",
+						},
 					},
 				},
 			},
-			want: j{
+			want: types.J{
 				"GUID": "123456",
-				"ContainedObjects": []j{
+				"ContainedObjects": []types.J{
 					{"GUID": "1234561"},
 					{"GUID": "1234562"},
 					{"GUID": "1234563"},
@@ -123,12 +122,12 @@ func TestObjPrinting(t *testing.T) {
 		}, {
 			o: &objConfig{
 				guid: "123456",
-				data: j{
+				data: types.J{
 					"GUID": "123456",
 				},
 				subObjDir: "Foo.123456",
 			},
-			want: j{
+			want: types.J{
 				"GUID": "123456",
 			},
 		},
@@ -154,7 +153,7 @@ func TestObjPrintingToFile(t *testing.T) {
 	}
 	type jsonContent struct {
 		file    string
-		content j
+		content types.J
 	}
 	for _, tc := range []struct {
 		o        *objConfig
@@ -165,7 +164,7 @@ func TestObjPrintingToFile(t *testing.T) {
 		{
 			o: &objConfig{
 				guid: "123456",
-				data: j{
+				data: types.J{
 					"GUID": "123456",
 				},
 			},
@@ -173,7 +172,7 @@ func TestObjPrintingToFile(t *testing.T) {
 			wantObjs: []jsonContent{
 				{
 					file: "foo/123456.json",
-					content: j{
+					content: types.J{
 						"GUID":          "123456",
 						"tts_mod_order": int64(0),
 					},
@@ -183,25 +182,26 @@ func TestObjPrintingToFile(t *testing.T) {
 		{
 			o: &objConfig{
 				guid: "123777",
-				data: j{
+				data: types.J{
 					"GUID": "123777",
 				},
 				subObj: []*objConfig{
 					&objConfig{
 						guid: "1237770",
-						data: j{
-							"GUID": "1237770",
+						data: types.J{
+							"Nickname": "coolobj",
+							"GUID":     "1237770",
 						},
 					},
 					&objConfig{
 						guid: "1237771",
-						data: j{
+						data: types.J{
 							"GUID": "1237771",
 						},
 					},
 					&objConfig{
 						guid: "1237772",
-						data: j{
+						data: types.J{
 							"GUID": "1237772",
 						},
 					},
@@ -211,31 +211,32 @@ func TestObjPrintingToFile(t *testing.T) {
 			wantObjs: []jsonContent{
 				{
 					file: "bar/123777.json",
-					content: j{
+					content: types.J{
 						"GUID":                  "123777",
-						"tts_mod_order":         int64(0),
 						"ContainedObjects_path": "123777",
+						"tts_mod_order":         int64(0),
 					},
 				},
 				{
-					file: "bar/123777/1237770.json",
-					content: j{
+					file: "bar/123777/coolobj.1237770.json",
+					content: types.J{
 						"GUID":          "1237770",
 						"tts_mod_order": int64(0),
+						"Nickname":      "coolobj",
 					},
 				},
 				{
 					file: "bar/123777/1237771.json",
-					content: j{
-						"GUID":          "1237771",
+					content: types.J{
 						"tts_mod_order": int64(1),
+						"GUID":          "1237771",
 					},
 				},
 				{
 					file: "bar/123777/1237772.json",
-					content: j{
-						"GUID":          "1237772",
+					content: types.J{
 						"tts_mod_order": int64(2),
+						"GUID":          "1237772",
 					},
 				},
 			},
@@ -243,7 +244,7 @@ func TestObjPrintingToFile(t *testing.T) {
 		{
 			o: &objConfig{
 				guid: "123456",
-				data: j{
+				data: types.J{
 					"LuaScriptState": "fav color = green",
 					"GUID":           "123456",
 				},
@@ -252,7 +253,7 @@ func TestObjPrintingToFile(t *testing.T) {
 			wantObjs: []jsonContent{
 				{
 					file: "foo/123456.json",
-					content: j{
+					content: types.J{
 						"GUID":           "123456",
 						"LuaScriptState": "fav color = green",
 						"tts_mod_order":  int64(0),
@@ -264,7 +265,7 @@ func TestObjPrintingToFile(t *testing.T) {
 		{
 			o: &objConfig{
 				guid: "123456",
-				data: j{
+				data: types.J{
 					"LuaScriptState": "fav color = green fav color = green fav color = green fav color = green fav color = green",
 					"GUID":           "123456",
 				},
@@ -273,7 +274,7 @@ func TestObjPrintingToFile(t *testing.T) {
 			wantObjs: []jsonContent{
 				{
 					file: "foo/123456.json",
-					content: j{
+					content: types.J{
 						"GUID":                "123456",
 						"LuaScriptState_path": "foo/123456.luascriptstate",
 						"tts_mod_order":       int64(0),
@@ -288,7 +289,7 @@ func TestObjPrintingToFile(t *testing.T) {
 	} {
 		ff := &fakeFiles{
 			fs:   map[string]string{},
-			data: map[string]j{},
+			data: map[string]types.J{},
 		}
 		err := tc.o.printToFile(tc.folder, ff, ff, ff)
 		if err != nil {
@@ -323,71 +324,71 @@ func TestObjPrintingToFile(t *testing.T) {
 
 func TestName(t *testing.T) {
 	for _, tc := range []struct {
-		data            j
+		data            types.J
 		guid, subObjDir string
 		want            string
 	}{
 		{
-			data: j{
+			data: types.J{
 				"Nickname": "Occult Invocation",
 				"Name":     "Card",
 			},
 			guid: "010509",
 			want: "OccultInvocation.010509",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": "Occult Invocation!!!!~~()()",
 				"Name":     "Card",
 			},
 			guid: "010509",
 			want: "OccultInvocation.010509",
 		}, {
-			data: j{
+			data: types.J{
 				"Name": "Card",
 			},
 			guid: "1233",
 			want: "Card.1233",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": nil,
 				"Name":     "Card",
 			},
 			guid: "1235",
 			want: "Card.1235",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": "",
 				"Name":     "Card",
 			},
 			guid: "1234",
 			want: "Card.1234",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": "",
 				"Name":     nil,
 			},
 			guid: "010508",
 			want: "010508",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": nil,
 				"Name":     nil,
 			},
 			guid: "010509",
 			want: "010509",
 		}, {
-			data: j{},
+			data: types.J{},
 			guid: "010507",
 			want: "010507",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": "",
 				"Name":     "",
 			},
 			guid: "010506",
 			want: "010506",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": "",
 				"Name":     "",
 			},
@@ -395,7 +396,7 @@ func TestName(t *testing.T) {
 			guid:      "010504",
 			want:      "010504",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": "foo",
 				"Name":     "",
 			},
@@ -403,7 +404,7 @@ func TestName(t *testing.T) {
 			guid:      "010503",
 			want:      "foo.010503",
 		}, {
-			data: j{
+			data: types.J{
 				"Nickname": "foo",
 				"Name":     "",
 			},
@@ -428,7 +429,7 @@ func TestName(t *testing.T) {
 func TestPrintAllObjs(t *testing.T) {
 	type wantFile struct {
 		name    string
-		content j
+		content types.J
 	}
 	for _, tc := range []struct {
 		objs  []map[string]interface{}
@@ -442,22 +443,23 @@ func TestPrintAllObjs(t *testing.T) {
 			wants: []wantFile{
 				{
 					name:    "123456.json",
-					content: j{"GUID": "123456", "tts_mod_order": int64(0)},
+					content: types.J{"GUID": "123456", "tts_mod_order": int64(0)},
 				}, {
 					name:    "123457.json",
-					content: j{"GUID": "123457", "tts_mod_order": int64(1)},
+					content: types.J{"GUID": "123457", "tts_mod_order": int64(1)},
 				},
 			},
 		},
 	} {
 		ff := &fakeFiles{
-			data: map[string]j{},
+			data: map[string]types.J{},
 			fs:   map[string]string{},
 		}
 		err := PrintObjectStates("", ff, ff, ff, tc.objs)
 		if err != nil {
 			t.Fatalf("error not expected %v", err)
 		}
+
 		for _, w := range tc.wants {
 			got, ok := ff.data[w.name]
 			if !ok {
@@ -474,7 +476,7 @@ func TestPrintAllObjs(t *testing.T) {
 func TestDBPrint(t *testing.T) {
 	ff := &fakeFiles{
 		fs:   map[string]string{},
-		data: map[string]j{},
+		data: map[string]types.J{},
 	}
 	for _, tc := range []struct {
 		root []*objConfig
@@ -483,16 +485,16 @@ func TestDBPrint(t *testing.T) {
 		{
 			root: []*objConfig{
 				&objConfig{
-					data:  j{"GUID": "123"},
-					order: 3,
+					data:  types.J{"GUID": "123"},
+					order: int64(3),
 				},
 				&objConfig{
-					data:  j{"GUID": "121"},
-					order: 1,
+					data:  types.J{"GUID": "121"},
+					order: int64(1),
 				},
 				&objConfig{
-					data:  j{"GUID": "122"},
-					order: 2,
+					data:  types.J{"GUID": "122"},
+					order: int64(2),
 				},
 			},
 			want: objArray{
@@ -523,23 +525,21 @@ func jn(i int) json.Number {
 func TestParseFromFile(t *testing.T) {
 
 	ff := &fakeFiles{
-		data: map[string]j{},
+		data: map[string]types.J{},
 	}
 	for _, tc := range []struct {
 		name  string
-		input j
+		input types.J
 		want  objConfig
 	}{
 		{
 			name: "mod order",
-			input: j{
-				"GUID":          "123",
-				"tts_mod_order": float64(3),
+			input: types.J{
+				"GUID": "123",
 			},
 			want: objConfig{
-				order: int64(3),
-				guid:  "123",
-				data:  j{"GUID": "123"},
+				guid: "123",
+				data: types.J{"GUID": "123"},
 			},
 		},
 	} {
@@ -554,9 +554,6 @@ func TestParseFromFile(t *testing.T) {
 		}
 		if tc.want.guid != o.guid {
 			t.Errorf("guid mismatch want %s got %s", tc.want.guid, o.guid)
-		}
-		if tc.want.order != o.order {
-			t.Errorf("order mismatch want %v got %v", tc.want.order, o.order)
 		}
 	}
 }
