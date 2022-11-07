@@ -4,7 +4,6 @@ import (
 	"ModCreator/bundler"
 	"ModCreator/file"
 	. "ModCreator/types"
-	"log"
 	"path"
 	"regexp"
 	"sort"
@@ -24,12 +23,37 @@ type objConfig struct {
 }
 
 // TODO can I reuse parseFromJSON?
-func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
+func (o *objConfig) parseFromFile(filepath string, j file.JSONReader, dir file.DirExplorer) error {
 	d, err := j.ReadObj(filepath)
 	if err != nil {
 		return fmt.Errorf("ReadObj(%s): %v", filepath, err)
 	}
-	return o.parseFromJSON(d)
+	err = o.parseFromJSON(d)
+	if err != nil {
+		return fmt.Errorf("<%s>.parseFromJSON(): %v", filepath, err)
+	}
+	if o.subObjDir != "" {
+		subdirWithRel := path.Join(path.Dir(filepath), o.subObjDir)
+		files, _, err := dir.ListFilesAndFolders(subdirWithRel)
+		if err != nil {
+			return fmt.Errorf("ListFilesAndFolders(%s) : %v", subdirWithRel, err)
+		}
+		for _, f := range files {
+			if !strings.HasSuffix(f, ".json") {
+				continue
+			}
+			subo := &objConfig{}
+			err = subo.parseFromFile(f, j, dir)
+			if err != nil {
+				return fmt.Errorf("parseFromFile(%s): %v", f, err)
+			}
+			o.subObj = append(o.subObj, subo)
+		}
+		sort.Slice(o.subObj, func(i int, j int) bool {
+			return o.subObj[i].order < o.subObj[j].order
+		})
+	}
+	return nil
 }
 
 func tryParseIntoStr(m *J, k string, dest *string) {
@@ -244,20 +268,6 @@ type db struct {
 	dir file.DirExplorer
 }
 
-func (d *db) addObj(o, parent *objConfig) error {
-	if parent == nil {
-		d.root = append(d.root, o)
-	} else {
-		parent.subObj = append(parent.subObj, o)
-	}
-	if _, ok := d.all[o.guid]; ok {
-		log.Printf("Found duplicate guid %s\n", o.guid)
-	} else {
-		d.all[o.guid] = o
-	}
-	return nil
-}
-
 func (d *db) print(l file.LuaReader) (ObjArray, error) {
 	var oa ObjArray
 	sort.Slice(d.root, func(i int, j int) bool {
@@ -299,46 +309,25 @@ func ParseAllObjectStates(l file.LuaReader, j file.JSONReader, dir file.DirExplo
 }
 
 func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
-	filenames, folnames, err := d.dir.ListFilesAndFolders(relpath)
+	filenames, _, err := d.dir.ListFilesAndFolders(relpath)
 	if err != nil {
 		return fmt.Errorf("ListFilesAndFolders(%s) : %v", relpath, err)
 	}
 
-	whoseFolder := map[string]*objConfig{}
 	for _, file := range filenames {
 		if !strings.HasSuffix(file, ".json") {
 			// expect luascriptstate files and ttslua files to be stored alongside
 			continue
 		}
-		o, err := d.parseFromFile(file, parent)
+		var o objConfig
+		err := o.parseFromFile(file, d.j, d.dir)
 		if err != nil {
 			return fmt.Errorf("parseFromFile(%s, %v): %v", file, parent, err)
 		}
-		if o.subObjDir != "" {
-			whoseFolder[o.subObjDir] = o
-		}
+		d.root = append(d.root, &o)
 	}
-	for _, folder := range folnames {
-		o, ok := whoseFolder[path.Base(folder)]
-		if !ok {
-			return fmt.Errorf("found folder %s without a peer object who claims it", folder)
-		}
-		if err := d.parseFromFolder(folder, o); err != nil {
-			return fmt.Errorf("parseFromFolder(%s): %v", folder, err)
-		}
-	}
+
 	return nil
-}
-
-func (d *db) parseFromFile(relpath string, parent *objConfig) (*objConfig, error) {
-	var o objConfig
-	o.order = -1
-	err := o.parseFromFile(relpath, d.j)
-	if err != nil {
-		return nil, fmt.Errorf("parseFromFile(%s) : %v", relpath, err)
-	}
-
-	return &o, d.addObj(&o, parent)
 }
 
 // PrintObjectStates takes a list of json objects and prints them in the

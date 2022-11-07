@@ -3,8 +3,8 @@ package file
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
 	"log"
+	"os"
 	"path"
 )
 
@@ -15,6 +15,7 @@ type DirCreator interface {
 
 // DirExplorer allows files and folders to be enumerated
 type DirExplorer interface {
+	// ListFilesAndFolders returns files, folders, err with names sharing prefix of relpath
 	ListFilesAndFolders(relpath string) ([]string, []string, error)
 }
 
@@ -36,10 +37,10 @@ func (d *DirOps) CreateDir(relpath, suggestion string) (string, error) {
 	err := os.Mkdir(path.Join(d.base, relpath, suggestion), 0644)
 	tries := 0
 	if os.IsExist(err) {
-		return  dirname, nil
+		return dirname, nil
 	}
 	for err != nil && tries < 100 {
-		log.Printf("error creating %s, trying again\n%v\n", path.Join(d.base, relpath, suggestion),err)
+		log.Printf("error creating %s, trying again\n%v\n", path.Join(d.base, relpath, suggestion), err)
 		tries++
 		dirname = fmt.Sprintf("%s_%v", suggestion, tries)
 		err = os.Mkdir(path.Join(d.base, relpath, dirname), 0644)

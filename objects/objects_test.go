@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"path"
+	"strings"
 	"testing"
 
 	"ModCreator/types"
@@ -45,6 +47,78 @@ func (f *fakeFiles) EncodeToFile(script, file string) error {
 func (f *fakeFiles) CreateDir(a, b string) (string, error) {
 	// return the "chosen" directory name for next folder
 	return b, nil
+}
+func (f *fakeFiles) ListFilesAndFolders(relpath string) ([]string, []string, error) {
+	// ignore non json files. i don't think they Matter
+	files := []string{}
+	folders := []string{}
+	for k := range f.data {
+		if strings.HasPrefix(k, relpath) {
+			left := k
+			if relpath != "" {
+				left = strings.Replace(k, relpath+"/", "", 1)
+			}
+			if strings.Contains(left, "/") {
+				// this is a folder not a file
+				folders = append(folders, path.Join(relpath, strings.Split(left, "/")[0]))
+			} else {
+				files = append(files, path.Join(relpath, left))
+			}
+		}
+	}
+	return files, folders, nil
+}
+
+func TestTestframework(t *testing.T) {
+	for _, tc := range []struct {
+		input       map[string]types.J
+		path        string
+		wantFiles   []string
+		wantFolders []string
+	}{
+		{
+			input: map[string]types.J{
+				"foo.json": types.J{},
+			},
+			path:        "",
+			wantFiles:   []string{"foo.json"},
+			wantFolders: []string{},
+		},
+		{
+			input: map[string]types.J{
+				"foo.json":      types.J{},
+				"foo/bar.json":  types.J{},
+				"foo2/bar.json": types.J{},
+			},
+			path:        "",
+			wantFiles:   []string{"foo.json"},
+			wantFolders: []string{"foo", "foo2"},
+		},
+		{
+			input: map[string]types.J{
+				"foo/bar.json":     types.J{},
+				"foo/bar/baz.json": types.J{},
+			},
+			path:        "foo",
+			wantFiles:   []string{"foo/bar.json"},
+			wantFolders: []string{"foo/bar"},
+		},
+	} {
+		ff := fakeFiles{
+			data: tc.input,
+		}
+		gotFiles, gotFolders, err := ff.ListFilesAndFolders(tc.path)
+		if err != nil {
+			t.Fatalf("ListFilesAndFolders(%s): %v", tc.path, err)
+		}
+		if diff := cmp.Diff(tc.wantFiles, gotFiles); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
+		if diff := cmp.Diff(tc.wantFolders, gotFolders); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
+	}
+
 }
 
 func TestObjPrintToFile(t *testing.T) {
@@ -545,7 +619,7 @@ func TestParseFromFile(t *testing.T) {
 	} {
 		ff.data[tc.name] = tc.input
 		o := objConfig{}
-		err := o.parseFromFile(tc.name, ff)
+		err := o.parseFromFile(tc.name, ff, ff)
 		if err != nil {
 			t.Fatalf("failed to preset data in %s\n", tc.name)
 		}
