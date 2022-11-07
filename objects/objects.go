@@ -13,9 +13,6 @@ import (
 	"fmt"
 )
 
-type j map[string]interface{}
-type objArray []map[string]interface{}
-
 type objConfig struct {
 	guid               string
 	order              int64
@@ -261,8 +258,8 @@ func (d *db) addObj(o, parent *objConfig) error {
 	return nil
 }
 
-func (d *db) print(l file.LuaReader) (objArray, error) {
-	var oa objArray
+func (d *db) print(l file.LuaReader) (ObjArray, error) {
+	var oa ObjArray
 	sort.Slice(d.root, func(i int, j int) bool {
 		return d.root[i].order < d.root[j].order
 	})
@@ -272,7 +269,7 @@ func (d *db) print(l file.LuaReader) (objArray, error) {
 		}
 		printed, err := o.print(l)
 		if err != nil {
-			return objArray{}, fmt.Errorf("obj (%s) did not print : %v", o.guid, err)
+			return ObjArray{}, fmt.Errorf("obj (%s) did not print : %v", o.guid, err)
 		}
 		oa = append(oa, printed)
 	}

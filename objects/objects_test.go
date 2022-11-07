@@ -480,7 +480,7 @@ func TestDBPrint(t *testing.T) {
 	}
 	for _, tc := range []struct {
 		root []*objConfig
-		want objArray
+		want types.ObjArray
 	}{
 		{
 			root: []*objConfig{
@@ -497,7 +497,7 @@ func TestDBPrint(t *testing.T) {
 					order: int64(2),
 				},
 			},
-			want: objArray{
+			want: types.ObjArray{
 				{"GUID": "121"},
 				{"GUID": "122"},
 				{"GUID": "123"},
