@@ -116,10 +116,11 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		if err != nil {
 			return fmt.Errorf("mismatch type expectations for ObjectStates : %v", err)
 		}
-		err = objects.PrintObjectStates("", r.LuaWriter, r.ObjWriter, r.ObjDirCreeator, objStates)
+		order, err := objects.PrintObjectStates("", r.LuaWriter, r.ObjWriter, r.ObjDirCreeator, objStates)
 		if err != nil {
 			return err
 		}
+		raw["ObjectStates_order"] = order
 		delete(raw, "ObjectStates")
 	}
 

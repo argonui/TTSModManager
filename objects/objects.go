@@ -6,7 +6,6 @@ import (
 	. "ModCreator/types"
 	"path"
 	"regexp"
-	"sort"
 	"strings"
 
 	"fmt"
@@ -14,16 +13,16 @@ import (
 
 type objConfig struct {
 	guid               string
-	order              int64
 	data               J
 	luascriptPath      string
 	luascriptstatePath string
 	subObjDir          string
+	subObjOrder        []string // array of base filenames of subobjects
 	subObj             []*objConfig
 }
 
 // TODO can I reuse parseFromJSON?
-func (o *objConfig) parseFromFile(filepath string, j file.JSONReader, dir file.DirExplorer) error {
+func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
 	d, err := j.ReadObj(filepath)
 	if err != nil {
 		return fmt.Errorf("ReadObj(%s): %v", filepath, err)
@@ -33,50 +32,18 @@ func (o *objConfig) parseFromFile(filepath string, j file.JSONReader, dir file.D
 		return fmt.Errorf("<%s>.parseFromJSON(): %v", filepath, err)
 	}
 	if o.subObjDir != "" {
-		subdirWithRel := path.Join(path.Dir(filepath), o.subObjDir)
-		files, _, err := dir.ListFilesAndFolders(subdirWithRel)
-		if err != nil {
-			return fmt.Errorf("ListFilesAndFolders(%s) : %v", subdirWithRel, err)
-		}
-		for _, f := range files {
-			if !strings.HasSuffix(f, ".json") {
-				continue
-			}
+		for _, oname := range o.subObjOrder {
 			subo := &objConfig{}
-			err = subo.parseFromFile(f, j, dir)
+			relFilename := path.Join(path.Dir(filepath), o.subObjDir, fmt.Sprintf("%s.json", oname))
+
+			err = subo.parseFromFile(relFilename, j)
 			if err != nil {
-				return fmt.Errorf("parseFromFile(%s): %v", f, err)
+				return fmt.Errorf("parseFromFile(%s): %v", relFilename, err)
 			}
 			o.subObj = append(o.subObj, subo)
 		}
-		sort.Slice(o.subObj, func(i int, j int) bool {
-			return o.subObj[i].order < o.subObj[j].order
-		})
 	}
 	return nil
-}
-
-func tryParseIntoStr(m *J, k string, dest *string) {
-	if raw, ok := (*m)[k]; ok {
-		if str, ok := raw.(string); ok {
-			*dest = str
-			delete((*m), k)
-		}
-	}
-}
-func tryParseIntoInt(m *J, k string, dest *int64) {
-	if raw, ok := (*m)[k]; ok {
-		if in, ok := raw.(int64); ok {
-			*dest = in
-			delete((*m), k)
-			return
-		}
-		if fl, ok := raw.(float64); ok {
-			*dest = int64(fl)
-			delete((*m), k)
-			return
-		}
-	}
 }
 
 func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
@@ -91,11 +58,12 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	}
 	o.guid = guid
 	o.subObj = []*objConfig{}
+	o.subObjOrder = []string{}
 
 	file.TryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
 	file.TryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
 	file.TryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
-	file.TryParseIntoInt(&o.data, "tts_mod_order", &o.order)
+	file.TryParseIntoStrArray(&o.data, "ContainedObjects_order", &o.subObjOrder)
 
 	if trans, ok := o.data["Transform"]; ok {
 		o.data["Transform"] = Smooth(trans)
@@ -113,12 +81,14 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 			}
 			so := objConfig{}
 			if err := so.parseFromJSON(subO); err != nil {
-				return fmt.Errorf("printing sub object of %s : %v", o.guid, err)
+				return fmt.Errorf("parsing sub object of %s : %v", o.guid, err)
 			}
 			o.subObj = append(o.subObj, &so)
+			o.subObjOrder = append(o.subObjOrder, so.getAGoodFileName())
 		}
 		delete(o.data, "ContainedObjects")
 	}
+
 	return nil
 }
 
@@ -151,9 +121,6 @@ func (o *objConfig) print(l file.LuaReader) (J, error) {
 			o.data["LuaScript"] = bundleReqs
 		}
 	}
-	sort.Slice(o.subObj, func(i int, j int) bool {
-		return o.subObj[i].order < o.subObj[j].order
-	})
 
 	subs := []J{}
 	for _, sub := range o.subObj {
@@ -211,17 +178,17 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 		}
 		o.data["ContainedObjects_path"] = subdirName
 		o.subObjDir = subdirName
-		for i, subo := range o.subObj {
-			subo.order = int64(i)
+		for _, subo := range o.subObj {
 			err = subo.printToFile(path.Join(filepath, subdirName), l, j, dir)
 			if err != nil {
 				return fmt.Errorf("printing file %s: %v", path.Join(filepath, subdirName), err)
 			}
 		}
+		if len(o.subObj) != len(o.subObjOrder) {
+			return fmt.Errorf("subobj order not getting filled in on %s", o.getAGoodFileName())
+		}
+		o.data["ContainedObjects_order"] = o.subObjOrder
 	}
-
-	// add order to data when saving
-	o.data["tts_mod_order"] = o.order
 
 	// print self
 	fname := path.Join(filepath, o.getAGoodFileName()+".json")
@@ -260,7 +227,7 @@ func (o *objConfig) tryGetNonEmptyStr(key string) (string, error) {
 }
 
 type db struct {
-	root []*objConfig
+	root map[string]*objConfig
 
 	all map[string]*objConfig
 
@@ -268,21 +235,22 @@ type db struct {
 	dir file.DirExplorer
 }
 
-func (d *db) print(l file.LuaReader) (ObjArray, error) {
+func (d *db) print(l file.LuaReader, order []string) (ObjArray, error) {
 	var oa ObjArray
-	sort.Slice(d.root, func(i int, j int) bool {
-		return d.root[i].order < d.root[j].order
-	})
-	for _, o := range d.root {
-		if o.order == -1 {
-			return nil, fmt.Errorf("Invalid order detected on obj %v", o.guid)
+	if len(order) != len(d.root) {
+		return nil, fmt.Errorf("expected order and db.root to have same length, %v != %v", len(order), len(d.root))
+	}
+	for _, nextGUID := range order {
+		if _, ok := d.root[nextGUID]; !ok {
+			return nil, fmt.Errorf("order expected %s, not found in db", nextGUID)
 		}
-		printed, err := o.print(l)
+		printed, err := d.root[nextGUID].print(l)
 		if err != nil {
-			return ObjArray{}, fmt.Errorf("obj (%s) did not print : %v", o.guid, err)
+			return ObjArray{}, fmt.Errorf("obj (%s) did not print : %v", nextGUID, err)
 		}
 		oa = append(oa, printed)
 	}
+
 	return oa, nil
 }
 
@@ -295,7 +263,7 @@ func (d *db) print(l file.LuaReader) (ObjArray, error) {
 // --bar.json (guid=888)
 // --888/
 //    --baz.json (guid=999) << this is a child of bar.json
-func ParseAllObjectStates(l file.LuaReader, j file.JSONReader, dir file.DirExplorer) ([]map[string]interface{}, error) {
+func ParseAllObjectStates(l file.LuaReader, j file.JSONReader, dir file.DirExplorer, order []string) ([]map[string]interface{}, error) {
 	d := db{
 		j:   j,
 		dir: dir,
@@ -305,7 +273,7 @@ func ParseAllObjectStates(l file.LuaReader, j file.JSONReader, dir file.DirExplo
 	if err != nil {
 		return []map[string]interface{}{}, fmt.Errorf("parseFolder(%s): %v", "<root>", err)
 	}
-	return d.print(l)
+	return d.print(l, order)
 }
 
 func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
@@ -320,11 +288,11 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 			continue
 		}
 		var o objConfig
-		err := o.parseFromFile(file, d.j, d.dir)
+		err := o.parseFromFile(file, d.j)
 		if err != nil {
 			return fmt.Errorf("parseFromFile(%s, %v): %v", file, parent, err)
 		}
-		d.root = append(d.root, &o)
+		d.root[o.getAGoodFileName()] = &o
 	}
 
 	return nil
@@ -332,20 +300,20 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 
 // PrintObjectStates takes a list of json objects and prints them in the
 // expected format outlined by ParseAllObjectStates
-func PrintObjectStates(root string, f file.LuaWriter, j file.JSONWriter, dir file.DirCreator, objs []map[string]interface{}) error {
-	for i, rootObj := range objs {
-		oc := objConfig{
-			order: int64(i),
-		}
+func PrintObjectStates(root string, f file.LuaWriter, j file.JSONWriter, dir file.DirCreator, objs []map[string]interface{}) ([]string, error) {
+	order := []string{}
+	for _, rootObj := range objs {
+		oc := objConfig{}
 
 		err := oc.parseFromJSON(rootObj)
 		if err != nil {
-			return err
+			return nil, err
 		}
+		order = append(order, oc.getAGoodFileName())
 		err = oc.printToFile(root, f, j, dir)
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
-	return nil
+	return order, nil
 }

@@ -111,10 +111,17 @@ func TestTestframework(t *testing.T) {
 		if err != nil {
 			t.Fatalf("ListFilesAndFolders(%s): %v", tc.path, err)
 		}
-		if diff := cmp.Diff(tc.wantFiles, gotFiles); diff != "" {
+		asset := cmp.Transformer("tomap", func(in []string) map[string]bool {
+			out := map[string]bool{}
+			for _, i := range in {
+				out[i] = true
+			}
+			return out
+		})
+		if diff := cmp.Diff(tc.wantFiles, gotFiles, asset); diff != "" {
 			t.Errorf("want != got:\n%v\n", diff)
 		}
-		if diff := cmp.Diff(tc.wantFolders, gotFolders); diff != "" {
+		if diff := cmp.Diff(tc.wantFolders, gotFolders, asset); diff != "" {
 			t.Errorf("want != got:\n%v\n", diff)
 		}
 	}
@@ -136,8 +143,7 @@ func TestObjPrintToFile(t *testing.T) {
 			},
 			wantFilename: "123456.json",
 			want: types.J{
-				"GUID":          "123456",
-				"tts_mod_order": int64(0),
+				"GUID": "123456",
 			},
 		},
 	} {
@@ -247,8 +253,7 @@ func TestObjPrintingToFile(t *testing.T) {
 				{
 					file: "foo/123456.json",
 					content: types.J{
-						"GUID":          "123456",
-						"tts_mod_order": int64(0),
+						"GUID": "123456",
 					},
 				},
 			},
@@ -258,6 +263,9 @@ func TestObjPrintingToFile(t *testing.T) {
 				guid: "123777",
 				data: types.J{
 					"GUID": "123777",
+				},
+				subObjOrder: []string{
+					"coolobj.1237770", "1237771", "1237772",
 				},
 				subObj: []*objConfig{
 					&objConfig{
@@ -286,31 +294,28 @@ func TestObjPrintingToFile(t *testing.T) {
 				{
 					file: "bar/123777.json",
 					content: types.J{
-						"GUID":                  "123777",
-						"ContainedObjects_path": "123777",
-						"tts_mod_order":         int64(0),
+						"GUID":                   "123777",
+						"ContainedObjects_path":  "123777",
+						"ContainedObjects_order": []string{"coolobj.1237770", "1237771", "1237772"},
 					},
 				},
 				{
 					file: "bar/123777/coolobj.1237770.json",
 					content: types.J{
-						"GUID":          "1237770",
-						"tts_mod_order": int64(0),
-						"Nickname":      "coolobj",
+						"GUID":     "1237770",
+						"Nickname": "coolobj",
 					},
 				},
 				{
 					file: "bar/123777/1237771.json",
 					content: types.J{
-						"tts_mod_order": int64(1),
-						"GUID":          "1237771",
+						"GUID": "1237771",
 					},
 				},
 				{
 					file: "bar/123777/1237772.json",
 					content: types.J{
-						"tts_mod_order": int64(2),
-						"GUID":          "1237772",
+						"GUID": "1237772",
 					},
 				},
 			},
@@ -330,7 +335,6 @@ func TestObjPrintingToFile(t *testing.T) {
 					content: types.J{
 						"GUID":           "123456",
 						"LuaScriptState": "fav color = green",
-						"tts_mod_order":  int64(0),
 					},
 				},
 			},
@@ -351,7 +355,6 @@ func TestObjPrintingToFile(t *testing.T) {
 					content: types.J{
 						"GUID":                "123456",
 						"LuaScriptState_path": "foo/123456.luascriptstate",
-						"tts_mod_order":       int64(0),
 					},
 				},
 			},
@@ -506,8 +509,9 @@ func TestPrintAllObjs(t *testing.T) {
 		content types.J
 	}
 	for _, tc := range []struct {
-		objs  []map[string]interface{}
-		wants []wantFile
+		objs       []map[string]interface{}
+		wants      []wantFile
+		wantsOrder []string
 	}{
 		{
 			objs: []map[string]interface{}{
@@ -517,11 +521,14 @@ func TestPrintAllObjs(t *testing.T) {
 			wants: []wantFile{
 				{
 					name:    "123456.json",
-					content: types.J{"GUID": "123456", "tts_mod_order": int64(0)},
+					content: types.J{"GUID": "123456"},
 				}, {
 					name:    "123457.json",
-					content: types.J{"GUID": "123457", "tts_mod_order": int64(1)},
+					content: types.J{"GUID": "123457"},
 				},
+			},
+			wantsOrder: []string{
+				"123456", "123457",
 			},
 		},
 	} {
@@ -529,11 +536,13 @@ func TestPrintAllObjs(t *testing.T) {
 			data: map[string]types.J{},
 			fs:   map[string]string{},
 		}
-		err := PrintObjectStates("", ff, ff, ff, tc.objs)
+		gotOrder, err := PrintObjectStates("", ff, ff, ff, tc.objs)
 		if err != nil {
 			t.Fatalf("error not expected %v", err)
 		}
-
+		if diff := cmp.Diff(tc.wantsOrder, gotOrder); diff != "" {
+			t.Errorf("want != got:\n%v\n", diff)
+		}
 		for _, w := range tc.wants {
 			got, ok := ff.data[w.name]
 			if !ok {
@@ -553,23 +562,24 @@ func TestDBPrint(t *testing.T) {
 		data: map[string]types.J{},
 	}
 	for _, tc := range []struct {
-		root []*objConfig
-		want types.ObjArray
+		root       map[string]*objConfig
+		orderInput []string
+		want       types.ObjArray
 	}{
 		{
-			root: []*objConfig{
-				&objConfig{
-					data:  types.J{"GUID": "123"},
-					order: int64(3),
+			root: map[string]*objConfig{
+				"123": &objConfig{
+					data: types.J{"GUID": "123"},
 				},
-				&objConfig{
-					data:  types.J{"GUID": "121"},
-					order: int64(1),
+				"121": &objConfig{
+					data: types.J{"GUID": "121"},
 				},
-				&objConfig{
-					data:  types.J{"GUID": "122"},
-					order: int64(2),
+				"122": &objConfig{
+					data: types.J{"GUID": "122"},
 				},
+			},
+			orderInput: []string{
+				"121", "122", "123",
 			},
 			want: types.ObjArray{
 				{"GUID": "121"},
@@ -581,7 +591,7 @@ func TestDBPrint(t *testing.T) {
 		db := db{
 			root: tc.root,
 		}
-		got, err := db.print(ff)
+		got, err := db.print(ff, tc.orderInput)
 		if err != nil {
 			t.Fatalf("got unexpected err %v", err)
 		}
@@ -619,7 +629,7 @@ func TestParseFromFile(t *testing.T) {
 	} {
 		ff.data[tc.name] = tc.input
 		o := objConfig{}
-		err := o.parseFromFile(tc.name, ff, ff)
+		err := o.parseFromFile(tc.name, ff)
 		if err != nil {
 			t.Fatalf("failed to preset data in %s\n", tc.name)
 		}
