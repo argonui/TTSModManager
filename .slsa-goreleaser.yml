@@ -5,6 +5,7 @@ version: 1
 env:
   - GO111MODULE=on
   - CGO_ENABLED=0
+  - VERSION=alpha
 
 # (Optional) Flags for the compiler.
 flags:
