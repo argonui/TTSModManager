@@ -156,7 +156,13 @@ func (m *Mod) generate(c *Config) error {
 		tryPut(&m.Data, objarraybased+ext, objarraybased, objArray)
 	}
 
-	allObjs, err := objects.ParseAllObjectStates(m.lua, m.objs, m.objdirs)
+	objOrder := []string{}
+	err := file.ForceParseIntoStrArray(&m.Data, "ObjectStates_order", &objOrder)
+	if err != nil {
+		return fmt.Errorf("ForceConvertToStrArray gave %v", err)
+	}
+
+	allObjs, err := objects.ParseAllObjectStates(m.lua, m.objs, m.objdirs, objOrder)
 	if err != nil {
 		return fmt.Errorf("objects.ParseAllObjectStates(%s) : %v", "", err)
 	}
