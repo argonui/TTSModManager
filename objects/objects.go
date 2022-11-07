@@ -21,7 +21,6 @@ type objConfig struct {
 	subObj             []*objConfig
 }
 
-// TODO can I reuse parseFromJSON?
 func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
 	d, err := j.ReadObj(filepath)
 	if err != nil {
