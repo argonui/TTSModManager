@@ -25,7 +25,7 @@ func Smooth(objraw interface{}) interface{} {
 	for _, key := range posRounded {
 		if val, ok := obj[key]; ok {
 			if fl, ok := val.(float64); ok {
-				obj[key] = roundFloat(fl, 4)
+				obj[key] = roundFloat(fl, 2)
 			}
 		}
 	}
