@@ -32,7 +32,7 @@ func Smooth(objraw interface{}) interface{} {
 	for _, key := range rotRounded {
 		if val, ok := obj[key]; ok {
 			if fl, ok := val.(float64); ok {
-				obj[key] = math.Mod(roundFloat(fl, 0), 360)
+				obj[key] = math.Abs(math.Mod(roundFloat(fl, 0), 360))
 			}
 		}
 	}
