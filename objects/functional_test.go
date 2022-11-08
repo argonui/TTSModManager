@@ -28,7 +28,7 @@ func TestFileToJson(t *testing.T) {
 					"GUID":                   "123457",
 					"Nickname":               "cool",
 					"ContainedObjects_path":  "cool.123456",
-					"ContainedObjects_order": []string{"2", "1"},
+					"ContainedObjects_order": []interface{}{"2", "1"},
 				},
 				"foo/cool.123456/1.json": types.J{
 					"GUID": "1",
@@ -52,7 +52,7 @@ func TestFileToJson(t *testing.T) {
 					"GUID":                   "123457",
 					"Nickname":               "cool",
 					"ContainedObjects_path":  "cool.123456",
-					"ContainedObjects_order": []string{"2", "1"},
+					"ContainedObjects_order": []interface{}{"2", "1"},
 				},
 				"foo/cool.123456/1.json": types.J{
 					"GUID":                "1",
@@ -86,7 +86,6 @@ func TestFileToJson(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Expected no error parsing from %s: got %v", "foo/cool.123456.json", err)
 		}
-
 		got, err := o.print(ff)
 		if err != nil {
 			t.Errorf("Expected no error printing %s: got %v", o.guid, err)

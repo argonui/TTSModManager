@@ -16,6 +16,7 @@ func ForceParseIntoStr(m *types.J, k string, dest *string) error {
 		if str, ok := raw.(string); ok {
 			*dest = str
 			delete((*m), k)
+			return nil
 		}
 		return fmt.Errorf("key %s not convertable to string", k)
 	}
@@ -29,16 +30,27 @@ func TryParseIntoStrArray(m *types.J, k string, dest *[]string) {
 
 // ForceParseIntoStrArray will error
 func ForceParseIntoStrArray(m *types.J, k string, dest *[]string) error {
-	if raw, ok := (*m)[k]; ok {
-		if str, ok := raw.([]string); ok {
-			*dest = str
-			delete((*m), k)
-		}
-		return fmt.Errorf("key %s not convertable to string array", k)
-
+	raw, ok := (*m)[k]
+	if !ok {
+		return fmt.Errorf("key %s not found", k)
 	}
-	return fmt.Errorf("key %s not found", k)
+	rawarr, ok := raw.([]interface{})
+	if !ok {
+		return fmt.Errorf("key %s is not an array type; is %T", k, raw)
+	}
 
+	strarr := []string{}
+	for i, val := range rawarr {
+		str, ok := val.(string)
+		if !ok {
+			return fmt.Errorf("element %v of %s is not convertable to string. type %T", i, k, val)
+		}
+		strarr = append(strarr, str)
+	}
+	*dest = strarr
+	delete((*m), k)
+
+	return nil
 }
 
 // TryParseIntoInt will not throw error

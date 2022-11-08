@@ -264,9 +264,10 @@ func (d *db) print(l file.LuaReader, order []string) (ObjArray, error) {
 //    --baz.json (guid=999) << this is a child of bar.json
 func ParseAllObjectStates(l file.LuaReader, j file.JSONReader, dir file.DirExplorer, order []string) ([]map[string]interface{}, error) {
 	d := db{
-		j:   j,
-		dir: dir,
-		all: map[string]*objConfig{},
+		j:    j,
+		dir:  dir,
+		all:  map[string]*objConfig{},
+		root: map[string]*objConfig{},
 	}
 	err := d.parseFromFolder("", nil)
 	if err != nil {
