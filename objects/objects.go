@@ -16,6 +16,7 @@ type objConfig struct {
 	data               J
 	luascriptPath      string
 	luascriptstatePath string
+	gmnotesPath        string
 	subObjDir          string
 	subObjOrder        []string // array of base filenames of subobjects
 	subObj             []*objConfig
@@ -61,6 +62,7 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 
 	file.TryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
 	file.TryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
+	file.TryParseIntoStr(&o.data, "GMNotes_path", &o.gmnotesPath)
 	file.TryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
 	file.TryParseIntoStrArray(&o.data, "ContainedObjects_order", &o.subObjOrder)
 
@@ -109,6 +111,13 @@ func (o *objConfig) print(l file.LuaReader) (J, error) {
 			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptstatePath, err)
 		}
 		o.data["LuaScriptState"] = encoded
+	}
+	if o.gmnotesPath != "" {
+		encoded, err := l.EncodeFromFile(o.gmnotesPath)
+		if err != nil {
+			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.gmnotesPath, err)
+		}
+		o.data["GMNotes"] = encoded
 	}
 
 	if s, ok := o.data["LuaScript"]; ok {
@@ -165,6 +174,18 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 					return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
 				}
 				delete(o.data, "LuaScriptState")
+			}
+		}
+	}
+	if rawscript, ok := o.data["GMNotes"]; ok {
+		if script, ok := rawscript.(string); ok {
+			if len(script) > 80 {
+				createdFile := path.Join(filepath, o.getAGoodFileName()+".gmnotes")
+				o.data["GMNotes_path"] = createdFile
+				if err := l.EncodeToFile(script, createdFile); err != nil {
+					return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
+				}
+				delete(o.data, "GMNotes")
 			}
 		}
 	}
@@ -284,7 +305,7 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 
 	for _, file := range filenames {
 		if !strings.HasSuffix(file, ".json") {
-			// expect luascriptstate files and ttslua files to be stored alongside
+			// expect .gmnotes, .luascriptstate files, and ttslua files to be stored alongside
 			continue
 		}
 		var o objConfig
