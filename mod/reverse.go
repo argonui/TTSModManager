@@ -1,4 +1,4 @@
-package reverse
+package mod
 
 import (
 	"ModCreator/bundler"
@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"path"
 )
 
 // Reverser holds interfaces and configs for the reversing process
@@ -17,20 +16,15 @@ type Reverser struct {
 	LuaWriter         file.LuaWriter
 	ObjWriter         file.JSONWriter
 	ObjDirCreeator    file.DirCreator
-
-	// expectations around types
-	StringType   []string
-	ObjType      []string
-	ObjArrayType []string
-
-	Root string
+	RootWrite         file.JSONWriter
 }
 
 // Write executes the main purpose of the reverse library:
 // to take a json object and create a file struture which mimics it.
 func (r *Reverser) Write(raw map[string]interface{}) error {
 	pathExt := "_path"
-	for _, strKey := range r.StringType {
+
+	for _, strKey := range ExpectedStr {
 		rawVal, ok := raw[strKey]
 		if !ok {
 			log.Printf("expected string value in key %s, key not found\n", strKey)
@@ -46,7 +40,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 
 			unbundled, err := bundler.Unbundle(strVal)
 			if err != nil {
-				return fmt.Errorf("bundler.Unbundle(script from <%s>)\n: %v", r.Root, err)
+				return fmt.Errorf("bundler.Unbundle(script from root)\n: %v", err)
 			}
 			strVal = unbundled
 		}
@@ -65,7 +59,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		delete(raw, strKey)
 	}
 
-	for _, objKey := range r.ObjType {
+	for _, objKey := range ExpectedObj {
 		rawVal, ok := raw[objKey]
 		if ok {
 			objVal, ok := rawVal.(map[string]interface{})
@@ -88,7 +82,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		}
 	}
 
-	for _, objKey := range r.ObjArrayType {
+	for _, objKey := range ExpectedObjArr {
 		rawVal, ok := raw[objKey]
 		if ok {
 			arr, err := convertToObjArray(rawVal)
@@ -118,15 +112,18 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		}
 		order, err := objects.PrintObjectStates("", r.LuaWriter, r.ObjWriter, r.ObjDirCreeator, objStates)
 		if err != nil {
-			return err
+			return fmt.Errorf("PrintObjectStates('', <%v objects>): %v", len(objStates), err)
 		}
 		raw["ObjectStates_order"] = order
 		delete(raw, "ObjectStates")
 	}
 
 	// write all that's Left
-	err := writeJSON(raw, path.Join(r.Root, "config.json"))
-	return err
+	err := r.RootWrite.WriteObj(raw, "config.json")
+	if err != nil {
+		return fmt.Errorf("WriteObj(<obj>, %s) : %v", "config.json", err)
+	}
+	return nil
 }
 
 func convertToObjArray(v interface{}) ([]map[string]interface{}, error) {
