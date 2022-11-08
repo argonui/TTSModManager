@@ -237,7 +237,7 @@ type db struct {
 func (d *db) print(l file.LuaReader, order []string) (ObjArray, error) {
 	var oa ObjArray
 	if len(order) != len(d.root) {
-		return nil, fmt.Errorf("expected order and db.root to have same length, %v != %v", len(order), len(d.root))
+		return nil, fmt.Errorf("expected order (%v) and db.root (%v) to have same length", len(order), len(d.root))
 	}
 	for _, nextGUID := range order {
 		if _, ok := d.root[nextGUID]; !ok {

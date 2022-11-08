@@ -34,6 +34,12 @@ func ForceParseIntoStrArray(m *types.J, k string, dest *[]string) error {
 	if !ok {
 		return fmt.Errorf("key %s not found", k)
 	}
+	if rawstrarr, ok := raw.([]string); ok {
+		*dest = rawstrarr
+		delete((*m), k)
+		return nil
+	}
+
 	rawarr, ok := raw.([]interface{})
 	if !ok {
 		return fmt.Errorf("key %s is not an array type; is %T", k, raw)

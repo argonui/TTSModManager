@@ -97,6 +97,9 @@ func ReadRawFile(filename string) (map[string]interface{}, error) {
 	}
 
 	var v map[string]interface{}
-	json.Unmarshal(b, &v)
+	err = json.Unmarshal(b, &v)
+	if err != nil {
+		return nil, fmt.Errorf("Unmarshal(<%s>) : %v", filename, err)
+	}
 	return v, nil
 }
