@@ -8,9 +8,9 @@ import (
 
 func TestPosition(t *testing.T) {
 	j := map[string]interface{}{
-		"posX": 42.4101944,
-		"posY": 1.49994421,
-		"posZ": -11.3552332,
+		"posX": 42.41,
+		"posY": 1.5,
+		"posZ": -11.36,
 	}
 	got := Smooth(j)
 	want := map[string]interface{}{
@@ -27,7 +27,7 @@ func TestDegree(t *testing.T) {
 	j := map[string]interface{}{
 		"rotX": float64(90),
 		"rotY": 89.83327,
-		"rotZ": float64(0),
+		"rotZ": float64(-0.004),
 	}
 	got := Smooth(j)
 	want := map[string]interface{}{
