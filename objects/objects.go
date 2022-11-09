@@ -16,7 +16,7 @@ type objConfig struct {
 	data               J
 	luascriptPath      string
 	luascriptstatePath string
-	gmnotesPath	   string
+	gmnotesPath        string
 	subObjDir          string
 	subObjOrder        []string // array of base filenames of subobjects
 	subObj             []*objConfig
@@ -62,7 +62,7 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 
 	file.TryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
 	file.TryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
-        file.TryParseIntoStr(&o.data, "GMNotes_path", &o.gmnotesPath)
+	file.TryParseIntoStr(&o.data, "GMNotes_path", &o.gmnotesPath)
 	file.TryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
 	file.TryParseIntoStrArray(&o.data, "ContainedObjects_order", &o.subObjOrder)
 
@@ -94,40 +94,38 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 }
 
 func (o *objConfig) print(l file.LuaReader) (J, error) {
+	var out J
+	out = o.data
 	if o.luascriptPath != "" {
 		encoded, err := l.EncodeFromFile(o.luascriptPath)
 		if err != nil {
 			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptPath, err)
 		}
-		bundleReqs, err := bundler.Bundle(encoded, l)
-		if err != nil {
-			return nil, fmt.Errorf("Bundle(%s) : %v", encoded, err)
-		}
-		o.data["LuaScript"] = bundleReqs
+		out["LuaScript"] = encoded
 	}
-	if o.luascriptstatePath != "" {
-		encoded, err := l.EncodeFromFile(o.luascriptstatePath)
-		if err != nil {
-			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptstatePath, err)
+	if s, ok := out["LuaScript"]; ok {
+		if str, ok := s.(string); ok && str != "" {
+			bundleReqs, err := bundler.Bundle(str, l)
+			if err != nil {
+				return nil, fmt.Errorf("Bundle(%s) : %v", str, err)
+			}
+			out["LuaScript"] = bundleReqs
 		}
-		o.data["LuaScriptState"] = encoded
 	}
 	if o.gmnotesPath != "" {
 		encoded, err := l.EncodeFromFile(o.gmnotesPath)
 		if err != nil {
 			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.gmnotesPath, err)
 		}
-		o.data["GMNotes"] = encoded
+		out["GMNotes"] = encoded
 	}
 
-	if s, ok := o.data["LuaScript"]; ok {
-		if str, ok := s.(string); ok && str != "" {
-			bundleReqs, err := bundler.Bundle(str, l)
-			if err != nil {
-				return nil, fmt.Errorf("Bundle(%s) : %v", str, err)
-			}
-			o.data["LuaScript"] = bundleReqs
+	if o.luascriptstatePath != "" {
+		encoded, err := l.EncodeFromFile(o.luascriptstatePath)
+		if err != nil {
+			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptstatePath, err)
 		}
+		out["LuaScriptState"] = encoded
 	}
 
 	subs := []J{}
@@ -139,12 +137,14 @@ func (o *objConfig) print(l file.LuaReader) (J, error) {
 		subs = append(subs, printed)
 	}
 	if len(subs) > 0 {
-		o.data["ContainedObjects"] = subs
+		out["ContainedObjects"] = subs
 	}
-	return o.data, nil
+	return out, nil
 }
 
 func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWriter, dir file.DirCreator) error {
+	var out J
+	out = o.data
 	// maybe convert LuaScript or LuaScriptState
 	if rawscript, ok := o.data["LuaScript"]; ok {
 		if script, ok := rawscript.(string); ok {
@@ -154,14 +154,17 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 			}
 			if len(script) > 80 {
 				createdFile := path.Join(filepath, o.getAGoodFileName()+".ttslua")
-				o.data["LuaScript_path"] = createdFile
+				out["LuaScript_path"] = createdFile
 				if err := l.EncodeToFile(script, createdFile); err != nil {
 					return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
 				}
-				delete(o.data, "LuaScript")
+				delete(out, "LuaScript")
 			} else {
 				// put the unbundled bit back in
-				o.data["LuaScript"] = script
+				out["LuaScript"] = script
+			}
+			if bundler.IsBundled(script) {
+				return fmt.Errorf("We never should be putting bundled code in src(%s; %s)", filepath, o.getAGoodFileName())
 			}
 		}
 	}
@@ -169,11 +172,11 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 		if script, ok := rawscript.(string); ok {
 			if len(script) > 80 {
 				createdFile := path.Join(filepath, o.getAGoodFileName()+".luascriptstate")
-				o.data["LuaScriptState_path"] = createdFile
+				out["LuaScriptState_path"] = createdFile
 				if err := l.EncodeToFile(script, createdFile); err != nil {
 					return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
 				}
-				delete(o.data, "LuaScriptState")
+				delete(out, "LuaScriptState")
 			}
 		}
 	}
@@ -196,7 +199,7 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 		if err != nil {
 			return fmt.Errorf("<%v>.CreateDir(%s, %s) : %v", o.guid, filepath, o.getAGoodFileName(), err)
 		}
-		o.data["ContainedObjects_path"] = subdirName
+		out["ContainedObjects_path"] = subdirName
 		o.subObjDir = subdirName
 		for _, subo := range o.subObj {
 			err = subo.printToFile(path.Join(filepath, subdirName), l, j, dir)
@@ -207,12 +210,12 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 		if len(o.subObj) != len(o.subObjOrder) {
 			return fmt.Errorf("subobj order not getting filled in on %s", o.getAGoodFileName())
 		}
-		o.data["ContainedObjects_order"] = o.subObjOrder
+		out["ContainedObjects_order"] = o.subObjOrder
 	}
 
 	// print self
 	fname := path.Join(filepath, o.getAGoodFileName()+".json")
-	return j.WriteObj(o.data, fname)
+	return j.WriteObj(out, fname)
 }
 
 func (o *objConfig) getAGoodFileName() string {

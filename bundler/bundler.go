@@ -4,6 +4,7 @@ import (
 	"ModCreator/file"
 	"fmt"
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -59,10 +60,18 @@ end)(nil)`
 	rootfuncname      string = `__root`
 )
 
+// IsBundled keeps regex bundling logic to this file
+func IsBundled(rawlua string) bool {
+	anyBundle := regexp.MustCompile(`__bundle_register`)
+	if len(anyBundle.FindStringSubmatch(rawlua)) > 0 {
+		return true
+	}
+	return false
+}
+
 // Unbundle takes luacode and strips it down to the root sub function
 func Unbundle(rawlua string) (string, error) {
-	anyBundle := regexp.MustCompile(`__bundle_register`)
-	if len(anyBundle.FindStringSubmatch(rawlua)) <= 0 {
+	if !IsBundled(rawlua) {
 		return rawlua, nil
 	}
 
@@ -73,11 +82,13 @@ func Unbundle(rawlua string) (string, error) {
 		return "", fmt.Errorf("could not find root bundle")
 	}
 	return matches[1], nil
-
 }
 
 // Bundle grabs all dependencies and creates a single luascript
 func Bundle(rawlua string, l file.LuaReader) (string, error) {
+	if IsBundled(rawlua) {
+		return rawlua, nil
+	}
 	reqs := map[string]string{
 		rootfuncname: rawlua,
 	}
@@ -91,6 +102,9 @@ func Bundle(rawlua string, l file.LuaReader) (string, error) {
 		if err != nil {
 			return "", fmt.Errorf("for %s getAllReqValues(%s): %v", fname, scriptToInvestigate, err)
 		}
+		sort.Slice(reqsToLoad, func(i int, j int) bool {
+			return reqsToLoad[i] < reqsToLoad[j]
+		})
 		for _, r := range reqsToLoad {
 			val, err := l.EncodeFromFile(r + ".ttslua")
 			if err != nil {
@@ -101,7 +115,7 @@ func Bundle(rawlua string, l file.LuaReader) (string, error) {
 		todo = append(todo, reqsToLoad...)
 	}
 
-	bundlestr := "\n" + metaprefix + "\n"
+	bundlestr := metaprefix + "\n"
 
 	for k, v := range reqs {
 		bundlestr += strings.Replace(funcprefix, funcprefixReplace, k, 1) + "\n"
@@ -109,7 +123,7 @@ func Bundle(rawlua string, l file.LuaReader) (string, error) {
 		bundlestr += funcsuffix + "\n"
 	}
 
-	bundlestr += metasuffix + "\n"
+	bundlestr += metasuffix
 
 	return bundlestr, nil
 }

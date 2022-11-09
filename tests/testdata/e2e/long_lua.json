@@ -15,7 +15,12 @@
   "LuaScriptState": "",
   "MusicPlayer": {},
   "Note": "",
-  "ObjectStates": [],
+  "ObjectStates": [
+    {
+      "GUID": "15990d",
+      "LuaScript": "var foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\n"
+    }
+  ],
   "SaveName": "",
   "Sky": "",
   "SnapPoints": [],
