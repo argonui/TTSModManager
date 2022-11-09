@@ -69,6 +69,9 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	if trans, ok := o.data["Transform"]; ok {
 		o.data["Transform"] = Smooth(trans)
 	}
+	if color, ok := o.data["ColorDiffuse"]; ok {
+		o.data["ColorDiffuse"] = Smooth(color)
+	}
 
 	if rawObjs, ok := o.data["ContainedObjects"]; ok {
 		rawArr, ok := rawObjs.([]interface{})
@@ -94,6 +97,15 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 }
 
 func (o *objConfig) print(l file.LuaReader) (J, error) {
+	if s, ok := o.data["LuaScript"]; ok {
+		if str, ok := s.(string); ok && str != "" {
+			bundleReqs, err := bundler.Bundle(str, l)
+			if err != nil {
+				return nil, fmt.Errorf("Bundle(%s) : %v", str, err)
+			}
+			o.data["LuaScript"] = bundleReqs
+		}
+	}
 	if o.luascriptPath != "" {
 		encoded, err := l.EncodeFromFile(o.luascriptPath)
 		if err != nil {
@@ -118,16 +130,6 @@ func (o *objConfig) print(l file.LuaReader) (J, error) {
 			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.gmnotesPath, err)
 		}
 		o.data["GMNotes"] = encoded
-	}
-
-	if s, ok := o.data["LuaScript"]; ok {
-		if str, ok := s.(string); ok && str != "" {
-			bundleReqs, err := bundler.Bundle(str, l)
-			if err != nil {
-				return nil, fmt.Errorf("Bundle(%s) : %v", str, err)
-			}
-			o.data["LuaScript"] = bundleReqs
-		}
 	}
 
 	subs := []J{}
