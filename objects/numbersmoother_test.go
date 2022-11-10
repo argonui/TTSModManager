@@ -16,7 +16,7 @@ func TestPosition(t *testing.T) {
 	want := map[string]interface{}{
 		"posX": 42.41,
 		"posY": 1.5,
-		"posZ": -11.36,
+		"posZ": -11.355,
 	}
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)
@@ -34,6 +34,44 @@ func TestDegree(t *testing.T) {
 		"rotX": float64(90),
 		"rotY": float64(90),
 		"rotZ": float64(0),
+	}
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("want != got:\n%v\n", diff)
+	}
+}
+
+func TestColor(t *testing.T) {
+	j := map[string]interface{}{
+		"r": 0.42513,
+		"g": 0.333333333,
+		"b": 0.914525304,
+		"a": 0.5,
+	}
+	got := Smooth(j)
+	want := map[string]interface{}{
+		"r": 0.42513,
+		"g": 0.33333,
+		"b": 0.91453,
+		"a": 0.5,
+	}
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("want != got:\n%v\n", diff)
+	}
+}
+
+func TestColorTransparent(t *testing.T) {
+	j := map[string]interface{}{
+		"r": 1.0,
+		"g": 1.0,
+		"b": 1.0,
+		"a": 0,
+	}
+	got := Smooth(j)
+	want := map[string]interface{}{
+		"r": 1.0,
+		"g": 1.0,
+		"b": 1.0,
+		"a": 0,
 	}
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)
