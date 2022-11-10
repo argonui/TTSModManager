@@ -8,7 +8,7 @@ var (
 	// because arrays can't be constant
 	posRounded = []string{"posX", "posY", "posZ"}
 	rotRounded = []string{"rotX", "rotY", "rotZ"}
-	colorRounded = []string{"b", "g", "r"}
+	colorRounded = []string{"b", "g", "r", "a"}
 )
 
 func roundFloat(val float64, precision uint) float64 {
@@ -26,7 +26,7 @@ func Smooth(objraw interface{}) interface{} {
 	for _, key := range posRounded {
 		if val, ok := obj[key]; ok {
 			if fl, ok := val.(float64); ok {
-				obj[key] = roundFloat(fl, 2)
+				obj[key] = roundFloat(fl, 3)
 			}
 		}
 	}
