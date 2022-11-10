@@ -4,6 +4,7 @@ import (
 	"ModCreator/bundler"
 	"ModCreator/file"
 	"ModCreator/objects"
+	"ModCreator/types"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -83,7 +84,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 	for _, objKey := range ExpectedObjArr {
 		rawVal, ok := raw[objKey]
 		if ok {
-			arr, err := convertToObjArray(rawVal)
+			arr, err := types.ConvertToObjArray(rawVal)
 			if err != nil {
 				return fmt.Errorf("mismatch expectations in key %s : %v", objKey, err)
 			}
@@ -111,7 +112,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 	}
 
 	if rawObjs, ok := raw["ObjectStates"]; ok {
-		objStates, err := convertToObjArray(rawObjs)
+		objStates, err := types.ConvertToObjArray(rawObjs)
 		if err != nil {
 			return fmt.Errorf("mismatch type expectations for ObjectStates : %v", err)
 		}
@@ -129,28 +130,6 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		return fmt.Errorf("WriteObj(<obj>, %s) : %v", "config.json", err)
 	}
 	return nil
-}
-
-func convertToObjArray(v interface{}) ([]map[string]interface{}, error) {
-	arr := []map[string]interface{}{}
-
-	rawArr, ok := v.([]interface{})
-	if !ok {
-		return nil, fmt.Errorf("%v is not an array, is %T", v, v)
-	}
-
-	for _, rv := range rawArr {
-		objVal, ok := rv.(map[string]interface{})
-		if !ok {
-			if rv == nil {
-				// if for some reason an array has nil object, just skip
-				continue
-			}
-			return nil, fmt.Errorf("expected type json object, got %v", objVal)
-		}
-		arr = append(arr, objVal)
-	}
-	return arr, nil
 }
 
 func writeJSON(raw map[string]interface{}, filename string) error {

@@ -97,19 +97,20 @@ func TestColorTransparent(t *testing.T) {
 }
 
 func TestArray(t *testing.T) {
-	j := []map[string]interface{}{
-		{"Position": types.J{
-			"x": float64(-1.822),
-			"y": float64(0.100),
-			"z": float64(0.616),
-		},
+	j := []interface{}{
+		map[string]interface{}{
+			"Position": types.J{
+				"x": float64(-1.822),
+				"y": float64(0.100),
+				"z": float64(0.616),
+			},
 			"Rotation": types.J{
 				"x": float64(0),
 				"y": float64(0),
 				"z": float64(0),
 			},
 		},
-		{
+		map[string]interface{}{
 			"Rotation": types.J{
 				"x": float64(0),
 				"y": float64(0),

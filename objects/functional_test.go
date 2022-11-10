@@ -127,8 +127,8 @@ func TestJsonToFiles(t *testing.T) {
 					"y": -0.123456789,
 					"z": float64(370),
 				},
-				"AttachedSnapPoints": []map[string]interface{}{
-					{
+				"AttachedSnapPoints": []interface{}{
+					map[string]interface{}{
 						"Position": types.J{
 							"x": -1.82239926,
 							"y": 0.100342259,
@@ -140,14 +140,14 @@ func TestJsonToFiles(t *testing.T) {
 							"z": -2.29263165e-7,
 						},
 					},
-					{
+					map[string]interface{}{
 						"Rotation": types.J{
 							"x": 3.36023078e-7,
 							"y": 0.008230378,
 							"z": -2.29263165e-7,
 						},
 					},
-					{
+					map[string]interface{}{
 						"Position": types.J{
 							"x": -1.82239926,
 							"y": 0.100342259,
