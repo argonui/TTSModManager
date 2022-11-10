@@ -1,6 +1,7 @@
 package objects
 
 import (
+	"ModCreator/types"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -62,7 +63,7 @@ func TestColor(t *testing.T) {
 		"r": 0.42513,
 		"g": 0.333333333,
 		"b": 0.914525304,
-		"a": 0.5,
+		"a": float64(0.5),
 	}
 	got := Smooth(j)
 	want := map[string]interface{}{
@@ -89,6 +90,56 @@ func TestColorTransparent(t *testing.T) {
 		"g": 1.0,
 		"b": 1.0,
 		"a": 0,
+	}
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("want != got:\n%v\n", diff)
+	}
+}
+
+func TestArray(t *testing.T) {
+	j := []map[string]interface{}{
+		{"Position": types.J{
+			"x": float64(-1.822),
+			"y": float64(0.100),
+			"z": float64(0.616),
+		},
+			"Rotation": types.J{
+				"x": float64(0),
+				"y": float64(0),
+				"z": float64(0),
+			},
+		},
+		{
+			"Rotation": types.J{
+				"x": float64(0),
+				"y": float64(0),
+				"z": float64(0),
+			},
+		},
+	}
+	got, err := SmoothSnapPoints(j)
+	if err != nil {
+		t.Fatalf("SmoothSnapPoints(): %v", err)
+	}
+	want := []map[string]interface{}{
+		{"Position": types.J{
+			"x": -1.822,
+			"y": 0.100,
+			"z": 0.616,
+		},
+			"Rotation": types.J{
+				"x": float64(0),
+				"y": float64(0),
+				"z": float64(0),
+			},
+		},
+		{
+			"Rotation": types.J{
+				"x": float64(0),
+				"y": float64(0),
+				"z": float64(0),
+			},
+		},
 	}
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)

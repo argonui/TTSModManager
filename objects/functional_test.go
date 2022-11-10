@@ -1,6 +1,7 @@
 package objects
 
 import (
+	"ModCreator/tests"
 	"ModCreator/types"
 	"testing"
 
@@ -77,9 +78,9 @@ func TestFileToJson(t *testing.T) {
 			},
 		},
 	} {
-		ff := &fakeFiles{
-			fs:   tc.txtfiles,
-			data: tc.jsonfiles,
+		ff := &tests.FakeFiles{
+			Fs:   tc.txtfiles,
+			Data: tc.jsonfiles,
 		}
 		o := objConfig{}
 		err := o.parseFromFile("foo/cool.123456.json", ff)
@@ -113,6 +114,85 @@ func TestJsonToFiles(t *testing.T) {
 				"foo/123.json": types.J{
 					"GUID":   "123",
 					"foobar": "baz",
+				},
+			},
+			wantTxtfiles: map[string]string{},
+		}, {
+			relpath: "objrounding",
+			input: types.J{
+				"GUID":   "123",
+				"foobar": "baz",
+				"AltLookAngle": types.J{
+					"x": 0.123456789,
+					"y": -0.123456789,
+					"z": float64(370),
+				},
+				"AttachedSnapPoints": []map[string]interface{}{
+					{
+						"Position": types.J{
+							"x": -1.82239926,
+							"y": 0.100342259,
+							"z": 0.6163123,
+						},
+						"Rotation": types.J{
+							"x": 3.36023078e-7,
+							"y": 0.008230378,
+							"z": -2.29263165e-7,
+						},
+					},
+					{
+						"Rotation": types.J{
+							"x": 3.36023078e-7,
+							"y": 0.008230378,
+							"z": -2.29263165e-7,
+						},
+					},
+					{
+						"Position": types.J{
+							"x": -1.82239926,
+							"y": 0.100342259,
+							"z": 0.6163123,
+						},
+					},
+				},
+			},
+			wantJsonfiles: map[string]types.J{
+				"objrounding/123.json": types.J{
+					"GUID":   "123",
+					"foobar": "baz",
+					"AltLookAngle": types.J{
+						"x": float64(0),
+						"y": float64(0),
+						"z": float64(10),
+					},
+					"AttachedSnapPoints": []map[string]interface{}{
+						{
+							"Position": types.J{
+								"x": float64(-1.822),
+								"y": float64(0.100),
+								"z": float64(0.616),
+							},
+							"Rotation": types.J{
+								"x": float64(0),
+								"y": float64(0),
+								"z": float64(0),
+							},
+						},
+						{
+							"Rotation": types.J{
+								"x": float64(0),
+								"y": float64(0),
+								"z": float64(0),
+							},
+						},
+						{
+							"Position": types.J{
+								"x": -1.822,
+								"y": 0.100,
+								"z": 0.616,
+							},
+						},
+					},
 				},
 			},
 			wantTxtfiles: map[string]string{},
@@ -168,10 +248,7 @@ func TestJsonToFiles(t *testing.T) {
 			wantTxtfiles: map[string]string{},
 		},
 	} {
-		ff := &fakeFiles{
-			fs:   map[string]string{},
-			data: map[string]types.J{},
-		}
+		ff := tests.NewFF()
 		o := objConfig{}
 		err := o.parseFromJSON(tc.input)
 		if err != nil {
@@ -181,10 +258,10 @@ func TestJsonToFiles(t *testing.T) {
 		if err != nil {
 			t.Fatalf("printToFile(%s): %v", o.getAGoodFileName(), err)
 		}
-		if diff := cmp.Diff(tc.wantJsonfiles, ff.data); diff != "" {
+		if diff := cmp.Diff(tc.wantJsonfiles, ff.Data); diff != "" {
 			t.Errorf("want != got:\n%v\n", diff)
 		}
-		if diff := cmp.Diff(tc.wantTxtfiles, ff.fs); diff != "" {
+		if diff := cmp.Diff(tc.wantTxtfiles, ff.Fs); diff != "" {
 			t.Errorf("want != got:\n%v\n", diff)
 		}
 	}

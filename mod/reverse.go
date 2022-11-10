@@ -87,9 +87,16 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 			if err != nil {
 				return fmt.Errorf("mismatch expectations in key %s : %v", objKey, err)
 			}
-
+			if objKey == "SnapPoints" {
+				smoothed, err := objects.SmoothSnapPoints(arr)
+				if err != nil {
+					return fmt.Errorf("SmoothSnapPoints(): %v", err)
+				}
+				arr = smoothed
+			}
 			// decide if creating a separate file is worth it
 			if len(fmt.Sprint(arr)) < 200 {
+				raw[objKey] = arr
 				continue
 			}
 
@@ -129,7 +136,7 @@ func convertToObjArray(v interface{}) ([]map[string]interface{}, error) {
 
 	rawArr, ok := v.([]interface{})
 	if !ok {
-		return nil, fmt.Errorf("%v is not an array", v)
+		return nil, fmt.Errorf("%v is not an array, is %T", v, v)
 	}
 
 	for _, rv := range rawArr {
