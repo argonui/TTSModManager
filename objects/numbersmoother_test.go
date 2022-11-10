@@ -40,6 +40,23 @@ func TestDegree(t *testing.T) {
 	}
 }
 
+func TestDegreeAbs(t *testing.T) {
+	j := map[string]interface{}{
+		"rotX": float64(370),
+		"rotY": -89.83327,
+		"rotZ": float64(-0.004),
+	}
+	got := Smooth(j)
+	want := map[string]interface{}{
+		"rotX": float64(10),
+		"rotY": float64(270),
+		"rotZ": float64(0),
+	}
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("want != got:\n%v\n", diff)
+	}
+}
+
 func TestColor(t *testing.T) {
 	j := map[string]interface{}{
 		"r": 0.42513,
@@ -77,4 +94,3 @@ func TestColorTransparent(t *testing.T) {
 		t.Errorf("want != got:\n%v\n", diff)
 	}
 }
-

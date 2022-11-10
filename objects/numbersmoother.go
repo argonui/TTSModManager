@@ -6,8 +6,8 @@ import (
 
 var (
 	// because arrays can't be constant
-	posRounded = []string{"posX", "posY", "posZ"}
-	rotRounded = []string{"rotX", "rotY", "rotZ"}
+	posRounded   = []string{"posX", "posY", "posZ"}
+	rotRounded   = []string{"rotX", "rotY", "rotZ"}
 	colorRounded = []string{"b", "g", "r", "a"}
 )
 
@@ -33,7 +33,7 @@ func Smooth(objraw interface{}) interface{} {
 	for _, key := range rotRounded {
 		if val, ok := obj[key]; ok {
 			if fl, ok := val.(float64); ok {
-				obj[key] = math.Abs(math.Mod(roundFloat(fl, 0), 360))
+				obj[key] = math.Mod(roundFloat(fl, 0)+360, 360)
 			}
 		}
 	}
