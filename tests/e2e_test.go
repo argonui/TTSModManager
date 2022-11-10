@@ -3,12 +3,7 @@ package tests
 import (
 	"ModCreator/file"
 	"ModCreator/mod"
-	"ModCreator/types"
-	"encoding/json"
-	"fmt"
-	"path"
 	"path/filepath"
-	"strings"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -20,90 +15,6 @@ var (
 	expectedObjArr    = []string{"CameraStates", "DecalPallet", "CustomUIAssets", "SnapPoints", "Decals"}
 	expectedObjStates = "ObjectStates"
 )
-
-type fakeFiles struct {
-	fs   map[string]string
-	data map[string]types.J
-}
-
-func newFF() *fakeFiles {
-	return &fakeFiles{
-		fs:   map[string]string{},
-		data: map[string]types.J{},
-	}
-}
-
-func (f *fakeFiles) EncodeFromFile(s string) (string, error) {
-	if _, ok := f.fs[s]; !ok {
-		return "", fmt.Errorf("fake file <%s> not found", s)
-	}
-	return f.fs[s], nil
-}
-func (f *fakeFiles) ReadObj(s string) (map[string]interface{}, error) {
-	if _, ok := f.data[s]; !ok {
-		return nil, fmt.Errorf("fake file <%s> not found", s)
-	}
-	b, err := json.MarshalIndent(f.data[s], "", "  ")
-	if err != nil {
-		return nil, err
-	}
-	var v map[string]interface{}
-	err = json.Unmarshal(b, &v)
-	if err != nil {
-		return nil, err
-	}
-	return v, nil
-}
-
-func (f *fakeFiles) ReadObjArray(s string) ([]map[string]interface{}, error) {
-	return nil, fmt.Errorf("unimplemented")
-}
-func (f *fakeFiles) WriteObj(data map[string]interface{}, path string) error {
-	f.data[path] = data
-	return nil
-}
-func (f *fakeFiles) WriteObjArray(data []map[string]interface{}, path string) error {
-	return fmt.Errorf("unimplemented")
-}
-func (f *fakeFiles) EncodeToFile(script, file string) error {
-	f.fs[file] = script
-	return nil
-}
-func (f *fakeFiles) CreateDir(a, b string) (string, error) {
-	// return the "chosen" directory name for next folder
-	return b, nil
-}
-func (f *fakeFiles) ListFilesAndFolders(relpath string) ([]string, []string, error) {
-	// ignore non json files. i don't think they Matter
-	files := []string{}
-	folders := []string{}
-	for k := range f.data {
-		if strings.HasPrefix(k, relpath) {
-			left := k
-			if relpath != "" {
-				left = strings.Replace(k, relpath+"/", "", 1)
-			}
-			if strings.Contains(left, "/") {
-				// this is a folder not a file
-				folders = append(folders, path.Join(relpath, strings.Split(left, "/")[0]))
-			} else {
-				files = append(files, path.Join(relpath, left))
-			}
-		}
-	}
-	return files, folders, nil
-}
-
-func (f *fakeFiles) debugFileNames(log func(s string, args ...interface{})) {
-	log("txt files:\n")
-	for fn := range f.fs {
-		log("\t%s\n", fn)
-	}
-	log("json files:\n")
-	for fn := range f.data {
-		log("\t%s\n", fn)
-	}
-}
 
 func TestAllReverseThenBuild(t *testing.T) {
 	paths, err := filepath.Glob(filepath.Join("testdata", "e2e", "*.json"))
@@ -132,9 +43,9 @@ func TestAllReverseThenBuild(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Error parsing %s : %v", path, err)
 			}
-			modsettings := newFF()
-			finalOutput := newFF()
-			objsAndLua := newFF()
+			modsettings := NewFF()
+			finalOutput := NewFF()
+			objsAndLua := NewFF()
 
 			r := mod.Reverser{
 				ModSettingsWriter: modsettings,
@@ -148,8 +59,8 @@ func TestAllReverseThenBuild(t *testing.T) {
 				t.Fatalf("Error reversing : %v", err)
 			}
 
-			objsAndLua.debugFileNames(t.Logf)
-			finalOutput.debugFileNames(t.Logf)
+			objsAndLua.DebugFileNames(t.Logf)
+			finalOutput.DebugFileNames(t.Logf)
 			reversedConfig, _ := finalOutput.ReadObj("config.json")
 			t.Logf("%v\n", reversedConfig)
 

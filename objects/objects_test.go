@@ -4,129 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"path"
-	"strings"
 	"testing"
 
+	"ModCreator/tests"
 	"ModCreator/types"
 
 	"github.com/google/go-cmp/cmp"
 )
-
-type fakeFiles struct {
-	fs   map[string]string
-	data map[string]types.J
-}
-
-func (f *fakeFiles) EncodeFromFile(s string) (string, error) {
-	if _, ok := f.fs[s]; !ok {
-		return "", fmt.Errorf("fake file <%s> not found", s)
-	}
-	return f.fs[s], nil
-}
-func (f *fakeFiles) ReadObj(s string) (map[string]interface{}, error) {
-	if _, ok := f.data[s]; !ok {
-		return nil, fmt.Errorf("fake file <%s> not found", s)
-	}
-	return f.data[s], nil
-}
-func (f *fakeFiles) ReadObjArray(s string) ([]map[string]interface{}, error) {
-	return nil, fmt.Errorf("unimplemented")
-}
-func (f *fakeFiles) WriteObj(data map[string]interface{}, path string) error {
-	f.data[path] = data
-	return nil
-}
-func (f *fakeFiles) WriteObjArray(data []map[string]interface{}, path string) error {
-	return fmt.Errorf("unimplemented")
-}
-func (f *fakeFiles) EncodeToFile(script, file string) error {
-	f.fs[file] = script
-	return nil
-}
-func (f *fakeFiles) CreateDir(a, b string) (string, error) {
-	// return the "chosen" directory name for next folder
-	return b, nil
-}
-func (f *fakeFiles) ListFilesAndFolders(relpath string) ([]string, []string, error) {
-	// ignore non json files. i don't think they Matter
-	files := []string{}
-	folders := []string{}
-	for k := range f.data {
-		if strings.HasPrefix(k, relpath) {
-			left := k
-			if relpath != "" {
-				left = strings.Replace(k, relpath+"/", "", 1)
-			}
-			if strings.Contains(left, "/") {
-				// this is a folder not a file
-				folders = append(folders, path.Join(relpath, strings.Split(left, "/")[0]))
-			} else {
-				files = append(files, path.Join(relpath, left))
-			}
-		}
-	}
-	return files, folders, nil
-}
-
-func TestTestframework(t *testing.T) {
-	for _, tc := range []struct {
-		input       map[string]types.J
-		path        string
-		wantFiles   []string
-		wantFolders []string
-	}{
-		{
-			input: map[string]types.J{
-				"foo.json": types.J{},
-			},
-			path:        "",
-			wantFiles:   []string{"foo.json"},
-			wantFolders: []string{},
-		},
-		{
-			input: map[string]types.J{
-				"foo.json":      types.J{},
-				"foo/bar.json":  types.J{},
-				"foo2/bar.json": types.J{},
-			},
-			path:        "",
-			wantFiles:   []string{"foo.json"},
-			wantFolders: []string{"foo", "foo2"},
-		},
-		{
-			input: map[string]types.J{
-				"foo/bar.json":     types.J{},
-				"foo/bar/baz.json": types.J{},
-			},
-			path:        "foo",
-			wantFiles:   []string{"foo/bar.json"},
-			wantFolders: []string{"foo/bar"},
-		},
-	} {
-		ff := fakeFiles{
-			data: tc.input,
-		}
-		gotFiles, gotFolders, err := ff.ListFilesAndFolders(tc.path)
-		if err != nil {
-			t.Fatalf("ListFilesAndFolders(%s): %v", tc.path, err)
-		}
-		asset := cmp.Transformer("tomap", func(in []string) map[string]bool {
-			out := map[string]bool{}
-			for _, i := range in {
-				out[i] = true
-			}
-			return out
-		})
-		if diff := cmp.Diff(tc.wantFiles, gotFiles, asset); diff != "" {
-			t.Errorf("want != got:\n%v\n", diff)
-		}
-		if diff := cmp.Diff(tc.wantFolders, gotFolders, asset); diff != "" {
-			t.Errorf("want != got:\n%v\n", diff)
-		}
-	}
-
-}
 
 func TestObjPrintToFile(t *testing.T) {
 	for _, tc := range []struct {
@@ -147,15 +31,12 @@ func TestObjPrintToFile(t *testing.T) {
 			},
 		},
 	} {
-		ff := &fakeFiles{
-			fs:   map[string]string{},
-			data: map[string]types.J{},
-		}
+		ff := tests.NewFF()
 		err := tc.o.printToFile("path/to/", ff, ff, ff)
 		if err != nil {
 			t.Errorf("printing %v, got %v", tc.o, err)
 		}
-		if diff := cmp.Diff(tc.want, ff.data["path/to/"+tc.wantFilename]); diff != "" {
+		if diff := cmp.Diff(tc.want, ff.Data["path/to/"+tc.wantFilename]); diff != "" {
 			t.Errorf("want != got:\n%v\n", diff)
 		}
 	}
@@ -212,8 +93,8 @@ func TestObjPrinting(t *testing.T) {
 			},
 		},
 	} {
-		l := &fakeFiles{
-			fs: map[string]string{
+		l := &tests.FakeFiles{
+			Fs: map[string]string{
 				"core/AgendaDeck.ttslua": "var a = 42;",
 			},
 		}
@@ -364,19 +245,16 @@ func TestObjPrintingToFile(t *testing.T) {
 			},
 		},
 	} {
-		ff := &fakeFiles{
-			fs:   map[string]string{},
-			data: map[string]types.J{},
-		}
+		ff := tests.NewFF()
 		err := tc.o.printToFile(tc.folder, ff, ff, ff)
 		if err != nil {
 			t.Errorf("printing %v, got %v", tc.o, err)
 		}
 
 		for _, wantFJ := range tc.wantObjs {
-			got, ok := ff.data[wantFJ.file]
+			got, ok := ff.Data[wantFJ.file]
 			if !ok {
-				log.Printf("%v\n", ff.data)
+				log.Printf("%v\n", ff.Data)
 				t.Fatalf("Wanted file %s, not found", wantFJ.file)
 			}
 			if diff := cmp.Diff(wantFJ.content, got); diff != "" {
@@ -386,10 +264,9 @@ func TestObjPrintingToFile(t *testing.T) {
 
 		// compare lua script state
 		if tc.wantLSS.file != "" {
-			got, ok := ff.fs[tc.wantLSS.file]
+			got, ok := ff.Fs[tc.wantLSS.file]
 			if !ok {
-				log.Printf("fs: %v", ff.fs)
-				log.Printf("data %v", ff.data)
+				ff.DebugFileNames(t.Logf)
 				t.Errorf("wanted luascript state %s, didn't find", tc.wantLSS.file)
 			}
 			if diff := cmp.Diff(tc.wantLSS.content, got); diff != "" {
@@ -532,10 +409,7 @@ func TestPrintAllObjs(t *testing.T) {
 			},
 		},
 	} {
-		ff := &fakeFiles{
-			data: map[string]types.J{},
-			fs:   map[string]string{},
-		}
+		ff := tests.NewFF()
 		gotOrder, err := PrintObjectStates("", ff, ff, ff, tc.objs)
 		if err != nil {
 			t.Fatalf("error not expected %v", err)
@@ -544,7 +418,7 @@ func TestPrintAllObjs(t *testing.T) {
 			t.Errorf("want != got:\n%v\n", diff)
 		}
 		for _, w := range tc.wants {
-			got, ok := ff.data[w.name]
+			got, ok := ff.Data[w.name]
 			if !ok {
 				t.Errorf("wanted filename %s not present in data", w.name)
 			}
@@ -557,10 +431,7 @@ func TestPrintAllObjs(t *testing.T) {
 }
 
 func TestDBPrint(t *testing.T) {
-	ff := &fakeFiles{
-		fs:   map[string]string{},
-		data: map[string]types.J{},
-	}
+	ff := tests.NewFF()
 	for _, tc := range []struct {
 		root       map[string]*objConfig
 		orderInput []string
@@ -608,8 +479,8 @@ func jn(i int) json.Number {
 
 func TestParseFromFile(t *testing.T) {
 
-	ff := &fakeFiles{
-		data: map[string]types.J{},
+	ff := &tests.FakeFiles{
+		Data: map[string]types.J{},
 	}
 	for _, tc := range []struct {
 		name  string
@@ -627,7 +498,7 @@ func TestParseFromFile(t *testing.T) {
 			},
 		},
 	} {
-		ff.data[tc.name] = tc.input
+		ff.Data[tc.name] = tc.input
 		o := objConfig{}
 		err := o.parseFromFile(tc.name, ff)
 		if err != nil {

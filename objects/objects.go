@@ -66,11 +66,24 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	file.TryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
 	file.TryParseIntoStrArray(&o.data, "ContainedObjects_order", &o.subObjOrder)
 
-	if trans, ok := o.data["Transform"]; ok {
-		o.data["Transform"] = Smooth(trans)
+	for _, needSmoothing := range []string{"Transform", "ColorDiffuse"} {
+		if v, ok := o.data[needSmoothing]; ok {
+			o.data[needSmoothing] = Smooth(v)
+		}
 	}
-	if color, ok := o.data["ColorDiffuse"]; ok {
-		o.data["ColorDiffuse"] = Smooth(color)
+	if v, ok := o.data["AltLookAngle"]; ok {
+		vv, err := SmoothAngle(v)
+		if err != nil {
+			return fmt.Errorf("SmoothAngle(<%s>): %v", "AltLookAngle", err)
+		}
+		o.data["AltLookAngle"] = vv
+	}
+	if sp, ok := o.data["AttachedSnapPoints"]; ok {
+		sm, err := SmoothSnapPoints(sp)
+		if err != nil {
+			return fmt.Errorf("SmoothSnapPoints(<%s>): %v", o.guid, err)
+		}
+		o.data["AttachedSnapPoints"] = sm
 	}
 
 	if rawObjs, ok := o.data["ContainedObjects"]; ok {
