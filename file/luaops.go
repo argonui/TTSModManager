@@ -46,9 +46,19 @@ func NewLuaOpsMulti(readDirs []string, writeDir string) *LuaOps {
 			}
 			defer sFile.Close()
 
-			return ioutil.ReadAll(sFile)
+			b, err := ioutil.ReadAll(sFile)
+			if err != nil {
+				return nil, fmt.Errorf("ReadAll(%s): %v", s, err)
+			}
+			if l := len(b); l > 0 {
+				if b[l-1] == '\n' {
+					b = b[0 : l-1]
+				}
+			}
+			return b, nil
 		},
 		writeBytesToFile: func(p string, b []byte) error {
+			b = append(b, '\n')
 			return os.WriteFile(p, b, 0644)
 		},
 	}

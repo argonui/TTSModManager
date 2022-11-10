@@ -71,6 +71,7 @@ func (j *JSONOps) WriteObj(m map[string]interface{}, filename string) error {
 	if err != nil {
 		return err
 	}
+	b = append(b, '\n')
 	return ioutil.WriteFile(path.Join(j.basepath, filename), b, 0644)
 }
 
@@ -80,6 +81,7 @@ func (j *JSONOps) WriteObjArray(m []map[string]interface{}, filename string) err
 	if err != nil {
 		return err
 	}
+	b = append(b, '\n')
 	return ioutil.WriteFile(path.Join(j.basepath, filename), b, 0644)
 }
 
