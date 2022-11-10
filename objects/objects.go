@@ -124,6 +124,13 @@ func (o *objConfig) print(l file.LuaReader) (J, error) {
 		}
 		out["GMNotes"] = encoded
 	}
+	if o.luascriptstatePath != "" {
+		encoded, err := l.EncodeFromFile(o.luascriptstatePath)
+		if err != nil {
+			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptstatePath, err)
+		}
+		out["LuaScriptState"] = encoded
+	}
 
 	subs := []J{}
 	for _, sub := range o.subObj {
