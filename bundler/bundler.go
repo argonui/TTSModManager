@@ -74,13 +74,14 @@ func Unbundle(rawlua string) (string, error) {
 	if !IsBundled(rawlua) {
 		return rawlua, nil
 	}
-
-	root := regexp.MustCompile(`(?s)__bundle_register\("__root", function\(require, _LOADED, __bundle_register, __bundle_modules\)[\r\n\s]+(.*?)[\r\n\s]+end\)`)
+	// [return __bundle_require(\"__root\")|__bundle_register]
+	root := regexp.MustCompile(`(?s)__bundle_register\("__root", function\(require, _LOADED, __bundle_register, __bundle_modules\)[\r\n\s]+(.*?)[\r\n ]+end\)[\n\r]+(return __bundle_require\(\"__root\"\)|__bundle_register)+`)
 	matches := root.FindStringSubmatch(rawlua)
 
 	if len(matches) <= 1 {
 		return "", fmt.Errorf("could not find root bundle")
 	}
+
 	return matches[1], nil
 }
 
