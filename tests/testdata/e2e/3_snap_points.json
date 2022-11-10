@@ -1,0 +1,67 @@
+{
+  "CameraStates": [],
+  "ComponentTags": {},
+  "CustomUIAssets": [],
+  "Date": "123",
+  "DecalPallet": [],
+  "Decals": [],
+  "GameComplexity": "",
+  "GameMode": "",
+  "GameType": "",
+  "Grid": {},
+  "Hands": {},
+  "Lighting": {},
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "MusicPlayer": {},
+  "Note": "",
+  "ObjectStates": [],
+  "SaveName": "",
+  "Sky": "",
+  "SnapPoints": [
+    {
+      "Position": {
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
+      },
+      "Rotation": {
+        "x": 90,
+        "y": 180,
+        "z": 0
+      }
+    },
+    {
+      "Position": {
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
+      },
+      "Rotation": {
+        "x": 90,
+        "y": 180,
+        "z": 180
+      }
+    },
+    {
+      "Position": {
+        "x": 1.2,
+        "y": 22.2,
+        "z": 22.2
+      },
+      "Rotation": {
+        "x": 90,
+        "y": 180,
+        "z": 0
+      },
+      "Tags": [
+            "action_token"
+          ]
+    }
+  ],
+  "TabStates": {},
+  "Table": "",
+  "Turns": {},
+  "VersionNumber": "",
+  "XmlUI": ""
+}

@@ -76,9 +76,9 @@ func smoothArbitrary(objraw interface{}, round func(float64) float64) (types.J, 
 
 // SmoothSnapPoints will consume an array of snap points and smooth all of them
 func SmoothSnapPoints(rawsps interface{}) ([]map[string]interface{}, error) {
-	arr, ok := rawsps.([]map[string]interface{})
-	if !ok {
-		return nil, fmt.Errorf("SnapPoints is expected to be an array of objects; was %T", rawsps)
+	arr, err := types.ConvertToObjArray(rawsps)
+	if err != nil {
+		return nil, fmt.Errorf("ConvertToObjArray(%v): %v", rawsps, err)
 	}
 	smth := []map[string]interface{}{}
 	for _, sp := range arr {
@@ -98,8 +98,11 @@ func SmoothSnapPoints(rawsps interface{}) ([]map[string]interface{}, error) {
 			}
 			smthsp["Rotation"] = v
 		}
+		if tags, ok := sp["Tags"]; ok {
+			smthsp["Tags"] = tags
+		}
 		if len(sp) != len(smthsp) {
-			return nil, fmt.Errorf("Unexpected key found in array of snap points. full obj: %v", sp)
+			return nil, fmt.Errorf("Unexpected key(s). full obj: %v", sp)
 		}
 
 		smth = append(smth, smthsp)
