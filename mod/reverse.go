@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 )
 
 // Reverser holds interfaces and configs for the reversing process
@@ -27,7 +26,6 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 	for _, strKey := range ExpectedStr {
 		rawVal, ok := raw[strKey]
 		if !ok {
-			log.Printf("expected string value in key %s, key not found\n", strKey)
 			continue
 		}
 		strVal, ok := rawVal.(string)

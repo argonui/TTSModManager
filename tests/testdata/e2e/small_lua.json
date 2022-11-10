@@ -2,7 +2,7 @@
   "CameraStates": [],
   "ComponentTags": {},
   "CustomUIAssets": [],
-  "Date": "123",
+  "Date": "",
   "DecalPallet": [],
   "Decals": [],
   "GameComplexity": "",
@@ -15,7 +15,12 @@
   "LuaScriptState": "",
   "MusicPlayer": {},
   "Note": "",
-  "ObjectStates": [],
+  "ObjectStates": [
+    {
+      "GUID": "15990d",
+      "LuaScript": "var foo = 42"
+    }
+  ],
   "SaveName": "",
   "Sky": "",
   "SnapPoints": [],

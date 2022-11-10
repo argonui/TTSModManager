@@ -4,6 +4,7 @@ import (
 	"ModCreator/file"
 	"ModCreator/mod"
 	"ModCreator/types"
+	"encoding/json"
 	"fmt"
 	"path"
 	"path/filepath"
@@ -42,8 +43,18 @@ func (f *fakeFiles) ReadObj(s string) (map[string]interface{}, error) {
 	if _, ok := f.data[s]; !ok {
 		return nil, fmt.Errorf("fake file <%s> not found", s)
 	}
-	return f.data[s], nil
+	b, err := json.MarshalIndent(f.data[s], "", "  ")
+	if err != nil {
+		return nil, err
+	}
+	var v map[string]interface{}
+	err = json.Unmarshal(b, &v)
+	if err != nil {
+		return nil, err
+	}
+	return v, nil
 }
+
 func (f *fakeFiles) ReadObjArray(s string) ([]map[string]interface{}, error) {
 	return nil, fmt.Errorf("unimplemented")
 }
@@ -102,8 +113,22 @@ func TestAllReverseThenBuild(t *testing.T) {
 	for _, path := range paths {
 		_, filename := filepath.Split(path)
 		testname := filename[:len(filename)-len(filepath.Ext(path))]
+		denyList := []string{
+			"small_lua", // currently tries to bundle it
+			"long_lua",  // currently tries to bundle it
+		}
+
 		t.Run(testname, func(t *testing.T) {
+			for _, f := range denyList {
+				if f == testname {
+					return
+				}
+			}
 			j, err := file.ReadRawFile(path)
+			if err != nil {
+				t.Fatalf("Error parsing %s : %v", path, err)
+			}
+			want, err := file.ReadRawFile(path)
 			if err != nil {
 				t.Fatalf("Error parsing %s : %v", path, err)
 			}
@@ -148,7 +173,6 @@ func TestAllReverseThenBuild(t *testing.T) {
 			if err != nil {
 				t.Fatalf("output.json not parsed : %v", err)
 			}
-			want := j
 
 			if diff := cmp.Diff(want, got); diff != "" {
 				t.Errorf("want != got:\n%v\n", diff)

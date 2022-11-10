@@ -80,6 +80,9 @@ func (m *Mod) generate(raw types.J) error {
 	if err != nil {
 		return fmt.Errorf("objects.ParseAllObjectStates(%s) : %v", "", err)
 	}
+	if allObjs == nil {
+		allObjs = []map[string]interface{}{}
+	}
 	m.Data[ExpectedObjStates] = allObjs
 	return nil
 }
