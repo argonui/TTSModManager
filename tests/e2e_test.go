@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
 var (
@@ -84,8 +85,14 @@ func TestAllReverseThenBuild(t *testing.T) {
 			if err != nil {
 				t.Fatalf("output.json not parsed : %v", err)
 			}
+			ignoreUnpredictable := func(k string, v interface{}) bool {
+				if k == "Date" || k == "EpochTime" {
+					return true
+				}
 
-			if diff := cmp.Diff(want, got); diff != "" {
+				return false
+			}
+			if diff := cmp.Diff(want, got, cmpopts.IgnoreMapEntries(ignoreUnpredictable)); diff != "" {
 				t.Errorf("want != got:\n%v\n", diff)
 			}
 		})
