@@ -179,6 +179,16 @@ func TestReverse(t *testing.T) {
 				"LuaScript.ttslua": "require(\"playermat/SkillToken\")\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42",
 			},
 		},
+		{
+			name: "Date",
+			input: map[string]interface{}{
+				"Date":      "11/4/2022 8:34:56 PM",
+				"EpochTime": 1667619296,
+			},
+			wantRootConfig:  map[string]interface{}{},
+			wantModSettings: map[string]types.J{},
+			wantObjTexts:    map[string]string{},
+		},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			finalOutput := tests.NewFF()

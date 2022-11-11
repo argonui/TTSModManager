@@ -125,6 +125,11 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		delete(raw, "ObjectStates")
 	}
 
+	// Time of the original mod being stored on file is meaningless,
+	// they will be filled in on generate
+	delete(raw, DateKey)
+	delete(raw, EpochKey)
+
 	// write all that's Left
 	err := r.RootWrite.WriteObj(raw, "config.json")
 	if err != nil {
