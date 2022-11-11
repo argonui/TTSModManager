@@ -6,6 +6,7 @@ import (
 	"ModCreator/types"
 	"fmt"
 	"log"
+	"time"
 )
 
 var (
@@ -17,6 +18,10 @@ var (
 	ExpectedObjArr = []string{"CameraStates", "DecalPallet", "CustomUIAssets", "SnapPoints", "Decals"}
 	// ExpectedObjStates is the key which holds all objects in a mod
 	ExpectedObjStates = "ObjectStates"
+	// DateKey is a formatted date
+	DateKey = "Date"
+	// EpochKey is the Date in
+	EpochKey = "EpochTime"
 )
 
 // Mod is used as the accurate representation of what gets printed when
@@ -84,6 +89,11 @@ func (m *Mod) generate(raw types.J) error {
 		allObjs = []map[string]interface{}{}
 	}
 	m.Data[ExpectedObjStates] = allObjs
+
+	now := time.Now()
+	m.Data[DateKey] = fmt.Sprint(now.Format(time.UnixDate))
+	m.Data[EpochKey] = now.Unix()
+
 	return nil
 }
 
@@ -119,27 +129,3 @@ func tryPut(d *types.J, from, to string, fun func(string) (interface{}, error)) 
 	(*d)[to] = o
 	delete((*d), from)
 }
-
-//
-// func readConfig(cPath string) (*Config, error) {
-// 	// Open our jsonFile
-// 	cFile, err := os.Open(path.Join(cPath, "config.json"))
-// 	// if we os.Open returns an error then handle it
-// 	if err != nil {
-// 		return nil, fmt.Errorf("os.Open(%s): %v", path.Join(cPath, "config.json"), err)
-// 	}
-// 	// defer the closing of our jsonFile so that we can parse it later on
-// 	defer cFile.Close()
-//
-// 	b, err := ioutil.ReadAll(cFile)
-// 	if err != nil {
-// 		return nil, fmt.Errorf("ioutil.Readall(%s) : %v", path.Join(cPath, "config.json"), err)
-// 	}
-// 	var c Config
-//
-// 	err = json.Unmarshal(b, &c.Raw)
-// 	if err != nil {
-// 		return nil, fmt.Errorf("json.Unmarshal(%s) : %v", b, err)
-// 	}
-// 	return &c, nil
-// }
