@@ -45,6 +45,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		}
 		// decide if creating a separte file is worth it
 		if len(strVal) < 80 {
+			raw[strKey] = strVal
 			continue
 		}
 
