@@ -116,9 +116,19 @@ func SmoothAngle(objraw interface{}) (interface{}, error) {
 }
 
 func smoothPos(f float64) float64 {
-	return roundFloat(f, 3)
+	r := roundFloat(f, 3)
+	if r == float64(0) {
+		// for some reason -0.000001 is being returned as "-0"
+		return float64(0)
+	}
+	return r
 }
 
 func smoothRot(f float64) float64 {
-	return math.Mod(roundFloat(f, 0)+360, 360)
+	r := math.Mod(roundFloat(f, 0)+360, 360)
+	if r == float64(0) {
+		// for some reason -0.000001 is being returned as "-0"
+		return float64(0)
+	}
+	return r
 }
