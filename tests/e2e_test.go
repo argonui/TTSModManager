@@ -26,8 +26,9 @@ func TestAllReverseThenBuild(t *testing.T) {
 		_, filename := filepath.Split(path)
 		testname := filename[:len(filename)-len(filepath.Ext(path))]
 		denyList := []string{
-			"small_lua", // currently tries to bundle it
-			"long_lua",  // currently tries to bundle it
+			"small_lua",    // currently tries to bundle it
+			"long_lua",     // currently tries to bundle it
+			"bundled_core", // currently depends on src file that test doesn't know about
 		}
 
 		t.Run(testname, func(t *testing.T) {

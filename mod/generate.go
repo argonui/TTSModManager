@@ -1,6 +1,7 @@
 package mod
 
 import (
+	"ModCreator/bundler"
 	"ModCreator/file"
 	"ModCreator/objects"
 	"ModCreator/types"
@@ -70,6 +71,27 @@ func (m *Mod) generate(raw types.J) error {
 
 	for _, objarraybased := range ExpectedObjArr {
 		tryPut(&m.Data, objarraybased+ext, objarraybased, objArray)
+	}
+
+	if spraw, ok := m.Data["LuaScript_path"]; ok {
+		sp, ok := spraw.(string)
+		if !ok {
+			return fmt.Errorf("Expected LuaScript_path to be type string, was %T", spraw)
+		}
+		encoded, err := m.Lua.EncodeFromFile(sp)
+		if err != nil {
+			return fmt.Errorf("l.EncodeFromFile(%s) : %v", sp, err)
+		}
+		m.Data["LuaScript"] = encoded
+	}
+	if sraw, ok := m.Data["LuaScript"]; ok {
+		if str, ok := sraw.(string); ok && str != "" {
+			bundleReqs, err := bundler.Bundle(str, m.Lua)
+			if err != nil {
+				return fmt.Errorf("Bundle(%s) : %v", str, err)
+			}
+			m.Data["LuaScript"] = bundleReqs
+		}
 	}
 
 	objOrder := []string{}
