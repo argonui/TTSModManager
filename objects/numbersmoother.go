@@ -11,6 +11,7 @@ var (
 	posRounded       = []string{"posX", "posY", "posZ"}
 	rotRounded       = []string{"rotX", "rotY", "rotZ"}
 	colorRounded     = []string{"b", "g", "r", "a"}
+	scaleRounded     = []string{"scaleX", "scaleY", "scaleZ"}
 	arbitraryRounded = []string{"x", "y", "z"}
 )
 
@@ -44,6 +45,13 @@ func Smooth(objraw interface{}) interface{} {
 		if val, ok := obj[key]; ok {
 			if fl, ok := val.(float64); ok {
 				obj[key] = roundFloat(fl, 5)
+			}
+		}
+	}
+	for _, key := range scaleRounded {
+		if val, ok := obj[key]; ok {
+			if fl, ok := val.(float64); ok {
+				obj[key] = roundFloat(fl, 2)
 			}
 		}
 	}
