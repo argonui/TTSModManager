@@ -120,8 +120,8 @@ func (m *Mod) generate(raw types.J) error {
 }
 
 // Print outputs internal representation of mod to json file with indents
-func (m *Mod) Print() error {
-	return m.RootWrite.WriteObj(m.Data, "output.json")
+func (m *Mod) Print(basename string) error {
+	return m.RootWrite.WriteObj(m.Data, basename)
 }
 
 func tryPut(d *types.J, from, to string, fun func(string) (interface{}, error)) {

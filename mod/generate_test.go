@@ -81,7 +81,7 @@ func TestGenerate(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Error reading config %v", err)
 			}
-			err = m.Print()
+			err = m.Print("output.json")
 			if err != nil {
 				t.Fatalf("Error printing config %v", err)
 			}

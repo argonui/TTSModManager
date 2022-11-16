@@ -55,6 +55,12 @@ func main() {
 		}
 		return
 	}
+	if *modfile == "" {
+		*modfile = path.Join(*moddir, "output.json")
+	}
+
+	basename := path.Base(*modfile)
+	outputOps := file.NewJSONOps(path.Dir(*modfile))
 
 	m := &mod.Mod{
 		Lua:         lua,
@@ -62,14 +68,14 @@ func main() {
 		Objs:        objs,
 		Objdirs:     objdir,
 		RootRead:    rootops,
-		RootWrite:   rootops,
+		RootWrite:   outputOps,
 	}
 	err := m.GenerateFromConfig()
 	if err != nil {
 		fmt.Printf("generateMod(<config>) : %v\n", err)
 		return
 	}
-	err = m.Print()
+	err = m.Print(basename)
 	if err != nil {
 		log.Fatalf("printMod(...) : %v", err)
 	}
