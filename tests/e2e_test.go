@@ -78,7 +78,7 @@ func TestAllReverseThenBuild(t *testing.T) {
 			if err != nil {
 				t.Fatalf("generateMod(<config>) : %v\n", err)
 			}
-			err = m.Print()
+			err = m.Print("output.json")
 			if err != nil {
 				t.Fatalf("printMod(...) : %v", err)
 			}
