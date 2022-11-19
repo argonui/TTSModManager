@@ -40,5 +40,5 @@ $ttsmodfile = original tts mod file
 
 $altmodfile = new generated modfile to compare to
 ```
-go test . --modfile="C:\Users\USER\Documents\My Games\Tabletop Simulator\Mods\Workshop\existingMod.json" --altmodfile=""C:\Users\USER\Documents\Projects\MyProject\output.json""
+go test . --modfile="C:\Users\USER\Documents\My Games\Tabletop Simulator\Mods\Workshop\existingMod.json" --altmodfile="C:\Users\USER\Documents\Projects\MyProject\output.json"
 ```
