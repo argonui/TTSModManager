@@ -57,7 +57,8 @@ end)(nil)`
 	funcprefixReplace string = `SRC_LOCATION`
 	funcprefix        string = `__bundle_register("SRC_LOCATION", function(require, _LOADED, __bundle_register, __bundle_modules)`
 	funcsuffix        string = `end)`
-	rootfuncname      string = `__root`
+	// Rootname is the bundle name for the batch of raw lua
+	Rootname string = `__root`
 )
 
 // IsBundled keeps regex bundling logic to this file
@@ -69,20 +70,62 @@ func IsBundled(rawlua string) bool {
 	return false
 }
 
-// Unbundle takes luacode and strips it down to the root sub function
-func Unbundle(rawlua string) (string, error) {
+// UnbundleAll takes luacode generates all bundlenames and bundles
+func UnbundleAll(rawlua string) (map[string]string, error) {
 	if !IsBundled(rawlua) {
-		return rawlua, nil
+		return map[string]string{Rootname: rawlua}, nil
 	}
-	// [return __bundle_require(\"__root\")|__bundle_register]
-	root := regexp.MustCompile(`(?s)__bundle_register\("__root", function\(require, _LOADED, __bundle_register, __bundle_modules\)[\r\n\s]+(.*?)[\r\n ]+end\)[\n\r]+(return __bundle_require\(\"__root\"\)|__bundle_register)+`)
-	matches := root.FindStringSubmatch(rawlua)
-
-	if len(matches) <= 1 {
-		return "", fmt.Errorf("could not find root bundle")
+	scripts := map[string]string{}
+	r, err := findNextBundledScript(rawlua)
+	for r.leftover != "" {
+		if err != nil {
+			return nil, fmt.Errorf("findNextBundledScript(%s): %v", rawlua, err)
+		}
+		scripts[r.name] = r.body
+		r, err = findNextBundledScript(r.leftover)
+	}
+	if _, ok := scripts[Rootname]; !ok {
+		return nil, fmt.Errorf("Failed to find root bundle")
 	}
 
-	return matches[1], nil
+	return scripts, nil
+}
+
+type result struct {
+	name, body, leftover string
+}
+
+func findNextBundledScript(rawlua string) (result, error) {
+	root := regexp.MustCompile(`(?s)__bundle_register\("(.*?)", function\(require, _LOADED, __bundle_register, __bundle_modules\)[\r\n\s]+(.*?)[\r\n ]+end\)[\n\r]+(return __bundle_require\(\"__root\"\)|__bundle_register)+`)
+	m := root.FindStringSubmatchIndex(rawlua)
+	if m == nil {
+		return result{}, nil
+	}
+	if len(m) != 8 {
+		return result{}, fmt.Errorf("Expected 8 indices, got %v", m)
+	}
+	// first 2 ints are indices of entire match
+	// second 2 ints are indices of script name
+	// third 2 are script body
+	// fourth 2 are suffix needed to match
+	return result{
+		name:     rawlua[m[2]:m[3]],
+		body:     rawlua[m[4]:m[5]],
+		leftover: rawlua[m[6]:],
+	}, nil
+}
+
+// Unbundle extracts the root bundle per
+func Unbundle(rawlua string) (string, error) {
+	srcmap, err := UnbundleAll(rawlua)
+	if err != nil {
+		return "", err
+	}
+	rt, ok := srcmap[Rootname]
+	if !ok {
+		return "", fmt.Errorf("Rootname not found in unbundled map")
+	}
+	return rt, nil
 }
 
 // Bundle grabs all dependencies and creates a single luascript
@@ -91,9 +134,9 @@ func Bundle(rawlua string, l file.LuaReader) (string, error) {
 		return rawlua, nil
 	}
 	reqs := map[string]string{
-		rootfuncname: rawlua,
+		Rootname: rawlua,
 	}
-	todo := []string{rootfuncname}
+	todo := []string{Rootname}
 	for len(todo) > 0 {
 		fname := todo[0]
 		todo = todo[1:] // pop first element off
@@ -114,6 +157,10 @@ func Bundle(rawlua string, l file.LuaReader) (string, error) {
 			reqs[r] = val
 		}
 		todo = append(todo, reqsToLoad...)
+	}
+	if len(reqs) == 1 {
+		// if there were no requires to load in, no need to bundle
+		return rawlua, nil
 	}
 
 	bundlestr := metaprefix + "\n"
