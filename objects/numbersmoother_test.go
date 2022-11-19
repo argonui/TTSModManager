@@ -3,6 +3,7 @@ package objects
 import (
 	"ModCreator/types"
 	"math"
+	"strings"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -192,5 +193,30 @@ func TestArray(t *testing.T) {
 	}
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)
+	}
+}
+
+func TestBadKeyInSnapPoints(t *testing.T) {
+	j := []interface{}{
+		map[string]interface{}{
+			"Position": types.J{
+				"x":      float64(-1.822),
+				"y":      float64(0.100),
+				"z":      float64(0.616),
+				"foobar": false,
+			},
+			"Rotation": types.J{
+				"x": float64(0),
+				"y": float64(0),
+				"z": float64(0),
+			},
+		},
+	}
+	_, err := SmoothSnapPoints(j)
+	if err == nil {
+		t.Fatal("SmoothSnapPoints(): wanted error")
+	}
+	if !strings.Contains(err.Error(), "foobar") {
+		t.Errorf("Expected an error about the unexpected key foobar")
 	}
 }
