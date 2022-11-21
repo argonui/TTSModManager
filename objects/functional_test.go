@@ -249,12 +249,17 @@ func TestJsonToFiles(t *testing.T) {
 		},
 	} {
 		ff := tests.NewFF()
+		p := &Printer{
+			Lua: ff,
+			Dir: ff,
+			J:   ff,
+		}
 		o := objConfig{}
 		err := o.parseFromJSON(tc.input)
 		if err != nil {
 			t.Fatalf("parseFromJSON(%s): %v", tc.input, err)
 		}
-		err = o.printToFile(tc.relpath, ff, ff, ff)
+		err = o.printToFile(tc.relpath, p)
 		if err != nil {
 			t.Fatalf("printToFile(%s): %v", o.getAGoodFileName(), err)
 		}

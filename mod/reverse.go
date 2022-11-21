@@ -1,8 +1,8 @@
 package mod
 
 import (
-	"ModCreator/bundler"
 	"ModCreator/file"
+	"ModCreator/handler"
 	"ModCreator/objects"
 	"ModCreator/types"
 	"encoding/json"
@@ -14,6 +14,7 @@ import (
 type Reverser struct {
 	ModSettingsWriter file.JSONWriter
 	LuaWriter         file.LuaWriter
+	LuaSrcWriter      file.LuaWriter
 	ObjWriter         file.JSONWriter
 	ObjDirCreeator    file.DirCreator
 	RootWrite         file.JSONWriter
@@ -33,16 +34,11 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		if !ok {
 			return fmt.Errorf("expected string value in key %s, got %v", strKey, rawVal)
 		}
-		ext := ".luascriptstate"
 		if strKey == "LuaScript" {
-			ext = ".ttslua"
-
-			unbundled, err := bundler.Unbundle(strVal)
-			if err != nil {
-				return fmt.Errorf("bundler.Unbundle(script from root)\n: %v", err)
-			}
-			strVal = unbundled
+			// let the LuaHAndler handle the complicated case
+			continue
 		}
+		ext := ".luascriptstate"
 		// decide if creating a separte file is worth it
 		if len(strVal) < 80 {
 			raw[strKey] = strVal
@@ -57,6 +53,19 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		}
 		raw[strKey+pathExt] = createdFile
 		delete(raw, strKey)
+	}
+
+	lh := handler.LuaHandler{
+		ObjWriter: r.LuaWriter,
+		SrcWriter: r.LuaSrcWriter,
+	}
+	act, err := lh.WhileWritingToFile(raw, "LuaScript.ttslua")
+	if err != nil {
+		return fmt.Errorf("WhileWritingToFile(<>, root luascript): %v", err)
+	}
+	if !act.Noop {
+		delete(raw, "LuaScript")
+		raw[act.Key] = act.Value
 	}
 
 	for _, objKey := range ExpectedObj {
@@ -117,7 +126,13 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		if err != nil {
 			return fmt.Errorf("mismatch type expectations for ObjectStates : %v", err)
 		}
-		order, err := objects.PrintObjectStates("", r.LuaWriter, r.ObjWriter, r.ObjDirCreeator, objStates)
+		printer := &objects.Printer{
+			Lua:    r.LuaWriter,
+			LuaSrc: r.LuaSrcWriter,
+			J:      r.ObjWriter,
+			Dir:    r.ObjDirCreeator,
+		}
+		order, err := printer.PrintObjectStates("", objStates)
 		if err != nil {
 			return fmt.Errorf("PrintObjectStates('', <%v objects>): %v", len(objStates), err)
 		}
@@ -131,7 +146,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 	delete(raw, EpochKey)
 
 	// write all that's Left
-	err := r.RootWrite.WriteObj(raw, "config.json")
+	err = r.RootWrite.WriteObj(raw, "config.json")
 	if err != nil {
 		return fmt.Errorf("WriteObj(<obj>, %s) : %v", "config.json", err)
 	}

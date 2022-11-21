@@ -51,6 +51,7 @@ func TestAllReverseThenBuild(t *testing.T) {
 			r := mod.Reverser{
 				ModSettingsWriter: modsettings,
 				LuaWriter:         objsAndLua,
+				LuaSrcWriter:      objsAndLua,
 				ObjWriter:         objsAndLua,
 				ObjDirCreeator:    objsAndLua,
 				RootWrite:         finalOutput,

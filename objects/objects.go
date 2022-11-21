@@ -1,7 +1,6 @@
 package objects
 
 import (
-	"ModCreator/bundler"
 	"ModCreator/file"
 	"ModCreator/handler"
 	. "ModCreator/types"
@@ -155,38 +154,31 @@ func (o *objConfig) print(l file.LuaReader) (J, error) {
 	return out, nil
 }
 
-func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWriter, dir file.DirCreator) error {
+func (o *objConfig) printToFile(filepath string, p *Printer) error {
 	var out J
 	out = o.data
-	// maybe convert LuaScript or LuaScriptState
-	if rawscript, ok := o.data["LuaScript"]; ok {
-		if script, ok := rawscript.(string); ok {
-			script, err := bundler.Unbundle(script)
-			if err != nil {
-				return fmt.Errorf("bundler.Unbundle(script from <%s>)\n: %v", o.guid, err)
-			}
-			if len(script) > 80 {
-				createdFile := path.Join(filepath, o.getAGoodFileName()+".ttslua")
-				out["LuaScript_path"] = createdFile
-				if err := l.EncodeToFile(script, createdFile); err != nil {
-					return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
-				}
-				delete(out, "LuaScript")
-			} else {
-				// put the unbundled bit back in
-				out["LuaScript"] = script
-			}
-			if bundler.IsBundled(script) {
-				return fmt.Errorf("We never should be putting bundled code in src(%s; %s)", filepath, o.getAGoodFileName())
-			}
-		}
+
+	lh := handler.LuaHandler{
+		ObjWriter: p.Lua,
+		SrcWriter: p.LuaSrc,
 	}
+	maybeNeededFname := path.Join(filepath, o.getAGoodFileName()+".ttslua")
+	act, err := lh.WhileWritingToFile(o.data, maybeNeededFname)
+	if err != nil {
+		return fmt.Errorf("WhileWritingToFile(<>, %s): %v", maybeNeededFname, err)
+	}
+	if !act.Noop {
+		delete(out, "LuaScript")
+		delete(out, "LuaScript_path")
+		out[act.Key] = act.Value
+	}
+
 	if rawscript, ok := o.data["LuaScriptState"]; ok {
 		if script, ok := rawscript.(string); ok {
 			if len(script) > 80 {
 				createdFile := path.Join(filepath, o.getAGoodFileName()+".luascriptstate")
 				out["LuaScriptState_path"] = createdFile
-				if err := l.EncodeToFile(script, createdFile); err != nil {
+				if err := p.Lua.EncodeToFile(script, createdFile); err != nil {
 					return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
 				}
 				delete(out, "LuaScriptState")
@@ -198,7 +190,7 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 			if len(script) > 80 {
 				createdFile := path.Join(filepath, o.getAGoodFileName()+".gmnotes")
 				o.data["GMNotes_path"] = createdFile
-				if err := l.EncodeToFile(script, createdFile); err != nil {
+				if err := p.Lua.EncodeToFile(script, createdFile); err != nil {
 					return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
 				}
 				delete(o.data, "GMNotes")
@@ -208,14 +200,14 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 
 	// recurse if need be
 	if o.subObj != nil && len(o.subObj) > 0 {
-		subdirName, err := dir.CreateDir(filepath, o.getAGoodFileName())
+		subdirName, err := p.Dir.CreateDir(filepath, o.getAGoodFileName())
 		if err != nil {
 			return fmt.Errorf("<%v>.CreateDir(%s, %s) : %v", o.guid, filepath, o.getAGoodFileName(), err)
 		}
 		out["ContainedObjects_path"] = subdirName
 		o.subObjDir = subdirName
 		for _, subo := range o.subObj {
-			err = subo.printToFile(path.Join(filepath, subdirName), l, j, dir)
+			err = subo.printToFile(path.Join(filepath, subdirName), p)
 			if err != nil {
 				return fmt.Errorf("printing file %s: %v", path.Join(filepath, subdirName), err)
 			}
@@ -228,7 +220,7 @@ func (o *objConfig) printToFile(filepath string, l file.LuaWriter, j file.JSONWr
 
 	// print self
 	fname := path.Join(filepath, o.getAGoodFileName()+".json")
-	return j.WriteObj(out, fname)
+	return p.J.WriteObj(out, fname)
 }
 
 func (o *objConfig) getAGoodFileName() string {
@@ -335,10 +327,19 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 	return nil
 }
 
+// Printer holds the info of which writer is which, because paratemter lists are rough
+type Printer struct {
+	Lua    file.LuaWriter
+	LuaSrc file.LuaWriter
+	J      file.JSONWriter
+	Dir    file.DirCreator
+}
+
 // PrintObjectStates takes a list of json objects and prints them in the
 // expected format outlined by ParseAllObjectStates
-func PrintObjectStates(root string, f file.LuaWriter, j file.JSONWriter, dir file.DirCreator, objs []map[string]interface{}) ([]string, error) {
+func (p *Printer) PrintObjectStates(root string, objs []map[string]interface{}) ([]string, error) {
 	order := []string{}
+
 	for _, rootObj := range objs {
 		oc := objConfig{}
 
@@ -347,7 +348,7 @@ func PrintObjectStates(root string, f file.LuaWriter, j file.JSONWriter, dir fil
 			return nil, err
 		}
 		order = append(order, oc.getAGoodFileName())
-		err = oc.printToFile(root, f, j, dir)
+		err = oc.printToFile(root, p)
 		if err != nil {
 			return nil, err
 		}
