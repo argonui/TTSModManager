@@ -72,11 +72,17 @@ func smoothArbitrary(objraw interface{}, round func(float64) float64) (types.J, 
 		if val, ok := obj[key]; ok {
 			if fl, ok := val.(float64); ok {
 				smoothed[key] = round(fl)
+			} else {
+				smoothed[key] = val
 			}
+		} else {
+			return nil, fmt.Errorf("expected key %s to be exist", key)
 		}
 	}
-	if len(smoothed) != len(obj) {
-		return nil, fmt.Errorf("unexpected keys match in %v", obj)
+	for k := range obj {
+		if _, ok := smoothed[k]; !ok {
+			return nil, fmt.Errorf("Key not smoothed: %s, expected to be a float64 at one of %v", k, arbitraryRounded)
+		}
 	}
 
 	return smoothed, nil
