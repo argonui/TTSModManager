@@ -72,7 +72,12 @@ func (j *JSONOps) WriteObj(m map[string]interface{}, filename string) error {
 		return err
 	}
 	b = append(b, '\n')
-	return ioutil.WriteFile(path.Join(j.basepath, filename), b, 0644)
+	p := path.Join(j.basepath, filename)
+	err = os.MkdirAll(path.Dir(p), 0750)
+	if err != nil && !os.IsExist(err) {
+		return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
+	}
+	return ioutil.WriteFile(p, b, 0644)
 }
 
 // WriteObjArray writes an array of serialized json objects to a file.
@@ -82,7 +87,12 @@ func (j *JSONOps) WriteObjArray(m []map[string]interface{}, filename string) err
 		return err
 	}
 	b = append(b, '\n')
-	return ioutil.WriteFile(path.Join(j.basepath, filename), b, 0644)
+	p := path.Join(j.basepath, filename)
+	err = os.MkdirAll(path.Dir(p), 0750)
+	if err != nil && !os.IsExist(err) {
+		return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
+	}
+	return ioutil.WriteFile(p, b, 0644)
 }
 
 // ReadRawFile allows for anyone who needs to to read json without objects.

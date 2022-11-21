@@ -59,6 +59,10 @@ func NewLuaOpsMulti(readDirs []string, writeDir string) *LuaOps {
 		},
 		writeBytesToFile: func(p string, b []byte) error {
 			b = append(b, '\n')
+			err := os.MkdirAll(path.Dir(p), 0750)
+			if err != nil && !os.IsExist(err) {
+				return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
+			}
 			return os.WriteFile(p, b, 0644)
 		},
 	}
