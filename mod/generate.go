@@ -1,8 +1,8 @@
 package mod
 
 import (
-	"ModCreator/bundler"
 	"ModCreator/file"
+	"ModCreator/handler"
 	"ModCreator/objects"
 	"ModCreator/types"
 	"fmt"
@@ -72,33 +72,24 @@ func (m *Mod) generate(raw types.J) error {
 	for _, objarraybased := range ExpectedObjArr {
 		tryPut(&m.Data, objarraybased+ext, objarraybased, objArray)
 	}
-
-	if spraw, ok := m.Data["LuaScript_path"]; ok {
-		sp, ok := spraw.(string)
-		if !ok {
-			return fmt.Errorf("Expected LuaScript_path to be type string, was %T", spraw)
-		}
-		encoded, err := m.Lua.EncodeFromFile(sp)
-		if err != nil {
-			return fmt.Errorf("l.EncodeFromFile(%s) : %v", sp, err)
-		}
-		m.Data["LuaScript"] = encoded
+	lh := &handler.LuaHandler{
+		Reader: m.Lua,
 	}
-	if sraw, ok := m.Data["LuaScript"]; ok {
-		if str, ok := sraw.(string); ok && str != "" {
-			bundleReqs, err := bundler.Bundle(str, m.Lua)
-			if err != nil {
-				return fmt.Errorf("Bundle(%s) : %v", str, err)
-			}
-			m.Data["LuaScript"] = bundleReqs
-		}
+	act, err := lh.WhileReadingFromFile(m.Data)
+	if err != nil {
+		return fmt.Errorf("WhileReadingFromFile(): %v", err)
+	}
+	if !act.Noop {
+		delete(m.Data, "LuaScript")
+		delete(m.Data, "LuaScript_path")
+		m.Data[act.Key] = act.Value
 	}
 
 	objOrder := []string{}
 	files, _, _ := m.Objdirs.ListFilesAndFolders("")
 	hasObjects := len(files) > 0
 
-	err := file.ForceParseIntoStrArray(&m.Data, "ObjectStates_order", &objOrder)
+	err = file.ForceParseIntoStrArray(&m.Data, "ObjectStates_order", &objOrder)
 	if hasObjects && err != nil {
 		return fmt.Errorf("Has Objects, but can't discern their order: %v", err)
 	}

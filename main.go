@@ -14,9 +14,10 @@ import (
 )
 
 var (
-	moddir  = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
-	rev     = flag.Bool("reverse", false, "Instead of building a json from file structure, build file structure from json.")
-	modfile = flag.String("modfile", "", "where to read from when reversing.")
+	moddir     = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
+	rev        = flag.Bool("reverse", false, "Instead of building a json from file structure, build file structure from json.")
+	writeToSrc = flag.Bool("writesrc", false, "When unbundling Lua, save the included 'require' files to the src/ directory.")
+	modfile    = flag.String("modfile", "", "where to read from when reversing.")
 )
 
 const (
@@ -32,6 +33,7 @@ func main() {
 		[]string{path.Join(*moddir, textSubdir), path.Join(*moddir, objectsSubdir)},
 		path.Join(*moddir, objectsSubdir),
 	)
+	luaSrc := file.NewLuaOps(path.Join(*moddir, textSubdir))
 	ms := file.NewJSONOps(path.Join(*moddir, modsettingsDir))
 	objs := file.NewJSONOps(path.Join(*moddir, objectsSubdir))
 	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))
@@ -48,6 +50,9 @@ func main() {
 			ObjWriter:         objs,
 			ObjDirCreeator:    objdir,
 			RootWrite:         rootops,
+		}
+		if *writeToSrc {
+			r.LuaSrcWriter = luaSrc
 		}
 		err = r.Write(raw)
 		if err != nil {

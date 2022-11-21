@@ -2,7 +2,6 @@ package bundler
 
 import (
 	"fmt"
-	"strings"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -249,17 +248,23 @@ require("core/AgendaDeck")
 var a = '2'
 require("core/AgendaDeck")
 end)
+__bundle_register("core/AgendaDeck", function(require, _LOADED, __bundle_register, __bundle_modules)
+var b = '3'
+end)
 return __bundle_require("__root")
 `
-	got, err := Unbundle(raw)
+	got, err := UnbundleAll(raw)
 	if err != nil {
 		t.Fatalf("expected no err, got %v", err)
 	}
-	want := `require("core/AgendaDeck")
+	want := map[string]string{
+		Rootname: `require("core/AgendaDeck")
 var a = '2'
-require("core/AgendaDeck")`
-	if want != got {
-		t.Errorf("want <%s>, got <%s>\n", want, got)
+require("core/AgendaDeck")`,
+		"core/AgendaDeck": "var b = '3'",
+	}
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("want != got:\n%v\n", diff)
 	}
 }
 
@@ -425,12 +430,7 @@ func TestBundleNoRequires(t *testing.T) {
 	if err != nil {
 		t.Errorf("Expected no error, got %v", err)
 	}
-	want := strings.Trim(strings.Join(
-		[]string{metaprefix,
-			strings.Replace(funcprefix, funcprefixReplace, rootfuncname, 1),
-			"var foo = 42",
-			funcsuffix,
-			metasuffix}, "\n"), "\n\n")
+	want := `var foo = 42`
 
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)
@@ -438,7 +438,7 @@ func TestBundleNoRequires(t *testing.T) {
 }
 
 func TestFailedUnbundle(t *testing.T) {
-	rawlua := `  __bundle_register("core/AgendaDeck", function(require, _LOADED, __bundle_register, __bundle_modules)
+	rawlua := `  __bundle_register("__root", function(require, _LOADED, __bundle_register, __bundle_modules)
 	  MIN_VALUE = -99
 	  MAX_VALUE = 999
 `

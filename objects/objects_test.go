@@ -32,7 +32,12 @@ func TestObjPrintToFile(t *testing.T) {
 		},
 	} {
 		ff := tests.NewFF()
-		err := tc.o.printToFile("path/to/", ff, ff, ff)
+		p := &Printer{
+			Lua: ff,
+			Dir: ff,
+			J:   ff,
+		}
+		err := tc.o.printToFile("path/to/", p)
 		if err != nil {
 			t.Errorf("printing %v, got %v", tc.o, err)
 		}
@@ -246,7 +251,12 @@ func TestObjPrintingToFile(t *testing.T) {
 		},
 	} {
 		ff := tests.NewFF()
-		err := tc.o.printToFile(tc.folder, ff, ff, ff)
+		p := &Printer{
+			Lua: ff,
+			Dir: ff,
+			J:   ff,
+		}
+		err := tc.o.printToFile(tc.folder, p)
 		if err != nil {
 			t.Errorf("printing %v, got %v", tc.o, err)
 		}
@@ -410,7 +420,12 @@ func TestPrintAllObjs(t *testing.T) {
 		},
 	} {
 		ff := tests.NewFF()
-		gotOrder, err := PrintObjectStates("", ff, ff, ff, tc.objs)
+		p := &Printer{
+			Lua: ff,
+			Dir: ff,
+			J:   ff,
+		}
+		gotOrder, err := p.PrintObjectStates("", tc.objs)
 		if err != nil {
 			t.Fatalf("error not expected %v", err)
 		}
