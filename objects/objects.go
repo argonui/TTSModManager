@@ -3,6 +3,7 @@ package objects
 import (
 	"ModCreator/bundler"
 	"ModCreator/file"
+	"ModCreator/handler"
 	. "ModCreator/types"
 	"path"
 	"regexp"
@@ -14,7 +15,6 @@ import (
 type objConfig struct {
 	guid               string
 	data               J
-	luascriptPath      string
 	luascriptstatePath string
 	gmnotesPath        string
 	subObjDir          string
@@ -60,7 +60,6 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	o.subObj = []*objConfig{}
 	o.subObjOrder = []string{}
 
-	file.TryParseIntoStr(&o.data, "LuaScript_path", &o.luascriptPath)
 	file.TryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
 	file.TryParseIntoStr(&o.data, "GMNotes_path", &o.gmnotesPath)
 	file.TryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
@@ -114,22 +113,19 @@ func (o *objConfig) print(l file.LuaReader) (J, error) {
 	var out J
 	out = o.data
 
-	if o.luascriptPath != "" {
-		encoded, err := l.EncodeFromFile(o.luascriptPath)
-		if err != nil {
-			return J{}, fmt.Errorf("l.EncodeFromFile(%s) : %v", o.luascriptPath, err)
-		}
-		out["LuaScript"] = encoded
+	lh := &handler.LuaHandler{
+		Reader: l,
 	}
-	if s, ok := out["LuaScript"]; ok {
-		if str, ok := s.(string); ok && str != "" {
-			bundleReqs, err := bundler.Bundle(str, l)
-			if err != nil {
-				return nil, fmt.Errorf("Bundle(%s) : %v", str, err)
-			}
-			out["LuaScript"] = bundleReqs
-		}
+	act, err := lh.WhileReadingFromFile(o.data)
+	if err != nil {
+		return nil, fmt.Errorf("WhileReadingFromFile(): %v", err)
 	}
+	if !act.Noop {
+		delete(out, "LuaScript")
+		delete(out, "LuaScript_path")
+		out[act.Key] = act.Value
+	}
+
 	if o.gmnotesPath != "" {
 		encoded, err := l.EncodeFromFile(o.gmnotesPath)
 		if err != nil {
