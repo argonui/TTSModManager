@@ -70,6 +70,22 @@ func IsBundled(rawlua string) bool {
 	return false
 }
 
+// AnalyzeBundle exists to help test functions disect bundles
+func AnalyzeBundle(rawlua string, log func(s string, a ...interface{})) {
+	if !IsBundled(rawlua) {
+		log("script is not bundled\n")
+		return
+	}
+	results, err := UnbundleAll(rawlua)
+	if err != nil {
+		log("Couldn't unbundle to analyze: %v", err)
+		return
+	}
+	for k, v := range results {
+		log("\tmodule %s: %v\n", k, len(v))
+	}
+}
+
 // UnbundleAll takes luacode generates all bundlenames and bundles
 func UnbundleAll(rawlua string) (map[string]string, error) {
 	if !IsBundled(rawlua) {
@@ -177,12 +193,12 @@ func Bundle(rawlua string, l file.LuaReader) (string, error) {
 }
 
 func getAllReqValues(lua string) ([]string, error) {
-	rsxp := regexp.MustCompile(`(?m)^require\((\\)?\"[a-zA-Z0-9/]*(\\)?\"\)\s*$`)
+	rsxp := regexp.MustCompile(`require\((\\)?\"[-a-zA-Z0-9/._@]+(\\)?\"\)`)
 	reqs := rsxp.FindAllString(lua, -1)
 
 	fnames := []string{}
 	for _, req := range reqs {
-		filexp := regexp.MustCompile(`require\(\\?"([a-zA-Z0-9/]*)\\?"\)`)
+		filexp := regexp.MustCompile(`require\(\\?"([-a-zA-Z0-9/._@]+)\\?"\)`)
 		matches := filexp.FindSubmatch([]byte(req))
 		if len(matches) != 2 {
 			return nil, fmt.Errorf("regex error parsing requirement (%s)", req)

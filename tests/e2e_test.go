@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"ModCreator/bundler"
 	"ModCreator/file"
 	"ModCreator/mod"
 	"path/filepath"
@@ -87,16 +88,43 @@ func TestAllReverseThenBuild(t *testing.T) {
 				t.Fatalf("output.json not parsed : %v", err)
 			}
 			ignoreUnpredictable := func(k string, v interface{}) bool {
+				if _, ok := v.(float64); ok {
+					return true
+				}
 				if k == "Date" || k == "EpochTime" {
 					return true
 				}
 
 				return false
 			}
+			// bundler.AnalyzeBundle(want["LuaScript"].(string), t.Logf)
+			// bundler.AnalyzeBundle(got["LuaScript"].(string), t.Logf)
+			wantBundles, err := bundler.UnbundleAll(want["LuaScript"].(string))
+			if err != nil {
+				t.Fatalf("unbundle want : %v", err)
+			}
+			gotBundles, err := bundler.UnbundleAll(got["LuaScript"].(string))
+			if err != nil {
+				t.Fatalf("unbundle got : %v", err)
+			}
+			if diff := cmp.Diff(mapOfKeys(wantBundles), mapOfKeys(gotBundles)); diff != "" {
+				t.Errorf("want != got:\n%v\n", diff)
+			}
+			delete(want, "LuaScript")
+			delete(got, "LuaScript")
+
 			if diff := cmp.Diff(want, got, cmpopts.IgnoreMapEntries(ignoreUnpredictable)); diff != "" {
 				t.Errorf("want != got:\n%v\n", diff)
 			}
 		})
 
 	}
+}
+
+func mapOfKeys(m map[string]string) map[string]interface{} {
+	r := map[string]interface{}{}
+	for k := range m {
+		r[k] = true
+	}
+	return r
 }

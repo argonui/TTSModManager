@@ -2,17 +2,29 @@ package main
 
 import (
 	file "ModCreator/file"
-	"encoding/json"
 	"flag"
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
 var (
-	altModfile = flag.String("altmodfile", "", "where to read second mod from when comparing.")
+	modfilea = flag.String("moda", "", "where to read second mod from when comparing.")
+	modfileb = flag.String("modb", "", "where to read second mod from when comparing.")
 )
+
+func ignoreUnpredictable(k string, v interface{}) bool {
+	if _, ok := v.(float64); ok {
+		return true
+	}
+	if k == "Date" || k == "EpochTime" {
+		return true
+	}
+
+	return false
+}
 
 func compareDelta(t *testing.T, filea, fileb string) error {
 	a, err := file.ReadRawFile(filea)
@@ -48,15 +60,9 @@ func compareDelta(t *testing.T, filea, fileb string) error {
 	delete(a, osKey)
 	delete(b, osKey)
 
-	abytes, err := json.Marshal(a)
-	if err != nil {
-		return err
+	if diff := cmp.Diff(a, b, cmpopts.IgnoreMapEntries(ignoreUnpredictable)); diff != "" {
+		t.Errorf("want != got:\n%v\n", diff)
 	}
-	bbytes, err := json.Marshal(b)
-	if err != nil {
-		return err
-	}
-	require.JSONEq(t, string(abytes), string(bbytes))
 	return nil
 }
 
@@ -148,26 +154,20 @@ func compareObjs(t *testing.T, guid string, a, b map[string]interface{}) error {
 		return fmt.Errorf("in obj %s, one has sub-objects, the other does not", guid)
 	}
 
-	abytes, err := json.Marshal(a)
-	if err != nil {
-		return err
+	if diff := cmp.Diff(a, b, cmpopts.IgnoreMapEntries(ignoreUnpredictable)); diff != "" {
+		t.Errorf("want != got:\n%v\n", diff)
 	}
-	bbytes, err := json.Marshal(b)
-	if err != nil {
-		return err
-	}
-	require.JSONEq(t, string(abytes), string(bbytes))
-
 	return nil
 }
 
 func TestDiff(t *testing.T) {
-	if *altModfile == "" || *modfile == "" {
+	if *modfilea == "" || *modfileb == "" {
 		// if run automatically, ignore this test
 		return
 	}
-	err := compareDelta(t, *modfile, *altModfile)
+
+	err := compareDelta(t, *modfilea, *modfileb)
 	if err != nil {
-		t.Errorf("compareDelta(%s,%s) : %v", *modfile, *altModfile, err)
+		t.Errorf("compareDelta(%s,%s) : %v", *modfilea, *modfileb, err)
 	}
 }
