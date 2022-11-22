@@ -1,14 +1,16 @@
 package bundler
 
 import (
+	"ModCreator/file"
 	"fmt"
 	"regexp"
 	"strings"
 )
 
 // BundleXML converts <Include ... >'s into full xml
-func BundleXML() error {
-	return nil
+func BundleXML(rawxml string, xr file.TextReader) (string, error) {
+
+	return "", nil
 }
 
 // UnbundleAllXML converts a bundled xml file to mapping of filenames to
@@ -36,7 +38,7 @@ func UnbundleAllXML(rawxml string) (map[string]string, error) {
 			indentedvals := xmlarray[stack[0].start+1 : ln]
 			store[stack[0].name] = unindentAndJoin(indentedvals, indent)
 
-			insertLine := fmt.Sprintf("%s<Include src=\"%s\">", indent, stack[0].name)
+			insertLine := fmt.Sprintf("%s<Include src=\"%s\"/>", indent, stack[0].name)
 			// remove the include from xmlarray
 			tmp := append(xmlarray[:stack[0].start], insertLine)
 			xmlarray = append(tmp, xmlarray[ln+1:]...)

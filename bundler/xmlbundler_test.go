@@ -36,15 +36,15 @@ func TestUnbundleXML(t *testing.T) {
 `
 
 	want := map[string]string{
-		"__root": `<Include src="Main">
+		"__root": `<Include src="Main"/>
 `,
 		"Main": `<Canvas raycastTarget="false">
   <Defaults>
     <Button color="a"/>
   </Defaults>
 
-  <Include src="ui/CameraControl">
-  <Include src="ui/Shop">
+  <Include src="ui/CameraControl"/>
+  <Include src="ui/Shop"/>
 
 </Canvas>
 `,
@@ -53,7 +53,7 @@ func TestUnbundleXML(t *testing.T) {
 		"ui/Shop": `<Panel id="shop.window" class="drag"
        offsetXY="480 -70"
        width="260" height="500">
-       <Include src="deep">
+       <Include src="deep"/>
 </Panel>`,
 		"ui/CameraControl": `<Panel id="CameraControl"
        visibility="false"
