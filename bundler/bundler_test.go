@@ -244,11 +244,11 @@ func TestUnbundle3(t *testing.T) {
 func TestUnmultiline(t *testing.T) {
 	raw := `
 __bundle_register("__root", function(require, _LOADED, __bundle_register, __bundle_modules)
-require("core/AgendaDeck")
+require("core/AgendaDeck-other.foo")
 var a = '2'
-require("core/AgendaDeck")
+require("core/AgendaDeck-other.foo")
 end)
-__bundle_register("core/AgendaDeck", function(require, _LOADED, __bundle_register, __bundle_modules)
+__bundle_register("core/AgendaDeck-other.foo", function(require, _LOADED, __bundle_register, __bundle_modules)
 var b = '3'
 end)
 return __bundle_require("__root")
@@ -258,10 +258,10 @@ return __bundle_require("__root")
 		t.Fatalf("expected no err, got %v", err)
 	}
 	want := map[string]string{
-		Rootname: `require("core/AgendaDeck")
+		Rootname: `require("core/AgendaDeck-other.foo")
 var a = '2'
-require("core/AgendaDeck")`,
-		"core/AgendaDeck": "var b = '3'",
+require("core/AgendaDeck-other.foo")`,
+		"core/AgendaDeck-other.foo": "var b = '3'",
 	}
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)
@@ -461,4 +461,48 @@ func TestNonBundled(t *testing.T) {
 	if want != got {
 		t.Errorf("want <%s>, got <%s>\n", want, got)
 	}
+}
+
+func TestGetReqs(t *testing.T) {
+	for _, tc := range []struct {
+		input, name string
+		want        []string
+	}{
+		{
+			name:  "single inputs simple",
+			input: `local ExtensionHandler = require(\"ExtensionHandler\")\n`,
+			want: []string{
+				"ExtensionHandler",
+			},
+		},
+		{
+			name:  "single inputs complicated",
+			input: `avefile = require(\"campaign-manager.Savefile\")\nloca`,
+			want: []string{
+				"campaign-manager.Savefile",
+			},
+		},
+		{
+			name:  "many inputs from GHE",
+			input: `local ExtensionHandler = require(\"ExtensionHandler\")\n\nlocal Savefile = require(\"campaign-manager.Savefile\")\nlocal Cleanup = require(\"campaign-manager.Cleanup\")\nlocal Achievement = require(\"campaign-manager.Achievement\")\nlocal`,
+			want: []string{
+				"ExtensionHandler",
+				"campaign-manager.Savefile",
+				"campaign-manager.Cleanup",
+				"campaign-manager.Achievement",
+			},
+		},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			got, err := getAllReqValues(tc.input)
+			if err != nil {
+				t.Fatalf("%v", err)
+			}
+
+			if diff := cmp.Diff(tc.want, got); diff != "" {
+				t.Errorf("want != got:\n%v\n", diff)
+			}
+		})
+	}
+
 }
