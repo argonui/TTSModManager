@@ -9,8 +9,50 @@ import (
 
 // BundleXML converts <Include ... >'s into full xml
 func BundleXML(rawxml string, xr file.TextReader) (string, error) {
+	lines := strings.Split(rawxml, "\n")
+	final := []string{}
+	inctag := regexp.MustCompile(`(?m)^(.*)<Include src="(.*)"/>`)
 
-	return "", nil
+	for _, v := range lines {
+		if !inctag.Match([]byte(v)) {
+			final = append(final, v)
+			continue
+		}
+		subs := inctag.FindSubmatch([]byte(v))
+		indent := string(subs[1])
+		name := string(subs[2])
+
+		replacement := fmt.Sprintf("%s<!-- include %s -->", indent, name)
+		final = append(final, replacement)
+
+		fname := name
+		if !strings.HasSuffix(name, ".xml") {
+			fname = name + ".xml"
+		}
+		incXMLRaw, err := xr.EncodeFromFile(fname)
+		if err != nil {
+			return "", fmt.Errorf("EncodeFromFile(%s): %v", fname, err)
+		}
+		incXMLBundled, err := BundleXML(incXMLRaw, xr)
+		if err != nil {
+			return "", fmt.Errorf("BundleXML(<%s>): %v", fname, err)
+		}
+		final = append(final, indentString(incXMLBundled, indent))
+
+		final = append(final, replacement)
+
+	}
+	return strings.Join(final, "\n"), nil
+}
+
+func indentString(s string, indent string) string {
+	lines := strings.Split(s, "\n")
+	final := []string{}
+	for _, v := range lines {
+		final = append(final, fmt.Sprintf("%s%s", indent, v))
+	}
+
+	return strings.Join(final, "\n")
 }
 
 // UnbundleAllXML converts a bundled xml file to mapping of filenames to
