@@ -87,7 +87,7 @@ func TestFileToJson(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Expected no error parsing from %s: got %v", "foo/cool.123456.json", err)
 		}
-		got, err := o.print(ff)
+		got, err := o.print(ff, ff)
 		if err != nil {
 			t.Errorf("Expected no error printing %s: got %v", o.guid, err)
 		}

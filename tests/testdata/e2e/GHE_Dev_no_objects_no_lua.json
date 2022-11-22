@@ -1,0 +1,1344 @@
+{
+  "CameraStates": [],
+  "Decals": [],
+  "SaveName": "Gloomhaven - TTS Enhanced",
+  "EpochTime": 1658147616,
+  "Date": "7/18/2022 2:33:36 PM",
+  "VersionNumber": "v13.1.1",
+  "GameMode": "Gloomhaven - TTS Enhanced",
+  "GameType": "Game",
+  "GameComplexity": "Low Complexity",
+  "PlayingTime": [
+    0,
+    120
+  ],
+  "PlayerCounts": [
+    0,
+    0
+  ],
+  "Tags": [
+    "Board Games",
+    "Cooperative Games",
+    "Strategy Games",
+    "Figurines",
+    "Scripting: Automated",
+    "Cards",
+    "Rules"
+  ],
+  "Gravity": 0.5,
+  "PlayArea": 1,
+  "Table": "Table_None",
+  "Sky": "Sky_Regal",
+  "SkyURL": "http://cloud-3.steamusercontent.com/ugc/861734447427622808/DB9EEA3B7977B0D4912A0C4C3A76E36FC3A6062E/",
+  "Note": "",
+  "TabStates": {
+    "0": {
+      "title": "White",
+      "body": "",
+      "color": "White",
+      "visibleColor": {
+        "r": 1,
+        "g": 1,
+        "b": 1
+      },
+      "id": 0
+    },
+    "1": {
+      "title": "Red",
+      "body": "",
+      "color": "Red",
+      "visibleColor": {
+        "r": 0.856,
+        "g": 0.1,
+        "b": 0.094
+      },
+      "id": 1
+    },
+    "2": {
+      "title": "Green",
+      "body": "",
+      "color": "Green",
+      "visibleColor": {
+        "r": 0.192,
+        "g": 0.701,
+        "b": 0.168
+      },
+      "id": 2
+    },
+    "3": {
+      "title": "Blue",
+      "body": "",
+      "color": "Blue",
+      "visibleColor": {
+        "r": 0.118,
+        "g": 0.53,
+        "b": 1
+      },
+      "id": 3
+    },
+    "4": {
+      "title": "Black",
+      "body": "",
+      "color": "Black",
+      "visibleColor": {
+        "r": 0.25,
+        "g": 0.25,
+        "b": 0.25
+      },
+      "id": 4
+    }
+  },
+  "MusicPlayer": {
+    "RepeatSong": false,
+    "PlaylistEntry": 3,
+    "CurrentAudioTitle": "Death",
+    "CurrentAudioURL": "http://cloud-3.steamusercontent.com/ugc/792010997184374182/B0FF76DCB3D979C6A3A630F45A9FD58E7390D6C6/",
+    "AudioLibrary": [
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184359809/DA27CF611C537C0C6A94893C0330B24358296475/",
+        "Item2": "Awakening"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184371128/145B47EC47D331B4AE1CB59FDE75E0116E10280D/",
+        "Item2": "Calm"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184371906/F8E4FC7CBD21DD2430F906F77055819AD0474996/",
+        "Item2": "Day Travel"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184374182/B0FF76DCB3D979C6A3A630F45A9FD58E7390D6C6/",
+        "Item2": "Death"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184376716/0407BB616E681D199DDEC384058B3CBF3DD3FEAD/",
+        "Item2": "Epilude"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184379961/314F9E57AF4CF475B86BAF58AD5A006DB16CE86D/",
+        "Item2": "Goblin Combat"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184385296/1A83AFF3AF0959546E8444D9A3F4174BC35E5336/",
+        "Item2": "Human Combat 1"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184387091/0554504FC54BACCAA83CAB542EB33FC41C87346B/",
+        "Item2": "Human Combat 2"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184389261/F753ACB43BA28C799B808388D6A6E4A71BDB78CB/",
+        "Item2": "Intrigue"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184392871/C1ACD1C3E628B836F6DEFF643B618418A339EECC/",
+        "Item2": "Map"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184394727/6212F5FF59B6D980AA95CCF1B06BE32F8DFF3366/",
+        "Item2": "Mistique"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184397131/B462582B327D41981E3A3893AED045C9DFA37D68/",
+        "Item2": "Night Travel"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184398544/F8246EDA891BDFDE3CE9183A139D514F78A582CF/",
+        "Item2": "Orc Combat 1"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184400189/F25ADB6B0FA920C0D9F6A67546DAD85C70C9504E/",
+        "Item2": "Orc Combat 2"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184402108/415A2E2F690E8241A23FBBAFB8D9BAB0D469F8F4/",
+        "Item2": "Prelude"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184404898/8956C1A3A9A41B0F54B4DE400EC76F7723332310/",
+        "Item2": "Reflective"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184406070/21B923240147A1785E49CAE3AFA27C045405694C/",
+        "Item2": "Setting Up"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184407878/A2458FAB2EE78A3AA4B26271485982FA02665FDA/",
+        "Item2": "Tension"
+      },
+      {
+        "Item1": "http://cloud-3.steamusercontent.com/ugc/792010997184409426/32FB9FCA1D2DD24CF88150A31E16108CEB21559D/",
+        "Item2": "Undead Combat"
+      }
+    ]
+  },
+  "Grid": {
+    "Type": 1,
+    "Lines": false,
+    "Color": {
+      "r": 0,
+      "g": 0,
+      "b": 0
+    },
+    "Opacity": 0.1482,
+    "ThickLines": false,
+    "Snapping": false,
+    "Offset": false,
+    "BothSnapping": true,
+    "xSize": 1.75,
+    "ySize": 1.75,
+    "PosOffset": {
+      "x": 0,
+      "y": 1,
+      "z": 0
+    }
+  },
+  "Lighting": {
+    "LightIntensity": 0.3479,
+    "LightColor": {
+      "r": 1,
+      "g": 0.9649,
+      "b": 0.8902
+    },
+    "AmbientIntensity": 1.908,
+    "AmbientType": 1,
+    "AmbientSkyColor": {
+      "r": 0.4824,
+      "g": 0.4549,
+      "b": 0.4078
+    },
+    "AmbientEquatorColor": {
+      "r": 0.4824,
+      "g": 0.4549,
+      "b": 0.4078
+    },
+    "AmbientGroundColor": {
+      "r": 0.4824,
+      "g": 0.4549,
+      "b": 0.4078
+    },
+    "ReflectionIntensity": 0,
+    "LutIndex": 26,
+    "LutContribution": 0.616,
+    "LutURL": ""
+  },
+  "Hands": {
+    "Enable": true,
+    "DisableUnused": false,
+    "Hiding": 0
+  },
+  "ComponentTags": {
+    "labels": [
+      {
+        "displayed": "Inactive Character",
+        "normalized": "inactive_character"
+      },
+      {
+        "displayed": "Bag of Summons",
+        "normalized": "bag_of_summons"
+      },
+      {
+        "displayed": "Available Rift Events",
+        "normalized": "available_rift_events"
+      },
+      {
+        "displayed": "Character",
+        "normalized": "character"
+      },
+      {
+        "displayed": "Enemy",
+        "normalized": "enemy"
+      },
+      {
+        "displayed": "Gloomhaven Campaign",
+        "normalized": "gloomhaven_campaign"
+      },
+      {
+        "displayed": "MonsterBag",
+        "normalized": "monsterbag"
+      },
+      {
+        "displayed": "MonsterMat",
+        "normalized": "monstermat"
+      },
+      {
+        "displayed": "MonsterStatSheet",
+        "normalized": "monsterstatsheet"
+      },
+      {
+        "displayed": "Tile - Start Area",
+        "normalized": "tile_-_start_area"
+      },
+      {
+        "displayed": "ItemBoots",
+        "normalized": "itemboots"
+      },
+      {
+        "displayed": "ItemHead",
+        "normalized": "itemhead"
+      },
+      {
+        "displayed": "ItemChest",
+        "normalized": "itemchest"
+      },
+      {
+        "displayed": "ItemTwoHanded",
+        "normalized": "itemtwohanded"
+      },
+      {
+        "displayed": "ItemOneHanded",
+        "normalized": "itemonehanded"
+      },
+      {
+        "displayed": "ItemConsumable",
+        "normalized": "itemconsumable"
+      },
+      {
+        "displayed": "Soft-Lock",
+        "normalized": "soft-lock"
+      },
+      {
+        "displayed": "Has Health",
+        "normalized": "has_health"
+      },
+      {
+        "displayed": "Summon",
+        "normalized": "summon"
+      },
+      {
+        "displayed": "LockedScenarios",
+        "normalized": "lockedscenarios"
+      },
+      {
+        "displayed": "UnlockedScenarios",
+        "normalized": "unlockedscenarios"
+      },
+      {
+        "displayed": "ActiveScenario",
+        "normalized": "activescenario"
+      },
+      {
+        "displayed": "Party Sheet",
+        "normalized": "party_sheet"
+      },
+      {
+        "displayed": "Shop Items",
+        "normalized": "shop_items"
+      },
+      {
+        "displayed": "Item Designs",
+        "normalized": "item_designs"
+      },
+      {
+        "displayed": "Reward Items",
+        "normalized": "reward_items"
+      },
+      {
+        "displayed": "Solo Reward Items",
+        "normalized": "solo_reward_items"
+      },
+      {
+        "displayed": "Personal Quests",
+        "normalized": "personal_quests"
+      },
+      {
+        "displayed": "Available City Events",
+        "normalized": "available_city_events"
+      },
+      {
+        "displayed": "Available Road Events",
+        "normalized": "available_road_events"
+      },
+      {
+        "displayed": "LockedCharacters",
+        "normalized": "lockedcharacters"
+      },
+      {
+        "displayed": "Book",
+        "normalized": "book"
+      },
+      {
+        "displayed": "Has Conditions",
+        "normalized": "has_conditions"
+      },
+      {
+        "displayed": "Class Envelope",
+        "normalized": "class_envelope"
+      },
+      {
+        "displayed": "Item",
+        "normalized": "item"
+      },
+      {
+        "displayed": "Item Solo Reward",
+        "normalized": "item_solo_reward"
+      },
+      {
+        "displayed": "Guide Book",
+        "normalized": "guide_book"
+      },
+      {
+        "displayed": "Has Actions",
+        "normalized": "has_actions"
+      },
+      {
+        "displayed": "Has Aid Tokens",
+        "normalized": "has_aid_tokens"
+      },
+      {
+        "displayed": "Has Action",
+        "normalized": "has_action"
+      },
+      {
+        "displayed": "Bag of Extra Content",
+        "normalized": "bag_of_extra_content"
+      },
+      {
+        "displayed": "Bag of Monster Abilities",
+        "normalized": "bag_of_monster_abilities"
+      }
+    ]
+  },
+  "Turns": {
+    "Enable": false,
+    "Type": 0,
+    "TurnOrder": [],
+    "Reverse": false,
+    "SkipEmpty": false,
+    "DisableInteractions": false,
+    "PassTurns": true,
+    "TurnColor": ""
+  },
+  "DecalPallet": [
+    {
+      "Name": "Enhancement Jump",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726767406/7C34D7EA30D5E6FF90BBA88A767ACB98467FC557/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Air",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726768884/CC8308C7D7DD6185F3EFA99F452C83101E1E95E3/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Fire",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726770166/CD369CF7C22FAD932A71C65BA811AE137234270D/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Frost",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726771564/3C69B7D1E66E8FC022B2BD77CC427E8AEC5D9331/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Earth",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726773039/E83D1E9F06938B3B5355F0A6A49D98B78B1F2594/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Light",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726774294/5BBAC718ED55E90563D2B24848DE3ACAEBD76FE9/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Dark",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726982499/9C14793623433565A9D6E5B3C608C1F6FBB84C76/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Any Element",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726984504/2F962A64E2A9888C90856D9C150EF81089745137/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Bless",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726986639/FDF514FDA20826ACA054BE5CBA579AE6FB25A263/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Curse",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726987796/ABB2E197E22015077D39A378AA9A9E7A317C69FE/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Disarm",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726989091/DB993A58BC37C60B64A2F2CCDAED888F6176BC43/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Wound",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726992099/9B90EEDC5B68B4FFD04C0037008F9C96BA603C24/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Poison",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726994202/6EAECD4A8A6A56F42834D486A21219002B883C53/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Strengthen",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726995467/72FC8E8918F788646DBD0C571FDAB214D7A36445/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Plus 1",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726761532/C3BB327E15466B74ED256A0BD7B66C20A8825861/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Muddle",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726993395/820BE84906894B87F0C0DAC77C3BFBCD9B1AD504/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Stun",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/83721958671678940/616CC0951CB17024448D3CBC7E5CA9D3A05D7555/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Enhancement Regenerate",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/791986676667649885/92F7F934D298524F6F72997095DDBA073D9A15BF/",
+      "Size": 0.2
+    },
+    {
+      "Name": "Damage Counter",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535264491742665/50D53957D9109C2E0A48AA6A7A01131D4D080199/",
+      "Size": 1
+    },
+    {
+      "Name": "12",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739361729/5B6504267450F62683B6CAF71C3D95CF99A2DB3D/",
+      "Size": 1
+    },
+    {
+      "Name": "Exit B Horizontal",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739478814/42020D0729D7CF9B4E6A4265FBC569523F5457B5/",
+      "Size": 1.7
+    },
+    {
+      "Name": "Enter B Horizontal",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739477335/EEAA5A0D8700CAEAA2449E0D97A80899C1F9A03E/",
+      "Size": 1.7
+    },
+    {
+      "Name": "Enhancement Immobilize",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726990928/14B27BE1DC8F226D05FDB7D7D5D420FFCA6919B0/",
+      "Size": 0.4
+    },
+    {
+      "Name": "Enter B Vertical",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739352844/1E6C3779FE86257F10F65EE014BDD3996B93B3BE/",
+      "Size": 1.7
+    },
+    {
+      "Name": "Exit B Vertical",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739354096/ED74BC5FF4EEE0355B75C75F9B70C8CB23A2058E/",
+      "Size": 1.7
+    },
+    {
+      "Name": "1",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225889607/DFA4EF43DC2D1A8B6F1C7F22E7C31718E35CCB31/",
+      "Size": 1
+    },
+    {
+      "Name": "2",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225890374/9B9B38BE2BB6A23EC21C977911FEC8915C74FF19/",
+      "Size": 1
+    },
+    {
+      "Name": "3",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225891903/93FF8C7F051FDD06DAEBD17F2BBD917960CB1779/",
+      "Size": 1
+    },
+    {
+      "Name": "4",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225892191/F2D0FC8179C04D3E4BFD2A546FAD7BC76D813091/",
+      "Size": 1
+    },
+    {
+      "Name": "6",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225892918/3720A0E91CA48BB3972BBE924B26A34FFA34F57F/",
+      "Size": 1
+    },
+    {
+      "Name": "5",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225892469/3DC5E471FC5F2CB1D6DBFC91DF5ADB2751A52E12/",
+      "Size": 1
+    },
+    {
+      "Name": "7",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225893323/DBBE037A62CFA34AD9E05F34A035BDE7A22995EB/",
+      "Size": 1
+    },
+    {
+      "Name": "8",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225893738/3DAE234411D631E7076F3639F4389ECE2019FB73/",
+      "Size": 1
+    },
+    {
+      "Name": "9",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225894076/3DF6535BBE81D65752CBCF9EBC0119A6A41696FC/",
+      "Size": 1
+    },
+    {
+      "Name": "10",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/929311677225894415/18B81F2763921B7C9F11090AB9E00CABE4DDF344/",
+      "Size": 1
+    },
+    {
+      "Name": "11",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739361090/2257A478E8860FCD13E3732A7240309ED42D0483/",
+      "Size": 1
+    },
+    {
+      "Name": "Enter A Horizontal",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739476269/44FF19D8D66A122FBC2FA7354DC5521EDC01969E/",
+      "Size": 1.7
+    },
+    {
+      "Name": "Enter A Vertical",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739352080/21F9805C7808B9F06B1D4555ACA1D4377AD0254D/",
+      "Size": 1.7
+    },
+    {
+      "Name": "Exit A Horizontal",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739478197/1F3C111CF0FE44F395C7A44573B76D6088B62486/",
+      "Size": 1.7
+    },
+    {
+      "Name": "Exit A Vertical",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1717535337739353452/1F6647331281E380A0B2CD7626C5C74A10EF0160/",
+      "Size": 1.7
+    },
+    {
+      "Name": "Enhancement AoE Hex",
+      "ImageURL": "http://cloud-3.steamusercontent.com/ugc/938309024726997997/041C0C738331AA8B4D8281BE8E9BE2C2963D823D/",
+      "Size": 0.2
+    }
+  ],
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "XmlUI": "<!-- include Main -->\n<Canvas raycastTarget=\"false\">\n  <Defaults>\n    <Button color=\"#828282\"/>\n    <Button class=\"ini\" color=\"rgba(0, 0, 0, 0.95)\" textColor=\"rgb(1, 1, 1)\" fontSize=\"16\"/>\n    <Button class=\"interface\" color=\"#828282\" textColor=\"#141414\" font=\"Fonts/PirataOne\" fontSize=\"20\"/>\n    <Button class=\"interfaceInverse\" color=\"#141414\" textColor=\"#828282\" font=\"Fonts/PirataOne\" fontSize=\"20\"/>\n\n    <Image preserveAspect=\"true\"/>\n\n    <Text class=\"gloom\" font=\"Fonts/PirataOne\" fontSize=\"18\" color=\"#9e846a\" alignment=\"MiddleCenter\"/>\n    <Text class=\"interface\" font=\"Fonts/PirataOne\" fontSize=\"20\" alignment=\"MiddleCenter\"/>\n    <Text class=\"interfaceInverse\" font=\"Fonts/PirataOne\" color=\"Grey\" fontSize=\"20\" alignment=\"MiddleCenter\"/>\n\n    <Panel class=\"drag\" allowDragging=\"true\" restrictDraggingToParentBounds=\"false\"\n           returnToOriginalPositionWhenReleased=\"false\"/>\n  </Defaults>\n\n  <Button id=\"showButtons\" onClick=\"showButtons\" width=\"23\" height=\"25\" text=\"&#x25B2;\" fontSize=\"12\"\n          rectAlignment=\"UpperRight\" offsetXY=\"-414 0\"/>\n\n  <VerticalLayout id=\"buttons\" padding=\"0 0 0 20\" rectAlignment=\"UpperRight\" offsetXY=\"-250 0\" height=\"270\" width=\"164\">\n    <Button class=\"interface\" text=\"Player Interface\" onClick=\"showBI\"/>\n    <Button class=\"interface\" text=\"Enemy Interface\" onClick=\"showMI\"/>\n    <Button id=\"showSpawner\" class=\"interface\" text=\"Game Setup\" onClick=\"spawnerClicked\"/>\n    <Button id=\"showOptions\" class=\"interface\" text=\"Options\" onClick=\"onShowOptionsClicked\"/>\n    <Button id=\"showCamControls\" class=\"interface\" text=\"Camera Controls\" onClick=\"cameraControls\"/>\n    <Button id=\"showShopUi\" class=\"interface\" text=\"Item Shop\" onClick=\"onShowItemShop\"/>\n  </VerticalLayout>\n\n  <!-- include ui/CameraControl -->\n  <Panel id=\"CameraControl\"\n         visibility=\"false\"\n         height=\"140\" width=\"170\"\n         rectAlignment=\"UpperRight\" offsetXY=\"-250 -245\"\n         allowDragging=\"true\" returnToOriginalPositionWhenReleased=\"false\"\n         showAnimation=\"FadeIn\" hideAnimation=\"FadeOut\" animationDuration=\"5\"\n         color=\"rgba(0,0,0,0.95)\"\n         padding=\"10 10 10 10\">\n    <VerticalLayout spacing=\"1\">\n      <Button height=\"40\" width=\"150\" offsetXY=\"0 150\" fontStyle=\"Bold\" fontSize=\"18\"\n              onClick=\"cameraPosition(showScenarioBoard)\">\n        <Text class=\"interface\" text=\"Scenario\"/>\n      </Button>\n      <Button height=\"40\" width=\"150\" offsetXY=\"0 110\" fontStyle=\"Bold\" fontSize=\"18\"\n              onClick=\"cameraPosition(showGameBoard)\">\n        <Text class=\"interface\" text=\"Play Area\"/>\n      </Button>\n      <HorizontalLayout spacing=\"1\">\n        <Button onClick=\"cameraPosition(One)\">\n          <Text class=\"interface\" text=\"1\"/>\n        </Button>\n        <Button onClick=\"cameraPosition(Two)\">\n          <Text class=\"interface\" text=\"2\"/>\n        </Button>\n        <Button onClick=\"cameraPosition(Three)\">\n          <Text class=\"interface\" text=\"3\"/>\n        </Button>\n        <Button onClick=\"cameraPosition(Four)\">\n          <Text class=\"interface\" text=\"4\"/>\n        </Button>\n      </HorizontalLayout>\n    </VerticalLayout>\n  </Panel>\n\n  <!-- include ui/CameraControl -->\n  <!-- include ui/Shop -->\n  <Panel id=\"shop.window\" class=\"drag\"\r\n         offsetXY=\"480 -70\"\r\n         width=\"260\" height=\"500\"\r\n         color=\"#0E0E0E\"\r\n         active=\"false\"\r\n         rectAlignment=\"UpperCenter\">\r\n    <Defaults>\r\n      <Text class=\"shop.text\"\r\n            color=\"#9E846A\"\r\n            font=\"Fonts/PirataOne\" fontSize=\"20\"\r\n            rectAlignment=\"UpperCenter\"/>\r\n      <Button class=\"shop.button\"\r\n              width=\"90%\" height=\"50\"\r\n              image=\"element.dropdown\"\r\n              textColor=\"#9E846A\"\r\n              font=\"Fonts/PirataOne\" fontSize=\"30\"\r\n              rectAlignment=\"UpperCenter\"/>\r\n      <Dropdown class=\"shop.dropdown\"\r\n                width=\"100%\" height=\"40\"\r\n                color=\"#2E2E2E\" textColor=\"#9E846A\"\r\n                itemBackgroundColors=\"#2E2E2E|#2E2E0E|#2E2E0E|#2E2E0E\" itemTextColor=\"#9E846A\"\r\n                checkColor=\"#9E846A\" arrowColor=\"#9E846A\"\r\n                font=\"Fonts/PirataOne\" fontSize=\"20\"\r\n                rectAlignment=\"UpperCenter\"/>\r\n      <InputField class=\"shop.input\"\r\n                  width=\"100%\" height=\"50\"\r\n                  color=\"#2E2E2E\" textColor=\"#9E846A\"\r\n                  font=\"Fonts/PirataOne\" fontSize=\"25\"/>\r\n      <Image class=\"shop.button\"\r\n             width=\"100%\" height=\"50\"\r\n             image=\"element.dropdown\"\r\n             rectAlignment=\"UpperCenter\"/>\r\n      <Panel class=\"shop.panel\"\r\n             width=\"90%\" height=\"80\"\r\n             offsetXY=\"0 0\" rectAlignment=\"UpperCenter\"/>\r\n    </Defaults>\r\n  \r\n    <Panel id=\"shop.header\" offsetXY=\"0 0\" height=\"50\" rectAlignment=\"UpperLeft\">\r\n      <Text class=\"shop.text\" text=\"Item Shop\" fontSize=\"25\"/>\r\n      <Button class=\"interface\" text=\"X\" width=\"30\" height=\"90%\" rectAlignment=\"UpperRight\"\r\n              onClick=\"onCloseShopWindowClicked\"/>\r\n    </Panel>\r\n  \r\n    <Panel id=\"shop.content\" offsetXY=\"0 -50\" rectAlignment=\"UpperLeft\">\r\n      <Panel id=\"shop.group\" class=\"shop.panel\">\r\n        <Text class=\"shop.text\" text=\"Groups By\" offsetXY=\"0 20\"/>\r\n        <Dropdown class=\"shop.dropdown\" offsetXY=\"0 -40\" onValueChanged=\"onGroupByChanged\">\r\n          <Option selected=\"true\">Type</Option>\r\n          <Option>None</Option>\r\n        </Dropdown>\r\n      </Panel>\r\n  \r\n      <Panel id=\"shop.sort\" class=\"shop.panel\" offsetXY=\"0 -90\">\r\n        <Text class=\"shop.text\" text=\"Sort By\" offsetXY=\"0 20\"/>\r\n        <Dropdown class=\"shop.dropdown\" offsetXY=\"0 -40\" onValueChanged=\"onSortByChanged\">\r\n          <Option selected=\"true\">Name</Option>\r\n          <Option>Item number</Option>\r\n          <Option>Cost</Option>\r\n        </Dropdown>\r\n      </Panel>\r\n  \r\n      <Image class=\"shop.button\" offsetXY=\"0 -200\" onClick=\"onSortClicked\">\r\n        <Text class=\"shop.text\" text=\"Sort\"/>\r\n      </Image>\r\n  \r\n      <Panel id=\"shop.filter\" class=\"shop.panel\" offsetXY=\"0 -260\">\r\n        <Text class=\"shop.text\" text=\"Filter\"/>\r\n        <InputField id=\"shop.filter.input\" class=\"shop.input\" placeholder=\"Enter part of item name...\" offsetXY=\"0 -50\"\r\n                    onEndEdit=\"onFilterEntered\"/>\r\n        <Image class=\"shop.button\" offsetXY=\"0 -120\" onClick=\"onClearFilterClicked\">\r\n          <Text class=\"shop.text\" text=\"Clear Filter\"/>\r\n        </Image>\r\n      </Panel>\r\n    </Panel>\r\n  </Panel>\r\n\n  <!-- include ui/Shop -->\n\n  <Panel id=\"iniList\" class=\"drag\" active=\"true\"\n         rectAlignment=\"UpperLeft\" offsetXY=\"100 0\" height=\"35\" width=\"310\"\n         color=\"#FFFFFF00\"\n         visibility=\"Red|White|Blue|Green|Black\"\n         showAnimation=\"SlideIn_Top\" hideAnimation=\"SlideOut_Top\" animationDuration=\"1\">\n    <Button class=\"interface\" text=\"Initiative Tracker\" height=\"35\" width=\"310\" rectAlignment=\"UpperLeft\" offsetXY=\"0\"\n            onClick=\"showIni\"/>\n    <!-- include InitiativeTracker.xml -->\n    <VerticalLayout id=\"InitiativeRows\" padding=\"5 5 5 5\" spacing=\"5\" offsetXY=\"0 -40\">\r\n      <HorizontalLayout id=\"Initiative_1\" active=\"false\">\r\n        <Button id=\"InitiativeButton_1\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_1\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_1\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_2\" active=\"false\">\r\n        <Button id=\"InitiativeButton_2\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_2\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_2\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_3\" active=\"false\">\r\n        <Button id=\"InitiativeButton_3\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_3\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_3\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_4\" active=\"false\">\r\n        <Button id=\"InitiativeButton_4\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_4\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_4\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_5\" active=\"false\">\r\n        <Button id=\"InitiativeButton_5\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_5\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_5\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_6\" active=\"false\">\r\n        <Button id=\"InitiativeButton_6\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_6\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_6\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_7\" active=\"false\">\r\n        <Button id=\"InitiativeButton_7\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_7\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_7\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_8\" active=\"false\">\r\n        <Button id=\"InitiativeButton_8\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_8\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_8\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_9\" active=\"false\">\r\n        <Button id=\"InitiativeButton_9\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_9\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_9\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_10\" active=\"false\">\r\n        <Button id=\"InitiativeButton_10\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_10\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_10\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_11\" active=\"false\">\r\n        <Button id=\"InitiativeButton_11\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_11\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_11\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_12\" active=\"false\">\r\n        <Button id=\"InitiativeButton_12\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_12\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_12\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_13\" active=\"false\">\r\n        <Button id=\"InitiativeButton_13\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_13\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_13\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_14\" active=\"false\">\r\n        <Button id=\"InitiativeButton_14\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_14\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_14\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_15\" active=\"false\">\r\n        <Button id=\"InitiativeButton_15\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_15\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_15\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_16\" active=\"false\">\r\n        <Button id=\"InitiativeButton_16\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_16\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_16\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_17\" active=\"false\">\r\n        <Button id=\"InitiativeButton_17\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_17\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_17\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_18\" active=\"false\">\r\n        <Button id=\"InitiativeButton_18\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_18\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_18\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_19\" active=\"false\">\r\n        <Button id=\"InitiativeButton_19\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_19\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_19\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_20\" active=\"false\">\r\n        <Button id=\"InitiativeButton_20\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_20\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_20\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_21\" active=\"false\">\r\n        <Button id=\"InitiativeButton_21\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_21\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_21\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_22\" active=\"false\">\r\n        <Button id=\"InitiativeButton_22\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_22\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_22\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_23\" active=\"false\">\r\n        <Button id=\"InitiativeButton_23\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_23\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_23\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_24\" active=\"false\">\r\n        <Button id=\"InitiativeButton_24\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_24\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_24\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_25\" active=\"false\">\r\n        <Button id=\"InitiativeButton_25\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_25\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_25\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_26\" active=\"false\">\r\n        <Button id=\"InitiativeButton_26\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_26\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_26\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_27\" active=\"false\">\r\n        <Button id=\"InitiativeButton_27\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_27\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_27\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_28\" active=\"false\">\r\n        <Button id=\"InitiativeButton_28\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_28\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_28\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_29\" active=\"false\">\r\n        <Button id=\"InitiativeButton_29\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_29\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_29\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n      <HorizontalLayout id=\"Initiative_30\" active=\"false\">\r\n        <Button id=\"InitiativeButton_30\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"MarkInitiative\" minWidth=\"250\"\r\n                preferredWidth=\"300\" text=\"Test\"/>\r\n        <Button id=\"HideInitiative_30\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"HideInitiative\" minWidth=\"25\" text=\"+\"/>\r\n        <Button id=\"MonsterAbilityCard_30\" class=\"ini\" textColor=\"#FFFFFF\" onClick=\"getMonsterAC\" minWidth=\"25\" text=\">\"/>\r\n      </HorizontalLayout>\r\n    </VerticalLayout>\r\n\n    <!-- include InitiativeTracker.xml -->\n\n    <Panel id=\"MonsterAbilityCard\" class=\"drag\" active=\"false\"\n           rectAlignment=\"UpperLeft\" offsetXY=\"310 -40\" padding=\"10 10 10 10\" height=\"180\" width=\"250\"\n           color=\"rgba(0,0,0,0.95)\">\n      <Text id=\"MACText\" font=\"Fonts/MarkaziGloom\" color=\"rgb(1, 1, 1)\" resizeTextForBestFit=\"true\"/>\n    </Panel>\n\n    <Panel id=\"monster-ability-area-1\" class=\"drag\" active=\"false\"\n           rectAlignment=\"UpperLeft\" offsetXY=\"560 -40\" height=\"160\" width=\"100\"\n           color=\"rgba(0,0,0,0.95)\">\n      <Defaults>\n        <Text fontSize=\"20\" font=\"Fonts/MarkaziGloom\" alignment=\"MiddleLeft\" rectAlignment=\"UpperLeft\"/>\n      </Defaults>\n      <Text id=\"monster-ability-area-1-1\" offsetXY=\"0 40\" active=\"false\"/>\n      <Text id=\"monster-ability-area-1-2\" offsetXY=\"12 20\" active=\"false\"/>\n      <Text id=\"monster-ability-area-1-3\" offsetXY=\"0 0\" active=\"false\"/>\n      <Text id=\"monster-ability-area-1-4\" offsetXY=\"12 -20\" active=\"false\"/>\n      <Text id=\"monster-ability-area-1-5\" offsetXY=\"0 -40\" active=\"false\"/>\n      <Text id=\"monster-ability-area-1-6\" offsetXY=\"12 -60\" active=\"false\"/>\n    </Panel>\n\n    <Panel id=\"monster-ability-area-2\" class=\"drag\" active=\"false\"\n           rectAlignment=\"UpperLeft\" offsetXY=\"660 -40\" height=\"160\" width=\"100\"\n           color=\"rgba(0,0,0,0.95)\">\n      <Defaults>\n        <Text fontSize=\"20\" font=\"Fonts/MarkaziGloom\" alignment=\"MiddleLeft\" rectAlignment=\"UpperLeft\"/>\n      </Defaults>\n      <Text id=\"monster-ability-area-2-1\" offsetXY=\"0 40\" active=\"false\"/>\n      <Text id=\"monster-ability-area-2-2\" offsetXY=\"12 20\" active=\"false\"/>\n      <Text id=\"monster-ability-area-2-3\" offsetXY=\"0 0\" active=\"false\"/>\n      <Text id=\"monster-ability-area-2-4\" offsetXY=\"12 -20\" active=\"false\"/>\n      <Text id=\"monster-ability-area-2-5\" offsetXY=\"0 -40\" active=\"false\"/>\n      <Text id=\"monster-ability-area-2-6\" offsetXY=\"12 -60\" active=\"false\"/>\n    </Panel>\n  </Panel>\n\n  <!-- include ui/MonsterInterface -->\n  <Panel\n    id=\"MonsterInterface\"\n    class=\"drag\"\n    height=\"165\" width=\"270\"\n    rectAlignment=\"LowerRight\" offsetXY=\"0 255\"\n    active=\"false\"\n    color=\"rgba(0,0,0,0.95)\"\n    showAnimation=\"SlideIn_Right\" hideAnimation=\"None\" animationDuration=\"1\">\n    <VerticalLayout padding=\"10 10 0 10\" spacing=\"10\">\n      <Text class=\"interfaceInverse\" text=\"Enemy Interface\" fontSize=\"26\" ignoreLayout=\"true\" width=\"270\"\n            offsetXY=\"0 50\" alignment=\"MiddleCenter\"/>\n      <Text/>\n      <Button class=\"interface\" text=\"Draw Modifier\" onClick=\"drawClickedEnemy\"/>\n      <HorizontalLayout spacing=\"5\">\n        <Button class=\"interface\" text=\"Add Curse\" onClick=\"addCurseEnemy\"/>\n        <Button class=\"interface\" text=\"Add Bless\" onClick=\"addBlessEnemy\"/>\n      </HorizontalLayout>\n    </VerticalLayout>\n  </Panel>\n\n  <!-- include ui/MonsterInterface -->\n  <!-- include ui/PlayerInterface -->\n  <Panel\n    id=\"PlayerInterface\"\n    class=\"drag\"\n    height=\"300\" width=\"270\"\n    active=\"false\"\n    color=\"rgba(0,0,0,0.95)\"\n    rectAlignment=\"UpperRight\" offsetXY=\"0 -255\"\n    showAnimation=\"SlideIn_Right\" hideAnimation=\"None\" animationDuration=\"1\">\n    <VerticalLayout padding=\"10 10 0 40\" spacing=\"10\">\n      <Text class=\"interfaceInverse\" text=\"Player Interface\" fontSize=\"26\" ignoreLayout=\"true\" width=\"270\"\n            offsetXY=\"0 115\" alignment=\"MiddleCenter\"/>\n      <Text/>\n      <HorizontalLayout spacing=\"5\">\n        <Button class=\"interface\" text=\"Start Round\" onClick=\"reveal\"/>\n        <Button class=\"interface\" text=\"End Round\" onClick=\"endRound\"/>\n      </HorizontalLayout>\n      <Button class=\"interface\" text=\"Draw Attack Modifier\" onClick=\"drawClicked\"/>\n      <HorizontalLayout spacing=\"5\">\n        <Button class=\"interface\" text=\"Add Curse\" onClick=\"addCurse\"/>\n        <Button class=\"interface\" text=\"Add Bless\" onClick=\"addBless\"/>\n      </HorizontalLayout>\n      <HorizontalLayout spacing=\"5\">\n        <Button class=\"interface\" text=\"Sort Hand\" onClick=\"sortHand\"/>\n        <Button class=\"interface\" text=\"Long Rest\" onClick=\"longRest\"/>\n      </HorizontalLayout>\n    </VerticalLayout>\n    <TableLayout offsetXY=\"0 -127\" height=\"20\" width=\"240\" columnWidths=\"20 100\" cellBackgroundColor=\"clear\">\n      <Row>\n        <Cell>\n          <Button onClick=\"showSolo\" id=\"soloToggle\"/>\n        </Cell>\n        <Cell>\n          <Image image=\"Solo Mode\"/>\n        </Cell>\n      </Row>\n    </TableLayout>\n  </Panel>\n\n  <!-- include ui/PlayerInterface -->\n  <!-- include ui/SoloInterface -->\n  <Panel\n    id=\"SoloInterface\"\n    height=\"550\"\n    width=\"270\"\n    rectAlignment=\"MiddleRight\"\n    active=\"false\"\n    offsetXY=\"0 255\"\n    color=\"rgba(0,0,0,0.95)\"\n    showAnimation=\"SlideIn_Right\"\n    hideAnimation=\"None\"\n    animationDuration=\"1\"\n    allowDragging=\"true\"\n    returnToOriginalPositionWhenReleased=\"false\">\n    <VerticalLayout padding=\"10 10 0 40\" spacing=\"10\" childForceExpandHeight=\"false\">\n      <Text class=\"interfaceInverse\" id=\"BIImage\" text=\"Solo Interface\" fontSize=\"26\" ignoreLayout=\"true\" width=\"270\"\n            offsetXY=\"0 247\" alignment=\"MiddleCenter\"/>\n      <Text minheight=\"50\"/>\n      <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n        <Button class=\"interface\" text=\"Start Round\" onClick=\"reveal\"/>\n        <Button class=\"interface\" text=\"End Round\" onClick=\"endRound\"/>\n      </HorizontalLayout>\n      <VerticalLayout padding=\"0 0 10 0\" id=\"P1\" active=\"true\">\n        <Button class=\"interface\" text=\"Draw Attack Modifier P1\" minheight=\"35\" maxheight=\"35\" onClick=\"drawClicked\"\n                id=\"Red\"/>\n        <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n          <Button class=\"interface\" text=\"Add Curse\" onClick=\"addCurse\" id=\"Red\"/>\n          <Button class=\"interface\" text=\"Add Bless\" onClick=\"addBless\" id=\"Red\"/>\n        </HorizontalLayout>\n        <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n          <Button class=\"interface\" text=\"Sort Hand\" onClick=\"sortHand\" id=\"Red\"/>\n          <Button class=\"interface\" text=\"Long Rest\" onClick=\"longRest\" id=\"Red\"/>\n        </HorizontalLayout>\n      </VerticalLayout>\n      <VerticalLayout padding=\"0 0 10 0\" id=\"P2\" active=\"true\">\n        <Button class=\"interface\" text=\"Draw Attack Modifier P2\" minheight=\"35\" maxheight=\"35\" onClick=\"drawClicked\"\n                id=\"White\"/>\n        <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n          <Button class=\"interface\" text=\"Add Curse\" onClick=\"addCurse\" id=\"White\"/>\n          <Button class=\"interface\" text=\"Add Bless\" onClick=\"addBless\" id=\"White\"/>\n        </HorizontalLayout>\n        <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n          <Button class=\"interface\" text=\"Sort Hand\" onClick=\"sortHand\" id=\"White\"/>\n          <Button class=\"interface\" text=\"Long Rest\" onClick=\"longRest\" id=\"White\"/>\n        </HorizontalLayout>\n      </VerticalLayout>\n      <VerticalLayout padding=\"0 0 10 0\" id=\"P3\" active=\"true\">\n        <Button class=\"interface\" text=\"Draw Attack Modifier P3\" minheight=\"35\" maxheight=\"35\" onClick=\"drawClicked\"\n                id=\"Blue\"/>\n        <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n          <Button class=\"interface\" text=\"Add Curse\" onClick=\"addCurse\" id=\"Blue\"/>\n          <Button class=\"interface\" text=\"Add Bless\" onClick=\"addBless\" id=\"Blue\"/>\n        </HorizontalLayout>\n        <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n          <Button class=\"interface\" text=\"Sort Hand\" onClick=\"sortHand\" id=\"Blue\"/>\n          <Button class=\"interface\" text=\"Long Rest\" onClick=\"longRest\" id=\"Blue\"/>\n        </HorizontalLayout>\n      </VerticalLayout>\n      <VerticalLayout padding=\"0 0 10 0\" id=\"P4\" active=\"true\">\n        <Button class=\"interface\" text=\"Draw Attack Modifier P4\" minheight=\"35\" maxheight=\"35\" onClick=\"drawClicked\"\n                id=\"Green\"/>\n        <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n          <Button class=\"interface\" text=\"Add Curse\" onClick=\"addCurse\" id=\"Green\"/>\n          <Button class=\"interface\" text=\"Add Bless\" onClick=\"addBless\" id=\"Green\"/>\n        </HorizontalLayout>\n        <HorizontalLayout spacing=\"5\" minheight=\"35\" maxheight=\"35\">\n          <Button class=\"interface\" text=\"Sort Hand\" onClick=\"sortHand\" id=\"Green\"/>\n          <Button class=\"interface\" text=\"Long Rest\" onClick=\"longRest\" id=\"Green\"/>\n        </HorizontalLayout>\n      </VerticalLayout>\n    </VerticalLayout>\n    <TableLayout id=\"tableSolo\" offsetXY=\"0 -253\" height=\"20\" width=\"240\" columnWidths=\"20 100 20 130\"\n                 cellBackgroundColor=\"clear\">\n      <Row>\n        <Cell>\n          <Button onClick=\"showSolo\" id=\"soloToggle\">\n            <Image image=\"Checkmark\"/>\n          </Button>\n        </Cell>\n        <Cell>\n          <Image image=\"Solo Mode\"/>\n        </Cell>\n      </Row>\n    </TableLayout>\n  </Panel>\n\n  <!-- include ui/SoloInterface -->\n\n  <!-- include ui/GameSetup -->\n  <Panel id=\"Spawner\" height=\"800\" width=\"550\" color=\"#000000F0\" allowDragging=\"true\"\n         returnToOriginalPositionWhenReleased=\"false\" showAnimation=\"FadeIn\" hideAnimation=\"FadeOut\"\n         animationDuration=\"1\" active=\"false\">\n\n    <!-- include ScenarioSetup -->\n    <Panel id=\"ScenarioSpawner\" height=\"800\" width=\"550\" color=\"#00000000\" rectAlignment=\"LowerCenter\" active=\"true\">\n      <HorizontalLayout spacing=\"10\" offsetXY=\"0 -25\" width=\"500\" height=\"50\" rectAlignment=\"UpperCenter\">\n        <Button class=\"interface\" text=\"Scenario Setup\" id=\"ScenarioMS\" onClick=\"spawnerClicked\" color=\"#828282\"\n                minWidth=\"210\"/>\n        <Button class=\"interfaceInverse\" text=\"Monster Setup\" id=\"SingleMS\" onClick=\"spawnerClicked\" color=\"#141414\"\n                minWidth=\"210\"/>\n        <Button class=\"interface\" text=\"X\" id=\"CloseSpawner\" onClick=\"spawnerClicked\" fontSize=\"30\" width=\"50\"/>\n      </HorizontalLayout>\n      <Button id=\"HiddenRooms1\" width=\"25\" height=\"25\" offsetXY=\"-190 280\" color=\"#00000000\" onClick=\"toggleChange(2)\">\n        <Image id=\"HiddenRooms1Image\" image=\"Radio Button Selected\"/>\n      </Button>\n      <Text class=\"interfaceInverse\" width=\"550\" text=\"Hidden Rooms\" offsetXY=\"-100 280\"/>\n      <Button id=\"HiddenRooms2\" width=\"25\" height=\"25\" offsetXY=\"40 280\" color=\"#00000000\" onClick=\"toggleChange(1)\">\n        <Image id=\"HiddenRooms2Image\" image=\"Radio Button\"/>\n      </Button>\n      <Text class=\"interfaceInverse\" width=\"550\" text=\"Revealed Rooms\" offsetXY=\"130 280\"/>\n      <HorizontalLayout spacing=\"10\" offsetXY=\"0 -200\" width=\"500\" height=\"50\" rectAlignment=\"UpperCenter\">\n        <Button id=\"syncScenarios\" class=\"interfaceInverse\" text=\"Refresh Scenario List\" fontSize=\"36\"\n                onClick=\"syncScenarios\"/>\n      </HorizontalLayout>\n      <VerticalScrollView offsetXY=\"0 -35\" width=\"500\" height=\"300\" color=\"#00000000\"\n                          horizontalScrollbarVisibility=\"AutoHideAndExpandViewport\"\n                          scrollSensitivity=\"30\">\n        <VerticalLayout id=\"scenarioList\" spacing=\"5\"/>\n      </VerticalScrollView>\n      <HorizontalLayout offsetXY=\"0 -250\" height=\"50\" width=\"225\" spacing=\"10\">\n        <Button class=\"interface\" text=\"Delete Map\" onClick=\"7ef9dd/checkArea\"/>\n      </HorizontalLayout>\n      <HorizontalLayout offsetXY=\"0 -330\" height=\"50\" width=\"450\" spacing=\"10\">\n        <Button id=\"win\" class=\"interface\" text=\"Scenario Won\" onClick=\"spawnerClicked\"/>\n        <Button id=\"lost\" class=\"interface\" text=\"Scenario Lost\" onClick=\"spawnerClicked\"/>\n      </HorizontalLayout>\n    </Panel>\n\n    <!-- include ScenarioSetup -->\n    <!-- include MonsterSetup -->\n    <Panel id=\"MonsterSpawner\" height=\"800\" width=\"550\" color=\"#00000000\" rectAlignment=\"LowerCenter\" active=\"false\">\n      <HorizontalLayout spacing=\"10\" offsetXY=\"0 -25\" width=\"500\" height=\"50\" rectAlignment=\"UpperCenter\">\n        <Button id=\"ScenarioMS\" class=\"interfaceInverse\" text=\"ScenarioSetup\" onClick=\"spawnerClicked\" minWidth=\"210\"/>\n        <Button id=\"SingleMS\" class=\"interface\" text=\"Monster Setup\" onClick=\"spawnerClicked\" color=\"#828282\"\n                minWidth=\"210\"/>\n        <Button id=\"CloseSpawner\" class=\"interface\" text=\"X\" onClick=\"spawnerClicked\" fontSize=\"30\" width=\"50\"/>\n      </HorizontalLayout>\n      <Text class=\"interfaceInverse\" fontSize=\"24\" offsetXY=\"0 280\" text=\"Scenario Level\"/>\n      <Slider id=\"MSSlider\" position=\"-50 240\" minValue=\"-1\" maxValue=\"7\" value=\"-1\"\n              wholeNumbers=\"true\" onValueChanged=\"updateSliderValue\"/>\n      <Text id=\"MSSLevel\" class=\"interfaceInverse\" position=\"100 240\" fontSize=\"36\" text=\"Auto\"/>\n      <Button id=\"isElite\" isOn=\"false\" onClick=\"toggleChange\" width=\"25\" height=\"25\" offsetXY=\"-20 180\">\n        <Image id=\"isEliteImage\" active=\"false\" image=\"Checkmark\"/>\n      </Button>\n      <Text class=\"interfaceInverse\" fontSize=\"24\" text=\"Elite\" width=\"550\" offsetXY=\"20 180\"/>\n      <HorizontalLayout spacing=\"10\" offsetXY=\"0 -250\" width=\"500\" height=\"50\" rectAlignment=\"UpperCenter\">\n        <Button id=\"syncMonsters\" class=\"interfaceInverse\" text=\"Refresh Monster List\" fontSize=\"36\"\n                onClick=\"syncMonsters\"/>\n      </HorizontalLayout>\n      <VerticalScrollView offsetXY=\"0 -75\" width=\"500\" height=\"300\" color=\"#00000000\"\n                          horizontalScrollbarVisibility=\"AutoHideAndExpandViewport\"\n                          scrollSensitivity=\"30\">\n        <VerticalLayout id=\"monsterList\" spacing=\"5\"/>\n      </VerticalScrollView>\n      <HorizontalLayout offsetXY=\"0 -330\" height=\"50\" width=\"225\" spacing=\"10\">\n        <Button class=\"interface\" text=\"Delete Monsters\" onClick=\"7ef9dd/cleanMonster\"/>\n      </HorizontalLayout>\n    </Panel>\n\n    <!-- include MonsterSetup -->\n  </Panel>\n\n  <!-- include ui/GameSetup -->\n\n  <Panel id=\"clearAreaYN\" width=\"800\" height=\"100\" color=\"#141414\" active=\"false\" allowDragging=\"true\"\n         returnToOriginalPositionWhenReleased=\"false\" outline=\"#141414\" outlineSize=\"30 30\">\n    <VerticalLayout spacing=\"20\">\n      <Image image=\"Want Delete\"/>\n      <HorizontalLayout minheight=\"40\" spacing=\"15\" padding=\"100 100 0 0\">\n        <Button onClick=\"7ef9dd/cleanArea\">\n          <Image image=\"Yes\"/>\n        </Button>\n        <Button onClick=\"7ef9dd/NoClicked\">\n          <Image image=\"No\"/>\n        </Button>\n      </HorizontalLayout>\n    </VerticalLayout>\n  </Panel>\n\n  <Panel id=\"clearPlayAreaYN\" width=\"800\" height=\"100\" color=\"#141414\" active=\"false\" allowDragging=\"true\"\n         returnToOriginalPositionWhenReleased=\"false\" outline=\"#141414\" outlineSize=\"30 30\">\n    <VerticalLayout spacing=\"20\">\n      <Image image=\"Want Delete\"/>\n      <HorizontalLayout minheight=\"40\" spacing=\"15\" padding=\"100 100 0 0\">\n        <Button onClick=\"3054ae/cleanArea\">\n          <Image image=\"Yes\"/>\n        </Button>\n        <Button onClick=\"3054ae/NoClicked\">\n          <Image image=\"No\"/>\n        </Button>\n      </HorizontalLayout>\n    </VerticalLayout>\n  </Panel>\n</Canvas>\n\n<!-- include Main -->",
+  "CustomUIAssets": [
+    {
+      "Name": "Fonts",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1785137125151946867/17CE13C819659BEFD29663308656B11B21A5C811/",
+      "Type": 1
+    },
+    {
+      "Name": "Checkmark",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/930437282873621352/B1F762326F5A796804428304D3453196F1FE72F8/"
+    },
+    {
+      "Name": "Solo Mode",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/930437282869951537/A7F6D5FDA5A3257A9BABF914136016F38DDB67B4/"
+    },
+    {
+      "Name": "Radio Button",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/957460441258181927/C92E3147B5B842EAB9E3A217D7BDF355D6CD84C0/"
+    },
+    {
+      "Name": "Radio Button Selected",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/957460441258182404/4A6DA7F067D83ABD1C53B10AEA37B140133424BA/"
+    },
+    {
+      "Name": "Want Delete",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/957460441258251718/60E4E1B63BC787C5A12AD00B5DE53087CCF758A5/"
+    },
+    {
+      "Name": "Yes",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/957460441258252246/B2CF6D25D406E56E89EFAE376401C2B068EDF5E7/"
+    },
+    {
+      "Name": "No",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/957460441258252698/2598B558AEB39BCF7F5319C55C6A4366FEFC024F/"
+    },
+    {
+      "Name": "S",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1025077659114306575/9D076EE8D1CE57FD0C010E18ED2FA470231AA667/"
+    },
+    {
+      "Name": "Add Target",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335238589/BD19ECEF872BB4DF3D3B1E6234FF636A5A3F7774/"
+    },
+    {
+      "Name": "Attack-W",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335234958/383031842C15BBF4A07639649ED0191F3BC961F9/"
+    },
+    {
+      "Name": "Loot-W",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335244550/762F7E4C11F371564644CA3C4777C92A946B24BC/"
+    },
+    {
+      "Name": "Health-W",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335242112/FA9A26B8CDEE3ADC9F23B0D340FA85E58197FB49/"
+    },
+    {
+      "Name": "Range-W",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335253340/C5D3C835BAD31C6988B5E6E38B13632EB6FB3384/"
+    },
+    {
+      "Name": "Move-W",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335287116/12E976BAB0EFB30F147805B7172AF46F4A055821/"
+    },
+    {
+      "Name": "NewUpdateNotification",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647137528722610/01C306A63CC50F260095F8FD338EAD2E8DBD36A7/"
+    },
+    {
+      "Name": "option.header",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647367272110432/0AB247600FF0D59D4AEE13117DA4FB489412AD97/"
+    },
+    {
+      "Name": "option.row",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647367272108923/3BFACF28BE4EB95718A65E34A2979AB480FE335C/"
+    },
+    {
+      "Name": "element.checkbox.false",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647321317707575/5C669F905FEA1F581A362EA8E9CD166CA6CED57C/"
+    },
+    {
+      "Name": "element.checkbox.true",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647367272105183/C6D3D021348DB6BFD891A871BC4EA6D78E11DDFD/"
+    },
+    {
+      "Name": "element.close",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647321317706979/A877AF6E9D184213AE72408651251933C037E136/"
+    },
+    {
+      "Name": "element.dropdown",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647321317708245/87000840B16EC9B07C76C43DEC7B4F86E9154450/"
+    },
+    {
+      "Name": "element.dropdown.check",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647367272106475/D85EBA610CEE366AABFD005AA313F433B3526233/"
+    },
+    {
+      "Name": "element.dropdown.arrow",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1691647367272117711/B0B88A739E64F627742F5714865E4DE663E8EF6B/"
+    },
+    {
+      "Name": "element.imagechooser.asset_appearance.background_Skull Logo (Red)",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1692776269029816766/D4CFB162FBAE84CC94508102C4B8A965E1ED3DA9/"
+    },
+    {
+      "Name": "element.imagechooser.asset_appearance.background_GH Box Art (Brown)",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1692776269029816416/A2B04B6A75F9F9C576354DE5A37F0E8CDA05A381/"
+    },
+    {
+      "Name": "element.imagechooser.asset_appearance.background_FC Box Art (Purple)",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1692776269029816666/856391292E07195D26446B15D734D90B2B7C9FDA/"
+    },
+    {
+      "Name": "element.imagechooser.asset_appearance.background_JotL Poker Table (Grey)",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1692776269029816504/17CE4CE6C3A2CD904E980AA7706731E72E34E3B6/"
+    },
+    {
+      "Name": "Damage",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/912421276945957660/E015539C26B82D831A6361BFE476DB0C8810D132/"
+    },
+    {
+      "Name": "Overlay-Hot Coals",
+      "URL": "https://github.com/any2cards/gloomhaven/raw/5a840817052fb7da3e299b01158e05782c363c68/images/tokens/gloomhaven/hazardous-terrain/gh-hot-coals.png"
+    },
+    {
+      "Name": "Overlay-Thorns",
+      "URL": "https://github.com/any2cards/gloomhaven/raw/5a840817052fb7da3e299b01158e05782c363c68/images/tokens/gloomhaven/hazardous-terrain/gh-thorns.png"
+    },
+    {
+      "Name": "Overlay-Boulder",
+      "URL": "https://github.com/any2cards/gloomhaven/raw/5a840817052fb7da3e299b01158e05782c363c68/images/tokens/gloomhaven/obstacles/gh-boulder-1.png"
+    },
+    {
+      "Name": "Overlay-Boulder 3",
+      "URL": "https://github.com/any2cards/gloomhaven/raw/5a840817052fb7da3e299b01158e05782c363c68/images/tokens/gloomhaven/obstacles/gh-boulder-3.png"
+    },
+    {
+      "Name": "Overlay-Rock Column",
+      "URL": "https://github.com/any2cards/gloomhaven/raw/5a840817052fb7da3e299b01158e05782c363c68/images/tokens/gloomhaven/obstacles/gh-rock-column.png"
+    },
+    {
+      "Name": "Overlay-Bear Trap",
+      "URL": "https://github.com/any2cards/gloomhaven/raw/5a840817052fb7da3e299b01158e05782c363c68/images/tokens/gloomhaven/traps/gh-bear-trap.png"
+    },
+    {
+      "Name": "Overlay-Spike Trap",
+      "URL": "https://github.com/any2cards/gloomhaven/raw/5a840817052fb7da3e299b01158e05782c363c68/images/tokens/gloomhaven/traps/gh-spike-pit-trap.png"
+    },
+    {
+      "Name": "Overlay-Poison Gas",
+      "URL": "https://github.com/any2cards/gloomhaven/raw/5a840817052fb7da3e299b01158e05782c363c68/images/tokens/gloomhaven/traps/gh-poison-gas-trap.png"
+    },
+    {
+      "Name": "ScenarioAid_1",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855709507/E9FBF8A18ABEF63F046D0C665CA38315E79765D8/"
+    },
+    {
+      "Name": "ScenarioAid_2",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855709728/DEDA6F0850D4BE3C5C647F02A8893258633B07CF/"
+    },
+    {
+      "Name": "ScenarioAid_3",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855710013/F94EFF3A9C97D29C3829433012F6A8208DDAA610/"
+    },
+    {
+      "Name": "ScenarioAid_4",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855710238/3F261915C15B2924743CAE4FB1CD4EAB64B7568D/"
+    },
+    {
+      "Name": "ScenarioAid_a",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855710452/7F215E78C2652D795415D0C9DF97788D269E99A8/"
+    },
+    {
+      "Name": "ScenarioAid_b",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855710644/D5B39624A18BB588FF22A16805E4237E3532AFA2/"
+    },
+    {
+      "Name": "ScenarioAid_c",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855710813/859300C2A3798F50C95FEDE9EAFAD30419F20139/"
+    },
+    {
+      "Name": "ScenarioAid_d",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855711013/0089277091E642F2417165DD0866D3966FDFB243/"
+    },
+    {
+      "Name": "ScenarioAid_e",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855711219/892035BB2267DA06B560D1D2234D77A0C71D318B/"
+    },
+    {
+      "Name": "ScenarioAid_f",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855711443/5FDA080A43EBF4DAFDB188DB608FE2763174B3B0/"
+    },
+    {
+      "Name": "ScenarioAid_g",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855711637/82FF003F7A39033AADCE32A463E981AC367FF644/"
+    },
+    {
+      "Name": "ScenarioAid_h",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855711827/A2A65B43B211903499A28A3CA7770E328B1F66FE/"
+    },
+    {
+      "Name": "ScenarioAid_i",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855712052/CCD5C53C3093AAB6AE45A56C142D75DEAF68729C/"
+    },
+    {
+      "Name": "ScenarioAid_j",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855712324/F67E259576B24287C669E0FB0F56E9BEDA45EFA3/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_1",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855706901/377CB0A18DB9C06B9E6F9F0EA512A0B2FFBB9505/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_2",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855707721/4AFB20447F9C338AFCCDE8B4CDCC0CB34D9AACB6/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_3",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855693376/2766E8E8EE1B19934BC0A6781D4233FE397F19A5/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_4",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855707911/176A38A0EB1066E2C95B1DA19ABFC478C343F2ED/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_5",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855708096/70AD1F0422F09280C535E784EF5FF14D890E2413/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_6",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855708285/C055CC3DA7077E9A71F9AE445C727F444155603E/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_7",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855708488/AB9C7CF64A74614616FF74B5028EF13C5E0E23FD/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_8",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855708904/610FE768EC52BACE5F583518CD2A2E636B06A005/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_9",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855709098/20764DE0290A53F9109BCD71EABD4D2D32EA5295/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_10",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855709285/08E945818FD9A70FFBE9771AE35950888A3008B9/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_11",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855707309/61B70C58BB54A56CE82347BF9194EE8F9AA8D214/"
+    },
+    {
+      "Name": "ScenarioAid_Obj_12",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/878629555855707539/5A33C6661B5ACE29451D7EF4FA1A8B1518454E31/"
+    },
+    {
+      "Name": "TrackerBrute",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83722391140264566/DC437F88C225F04C6CCE924EA4C3BB31FCD3F3A9/"
+    },
+    {
+      "Name": "TrackerCragheart",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83722391140272850/20C525FCF70B280811A95F2631CB8597B69FA32B/"
+    },
+    {
+      "Name": "TrackerMindthief",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83722391140273516/BC25E0469BCF4E7D7455FD1D8E5D983A64015CF9/"
+    },
+    {
+      "Name": "spawn.element.default",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1816633112929215487/DB175CC19718DFCE3859E43ACB73D523EACF79B3/"
+    },
+    {
+      "Name": "TrackerScoundrel",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83722391140274314/EBC76552C60E3E1281BBFAA96EF535709E0DDD71/"
+    },
+    {
+      "Name": "TrackerDiviner",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/958605698971032961/FC87136CA9193E423627CF26F69CA9E9C166FACB/"
+    },
+    {
+      "Name": "TrackerTinkerer",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83722391140275444/E0B72DC69A07699D5DB852D63155F502989283E0/"
+    },
+    {
+      "Name": "TrackerSpellweaver",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83722391140274964/143D5F8B9F7C47FB83BBAF900BE9FDFA368CE513/"
+    },
+    {
+      "Name": "TrackerHatchet",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1023946882429626180/E31CBEE29EFDC7A723ED10EEDDE769A2597A6483/"
+    },
+    {
+      "Name": "TrackerRed Guard",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1023946882429627820/0C301D833410A3167A541E18EE679DC84639E1F9/"
+    },
+    {
+      "Name": "TrackerVoidwarden",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1023946882429633403/27CCE91CC914E113FA5D4C32866442D7B14819A5/"
+    },
+    {
+      "Name": "TrackerDemolitionist",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1023946882429620732/8AF086FA26F0D1B4F594701608942D5853B8C63A/"
+    },
+    {
+      "Name": "TrackerBeast Tyrant",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138553938610861/F8B7EF453D80232795BDE36FA070AE3F32D115EE/"
+    },
+    {
+      "Name": "TrackerBerserker",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138762281835723/8A322E4924315CA590305543DF46896F89E22535/"
+    },
+    {
+      "Name": "TrackerDoomstalker",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138553939035626/893D92412263CE1A9C4E257D03A298E4586F6F6B/"
+    },
+    {
+      "Name": "TrackerElementalist",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138762291579437/6A1873B7FB1DB0F7D379A6628F6166B529180B1D/"
+    },
+    {
+      "Name": "TrackerNightshroud",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138762281738085/65B88B611F776E7FD2334409D404E4C750A33934/"
+    },
+    {
+      "Name": "TrackerPlagueherald",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138762291876706/8A821E683D786FFA0F04A9AA2A947F85778ADBC2/"
+    },
+    {
+      "Name": "TrackerQuartermaster",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138762291809141/D48BD51510E9C15C05E726BF750EEA0B5A6BA3D0/"
+    },
+    {
+      "Name": "TrackerSoothsinger",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138762291715667/2D2D8638E8721C86EF0A38C230C8CD73CF6A61CC/"
+    },
+    {
+      "Name": "TrackerSummoner",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/930432409048775148/48101BC74B8653EFB2C5BF3C5C814121FA3D5735/"
+    },
+    {
+      "Name": "TrackerSunkeeper",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2439138553938828796/730FE7530468D1BBA8D74FFC1316FB47C52301E5/"
+    },
+    {
+      "Name": "TrackerBladeswarm",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/957469956542531294/89F4466B4A39A27032CA047ECFAC19131AE103BD/"
+    },
+    {
+      "Name": "Disarm",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83721958671672270/3DD70341FE7C762F57930DCB123FC3B3F669E70D/"
+    },
+    {
+      "Name": "Disarm-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766656381/EF716F5A021E59A8E5A2AB05AAD7A2779C4564A8/"
+    },
+    {
+      "Name": "Immobilize",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83721958671673391/877AC6C5C993070B4ACE2F0BA540FD277C9FC174/"
+    },
+    {
+      "Name": "Immobilize-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766654664/84F766538593F1248F4F57907CB7A416F65C5282/"
+    },
+    {
+      "Name": "Invisible",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83721958671674221/401A435DA860B2CA7E87D570905F58622C69229E/"
+    },
+    {
+      "Name": "Muddle",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83721958671681965/01EAE5A55C229B9F1067AF64A398667F3F25E841/"
+    },
+    {
+      "Name": "Muddle-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766649540/623C36ABECA67CE85A271B5E43644FD914300341/"
+    },
+    {
+      "Name": "Poison",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83721958671677797/DEAEC4FAB2B54FEA069B0C8995DB7E97160767F3/"
+    },
+    {
+      "Name": "Poison-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766650742/006AE5584AEB4E7E7343E14C0749B0B8F5D0CF62/"
+    },
+    {
+      "Name": "Strengthen",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83721958671675865/B73B248633B5C6A8AC44EC7BBBDE56D6632FD208/"
+    },
+    {
+      "Name": "Stun",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83721958671678940/616CC0951CB17024448D3CBC7E5CA9D3A05D7555/"
+    },
+    {
+      "Name": "Stun-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766657508/F15D80FEA22D73B64C8BD23F49EC3C08018FFEBE/"
+    },
+    {
+      "Name": "Wound",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/83721958671672778/8AD44E86BD73836627A25E71B6B3DA081A0E64D6/"
+    },
+    {
+      "Name": "Wound-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766651868/C5A8B87571357AFD137EC217C7A66D6E698E840F/"
+    },
+    {
+      "Name": "Regenerate",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/791986676667649885/92F7F934D298524F6F72997095DDBA073D9A15BF/"
+    },
+    {
+      "Name": "Bane",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1751310104237974843/789962F15529BA6B690C15AC69EF2DD01657EC27/"
+    },
+    {
+      "Name": "Bane-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1753609293981077874/F203F3302EA532506317E53D9C2B568D67D3913D/"
+    },
+    {
+      "Name": "Brittle",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1756937968345531733/027D45CA1FAFCE3E9ED9D97D170F661B5CE560CA/"
+    },
+    {
+      "Name": "Brittle-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1753609293981079023/2D287D537218DA389E7FDA9B67CA0D544CCCF403/"
+    },
+    {
+      "Name": "Injure",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1751310104237975751/009A9EDE81999911EE4DF9A24833FD5DCAF217EE/"
+    },
+    {
+      "Name": "Ward",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1751310104237976362/B10899C97992FF30CE9CEF05C9B89D5A8254F4F8/"
+    },
+    {
+      "Name": "Effect-Curse",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335237445/F10A40684FA3670D0E110191611676C44F489748/"
+    },
+    {
+      "Name": "Curse-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766658589/7243BAFBA97A26003905F2F528B2A1287ED3F628/"
+    },
+    {
+      "Name": "Effect-Fly",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335240329/FEB35AD038A6F0645485F8B62F7D67EB8DEEFE77/"
+    },
+    {
+      "Name": "Effect-Generate Air",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/938309024726768884/CC8308C7D7DD6185F3EFA99F452C83101E1E95E3/"
+    },
+    {
+      "Name": "Effect-Generate Any",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/938309024726984504/2F962A64E2A9888C90856D9C150EF81089745137/"
+    },
+    {
+      "Name": "Effect-Generate Dark",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/938309024726982499/9C14793623433565A9D6E5B3C608C1F6FBB84C76/"
+    },
+    {
+      "Name": "Effect-Generate Earth",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/938309024726773039/E83D1E9F06938B3B5355F0A6A49D98B78B1F2594/"
+    },
+    {
+      "Name": "Effect-Generate Fire",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/938309024726770166/CD369CF7C22FAD932A71C65BA811AE137234270D/"
+    },
+    {
+      "Name": "Effect-Generate Ice",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/938309024726771564/3C69B7D1E66E8FC022B2BD77CC427E8AEC5D9331/"
+    },
+    {
+      "Name": "Effect-Generate Light",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/938309024726774294/5BBAC718ED55E90563D2B24848DE3ACAEBD76FE9/"
+    },
+    {
+      "Name": "Effect-Generate Light or Dark",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1478820976197633400/506D08CF7FBB2F6100F15A80CD54D9EE2BF35181/"
+    },
+    {
+      "Name": "Effect-Jump",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1948388036162552120/8D950282276104420AB74B5BB3F898382C1774BA/"
+    },
+    {
+      "Name": "Effect-Move",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1948388036162545819/12E976BAB0EFB30F147805B7172AF46F4A055821/"
+    },
+    {
+      "Name": "Effect-Pierce",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335248486/100217496DD5B5D150F31B0FFB080E7C7283705D/"
+    },
+    {
+      "Name": "Effect-Pull",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335249804/4C73073477F29074DE05B08F3F86D9FEF2705881/"
+    },
+    {
+      "Name": "Pull-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766660950/32B6123D44A700D801FB6D9506A1869CADC997F0/"
+    },
+    {
+      "Name": "Effect-Push",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335251134/78C03FAA36481E66B09206BC95EDD19F0C0FF812/"
+    },
+    {
+      "Name": "Push-immunity",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1719786285766659957/983E46854AE174881307D59D5752A4869C6CB656/"
+    },
+    {
+      "Name": "Effect-Range",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1948388036162544849/C5D3C835BAD31C6988B5E6E38B13632EB6FB3384/"
+    },
+    {
+      "Name": "Effect-Retaliate",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335255371/35023C8E2969F322C01150148B92D827E6DB560C/"
+    },
+    {
+      "Name": "Effect-Shield",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335259632/505B1D168C648AF41FC04DB3FE78E9EC27531346/"
+    },
+    {
+      "Name": "Effect-Target",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1019444160335261306/4CA039FF943FF9446707CA42E15ED87986D4E734/"
+    },
+    {
+      "Name": "Enemy-Icon-Ancient Artillery",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075790738/993479463520298E911DB4BFB7CD732FA29344A7/"
+    },
+    {
+      "Name": "Enemy-Icon-Bandit Archer",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075790807/F181B084F5CA91BC0E0F75C682C6993C4BCBDA43/"
+    },
+    {
+      "Name": "Enemy-Icon-City Archer",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791235/1B01BBBC4EF8BE68D12391AAED6309BF39833FA3/"
+    },
+    {
+      "Name": "Enemy-Icon-Inox Archer",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792236/3D8BA2902D7920E02B3782DA0E379442601DA1C8/"
+    },
+    {
+      "Name": "Enemy-Icon-Aesther Ashblade",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075790596/A723A4F1B5F6E9149A6C69D89AC29FF30492247C/"
+    },
+    {
+      "Name": "Enemy-Icon-Cave Bear",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791165/8FF711ADA7941FCD8D0140ABB92C583D0D63D492/"
+    },
+    {
+      "Name": "Enemy-Icon-Cultist",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791401/EA5104067C832F25EF2F4B942BFD100145A59242/"
+    },
+    {
+      "Name": "Enemy-Icon-Deep Terror",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791552/184035C5C279758683B0FEBE09ED6F2E84F3C75B/"
+    },
+    {
+      "Name": "Enemy-Icon-Earth Demon",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791625/0B37CFE711F4D78EDB480B97A9E9E89729B9504E/"
+    },
+    {
+      "Name": "Enemy-Icon-Flame Demon",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791754/C8F7BB8EE2F9747B4826628B0DAB088D2D326476/"
+    },
+    {
+      "Name": "Enemy-Icon-Frost Demon",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791890/5C58977413D62D16B899D929F6C267C062F7D87C/"
+    },
+    {
+      "Name": "Enemy-Icon-Giant Viper",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791955/BAB43543950168C20BE643F1C465593BC02031BE/"
+    },
+    {
+      "Name": "Enemy-Icon-Bandit Guard",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075790950/BC8FF7FAC787DC1F0587EEDED3B34FCBCAEFCA35/"
+    },
+    {
+      "Name": "Enemy-Icon-City Guard",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791313/23008484069CCEA8F4734134256A5CD4741D6EDE/"
+    },
+    {
+      "Name": "Enemy-Icon-Inox Guard",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792402/0735AB9615F4D5A48634258D08E3EF07E9423230/"
+    },
+    {
+      "Name": "Enemy-Icon-Harrower Infester",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792028/450134CD91ED41181881969207CEF1CE2A8D0E52/"
+    },
+    {
+      "Name": "Enemy-Icon-Hound",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792088/9B6639C6009C97C81461B05E4C14D4746333DFE0/"
+    },
+    {
+      "Name": "Enemy-Icon-Black Imp",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791022/1875A69A635FA600DD918608392AD36182F62F43/"
+    },
+    {
+      "Name": "Enemy-Icon-Forest Imp",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075791818/A81BB0DF31AE70905511E33A557D8F3B74A65E36/"
+    },
+    {
+      "Name": "Enemy-Icon-Living Bones",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792631/D652524FDD5CD95C47CCCFB1374FD586457C2F10/"
+    },
+    {
+      "Name": "Enemy-Icon-Living Corpse",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792695/499848E84DB9E2501DA0FE91B4AF19FA503048D2/"
+    },
+    {
+      "Name": "Enemy-Icon-Living Spirit",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792760/5A8E8CDC94499E6FDF9537E6267E0C2A7E070A1F/"
+    },
+    {
+      "Name": "Enemy-Icon-Lurker",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792821/D2EE06A46938B05DCAB369DE964C17739DB6D65A/"
+    },
+    {
+      "Name": "Enemy-Icon-Night Demon",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075793046/7935292BB62942797F22234A7712540437C1BEA0/"
+    },
+    {
+      "Name": "Enemy-Icon-Ooze",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075793113/F1D318278D58D232862264C8905E2FED7509EC57/"
+    },
+    {
+      "Name": "Enemy-Icon-Rending Drake",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075793261/01D0635E65793BBD00B658704A4A5FC236A4D467/"
+    },
+    {
+      "Name": "Enemy-Icon-Valrath Savage",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075794357/9A96CE3508EDE74CD1E1DDB1BFC3E55D679650D9/"
+    },
+    {
+      "Name": "Enemy-Icon-Savvas Icestorm",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075793326/74D5786298803BAFE1C56EE458B3B7D5221C79A3/"
+    },
+    {
+      "Name": "Enemy-Icon-Savvas Lavaflow",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075793395/7C7800FCE74AB093DB432EBE133E8AB24EF075D2/"
+    },
+    {
+      "Name": "Enemy-Icon-Aesther Scout",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075790673/5BD04C7C21C652AB81775BB82E89D937A8C8058A/"
+    },
+    {
+      "Name": "Enemy-Icon-Vermling Scout",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075794517/59283ED2501E794483DBD15D29AAC02A25176969/"
+    },
+    {
+      "Name": "Enemy-Icon-Inox Shaman",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075792482/7561A8A88E15E1466B4F57227E998ADC7FD8035D/"
+    },
+    {
+      "Name": "Enemy-Icon-Vermling Shaman",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075794584/6EC02A7469FEE833FA7F3C4DE8B95F32F6BDB20A/"
+    },
+    {
+      "Name": "Enemy-Icon-Spitting Drake",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075793533/A3146223C8B533BAE33DC44EC0D3C352F3268E3D/"
+    },
+    {
+      "Name": "Enemy-Icon-Stone Golem",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075793676/7DC70CFB746F0BBEB27E87448DEE04D6B62EF745/"
+    },
+    {
+      "Name": "Enemy-Icon-Sun Demon",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075793740/29F986B3E91A9374FAD51F1D1C951A967B8D3CF0/"
+    },
+    {
+      "Name": "Enemy-Icon-Valrath Tracker",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075794425/01417DD16099A21D59AB09FCE89508725CD2C283/"
+    },
+    {
+      "Name": "Enemy-Icon-Wind Demon",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/1688272925075794648/D429CD2EBC04580DD1E889DEC223CB870F9F9191/"
+    }
+  ],
+  "SnapPoints": [
+    {
+      "Position": {
+        "x": -36.0014,
+        "y": 1.6801,
+        "z": -40
+      },
+      "Rotation": {
+        "x": -0.0001,
+        "y": 180.0016,
+        "z": 0
+      }
+    },
+    {
+      "Position": {
+        "x": -12.001,
+        "y": 1.6801,
+        "z": -40
+      },
+      "Rotation": {
+        "x": -0.0003,
+        "y": 180.0298,
+        "z": -0.0001
+      }
+    },
+    {
+      "Position": {
+        "x": 12.001,
+        "y": 1.6801,
+        "z": -40
+      },
+      "Rotation": {
+        "x": -0.0003,
+        "y": 180.0294,
+        "z": 0
+      }
+    },
+    {
+      "Position": {
+        "x": 36.0009,
+        "y": 1.6801,
+        "z": -40
+      },
+      "Rotation": {
+        "x": -0.0003,
+        "y": 180.0302,
+        "z": -0.0001
+      }
+    }
+  ],
+  "ObjectStates": []
+}

@@ -83,7 +83,7 @@ func TestBundleXML(t *testing.T) {
   <Panel id="CameraControl"
          visibility="false"
   </Panel>
-  
+
   <!-- include ui/CameraControl -->
   <!-- include ui/Shop -->
   <Panel id="shop.window" class="drag"

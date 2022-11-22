@@ -52,6 +52,8 @@ func TestAllReverseThenBuild(t *testing.T) {
 			r := mod.Reverser{
 				ModSettingsWriter: modsettings,
 				LuaWriter:         objsAndLua,
+				XMLWriter:         objsAndLua,
+				XMLSrcWriter:      objsAndLua,
 				LuaSrcWriter:      objsAndLua,
 				ObjWriter:         objsAndLua,
 				ObjDirCreeator:    objsAndLua,
@@ -64,11 +66,15 @@ func TestAllReverseThenBuild(t *testing.T) {
 
 			objsAndLua.DebugFileNames(t.Logf)
 			finalOutput.DebugFileNames(t.Logf)
-			reversedConfig, _ := finalOutput.ReadObj("config.json")
+			reversedConfig, err := finalOutput.ReadObj("config.json")
+			if err != nil {
+				t.Fatalf("Couldn't find root config: %v", err)
+			}
 			t.Logf("%v\n", reversedConfig)
 
 			m := &mod.Mod{
 				Lua:         objsAndLua,
+				XML:         objsAndLua,
 				Modsettings: modsettings,
 				Objs:        objsAndLua,
 				Objdirs:     objsAndLua,
@@ -97,21 +103,31 @@ func TestAllReverseThenBuild(t *testing.T) {
 
 				return false
 			}
-			// bundler.AnalyzeBundle(want["LuaScript"].(string), t.Logf)
-			// bundler.AnalyzeBundle(got["LuaScript"].(string), t.Logf)
-			wantBundles, err := bundler.UnbundleAll(want["LuaScript"].(string))
-			if err != nil {
-				t.Fatalf("unbundle want : %v", err)
+			wls, wok := want["LuaScript"]
+			gls, gok := got["LuaScript"]
+			if wok && gok {
+				wlss, ok := wls.(string)
+				if !ok {
+					t.Fatalf("non string found in luascript, found %T", wls)
+				}
+				glss, ok := gls.(string)
+				if !ok {
+					t.Fatalf("non string found in luascript, found %T", gls)
+				}
+				wantBundles, err := bundler.UnbundleAll(wlss)
+				if err != nil {
+					t.Fatalf("unbundle want : %v", err)
+				}
+				gotBundles, err := bundler.UnbundleAll(glss)
+				if err != nil {
+					t.Fatalf("unbundle got : %v", err)
+				}
+				if diff := cmp.Diff(mapOfKeys(wantBundles), mapOfKeys(gotBundles)); diff != "" {
+					t.Errorf("want != got:\n%v\n", diff)
+				}
+				delete(want, "LuaScript")
+				delete(got, "LuaScript")
 			}
-			gotBundles, err := bundler.UnbundleAll(got["LuaScript"].(string))
-			if err != nil {
-				t.Fatalf("unbundle got : %v", err)
-			}
-			if diff := cmp.Diff(mapOfKeys(wantBundles), mapOfKeys(gotBundles)); diff != "" {
-				t.Errorf("want != got:\n%v\n", diff)
-			}
-			delete(want, "LuaScript")
-			delete(got, "LuaScript")
 
 			if diff := cmp.Diff(want, got, cmpopts.IgnoreMapEntries(ignoreUnpredictable)); diff != "" {
 				t.Errorf("want != got:\n%v\n", diff)

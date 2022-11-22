@@ -92,17 +92,17 @@ func (h *Handler) WhileReadingFromFile(rawj map[string]interface{}) (HandleActio
 // WhileWritingToFile consolidates the logic and flow of conditionally writing
 // lua to a file, and which file to write to
 func (h *Handler) WhileWritingToFile(rawj map[string]interface{}, possiblefname string) (HandleAction, error) {
-	rawscript, ok := rawj["LuaScript"]
+	rawscript, ok := rawj[h.key]
 	if !ok {
 		return HandleAction{Noop: true}, nil
 	}
 	script, ok := rawscript.(string)
 	if !ok {
-		return HandleAction{}, fmt.Errorf("Value of content at LuaScript expected to be string, was %v, type %T",
-			rawscript, rawscript)
+		return HandleAction{}, fmt.Errorf("Value of content at %s expected to be string, was %v, type %T",
+			h.key, rawscript, rawscript)
 	}
 
-	allScripts, err := bundler.UnbundleAll(script)
+	allScripts, err := h.unbundle(script)
 	if err != nil {
 		return HandleAction{}, fmt.Errorf("UnbundleAll(...): %v", err)
 	}
@@ -114,17 +114,17 @@ func (h *Handler) WhileWritingToFile(rawj map[string]interface{}, possiblefname 
 		if err != nil {
 			return HandleAction{}, fmt.Errorf("EncodeToFile(<root script>, %s): %v", possiblefname, err)
 		}
-		returnAction.Key = "LuaScript_path"
+		returnAction.Key = h.keypath
 		returnAction.Value = possiblefname
 	} else {
-		returnAction.Key = "LuaScript"
+		returnAction.Key = h.key
 		returnAction.Value = rootscript
 	}
 	delete(allScripts, bundler.Rootname)
 
 	for k, script := range allScripts {
 		fname := k
-		if strings.HasSuffix(k, h.extension) {
+		if !strings.HasSuffix(k, h.extension) {
 			fname = fmt.Sprintf("%s%s", k, h.extension)
 		}
 		if h.SrcWriter == nil {

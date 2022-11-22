@@ -49,6 +49,10 @@ func indentString(s string, indent string) string {
 	lines := strings.Split(s, "\n")
 	final := []string{}
 	for _, v := range lines {
+		if v == "" {
+			final = append(final, "")
+			continue
+		}
 		final = append(final, fmt.Sprintf("%s%s", indent, v))
 	}
 

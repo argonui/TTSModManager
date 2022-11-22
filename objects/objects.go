@@ -107,7 +107,7 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	return nil
 }
 
-func (o *objConfig) print(l file.TextReader) (J, error) {
+func (o *objConfig) print(l, x file.TextReader) (J, error) {
 
 	var out J
 	out = o.data
@@ -121,6 +121,17 @@ func (o *objConfig) print(l file.TextReader) (J, error) {
 	if !act.Noop {
 		delete(out, "LuaScript")
 		delete(out, "LuaScript_path")
+		out[act.Key] = act.Value
+	}
+	xh := handler.NewXMLHandler()
+	xh.Reader = x
+	act, err = xh.WhileReadingFromFile(o.data)
+	if err != nil {
+		return nil, fmt.Errorf("WhileReadingFromFile(): %v", err)
+	}
+	if !act.Noop {
+		delete(out, "XmlUI")
+		delete(out, "XmlUI_path")
 		out[act.Key] = act.Value
 	}
 
@@ -141,7 +152,7 @@ func (o *objConfig) print(l file.TextReader) (J, error) {
 
 	subs := []J{}
 	for _, sub := range o.subObj {
-		printed, err := sub.print(l)
+		printed, err := sub.print(l, x)
 		if err != nil {
 			return nil, err
 		}
@@ -163,6 +174,20 @@ func (o *objConfig) printToFile(filepath string, p *Printer) error {
 
 	maybeNeededFname := path.Join(filepath, o.getAGoodFileName()+".ttslua")
 	act, err := lh.WhileWritingToFile(o.data, maybeNeededFname)
+	if err != nil {
+		return fmt.Errorf("WhileWritingToFile(<>, %s): %v", maybeNeededFname, err)
+	}
+	if !act.Noop {
+		delete(out, "LuaScript")
+		delete(out, "LuaScript_path")
+		out[act.Key] = act.Value
+	}
+
+	xh := handler.NewXMLHandler()
+	xh.DefaultWriter = p.XML
+	xh.SrcWriter = p.XMLSrc
+	maybeNeededFname = path.Join(filepath, o.getAGoodFileName()+".xml")
+	act, err = lh.WhileWritingToFile(o.data, maybeNeededFname)
 	if err != nil {
 		return fmt.Errorf("WhileWritingToFile(<>, %s): %v", maybeNeededFname, err)
 	}
@@ -262,7 +287,7 @@ type db struct {
 	dir file.DirExplorer
 }
 
-func (d *db) print(l file.TextReader, order []string) (ObjArray, error) {
+func (d *db) print(l file.TextReader, x file.TextReader, order []string) (ObjArray, error) {
 	var oa ObjArray
 	if len(order) != len(d.root) {
 		return nil, fmt.Errorf("expected order (%v) and db.root (%v) to have same length", len(order), len(d.root))
@@ -271,7 +296,7 @@ func (d *db) print(l file.TextReader, order []string) (ObjArray, error) {
 		if _, ok := d.root[nextGUID]; !ok {
 			return nil, fmt.Errorf("order expected %s, not found in db", nextGUID)
 		}
-		printed, err := d.root[nextGUID].print(l)
+		printed, err := d.root[nextGUID].print(l, x)
 		if err != nil {
 			return ObjArray{}, fmt.Errorf("obj (%s) did not print : %v", nextGUID, err)
 		}
@@ -290,7 +315,7 @@ func (d *db) print(l file.TextReader, order []string) (ObjArray, error) {
 // --bar.json (guid=888)
 // --888/
 //    --baz.json (guid=999) << this is a child of bar.json
-func ParseAllObjectStates(l file.TextReader, j file.JSONReader, dir file.DirExplorer, order []string) ([]map[string]interface{}, error) {
+func ParseAllObjectStates(l file.TextReader, x file.TextReader, j file.JSONReader, dir file.DirExplorer, order []string) ([]map[string]interface{}, error) {
 	d := db{
 		j:    j,
 		dir:  dir,
@@ -301,7 +326,7 @@ func ParseAllObjectStates(l file.TextReader, j file.JSONReader, dir file.DirExpl
 	if err != nil {
 		return []map[string]interface{}{}, fmt.Errorf("parseFolder(%s): %v", "<root>", err)
 	}
-	return d.print(l, order)
+	return d.print(l, x, order)
 }
 
 func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
@@ -330,6 +355,8 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 type Printer struct {
 	Lua    file.TextWriter
 	LuaSrc file.TextWriter
+	XML    file.TextWriter
+	XMLSrc file.TextWriter
 	J      file.JSONWriter
 	Dir    file.DirCreator
 }
