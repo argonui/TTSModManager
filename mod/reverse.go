@@ -13,8 +13,8 @@ import (
 // Reverser holds interfaces and configs for the reversing process
 type Reverser struct {
 	ModSettingsWriter file.JSONWriter
-	LuaWriter         file.LuaWriter
-	LuaSrcWriter      file.LuaWriter
+	LuaWriter         file.TextWriter
+	LuaSrcWriter      file.TextWriter
 	ObjWriter         file.JSONWriter
 	ObjDirCreeator    file.DirCreator
 	RootWrite         file.JSONWriter

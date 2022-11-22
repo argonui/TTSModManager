@@ -32,7 +32,7 @@ type Mod struct {
 
 	RootRead    file.JSONReader
 	RootWrite   file.JSONWriter
-	Lua         file.LuaReader
+	Lua         file.TextReader
 	Modsettings file.JSONReader
 	Objs        file.JSONReader
 	Objdirs     file.DirExplorer

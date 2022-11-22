@@ -107,7 +107,7 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	return nil
 }
 
-func (o *objConfig) print(l file.LuaReader) (J, error) {
+func (o *objConfig) print(l file.TextReader) (J, error) {
 
 	var out J
 	out = o.data
@@ -263,7 +263,7 @@ type db struct {
 	dir file.DirExplorer
 }
 
-func (d *db) print(l file.LuaReader, order []string) (ObjArray, error) {
+func (d *db) print(l file.TextReader, order []string) (ObjArray, error) {
 	var oa ObjArray
 	if len(order) != len(d.root) {
 		return nil, fmt.Errorf("expected order (%v) and db.root (%v) to have same length", len(order), len(d.root))
@@ -291,7 +291,7 @@ func (d *db) print(l file.LuaReader, order []string) (ObjArray, error) {
 // --bar.json (guid=888)
 // --888/
 //    --baz.json (guid=999) << this is a child of bar.json
-func ParseAllObjectStates(l file.LuaReader, j file.JSONReader, dir file.DirExplorer, order []string) ([]map[string]interface{}, error) {
+func ParseAllObjectStates(l file.TextReader, j file.JSONReader, dir file.DirExplorer, order []string) ([]map[string]interface{}, error) {
 	d := db{
 		j:    j,
 		dir:  dir,
@@ -329,8 +329,8 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 
 // Printer holds the info of which writer is which, because paratemter lists are rough
 type Printer struct {
-	Lua    file.LuaWriter
-	LuaSrc file.LuaWriter
+	Lua    file.TextWriter
+	LuaSrc file.TextWriter
 	J      file.JSONWriter
 	Dir    file.DirCreator
 }

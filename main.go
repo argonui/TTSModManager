@@ -29,11 +29,11 @@ const (
 func main() {
 	flag.Parse()
 
-	lua := file.NewLuaOpsMulti(
+	lua := file.NewTextOpsMulti(
 		[]string{path.Join(*moddir, textSubdir), path.Join(*moddir, objectsSubdir)},
 		path.Join(*moddir, objectsSubdir),
 	)
-	luaSrc := file.NewLuaOps(path.Join(*moddir, textSubdir))
+	luaSrc := file.NewTextOps(path.Join(*moddir, textSubdir))
 	ms := file.NewJSONOps(path.Join(*moddir, modsettingsDir))
 	objs := file.NewJSONOps(path.Join(*moddir, objectsSubdir))
 	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))

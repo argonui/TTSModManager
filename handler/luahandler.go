@@ -10,9 +10,9 @@ import (
 // and if it it long enough to be written to separate file at all has become
 // burdensome. abstract into struct
 type LuaHandler struct {
-	ObjWriter file.LuaWriter
-	SrcWriter file.LuaWriter
-	Reader    file.LuaReader
+	ObjWriter file.TextWriter
+	SrcWriter file.TextWriter
+	Reader    file.TextReader
 }
 
 // HandleAction describes at the end of handling,
