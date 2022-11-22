@@ -13,8 +13,10 @@ import (
 // Reverser holds interfaces and configs for the reversing process
 type Reverser struct {
 	ModSettingsWriter file.JSONWriter
-	LuaWriter         file.LuaWriter
-	LuaSrcWriter      file.LuaWriter
+	LuaWriter         file.TextWriter
+	LuaSrcWriter      file.TextWriter
+	XMLWriter         file.TextWriter
+	XMLSrcWriter      file.TextWriter
 	ObjWriter         file.JSONWriter
 	ObjDirCreeator    file.DirCreator
 	RootWrite         file.JSONWriter
@@ -34,7 +36,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		if !ok {
 			return fmt.Errorf("expected string value in key %s, got %v", strKey, rawVal)
 		}
-		if strKey == "LuaScript" {
+		if strKey == "LuaScript" || strKey == "XmlUI" {
 			// let the LuaHAndler handle the complicated case
 			continue
 		}
@@ -55,16 +57,29 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		delete(raw, strKey)
 	}
 
-	lh := handler.LuaHandler{
-		ObjWriter: r.LuaWriter,
-		SrcWriter: r.LuaSrcWriter,
-	}
+	lh := handler.NewLuaHandler()
+	lh.DefaultWriter = r.LuaWriter
+	lh.SrcWriter = r.LuaSrcWriter
+
 	act, err := lh.WhileWritingToFile(raw, "LuaScript.ttslua")
 	if err != nil {
 		return fmt.Errorf("WhileWritingToFile(<>, root luascript): %v", err)
 	}
 	if !act.Noop {
 		delete(raw, "LuaScript")
+		raw[act.Key] = act.Value
+	}
+
+	xh := handler.NewXMLHandler()
+	xh.DefaultWriter = r.XMLWriter
+	xh.SrcWriter = r.XMLSrcWriter
+
+	act, err = xh.WhileWritingToFile(raw, "Root.xml")
+	if err != nil {
+		return fmt.Errorf("WhileWritingToFile(<>, root luascript): %v", err)
+	}
+	if !act.Noop {
+		delete(raw, "XmlUI")
 		raw[act.Key] = act.Value
 	}
 
@@ -129,6 +144,8 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		printer := &objects.Printer{
 			Lua:    r.LuaWriter,
 			LuaSrc: r.LuaSrcWriter,
+			XML:    r.XMLWriter,
+			XMLSrc: r.XMLSrcWriter,
 			J:      r.ObjWriter,
 			Dir:    r.ObjDirCreeator,
 		}

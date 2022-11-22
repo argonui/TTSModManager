@@ -32,7 +32,8 @@ type Mod struct {
 
 	RootRead    file.JSONReader
 	RootWrite   file.JSONWriter
-	Lua         file.LuaReader
+	Lua         file.TextReader
+	XML         file.TextReader
 	Modsettings file.JSONReader
 	Objs        file.JSONReader
 	Objdirs     file.DirExplorer
@@ -72,9 +73,10 @@ func (m *Mod) generate(raw types.J) error {
 	for _, objarraybased := range ExpectedObjArr {
 		tryPut(&m.Data, objarraybased+ext, objarraybased, objArray)
 	}
-	lh := &handler.LuaHandler{
-		Reader: m.Lua,
-	}
+
+	lh := handler.NewLuaHandler()
+	lh.Reader = m.Lua
+
 	act, err := lh.WhileReadingFromFile(m.Data)
 	if err != nil {
 		return fmt.Errorf("WhileReadingFromFile(): %v", err)
@@ -82,6 +84,19 @@ func (m *Mod) generate(raw types.J) error {
 	if !act.Noop {
 		delete(m.Data, "LuaScript")
 		delete(m.Data, "LuaScript_path")
+		m.Data[act.Key] = act.Value
+	}
+
+	xh := handler.NewXMLHandler()
+	xh.Reader = m.XML
+
+	act, err = xh.WhileReadingFromFile(m.Data)
+	if err != nil {
+		return fmt.Errorf("WhileReadingFromFile(): %v", err)
+	}
+	if !act.Noop {
+		delete(m.Data, "XmlUI")
+		delete(m.Data, "XmlUI_path")
 		m.Data[act.Key] = act.Value
 	}
 
@@ -94,7 +109,7 @@ func (m *Mod) generate(raw types.J) error {
 		return fmt.Errorf("Has Objects, but can't discern their order: %v", err)
 	}
 
-	allObjs, err := objects.ParseAllObjectStates(m.Lua, m.Objs, m.Objdirs, objOrder)
+	allObjs, err := objects.ParseAllObjectStates(m.Lua, m.XML, m.Objs, m.Objdirs, objOrder)
 	if err != nil {
 		return fmt.Errorf("objects.ParseAllObjectStates(%s) : %v", "", err)
 	}

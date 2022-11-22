@@ -103,7 +103,7 @@ func TestObjPrinting(t *testing.T) {
 				"core/AgendaDeck.ttslua": "var a = 42;",
 			},
 		}
-		got, err := tc.o.print(l)
+		got, err := tc.o.print(l, l)
 		if err != nil {
 			t.Errorf("printing %v, got %v", tc.o, err)
 		}
@@ -477,7 +477,7 @@ func TestDBPrint(t *testing.T) {
 		db := db{
 			root: tc.root,
 		}
-		got, err := db.print(ff, tc.orderInput)
+		got, err := db.print(ff, ff, tc.orderInput)
 		if err != nil {
 			t.Fatalf("got unexpected err %v", err)
 		}

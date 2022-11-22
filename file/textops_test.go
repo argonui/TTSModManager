@@ -29,7 +29,7 @@ func TestRead(t *testing.T) {
 	ff := &fakeFiles{
 		fs: map[string][]byte{"foo/bar": []byte("bar = 2")},
 	}
-	l := &LuaOps{
+	l := &TextOps{
 		basepaths:       []string{"foo"},
 		readFileToBytes: ff.read,
 	}
@@ -52,7 +52,7 @@ func TestReadMulti(t *testing.T) {
 			"foo2/bar": []byte("bar = 2"),
 		},
 	}
-	l := &LuaOps{
+	l := &TextOps{
 		basepaths:       []string{"foo", "foo2"},
 		readFileToBytes: ff.read,
 	}
@@ -75,7 +75,7 @@ func TestReadErr(t *testing.T) {
 			"foo2/bar": []byte("bar = 2"),
 		},
 	}
-	l := &LuaOps{
+	l := &TextOps{
 		basepaths:       []string{"foo", "foo2"},
 		readFileToBytes: ff.read,
 	}
@@ -90,7 +90,7 @@ func TestWrite(t *testing.T) {
 	ff := &fakeFiles{
 		fs: map[string][]byte{},
 	}
-	l := LuaOps{
+	l := TextOps{
 		writeBasepath:    "foo",
 		writeBytesToFile: ff.write,
 	}

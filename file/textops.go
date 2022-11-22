@@ -7,36 +7,32 @@ import (
 	"path"
 )
 
-const (
-	expectedSuffix = ".ttslua"
-)
-
-// LuaOps allows for arbitrary reads and writes of luascript
-type LuaOps struct {
+// TextOps allows for arbitrary reads and writes of text files
+type TextOps struct {
 	basepaths        []string
 	writeBasepath    string
 	readFileToBytes  func(string) ([]byte, error)
 	writeBytesToFile func(string, []byte) error
 }
 
-// LuaReader serves to describe all ways to read luascripts
-type LuaReader interface {
+// TextReader serves to describe all ways to read luascripts
+type TextReader interface {
 	EncodeFromFile(string) (string, error)
 }
 
-// LuaWriter serves to describe all ways to write luascripts
-type LuaWriter interface {
+// TextWriter serves to describe all ways to write luascripts
+type TextWriter interface {
 	EncodeToFile(script, file string) error
 }
 
-// NewLuaOps initializes our object on a directory
-func NewLuaOps(base string) *LuaOps {
-	return NewLuaOpsMulti([]string{base}, base)
+// NewTextOps initializes our object on a directory
+func NewTextOps(base string) *TextOps {
+	return NewTextOpsMulti([]string{base}, base)
 }
 
-// NewLuaOpsMulti allows for luascript to be read from multiple directories
-func NewLuaOpsMulti(readDirs []string, writeDir string) *LuaOps {
-	return &LuaOps{
+// NewTextOpsMulti allows for luascript to be read from multiple directories
+func NewTextOpsMulti(readDirs []string, writeDir string) *TextOps {
+	return &TextOps{
 		basepaths:     readDirs,
 		writeBasepath: writeDir,
 		readFileToBytes: func(s string) ([]byte, error) {
@@ -69,7 +65,7 @@ func NewLuaOpsMulti(readDirs []string, writeDir string) *LuaOps {
 }
 
 // EncodeFromFile pulls a file from configs and encodes it as a string.
-func (l *LuaOps) EncodeFromFile(filename string) (string, error) {
+func (l *TextOps) EncodeFromFile(filename string) (string, error) {
 	for _, base := range l.basepaths {
 		p := path.Join(base, filename)
 		b, err := l.readFileToBytes(p)
@@ -83,7 +79,7 @@ func (l *LuaOps) EncodeFromFile(filename string) (string, error) {
 }
 
 // EncodeToFile takes a single string and decodes escape characters; writes it.
-func (l *LuaOps) EncodeToFile(script, file string) error {
+func (l *TextOps) EncodeToFile(script, file string) error {
 	p := path.Join(l.writeBasepath, file)
 	return l.writeBytesToFile(p, []byte(script))
 }

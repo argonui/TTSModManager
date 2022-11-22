@@ -145,7 +145,7 @@ func Unbundle(rawlua string) (string, error) {
 }
 
 // Bundle grabs all dependencies and creates a single luascript
-func Bundle(rawlua string, l file.LuaReader) (string, error) {
+func Bundle(rawlua string, l file.TextReader) (string, error) {
 	if IsBundled(rawlua) {
 		return rawlua, nil
 	}

@@ -21,7 +21,8 @@ var (
 )
 
 const (
-	textSubdir     = "src"
+	luasrcSubdir   = "src"
+	xmlsrcSubdir   = "xml"
 	modsettingsDir = "modsettings"
 	objectsSubdir  = "objects"
 )
@@ -29,11 +30,16 @@ const (
 func main() {
 	flag.Parse()
 
-	lua := file.NewLuaOpsMulti(
-		[]string{path.Join(*moddir, textSubdir), path.Join(*moddir, objectsSubdir)},
+	lua := file.NewTextOpsMulti(
+		[]string{path.Join(*moddir, luasrcSubdir), path.Join(*moddir, objectsSubdir)},
 		path.Join(*moddir, objectsSubdir),
 	)
-	luaSrc := file.NewLuaOps(path.Join(*moddir, textSubdir))
+	xml := file.NewTextOpsMulti(
+		[]string{path.Join(*moddir, xmlsrcSubdir), path.Join(*moddir, objectsSubdir)},
+		path.Join(*moddir, objectsSubdir),
+	)
+	xmlSrc := file.NewTextOps(path.Join(*moddir, xmlsrcSubdir))
+	luaSrc := file.NewTextOps(path.Join(*moddir, luasrcSubdir))
 	ms := file.NewJSONOps(path.Join(*moddir, modsettingsDir))
 	objs := file.NewJSONOps(path.Join(*moddir, objectsSubdir))
 	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))
@@ -47,12 +53,14 @@ func main() {
 		r := mod.Reverser{
 			ModSettingsWriter: ms,
 			LuaWriter:         lua,
+			XMLWriter:         xml,
 			ObjWriter:         objs,
 			ObjDirCreeator:    objdir,
 			RootWrite:         rootops,
 		}
 		if *writeToSrc {
 			r.LuaSrcWriter = luaSrc
+			r.XMLSrcWriter = xmlSrc
 		}
 		err = r.Write(raw)
 		if err != nil {
@@ -69,6 +77,7 @@ func main() {
 
 	m := &mod.Mod{
 		Lua:         lua,
+		XML:         xml,
 		Modsettings: ms,
 		Objs:        objs,
 		Objdirs:     objdir,
@@ -88,7 +97,7 @@ func main() {
 
 // prepForReverse creates the expected subdirectories in config path
 func prepForReverse(cPath, modfile string) (types.J, error) {
-	subDirs := []string{textSubdir, modsettingsDir, objectsSubdir}
+	subDirs := []string{luasrcSubdir, modsettingsDir, objectsSubdir, xmlsrcSubdir}
 
 	for _, s := range subDirs {
 		p := path.Join(cPath, s)
