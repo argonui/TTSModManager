@@ -72,9 +72,10 @@ func (m *Mod) generate(raw types.J) error {
 	for _, objarraybased := range ExpectedObjArr {
 		tryPut(&m.Data, objarraybased+ext, objarraybased, objArray)
 	}
-	lh := &handler.LuaHandler{
-		Reader: m.Lua,
-	}
+
+	lh := handler.NewLuaHandler()
+	lh.Reader = m.Lua
+
 	act, err := lh.WhileReadingFromFile(m.Data)
 	if err != nil {
 		return fmt.Errorf("WhileReadingFromFile(): %v", err)

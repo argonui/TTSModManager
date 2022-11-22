@@ -55,10 +55,10 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		delete(raw, strKey)
 	}
 
-	lh := handler.LuaHandler{
-		ObjWriter: r.LuaWriter,
-		SrcWriter: r.LuaSrcWriter,
-	}
+	lh := handler.NewLuaHandler()
+	lh.DefaultWriter = r.LuaWriter
+	lh.SrcWriter = r.LuaSrcWriter
+
 	act, err := lh.WhileWritingToFile(raw, "LuaScript.ttslua")
 	if err != nil {
 		return fmt.Errorf("WhileWritingToFile(<>, root luascript): %v", err)

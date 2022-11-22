@@ -112,9 +112,8 @@ func (o *objConfig) print(l file.TextReader) (J, error) {
 	var out J
 	out = o.data
 
-	lh := &handler.LuaHandler{
-		Reader: l,
-	}
+	lh := handler.NewLuaHandler()
+	lh.Reader = l
 	act, err := lh.WhileReadingFromFile(o.data)
 	if err != nil {
 		return nil, fmt.Errorf("WhileReadingFromFile(): %v", err)
@@ -158,10 +157,10 @@ func (o *objConfig) printToFile(filepath string, p *Printer) error {
 	var out J
 	out = o.data
 
-	lh := handler.LuaHandler{
-		ObjWriter: p.Lua,
-		SrcWriter: p.LuaSrc,
-	}
+	lh := handler.NewLuaHandler()
+	lh.DefaultWriter = p.Lua
+	lh.SrcWriter = p.LuaSrc
+
 	maybeNeededFname := path.Join(filepath, o.getAGoodFileName()+".ttslua")
 	act, err := lh.WhileWritingToFile(o.data, maybeNeededFname)
 	if err != nil {
