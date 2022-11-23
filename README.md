@@ -7,6 +7,10 @@ workshop mod.
 
 The binary is built by slsa-framework/slsa-github-generator and can be found attached to the latest release, for example: https://github.com/argonui/TTSModManager/releases/tag/v0.2.4/TTSModManager.exe for windows. In the examples i'll refer to the exe, but you can use the TTSModManager-Liunux with the same expected behavior.
 
+## Use automation in your repo
+
+See https://github.com/argonui/TTSModManager.action for automated building of the mod on every PR / release.
+
 # Example Usage
 ## Generate json from a directory
 $moddir = directory to read from
