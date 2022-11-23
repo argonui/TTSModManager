@@ -30,20 +30,69 @@ func TestObjPrintToFile(t *testing.T) {
 				"GUID": "123456",
 			},
 		},
+		{
+			o: &objConfig{
+				guid: "123456",
+				data: types.J{
+					"GUID": "123456",
+					"XmlUI": `<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					`,
+				},
+			},
+			wantFilename: "123456.json",
+			want: types.J{
+				"GUID":       "123456",
+				"XmlUI_path": "path/to/123456.xml",
+			},
+		},
+		{
+			o: &objConfig{
+				guid: "123457",
+				data: types.J{
+					"GUID": "123457",
+					"XmlUI": `<!-- include buttons -->
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+					<Button id="bar"/>
+<!-- include buttons -->
+`,
+				},
+			},
+			wantFilename: "123457.json",
+			want: types.J{
+				"GUID":  "123457",
+				"XmlUI": "<Include src=\"buttons\"/>\n",
+			},
+		},
 	} {
-		ff := tests.NewFF()
-		p := &Printer{
-			Lua: ff,
-			Dir: ff,
-			J:   ff,
-		}
-		err := tc.o.printToFile("path/to/", p)
-		if err != nil {
-			t.Errorf("printing %v, got %v", tc.o, err)
-		}
-		if diff := cmp.Diff(tc.want, ff.Data["path/to/"+tc.wantFilename]); diff != "" {
-			t.Errorf("want != got:\n%v\n", diff)
-		}
+		t.Run(tc.wantFilename, func(t *testing.T) {
+			ff := tests.NewFF()
+			p := &Printer{
+				Lua: ff,
+				XML: ff,
+				Dir: ff,
+				J:   ff,
+			}
+			err := tc.o.printToFile("path/to/", p)
+			if err != nil {
+				t.Fatalf("printing %v, got %v", tc.o, err)
+			}
+			ff.DebugFileNames(t.Logf)
+			if diff := cmp.Diff(tc.want, ff.Data["path/to/"+tc.wantFilename]); diff != "" {
+				t.Errorf("want != got:\n%v\n", diff)
+			}
+		})
+
 	}
 }
 

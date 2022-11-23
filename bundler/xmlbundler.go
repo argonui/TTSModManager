@@ -67,7 +67,7 @@ func UnbundleAllXML(rawxml string) (map[string]string, error) {
 		start int
 	}
 	store := map[string]string{}
-	inctag := regexp.MustCompile(`(?m)^(.*?)<!-- include (.*) -->`)
+	inctag := regexp.MustCompile(`(?m)^(.*?)<!-- include ([^ ]+) -->`)
 	stack := []inc{}
 	xmlarray := strings.Split(rawxml, "\n")
 
@@ -82,9 +82,13 @@ func UnbundleAllXML(rawxml string) (map[string]string, error) {
 			// found end of include, process it
 			indent := string(submatches[1])
 			indentedvals := xmlarray[stack[0].start+1 : ln]
-			store[stack[0].name] = unindentAndJoin(indentedvals, indent)
 
-			insertLine := fmt.Sprintf("%s<Include src=\"%s\"/>", indent, stack[0].name)
+			// do not let mods specify relative paths.
+			storedName := strings.Replace(stack[0].name, "../", "", -1)
+
+			store[storedName] = unindentAndJoin(indentedvals, indent)
+
+			insertLine := fmt.Sprintf("%s<Include src=\"%s\"/>", indent, storedName)
 			// remove the include from xmlarray
 			tmp := append(xmlarray[:stack[0].start], insertLine)
 			xmlarray = append(tmp, xmlarray[ln+1:]...)

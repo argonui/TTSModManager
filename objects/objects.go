@@ -187,13 +187,13 @@ func (o *objConfig) printToFile(filepath string, p *Printer) error {
 	xh.DefaultWriter = p.XML
 	xh.SrcWriter = p.XMLSrc
 	maybeNeededFname = path.Join(filepath, o.getAGoodFileName()+".xml")
-	act, err = lh.WhileWritingToFile(o.data, maybeNeededFname)
+	act, err = xh.WhileWritingToFile(o.data, maybeNeededFname)
 	if err != nil {
 		return fmt.Errorf("WhileWritingToFile(<>, %s): %v", maybeNeededFname, err)
 	}
 	if !act.Noop {
-		delete(out, "LuaScript")
-		delete(out, "LuaScript_path")
+		delete(out, "XmlUI")
+		delete(out, "XmlUI_path")
 		out[act.Key] = act.Value
 	}
 
