@@ -22,7 +22,7 @@ var (
 	objfile      = flag.String("objfile", "", "if building only object state list, output to this filename")
 )
 
-const (
+var (
 	luasrcSubdir   = "src"
 	xmlsrcSubdir   = "xml"
 	modsettingsDir = "modsettings"
@@ -31,6 +31,12 @@ const (
 
 func main() {
 	flag.Parse()
+
+	// only create an object state list, not an entire mod
+	if *objstatesdir != "" {
+		objectsSubdir = *objstatesdir
+		*modfile = *objfile
+	}
 
 	lua := file.NewTextOpsMulti(
 		[]string{path.Join(*moddir, luasrcSubdir), path.Join(*moddir, objectsSubdir)},
@@ -47,16 +53,6 @@ func main() {
 	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))
 	rootops := file.NewJSONOps(*moddir)
 
-	// only create an object state list, not an entire mod
-	if *objstatesdir != "" {
-		lua = file.NewLuaOpsMulti(
-			[]string{path.Join(*moddir, textSubdir), path.Join(*moddir, *objstatesdir)},
-			path.Join(*moddir, *objstatesdir),
-		)
-		objs = file.NewJSONOps(path.Join(*moddir, *objstatesdir))
-		objdir = file.NewDirOps(path.Join(*moddir, *objstatesdir))
-		*modfile = *objfile
-	}
 	basename := path.Base(*modfile)
 	outputOps := file.NewJSONOps(path.Dir(*modfile))
 
