@@ -14,10 +14,12 @@ import (
 )
 
 var (
-	moddir     = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
-	rev        = flag.Bool("reverse", false, "Instead of building a json from file structure, build file structure from json.")
-	writeToSrc = flag.Bool("writesrc", false, "When unbundling Lua, save the included 'require' files to the src/ directory.")
-	modfile    = flag.String("modfile", "", "where to read from when reversing.")
+	moddir       = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
+	rev          = flag.Bool("reverse", false, "Instead of building a json from file structure, build file structure from json.")
+	writeToSrc   = flag.Bool("writesrc", false, "When unbundling Lua, save the included 'require' files to the src/ directory.")
+	modfile      = flag.String("modfile", "", "where to read from when reversing.")
+	objstatesdir = flag.String("objdir", "", "If non-empty, don't build/reverse a full mod, only the object state array")
+	objfile      = flag.String("objfile", "", "if building only object state list, output to this filename")
 )
 
 const (
@@ -74,15 +76,27 @@ func main() {
 
 	basename := path.Base(*modfile)
 	outputOps := file.NewJSONOps(path.Dir(*modfile))
-
+	// only create an object state list, not an entire mod
+	if *objstatesdir != "" {
+		lua = file.NewLuaOpsMulti(
+			[]string{path.Join(*moddir, textSubdir), path.Join(*moddir, *objstatesdir)},
+			path.Join(*moddir, *objstatesdir),
+		)
+		objs = file.NewJSONOps(path.Join(*moddir, *objstatesdir))
+		objdir = file.NewDirOps(path.Join(*moddir, *objstatesdir))
+		outputOps = file.NewJSONOps(path.Dir(path.Join(*moddir, *objfile)))
+		basename = path.Base(*objfile)
+	}
 	m := &mod.Mod{
-		Lua:         lua,
-		XML:         xml,
-		Modsettings: ms,
-		Objs:        objs,
-		Objdirs:     objdir,
-		RootRead:    rootops,
-		RootWrite:   outputOps,
+
+		Lua:           lua,
+		XML:           xml,
+		Modsettings:   ms,
+		Objs:          objs,
+		Objdirs:       objdir,
+		RootRead:      rootops,
+		RootWrite:     outputOps,
+		OnlyObjStates: (*objstatesdir != ""),
 	}
 	err := m.GenerateFromConfig()
 	if err != nil {

@@ -37,15 +37,33 @@ type Mod struct {
 	Modsettings file.JSONReader
 	Objs        file.JSONReader
 	Objdirs     file.DirExplorer
+
+	OnlyObjStates bool
+	objstates     []map[string]interface{}
 }
 
 // GenerateFromConfig uses RootRead for reading entire mod config
 func (m *Mod) GenerateFromConfig() error {
+	if m.OnlyObjStates {
+		return m.generateOnlyObjStates()
+	}
 	raw, err := m.RootRead.ReadObj("config.json")
 	if err != nil {
 		return fmt.Errorf("could not read a root config: %v", err)
 	}
 	return m.generate(raw)
+}
+
+func (m *Mod) generateOnlyObjStates() error {
+	allObjs, err := objects.ParseAllObjectStates(m.Lua, m.XML, m.Objs, m.Objdirs, []string{objects.OnlyOneOrder})
+	if err != nil {
+		return fmt.Errorf("objects.ParseAllObjectStates(%s) : %v", "", err)
+	}
+	if allObjs == nil {
+		allObjs = []map[string]interface{}{}
+	}
+	m.objstates = allObjs
+	return nil
 }
 
 func (m *Mod) generate(raw types.J) error {
@@ -127,6 +145,9 @@ func (m *Mod) generate(raw types.J) error {
 
 // Print outputs internal representation of mod to json file with indents
 func (m *Mod) Print(basename string) error {
+	if m.OnlyObjStates {
+		return m.RootWrite.WriteObjArray(m.objstates, basename)
+	}
 	return m.RootWrite.WriteObj(m.Data, basename)
 }
 

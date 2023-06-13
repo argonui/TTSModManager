@@ -11,6 +11,8 @@ import (
 	"fmt"
 )
 
+const OnlyOneOrder = "TTS_MOD_MANAGER_ONLY_ONE_OBJ"
+
 type objConfig struct {
 	guid               string
 	data               J
@@ -293,6 +295,15 @@ func (d *db) print(l file.TextReader, x file.TextReader, order []string) (ObjArr
 		return nil, fmt.Errorf("expected order (%v) and db.root (%v) to have same length", len(order), len(d.root))
 	}
 	for _, nextGUID := range order {
+		if nextGUID == OnlyOneOrder {
+			// assert that the length is one, then set nextGUID to whatever guid root has
+			if len(d.root) != 1 {
+				return nil, fmt.Errorf("Only use the '%s' order if you require only one root object", OnlyOneOrder)
+			}
+			for k := range d.root {
+				nextGUID = k
+			}
+		}
 		if _, ok := d.root[nextGUID]; !ok {
 			return nil, fmt.Errorf("order expected %s, not found in db", nextGUID)
 		}
