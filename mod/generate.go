@@ -39,7 +39,6 @@ type Mod struct {
 	Objdirs     file.DirExplorer
 
 	OnlyObjStates bool
-	objstates     []map[string]interface{}
 }
 
 // GenerateFromConfig uses RootRead for reading entire mod config
@@ -59,10 +58,12 @@ func (m *Mod) generateOnlyObjStates() error {
 	if err != nil {
 		return fmt.Errorf("objects.ParseAllObjectStates(%s) : %v", "", err)
 	}
-	if allObjs == nil {
-		allObjs = []map[string]interface{}{}
+	if len(allObjs) != 1 {
+		return fmt.Errorf("ParseAllObjectStates() in OnlyObjStates mode expects a single root object")
 	}
-	m.objstates = allObjs
+	for _, k := range allObjs {
+		m.Data = k
+	}
 	return nil
 }
 
@@ -145,9 +146,6 @@ func (m *Mod) generate(raw types.J) error {
 
 // Print outputs internal representation of mod to json file with indents
 func (m *Mod) Print(basename string) error {
-	if m.OnlyObjStates {
-		return m.RootWrite.WriteObjArray(m.objstates, basename)
-	}
 	return m.RootWrite.WriteObj(m.Data, basename)
 }
 

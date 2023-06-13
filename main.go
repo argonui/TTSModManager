@@ -47,6 +47,19 @@ func main() {
 	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))
 	rootops := file.NewJSONOps(*moddir)
 
+	// only create an object state list, not an entire mod
+	if *objstatesdir != "" {
+		lua = file.NewLuaOpsMulti(
+			[]string{path.Join(*moddir, textSubdir), path.Join(*moddir, *objstatesdir)},
+			path.Join(*moddir, *objstatesdir),
+		)
+		objs = file.NewJSONOps(path.Join(*moddir, *objstatesdir))
+		objdir = file.NewDirOps(path.Join(*moddir, *objstatesdir))
+		*modfile = *objfile
+	}
+	basename := path.Base(*modfile)
+	outputOps := file.NewJSONOps(path.Dir(*modfile))
+
 	if *rev {
 		raw, err := prepForReverse(*moddir, *modfile)
 		if err != nil {
@@ -59,6 +72,7 @@ func main() {
 			ObjWriter:         objs,
 			ObjDirCreeator:    objdir,
 			RootWrite:         rootops,
+			OnlyObjState:      (*objstatesdir != ""),
 		}
 		if *writeToSrc {
 			r.LuaSrcWriter = luaSrc
@@ -74,19 +88,6 @@ func main() {
 		*modfile = path.Join(*moddir, "output.json")
 	}
 
-	basename := path.Base(*modfile)
-	outputOps := file.NewJSONOps(path.Dir(*modfile))
-	// only create an object state list, not an entire mod
-	if *objstatesdir != "" {
-		lua = file.NewLuaOpsMulti(
-			[]string{path.Join(*moddir, textSubdir), path.Join(*moddir, *objstatesdir)},
-			path.Join(*moddir, *objstatesdir),
-		)
-		objs = file.NewJSONOps(path.Join(*moddir, *objstatesdir))
-		objdir = file.NewDirOps(path.Join(*moddir, *objstatesdir))
-		outputOps = file.NewJSONOps(path.Dir(path.Join(*moddir, *objfile)))
-		basename = path.Base(*objfile)
-	}
 	m := &mod.Mod{
 
 		Lua:           lua,
