@@ -55,9 +55,12 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	if !ok {
 		return fmt.Errorf("object (%v) doesn't have a string GUID (%s)", dguid, o.data["GUID"])
 	}
-	_, ok = o.data["XmlUI"]
+	_, ok = o.data["XmlUI_path"]
 	if !ok {
-		o.data["XmlUI"] = ""
+		_, ok = o.data["XmlUI"]
+		if !ok {
+			o.data["XmlUI"] = ""
+		}
 	}
 	o.guid = guid
 	o.subObj = []*objConfig{}
