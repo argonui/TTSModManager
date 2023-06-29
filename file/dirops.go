@@ -56,7 +56,7 @@ func (d *DirOps) ListFilesAndFolders(relpath string) ([]string, []string, error)
 	p := path.Join(d.base, relpath)
 	files, err := ioutil.ReadDir(p)
 	if err != nil {
-		return nil, nil, fmt.Errorf("ioutil.ReadDir(%s) : %v", p, err)
+		return nil, nil, fmt.Errorf("ioutil.ReadDir(%s + %s) : %v", d.base, relpath, err)
 	}
 	fnames := make([]string, 0)
 	folnames := make([]string, 0)
