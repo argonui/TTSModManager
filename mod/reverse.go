@@ -20,11 +20,32 @@ type Reverser struct {
 	ObjWriter         file.JSONWriter
 	ObjDirCreeator    file.DirCreator
 	RootWrite         file.JSONWriter
+
+	// If not empty: holds the entire filename (C:...) of the json to read
+	OnlyObjState string
+}
+
+func (r *Reverser) writeOnlyObjStates(raw map[string]interface{}) error {
+	printer := &objects.Printer{
+		Lua:    r.LuaWriter,
+		LuaSrc: r.LuaSrcWriter,
+		J:      r.ObjWriter,
+		Dir:    r.ObjDirCreeator,
+	}
+	arraywrap := []map[string]interface{}{raw}
+	_, err := printer.PrintObjectStates("", arraywrap)
+	if err != nil {
+		return fmt.Errorf("PrintObjectStates('', <%v objects>): %v", len(arraywrap), err)
+	}
+	return nil
 }
 
 // Write executes the main purpose of the reverse library:
 // to take a json object and create a file struture which mimics it.
 func (r *Reverser) Write(raw map[string]interface{}) error {
+	if r.OnlyObjState != "" {
+		return r.writeOnlyObjStates(raw)
+	}
 	pathExt := "_path"
 
 	for _, strKey := range ExpectedStr {

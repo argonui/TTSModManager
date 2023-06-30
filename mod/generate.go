@@ -7,6 +7,7 @@ import (
 	"ModCreator/types"
 	"fmt"
 	"log"
+	"strings"
 	"time"
 )
 
@@ -37,15 +38,36 @@ type Mod struct {
 	Modsettings file.JSONReader
 	Objs        file.JSONReader
 	Objdirs     file.DirExplorer
+
+	// If not-empty: this holds the root filename for the object state json object
+	OnlyObjStates string
 }
 
 // GenerateFromConfig uses RootRead for reading entire mod config
 func (m *Mod) GenerateFromConfig() error {
+	if m.OnlyObjStates != "" {
+		return m.generateOnlyObjStates()
+	}
 	raw, err := m.RootRead.ReadObj("config.json")
 	if err != nil {
 		return fmt.Errorf("could not read a root config: %v", err)
 	}
 	return m.generate(raw)
+}
+
+func (m *Mod) generateOnlyObjStates() error {
+	nameAndGuid := strings.TrimSuffix(m.OnlyObjStates, ".json")
+	allObjs, err := objects.ParseAllObjectStates(m.Lua, m.XML, m.Objs, m.Objdirs, []string{nameAndGuid})
+	if err != nil {
+		return fmt.Errorf("objects.ParseAllObjectStates(%s) : %v", m.OnlyObjStates, err)
+	}
+	if len(allObjs) != 1 {
+		return fmt.Errorf("ParseAllObjectStates() in OnlyObjStates mode expects a single root object")
+	}
+	for _, k := range allObjs {
+		m.Data = k
+	}
+	return nil
 }
 
 func (m *Mod) generate(raw types.J) error {
