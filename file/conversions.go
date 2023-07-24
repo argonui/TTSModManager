@@ -32,7 +32,7 @@ func TryParseIntoStrArray(m *types.J, k string, dest *[]string) {
 func ForceParseIntoStrArray(m *types.J, k string, dest *[]string) error {
 	raw, ok := (*m)[k]
 	if !ok {
-		return fmt.Errorf("key %s not found", k)
+		return fmt.Errorf("key %s not found (%v)", k, m)
 	}
 	if rawstrarr, ok := raw.([]string); ok {
 		*dest = rawstrarr

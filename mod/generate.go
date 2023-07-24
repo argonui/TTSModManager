@@ -46,13 +46,19 @@ type Mod struct {
 // GenerateFromConfig uses RootRead for reading entire mod config
 func (m *Mod) GenerateFromConfig() error {
 	if m.OnlyObjStates != "" {
+		log.Printf("only generating one obj: %s\n", m.OnlyObjStates)
 		return m.generateOnlyObjStates()
 	}
+	log.Println("generating whole mod")
 	raw, err := m.RootRead.ReadObj("config.json")
 	if err != nil {
 		return fmt.Errorf("could not read a root config: %v", err)
 	}
-	return m.generate(raw)
+	err = m.generate(raw)
+	if err != nil {
+		return fmt.Errorf("generate(raw): %v", err)
+	}
+	return nil
 }
 
 func (m *Mod) generateOnlyObjStates() error {

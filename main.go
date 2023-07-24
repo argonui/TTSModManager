@@ -51,7 +51,11 @@ func main() {
 	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))
 	rootops := file.NewJSONOps(*moddir)
 
+	if *modfile == "" {
+		*modfile = path.Join(*moddir, "output.json")
+	}
 	basename := path.Base(*modfile)
+
 	outputOps := file.NewJSONOps(path.Dir(*modfile))
 
 	if *objin != "" {
@@ -97,10 +101,11 @@ func main() {
 		}
 		return
 	}
-	if *modfile == "" {
-		*modfile = path.Join(*moddir, "output.json")
-	}
 
+	objinfilename := path.Base(*objin)
+	if *objin == "" {
+		objinfilename = ""
+	}
 	m := &mod.Mod{
 		Lua:           lua,
 		XML:           xml,
@@ -109,7 +114,7 @@ func main() {
 		Objdirs:       objdir,
 		RootRead:      rootops,
 		RootWrite:     outputOps,
-		OnlyObjStates: path.Base(*objin),
+		OnlyObjStates: objinfilename,
 	}
 	err := m.GenerateFromConfig()
 	if err != nil {

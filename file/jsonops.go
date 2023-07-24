@@ -36,10 +36,13 @@ func NewJSONOps(base string) *JSONOps {
 func (j *JSONOps) ReadObj(filename string) (map[string]interface{}, error) {
 	b, err := j.pullRawFile(filename)
 	if err != nil {
-		return map[string]interface{}{}, err
+		return map[string]interface{}{}, fmt.Errorf("pullRawFile(%s): %v", filename, err)
 	}
 	var v map[string]interface{}
-	json.Unmarshal(b, &v)
+	err = json.Unmarshal(b, &v)
+	if err != nil {
+		return map[string]interface{}{}, fmt.Errorf("Unmarshal(%s): %v", filename, err)
+	}
 	return v, nil
 }
 
@@ -47,10 +50,13 @@ func (j *JSONOps) ReadObj(filename string) (map[string]interface{}, error) {
 func (j *JSONOps) ReadObjArray(filename string) ([]map[string]interface{}, error) {
 	b, err := j.pullRawFile(filename)
 	if err != nil {
-		return []map[string]interface{}{}, err
+		return nil, err
 	}
 	var v []map[string]interface{}
-	json.Unmarshal(b, &v)
+	err = json.Unmarshal(b, &v)
+	if err != nil {
+		return nil, fmt.Errorf("Unmarshal(): %v", err)
+	}
 	return v, nil
 
 }

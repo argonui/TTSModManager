@@ -64,7 +64,7 @@ represent as a downloadable json.
 
 ```
 TTSModManager.exe --moddir="C:\Users\USER\Documents\Projects\MyProject"
---objin="C:\Users\USER\Documents\Projects\MyProject\downloadable\content\foo.json"
+--objin="C:\Users\USER\Documents\Projects\MyProject\downloadable\content\foo.123.json"
 --objout="C:\Users\USER\Documents\Projects\MyProject\to_be_downloaded.json"
 ```
 
@@ -73,13 +73,14 @@ TTSModManager.exe --moddir="C:\Users\USER\Documents\Projects\MyProject"
 This process assumes you already have your file you are used to downloading, and
 want to decompose it into sub-objects and luascript etc.
 
-Please note that **objout** is a directory and the trailing slash is needed.
+Please note that **objout** is a json file, it works best if you know the GUID
+of foo so that the decomposed / reversed object has the correct naming schema.
 
 ```
 TTSModManager.exe --moddir="C:\Users\USER\Documents\Projects\MyProject"
 --reverse
 --objin="C:\Users\USER\Documents\Projects\MyProject\ready_to_download.json"
---objout="C:\Users\USER\Documents\Projects\MyProject\downloadable\content\"
+--objout="C:\Users\USER\Documents\Projects\MyProject\downloadable\content\foo.123.json"
 ```
 
 
