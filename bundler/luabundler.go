@@ -57,7 +57,10 @@ end)(nil)`
 	funcprefixReplace string = `SRC_LOCATION`
 	funcprefix        string = `__bundle_register("SRC_LOCATION", function(require, _LOADED, __bundle_register, __bundle_modules)`
 	funcsuffix        string = `end)`
-	// Rootname is the bundle name for the batch of raw lua
+)
+
+// Rootname is the bundle name for the batch of raw lua
+var (
 	Rootname string = `__root`
 )
 
@@ -91,6 +94,12 @@ func UnbundleAll(rawlua string) (map[string]string, error) {
 	if !IsBundled(rawlua) {
 		return map[string]string{Rootname: rawlua}, nil
 	}
+	newRootInd := regexp.MustCompile(`__bundle_require\(".*"\)`).FindStringIndex(rawlua)
+	if newRootInd != nil {
+		Rootname = rawlua[newRootInd[0]+18 : newRootInd[1]-2]
+	}
+	// fmt.Println(rawlua)
+	// fmt.Println(Rootname)
 	scripts := map[string]string{}
 	r, err := findNextBundledScript(rawlua)
 	for r.leftover != "" {
