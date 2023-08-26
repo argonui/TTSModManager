@@ -55,6 +55,13 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	if !ok {
 		return fmt.Errorf("object (%v) doesn't have a string GUID (%s)", dguid, o.data["GUID"])
 	}
+	_, ok = o.data["XmlUI_path"]
+	if !ok {
+		_, ok = o.data["XmlUI"]
+		if !ok {
+			o.data["XmlUI"] = ""
+		}
+	}
 	o.guid = guid
 	o.subObj = []*objConfig{}
 	o.subObjOrder = []string{}
@@ -294,7 +301,7 @@ func (d *db) print(l file.TextReader, x file.TextReader, order []string) (ObjArr
 	}
 	for _, nextGUID := range order {
 		if _, ok := d.root[nextGUID]; !ok {
-			return nil, fmt.Errorf("order expected %s, not found in db <%v>", nextGUID, d.root)
+			return nil, fmt.Errorf("order expected %s, not found in db", nextGUID)
 		}
 		printed, err := d.root[nextGUID].print(l, x)
 		if err != nil {
