@@ -18,9 +18,11 @@ var (
 	rev        = flag.Bool("reverse", false, "Instead of building a json from file structure, build file structure from json.")
 	writeToSrc = flag.Bool("writesrc", false, "When unbundling Lua, save the included 'require' files to the src/ directory.")
 	modfile    = flag.String("modfile", "", "where to read from when reversing.")
+	objin      = flag.String("objin", "", "If non-empty, don't build/reverse a full mod, only an object state array")
+	objout     = flag.String("objout", "", "if building only object state list, output to this filename")
 )
 
-const (
+var (
 	luasrcSubdir   = "src"
 	xmlsrcSubdir   = "xml"
 	modsettingsDir = "modsettings"
@@ -29,6 +31,10 @@ const (
 
 func main() {
 	flag.Parse()
+
+	if (*objin == "") != (*objout == "") {
+		log.Fatalln("Must set either both or neither of {objin,objout}.")
+	}
 
 	lua := file.NewTextOpsMulti(
 		[]string{path.Join(*moddir, luasrcSubdir), path.Join(*moddir, objectsSubdir)},
@@ -45,7 +51,29 @@ func main() {
 	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))
 	rootops := file.NewJSONOps(*moddir)
 
+	basename := path.Base(*modfile)
+	outputOps := file.NewJSONOps(path.Dir(*modfile))
+
+	if *objin != "" {
+		objdir = file.NewDirOps(path.Dir(*objin))
+		objs = file.NewJSONOps(path.Dir(*objin))
+		lua = file.NewTextOpsMulti(
+			[]string{path.Join(*moddir, luasrcSubdir), path.Dir(*objin)},
+			path.Dir(*objout),
+		)
+		xml = file.NewTextOpsMulti(
+			[]string{path.Join(*moddir, xmlsrcSubdir), path.Dir(*objin)},
+			path.Dir(*objout),
+		)
+		basename = path.Base(*objout)
+		outputOps = file.NewJSONOps(path.Dir(*objout))
+	}
+
 	if *rev {
+		if *objin != "" {
+			*modfile = *objin
+			objs = file.NewJSONOps(path.Dir(*objout))
+		}
 		raw, err := prepForReverse(*moddir, *modfile)
 		if err != nil {
 			log.Fatalf("prepForReverse (%s) failed : %v", *modfile, err)
@@ -57,6 +85,7 @@ func main() {
 			ObjWriter:         objs,
 			ObjDirCreeator:    objdir,
 			RootWrite:         rootops,
+			OnlyObjState:      *objin,
 		}
 		if *writeToSrc {
 			r.LuaSrcWriter = luaSrc
@@ -72,17 +101,15 @@ func main() {
 		*modfile = path.Join(*moddir, "output.json")
 	}
 
-	basename := path.Base(*modfile)
-	outputOps := file.NewJSONOps(path.Dir(*modfile))
-
 	m := &mod.Mod{
-		Lua:         lua,
-		XML:         xml,
-		Modsettings: ms,
-		Objs:        objs,
-		Objdirs:     objdir,
-		RootRead:    rootops,
-		RootWrite:   outputOps,
+		Lua:           lua,
+		XML:           xml,
+		Modsettings:   ms,
+		Objs:          objs,
+		Objdirs:       objdir,
+		RootRead:      rootops,
+		RootWrite:     outputOps,
+		OnlyObjStates: path.Base(*objin),
 	}
 	err := m.GenerateFromConfig()
 	if err != nil {

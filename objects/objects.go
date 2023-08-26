@@ -294,7 +294,7 @@ func (d *db) print(l file.TextReader, x file.TextReader, order []string) (ObjArr
 	}
 	for _, nextGUID := range order {
 		if _, ok := d.root[nextGUID]; !ok {
-			return nil, fmt.Errorf("order expected %s, not found in db", nextGUID)
+			return nil, fmt.Errorf("order expected %s, not found in db <%v>", nextGUID, d.root)
 		}
 		printed, err := d.root[nextGUID].print(l, x)
 		if err != nil {

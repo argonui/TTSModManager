@@ -52,6 +52,37 @@ $moddir = directory to read from
 TTSModManager.exe --moddir="C:\Users\USER\Documents\Projects\MyProject"
 ```
 
+## Working with downloadable content
+TTS allows you to download content into a active game. This content must be a
+json file in the form of a single object. In order to accomodate storing these
+downloadable json files, TTSModManager can assemble and reverse these files.
+
+### Generating a downloadable file
+
+In this example foo.json the root of a partial mod object you'd like to
+represent as a downloadable json.
+
+```
+TTSModManager.exe --moddir="C:\Users\USER\Documents\Projects\MyProject"
+--objin="C:\Users\USER\Documents\Projects\MyProject\downloadable\content\foo.json"
+--objout="C:\Users\USER\Documents\Projects\MyProject\to_be_downloaded.json"
+```
+
+### Reversing a downloadable file
+
+This process assumes you already have your file you are used to downloading, and
+want to decompose it into sub-objects and luascript etc.
+
+Please note that **objout** is a directory and the trailing slash is needed.
+
+```
+TTSModManager.exe --moddir="C:\Users\USER\Documents\Projects\MyProject"
+--reverse
+--objin="C:\Users\USER\Documents\Projects\MyProject\ready_to_download.json"
+--objout="C:\Users\USER\Documents\Projects\MyProject\downloadable\content\"
+```
+
+
 ## Running a local copy
 
 If you are developing a feature and would like to run the tool, use this instead of `TTSModManager.exe`

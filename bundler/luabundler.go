@@ -190,7 +190,14 @@ func Bundle(rawlua string, l file.TextReader) (string, error) {
 
 	bundlestr := metaprefix + "\n"
 
-	for k, v := range reqs {
+	sortedReqKeys := []string{}
+	for k := range reqs {
+		sortedReqKeys = append(sortedReqKeys, k)
+	}
+	sort.Strings(sortedReqKeys)
+
+	for _, k := range sortedReqKeys {
+		v := reqs[k]
 		bundlestr += strings.Replace(funcprefix, funcprefixReplace, k, 1) + "\n"
 		bundlestr += v + "\n"
 		bundlestr += funcsuffix + "\n"
