@@ -101,6 +101,12 @@ func main() {
 		*modfile = path.Join(*moddir, "output.json")
 	}
 
+	// setting this to empty instead of default return value (".") if not found
+	OnlyObjStates := path.Base(*objin)
+	if OnlyObjStates == "." {
+		OnlyObjStates = ""
+	}
+
 	m := &mod.Mod{
 		Lua:           lua,
 		XML:           xml,
@@ -109,7 +115,7 @@ func main() {
 		Objdirs:       objdir,
 		RootRead:      rootops,
 		RootWrite:     outputOps,
-		OnlyObjStates: path.Base(*objin),
+		OnlyObjStates: OnlyObjStates,
 	}
 	err := m.GenerateFromConfig()
 	if err != nil {
