@@ -62,7 +62,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 			continue
 		}
 		ext := ".luascriptstate"
-		// decide if creating a separte file is worth it
+		// decide if creating a separate file is worth it
 		if len(strVal) < 80 {
 			raw[strKey] = strVal
 			continue
