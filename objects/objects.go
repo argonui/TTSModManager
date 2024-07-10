@@ -84,6 +84,45 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 		o.data["AttachedSnapPoints"] = sm
 	}
 
+	// apply smoothing to states
+	if states, ok := o.data["States"]; ok {
+		statesMap, ok := states.(map[string]interface{})
+		if !ok {
+			return fmt.Errorf("type mismatch in States : %v", states)
+		}
+		for stateName, stateData := range statesMap {
+			stateObj, ok := stateData.(map[string]interface{})
+			if !ok {
+				return fmt.Errorf("type mismatch in State %s : %v", stateName, stateData)
+			}
+
+			for _, needSmoothing := range []string{"Transform", "ColorDiffuse"} {
+				if v, ok := stateObj[needSmoothing]; ok {
+					stateObj[needSmoothing] = Smooth(v)
+				}
+			}
+
+			if v, ok := stateObj["AltLookAngle"]; ok {
+				vv, err := SmoothAngle(v)
+				if err != nil {
+					return fmt.Errorf("SmoothAngle(<%s>) in State %s: %v", "AltLookAngle", stateName, err)
+				}
+				stateObj["AltLookAngle"] = vv
+			}
+
+			if sp, ok := stateObj["AttachedSnapPoints"]; ok {
+				sm, err := SmoothSnapPoints(sp)
+				if err != nil {
+					return fmt.Errorf("SmoothSnapPoints(<%s>) in State %s: %v", o.guid, stateName, err)
+				}
+				stateObj["AttachedSnapPoints"] = sm
+			}
+
+			statesMap[stateName] = stateObj
+		}
+		o.data["States"] = statesMap
+	}
+
 	if rawObjs, ok := o.data["ContainedObjects"]; ok {
 		rawArr, ok := rawObjs.([]interface{})
 		if !ok {
@@ -108,9 +147,7 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 }
 
 func (o *objConfig) print(l, x file.TextReader) (J, error) {
-
-	var out J
-	out = o.data
+	out := o.data
 
 	lh := handler.NewLuaHandler()
 	lh.Reader = l
@@ -165,8 +202,7 @@ func (o *objConfig) print(l, x file.TextReader) (J, error) {
 }
 
 func (o *objConfig) printToFile(filepath string, p *Printer) error {
-	var out J
-	out = o.data
+	out := o.data
 
 	lh := handler.NewLuaHandler()
 	lh.DefaultWriter = p.Lua
@@ -351,7 +387,7 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 	return nil
 }
 
-// Printer holds the info of which writer is which, because paratemter lists are rough
+// Printer holds the info of which writer is which, because parameter lists are rough
 type Printer struct {
 	Lua    file.TextWriter
 	LuaSrc file.TextWriter
