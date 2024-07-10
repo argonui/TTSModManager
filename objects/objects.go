@@ -84,7 +84,7 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 		o.data["AttachedSnapPoints"] = sm
 	}
 
-	// apply smoothing to states
+	// apply smoothing to object states
 	if states, ok := o.data["States"]; ok {
 		statesMap, ok := states.(map[string]interface{})
 		if !ok {
