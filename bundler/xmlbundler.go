@@ -59,8 +59,7 @@ func indentString(s string, indent string) string {
 	return strings.Join(final, "\n")
 }
 
-// UnbundleAllXML converts a bundled xml file to mapping of filenames to
-// contents
+// UnbundleAllXML converts a bundled xml file to mapping of filenames to contents
 func UnbundleAllXML(rawxml string) (map[string]string, error) {
 	type inc struct {
 		name  string
@@ -83,7 +82,7 @@ func UnbundleAllXML(rawxml string) (map[string]string, error) {
 			indent := string(submatches[1])
 			indentedvals := xmlarray[stack[0].start+1 : ln]
 
-			// do not let mods specify relative paths.
+			// do not let mods specify relative paths
 			storedName := strings.Replace(stack[0].name, "../", "", -1)
 
 			store[storedName] = unindentAndJoin(indentedvals, indent)
@@ -95,7 +94,7 @@ func UnbundleAllXML(rawxml string) (map[string]string, error) {
 			ln = stack[0].start
 			stack = stack[1:]
 		} else {
-			stack = append([]inc{inc{name: key, start: ln}}, stack...)
+			stack = append([]inc{{name: key, start: ln}}, stack...)
 		}
 	}
 	if len(stack) != 0 {
