@@ -29,14 +29,14 @@ var (
 // Mod is used as the accurate representation of what gets printed when
 // module creation is done
 type Mod struct {
-	Data 					types.J
-	RootRead    	file.JSONReader
-	RootWrite   	file.JSONWriter
-	Lua         	file.TextReader
-	XML         	file.TextReader
-	Modsettings 	file.JSONReader
-	Objs        	file.JSONReader
-	Objdirs     	file.DirExplorer
+	Data          types.J
+	RootRead      file.JSONReader
+	RootWrite     file.JSONWriter
+	Lua           file.TextReader
+	XML           file.TextReader
+	Modsettings   file.JSONReader
+	Objs          file.JSONReader
+	Objdirs       file.DirExplorer
 
 	// If not-empty: this holds the root filename for the object state json object
 	OnlyObjStates string
