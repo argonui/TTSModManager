@@ -5,9 +5,7 @@ import (
 	"ModCreator/handler"
 	"ModCreator/objects"
 	"ModCreator/types"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 )
 
 // Reverser holds interfaces and configs for the reversing process
@@ -18,11 +16,11 @@ type Reverser struct {
 	XMLWriter         file.TextWriter
 	XMLSrcWriter      file.TextWriter
 	ObjWriter         file.JSONWriter
-	ObjDirCreeator    file.DirCreator
+	ObjDirCreator     file.DirCreator
 	RootWrite         file.JSONWriter
 
 	// If not empty: holds the entire filename (C:...) of the json to read
-	OnlyObjState string
+	OnlyObjState      string
 }
 
 func (r *Reverser) writeOnlyObjStates(raw map[string]interface{}) error {
@@ -30,7 +28,7 @@ func (r *Reverser) writeOnlyObjStates(raw map[string]interface{}) error {
 		Lua:    r.LuaWriter,
 		LuaSrc: r.LuaSrcWriter,
 		J:      r.ObjWriter,
-		Dir:    r.ObjDirCreeator,
+		Dir:    r.ObjDirCreator,
 	}
 	arraywrap := []map[string]interface{}{raw}
 	_, err := printer.PrintObjectStates("", arraywrap)
@@ -58,7 +56,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 			return fmt.Errorf("expected string value in key %s, got %v", strKey, rawVal)
 		}
 		if strKey == "LuaScript" || strKey == "XmlUI" {
-			// let the LuaHAndler handle the complicated case
+			// let the LuaHandler handle the complicated case
 			continue
 		}
 		ext := ".luascriptstate"
@@ -168,7 +166,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 			XML:    r.XMLWriter,
 			XMLSrc: r.XMLSrcWriter,
 			J:      r.ObjWriter,
-			Dir:    r.ObjDirCreeator,
+			Dir:    r.ObjDirCreator,
 		}
 		order, err := printer.PrintObjectStates("", objStates)
 		if err != nil {
@@ -183,18 +181,10 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 	delete(raw, DateKey)
 	delete(raw, EpochKey)
 
-	// write all that's Left
+	// write all that's left
 	err = r.RootWrite.WriteObj(raw, "config.json")
 	if err != nil {
 		return fmt.Errorf("WriteObj(<obj>, %s) : %v", "config.json", err)
 	}
 	return nil
-}
-
-func writeJSON(raw map[string]interface{}, filename string) error {
-	b, err := json.MarshalIndent(raw, "", "  ")
-	if err != nil {
-		return fmt.Errorf("json.MarshalIndent() : %v", err)
-	}
-	return ioutil.WriteFile(filename, b, 0644)
 }

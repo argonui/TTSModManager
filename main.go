@@ -10,15 +10,15 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"path"
+	"path/filepath"
 )
 
 var (
 	moddir     = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
-	rev        = flag.Bool("reverse", false, "Instead of building a json from file structure, build file structure from json.")
-	writeToSrc = flag.Bool("writesrc", false, "When unbundling Lua, save the included 'require' files to the src/ directory.")
+	rev        = flag.Bool("reverse", false, "instead of building a json from file structure, build file structure from json.")
+	writeToSrc = flag.Bool("writesrc", false, "when unbundling Lua, save the included 'require' files to the src/ directory.")
 	modfile    = flag.String("modfile", "", "where to read from when reversing.")
-	objin      = flag.String("objin", "", "If non-empty, don't build/reverse a full mod, only an object state array")
+	objin      = flag.String("objin", "", "if non-empty, don't build/reverse a full mod, only an object state array")
 	objout     = flag.String("objout", "", "if building only object state list, output to this filename")
 )
 
@@ -37,53 +37,55 @@ func main() {
 	}
 
 	lua := file.NewTextOpsMulti(
-		[]string{path.Join(*moddir, luasrcSubdir), path.Join(*moddir, objectsSubdir)},
-		path.Join(*moddir, objectsSubdir),
+		[]string{filepath.Join(*moddir, luasrcSubdir), filepath.Join(*moddir, objectsSubdir)},
+		filepath.Join(*moddir, objectsSubdir),
 	)
 	xml := file.NewTextOpsMulti(
-		[]string{path.Join(*moddir, xmlsrcSubdir), path.Join(*moddir, objectsSubdir)},
-		path.Join(*moddir, objectsSubdir),
+		[]string{filepath.Join(*moddir, xmlsrcSubdir), filepath.Join(*moddir, objectsSubdir)},
+		filepath.Join(*moddir, objectsSubdir),
 	)
-	xmlSrc := file.NewTextOps(path.Join(*moddir, xmlsrcSubdir))
-	luaSrc := file.NewTextOps(path.Join(*moddir, luasrcSubdir))
-	ms := file.NewJSONOps(path.Join(*moddir, modsettingsDir))
-	objs := file.NewJSONOps(path.Join(*moddir, objectsSubdir))
-	objdir := file.NewDirOps(path.Join(*moddir, objectsSubdir))
+	xmlSrc := file.NewTextOps(filepath.Join(*moddir, xmlsrcSubdir))
+	luaSrc := file.NewTextOps(filepath.Join(*moddir, luasrcSubdir))
+	ms := file.NewJSONOps(filepath.Join(*moddir, modsettingsDir))
+	objs := file.NewJSONOps(filepath.Join(*moddir, objectsSubdir))
+	objdir := file.NewDirOps(filepath.Join(*moddir, objectsSubdir))
 	rootops := file.NewJSONOps(*moddir)
 
-	basename := path.Base(*modfile)
-	outputOps := file.NewJSONOps(path.Dir(*modfile))
+	basename := filepath.Base(*modfile)
+	outputOps := file.NewJSONOps(filepath.Dir(*modfile))
 
+	// handling for saved objects instead of a full savegame
 	if *objin != "" {
-		objdir = file.NewDirOps(path.Dir(*objin))
-		objs = file.NewJSONOps(path.Dir(*objin))
+		objs = file.NewJSONOps(filepath.Dir(*objin))
+		objdir = file.NewDirOps(filepath.Dir(*objin))
 		lua = file.NewTextOpsMulti(
-			[]string{path.Join(*moddir, luasrcSubdir), path.Dir(*objin)},
-			path.Dir(*objout),
+			[]string{filepath.Join(*moddir, luasrcSubdir), filepath.Dir(*objin)},
+			filepath.Dir(*objout),
 		)
 		xml = file.NewTextOpsMulti(
-			[]string{path.Join(*moddir, xmlsrcSubdir), path.Dir(*objin)},
-			path.Dir(*objout),
+			[]string{filepath.Join(*moddir, xmlsrcSubdir), filepath.Dir(*objin)},
+			filepath.Dir(*objout),
 		)
-		basename = path.Base(*objout)
-		outputOps = file.NewJSONOps(path.Dir(*objout))
+		basename = filepath.Base(*objout)
+		outputOps = file.NewJSONOps(filepath.Dir(*objout))
 	}
 
 	if *rev {
 		if *objin != "" {
 			*modfile = *objin
-			objs = file.NewJSONOps(path.Dir(*objout))
+			objs = file.NewJSONOps(filepath.Dir(*objout))
 		}
 		raw, err := prepForReverse(*moddir, *modfile)
 		if err != nil {
 			log.Fatalf("prepForReverse (%s) failed : %v", *modfile, err)
 		}
+
 		r := mod.Reverser{
 			ModSettingsWriter: ms,
 			LuaWriter:         lua,
 			XMLWriter:         xml,
 			ObjWriter:         objs,
-			ObjDirCreeator:    objdir,
+			ObjDirCreator:     objdir,
 			RootWrite:         rootops,
 			OnlyObjState:      *objin,
 		}
@@ -98,11 +100,11 @@ func main() {
 		return
 	}
 	if *modfile == "" {
-		*modfile = path.Join(*moddir, "output.json")
+		*modfile = filepath.Join(*moddir, "output.json")
 	}
 
 	// setting this to empty instead of default return value (".") if not found
-	OnlyObjStates := path.Base(*objin)
+	OnlyObjStates := filepath.Base(*objin)
 	if OnlyObjStates == "." {
 		OnlyObjStates = ""
 	}
@@ -133,7 +135,7 @@ func prepForReverse(cPath, modfile string) (types.J, error) {
 	subDirs := []string{luasrcSubdir, modsettingsDir, objectsSubdir, xmlsrcSubdir}
 
 	for _, s := range subDirs {
-		p := path.Join(cPath, s)
+		p := filepath.Join(cPath, s)
 		if _, err := os.Stat(p); err == nil {
 			// directory already exists
 		} else if os.IsNotExist(err) {

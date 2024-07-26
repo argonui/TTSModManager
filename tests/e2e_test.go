@@ -56,7 +56,7 @@ func TestAllReverseThenBuild(t *testing.T) {
 				XMLSrcWriter:      objsAndLua,
 				LuaSrcWriter:      objsAndLua,
 				ObjWriter:         objsAndLua,
-				ObjDirCreeator:    objsAndLua,
+				ObjDirCreator:     objsAndLua,
 				RootWrite:         finalOutput,
 			}
 			err = r.Write(j)
