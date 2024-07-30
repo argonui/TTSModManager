@@ -249,7 +249,7 @@ func TestReverse(t *testing.T) {
 				LuaSrcWriter:      srcTexts,
 				XMLWriter:         srcTexts,
 				ObjWriter:         objsAndLua,
-				ObjDirCreeator:    objsAndLua,
+				ObjDirCreator:     objsAndLua,
 				RootWrite:         finalOutput,
 			}
 			err := r.Write(tc.input)
