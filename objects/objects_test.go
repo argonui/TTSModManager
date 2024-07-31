@@ -64,8 +64,8 @@ func TestObjPrintToFile(t *testing.T) {
 					<Button id="bar"/>
 					<Button id="bar"/>
 					<Button id="bar"/>
-					<!-- include buttons -->
-					`,
+<!-- include buttons -->
+`,
 				},
 			},
 			wantFilename: "123457.json",
@@ -321,11 +321,11 @@ func TestObjPrintingToFile(t *testing.T) {
 			wantLssAsJson: jsonContent{
 				file: "foo/123456.luascriptstate",
 				content: types.J{
-					"acknowledgedUpgradeVersions": []interface{}{},
-					"optionPanel": map[string]interface{}{
-						"cardLanguage":        string("en"),
+					"acknowledgedUpgradeVersions": []any{},
+					"optionPanel": map[string]any{
+						"cardLanguage": string("en"),
 						"changePlayAreaImage": bool(false),
-						"playAreaConnectionColor": map[string]interface{}{
+						"playAreaConnectionColor": map[string]any{
 							"a": float64(1),
 							"b": float64(0.4),
 							"g": float64(0.4),

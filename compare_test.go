@@ -52,7 +52,7 @@ func compareDelta(t *testing.T, filea, fileb string) error {
 	if err != nil {
 		return fmt.Errorf("cannot cast to obj array %v", err)
 	}
-	err = compareObjArrays(t, "root", asubOs, bsubOs)
+	err = compareObjArrays(t, asubOs, bsubOs)
 	if err != nil {
 		t.Errorf("compareObjs(<>) : %v", err)
 	}
@@ -83,7 +83,7 @@ func toObjArray(i interface{}) ([]map[string]interface{}, error) {
 	return arr, nil
 }
 
-func compareObjArrays(t *testing.T, guid string, a, b []map[string]interface{}) error {
+func compareObjArrays(t *testing.T, a, b []map[string]interface{}) error {
 	if len(a) != len(b) {
 		return fmt.Errorf("length mismatch %v vs %v", len(a), len(b))
 	}
@@ -141,7 +141,7 @@ func compareObjs(t *testing.T, guid string, a, b map[string]interface{}) error {
 			return err
 		}
 
-		err = compareObjArrays(t, guid, aArr, bArr)
+		err = compareObjArrays(t, aArr, bArr)
 		if err != nil {
 			return fmt.Errorf("subObjects of %s[ContainedObjects] have diff: %v", guid, err)
 		}

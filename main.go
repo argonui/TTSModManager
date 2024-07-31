@@ -144,7 +144,7 @@ func prepForReverse(cPath, modfile string) (types.J, error) {
 				return nil, err
 			}
 		} else {
-			return nil, fmt.Errorf("Undefined error checking for subdirectory %s : %v", s, err)
+			return nil, fmt.Errorf("undefined error checking for subdirectory %s : %v", s, err)
 		}
 	}
 
