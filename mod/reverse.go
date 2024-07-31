@@ -19,7 +19,9 @@ type Reverser struct {
 	ObjWriter         file.JSONWriter
 	ObjDirCreator     file.DirCreator
 	RootWrite         file.JSONWriter
-	OnlyObjState      string // If not empty: holds the entire filename (C:...) of the json to read
+
+	// If not empty: holds the entire filename (C:...) of the json to read
+	OnlyObjState      string
 }
 
 func (r *Reverser) writeOnlyObjStates(raw map[string]interface{}) error {
