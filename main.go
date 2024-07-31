@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -155,7 +155,7 @@ func prepForReverse(cPath, modfile string) (types.J, error) {
 
 	defer mFile.Close()
 
-	b, err := ioutil.ReadAll(mFile)
+	b, err := io.ReadAll(mFile)
 	if err != nil {
 		return nil, err
 	}
