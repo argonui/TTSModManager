@@ -3,7 +3,7 @@ package file
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path"
 )
@@ -23,6 +23,7 @@ type JSONReader interface {
 type JSONWriter interface {
 	WriteObj(map[string]interface{}, string) error
 	WriteObjArray([]map[string]interface{}, string) error
+	WriteJSON(m interface{}, filename string) error
 }
 
 // NewJSONOps initializes our object on a directory
@@ -62,7 +63,22 @@ func (j *JSONOps) pullRawFile(filename string) ([]byte, error) {
 	}
 	defer jFile.Close()
 
-	return ioutil.ReadAll(jFile)
+	return io.ReadAll(jFile)
+}
+
+// WriteJSON writes a serialized JSON object or array to a file.
+func (j *JSONOps) WriteJSON(m interface{}, filename string) error {
+	b, err := json.MarshalIndent(m, "", "  ")
+	if err != nil {
+		return err
+	}
+	b = append(b, '\n')
+	p := path.Join(j.basepath, filename)
+	err = os.MkdirAll(path.Dir(p), 0750)
+	if err != nil && !os.IsExist(err) {
+		return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
+	}
+	return os.WriteFile(p, b, 0644)
 }
 
 // WriteObj writes a serialized json object to a file.
@@ -77,7 +93,7 @@ func (j *JSONOps) WriteObj(m map[string]interface{}, filename string) error {
 	if err != nil && !os.IsExist(err) {
 		return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
 	}
-	return ioutil.WriteFile(p, b, 0644)
+	return os.WriteFile(p, b, 0644)
 }
 
 // WriteObjArray writes an array of serialized json objects to a file.
@@ -92,7 +108,7 @@ func (j *JSONOps) WriteObjArray(m []map[string]interface{}, filename string) err
 	if err != nil && !os.IsExist(err) {
 		return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
 	}
-	return ioutil.WriteFile(p, b, 0644)
+	return os.WriteFile(p, b, 0644)
 }
 
 // ReadRawFile allows for anyone who needs to to read json without objects.
@@ -103,7 +119,7 @@ func ReadRawFile(filename string) (map[string]interface{}, error) {
 	}
 	defer jFile.Close()
 
-	b, err := ioutil.ReadAll(jFile)
+	b, err := io.ReadAll(jFile)
 	if err != nil {
 		return nil, err
 	}

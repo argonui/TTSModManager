@@ -4,11 +4,11 @@ import (
 	"ModCreator/file"
 	"ModCreator/handler"
 	. "ModCreator/types"
+	"encoding/json"
+	"fmt"
 	"path"
 	"regexp"
 	"strings"
-
-	"fmt"
 )
 
 type objConfig struct {
@@ -238,9 +238,21 @@ func (o *objConfig) printToFile(filepath string, p *Printer) error {
 			if len(script) > 80 {
 				createdFile := path.Join(filepath, o.getAGoodFileName()+".luascriptstate")
 				out["LuaScriptState_path"] = createdFile
-				if err := p.Lua.EncodeToFile(script, createdFile); err != nil {
-					return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
+
+				var jsonInterface map[string]interface{}
+				err := json.Unmarshal([]byte(script), &jsonInterface)
+				if err == nil {
+					// if it's JSON, use the JSONWriter
+					if err := p.J.WriteJSON(jsonInterface, createdFile); err != nil {
+						return fmt.Errorf("j.WriteJSON(<obj %s>)", o.guid)
+					}
+				} else {
+					// default to the regular text writing
+					if err := p.Lua.EncodeToFile(script, createdFile); err != nil {
+						return fmt.Errorf("EncodeToFile(<obj %s>)", o.guid)
+					}
 				}
+
 				delete(out, "LuaScriptState")
 			}
 		}
