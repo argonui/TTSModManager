@@ -98,8 +98,6 @@ func UnbundleAll(rawlua string) (map[string]string, error) {
 	if newRootInd != nil {
 		Rootname = rawlua[newRootInd[0]+18 : newRootInd[1]-2]
 	}
-	// fmt.Println(rawlua)
-	// fmt.Println(Rootname)
 	scripts := map[string]string{}
 	r, err := findNextBundledScript(rawlua)
 	for r.leftover != "" {
