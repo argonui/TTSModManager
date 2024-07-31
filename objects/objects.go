@@ -243,8 +243,8 @@ func (o *objConfig) printToFile(filepath string, p *Printer) error {
 				err := json.Unmarshal([]byte(script), &jsonInterface)
 				if err == nil {
 					// if it's JSON, use the JSONWriter
-					if err := p.J.WriteJSON(jsonInterface, createdFile); err != nil {
-						return fmt.Errorf("j.WriteJSON(<obj %s>)", o.guid)
+					if err := p.J.WriteObj(jsonInterface, createdFile); err != nil {
+						return fmt.Errorf("j.WriteObj(<obj %s>)", o.guid)
 					}
 				} else {
 					// default to the regular text writing

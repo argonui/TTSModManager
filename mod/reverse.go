@@ -73,9 +73,9 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		err := json.Unmarshal([]byte(strVal), &jsonInterface)
 		if err == nil {
 			// if it's JSON, use the JSONWriter
-			err := r.ObjWriter.WriteJSON(jsonInterface, createdFile)
+			err := r.ObjWriter.WriteObj(jsonInterface, createdFile)
 			if err != nil {
-				return fmt.Errorf("j.WriteJSON(<value>, %s) : %v", createdFile, err)
+				return fmt.Errorf("j.WriteObj(<value>, %s) : %v", createdFile, err)
 			}
 		} else {
 			// default to the regular text writing

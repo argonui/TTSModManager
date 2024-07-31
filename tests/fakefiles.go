@@ -12,7 +12,6 @@ import (
 type FakeFiles struct {
 	Fs   map[string]string
 	Data map[string]types.J
-	J    map[string]interface{}
 }
 
 // NewFF helps you not forget to initialize maps
@@ -63,16 +62,6 @@ func (f *FakeFiles) ReadObjArray(s string) ([]map[string]interface{}, error) {
 		return nil, fmt.Errorf("fake obj array in %s was not array, was %T", s, raw)
 	}
 	return val, nil
-}
-
-// WriteJSON satisfies JSONWriter
-func (f *FakeFiles) WriteJSON(data interface{}, path string) error {
-	jData, ok := data.(types.J)
-	if !ok {
-		return fmt.Errorf("data is of incorrect type, expected types.J but got %T", data)
-	}
-	f.Data[path] = jData
-	return nil
 }
 
 // WriteObj satisfies JSONWriter
