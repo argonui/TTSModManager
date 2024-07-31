@@ -64,8 +64,8 @@ func TestObjPrintToFile(t *testing.T) {
 					<Button id="bar"/>
 					<Button id="bar"/>
 					<Button id="bar"/>
-<!-- include buttons -->
-`,
+					<!-- include buttons -->
+					`,
 				},
 			},
 			wantFilename: "123457.json",
@@ -164,17 +164,19 @@ func TestObjPrinting(t *testing.T) {
 
 func TestObjPrintingToFile(t *testing.T) {
 	type fileContent struct {
-		file, content string
+		file    string
+		content string
 	}
 	type jsonContent struct {
 		file    string
 		content types.J
 	}
 	for _, tc := range []struct {
-		o        *objConfig
-		folder   string
-		wantObjs []jsonContent
-		wantLSS  fileContent
+		o             *objConfig
+		folder        string
+		wantObjs      []jsonContent
+		wantLss       fileContent
+		wantLssAsJson jsonContent
 	}{
 		{
 			o: &objConfig{
@@ -293,9 +295,45 @@ func TestObjPrintingToFile(t *testing.T) {
 					},
 				},
 			},
-			wantLSS: fileContent{
+			wantLss: fileContent{
 				file:    "foo/123456.luascriptstate",
 				content: "fav color = green fav color = green fav color = green fav color = green fav color = green",
+			},
+		},
+		{
+			o: &objConfig{
+				guid: "123456",
+				data: types.J{
+					"LuaScriptState": "{\"acknowledgedUpgradeVersions\":[],\"optionPanel\":{\"cardLanguage\":\"en\",\"changePlayAreaImage\":false,\"playAreaConnectionColor\":{\"a\":1,\"b\":0.4,\"g\":0.4,\"r\":0.4},\"useResourceCounters\":\"disabled\"}}",
+					"GUID":           "123456",
+				},
+			},
+			folder: "foo",
+			wantObjs: []jsonContent{
+				{
+					file: "foo/123456.json",
+					content: types.J{
+						"GUID":                "123456",
+						"LuaScriptState_path": "foo/123456.luascriptstate",
+					},
+				},
+			},
+			wantLssAsJson: jsonContent{
+				file: "foo/123456.luascriptstate",
+				content: types.J{
+					"acknowledgedUpgradeVersions": []interface{}{},
+					"optionPanel": map[string]interface{}{
+						"cardLanguage":        string("en"),
+						"changePlayAreaImage": bool(false),
+						"playAreaConnectionColor": map[string]interface{}{
+							"a": float64(1),
+							"b": float64(0.4),
+							"g": float64(0.4),
+							"r": float64(0.4),
+						},
+						"useResourceCounters": string("disabled"),
+					},
+				},
 			},
 		},
 	} {
@@ -322,13 +360,25 @@ func TestObjPrintingToFile(t *testing.T) {
 		}
 
 		// compare lua script state
-		if tc.wantLSS.file != "" {
-			got, ok := ff.Fs[tc.wantLSS.file]
+		if tc.wantLss.file != "" {
+			got, ok := ff.Fs[tc.wantLss.file]
 			if !ok {
 				ff.DebugFileNames(t.Logf)
-				t.Errorf("wanted luascript state %s, didn't find", tc.wantLSS.file)
+				t.Errorf("wanted luascript state %s, didn't find", tc.wantLss.file)
 			}
-			if diff := cmp.Diff(tc.wantLSS.content, got); diff != "" {
+			if diff := cmp.Diff(tc.wantLss.content, got); diff != "" {
+				t.Errorf("want != got:\n%v\n", diff)
+			}
+		}
+
+		// compare lua script state that should output as json
+		if tc.wantLssAsJson.file != "" {
+			got, ok := ff.Data[tc.wantLssAsJson.file]
+			if !ok {
+				ff.DebugFileNames(t.Logf)
+				t.Errorf("wanted luascript state %s, didn't find", tc.wantLssAsJson.file)
+			}
+			if diff := cmp.Diff(tc.wantLssAsJson.content, got); diff != "" {
 				t.Errorf("want != got:\n%v\n", diff)
 			}
 		}
