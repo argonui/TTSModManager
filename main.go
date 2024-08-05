@@ -57,7 +57,7 @@ func main() {
 	// handling for saved objects instead of a full savegame
 	if *objin != "" {
 		objs = file.NewJSONOps(filepath.Dir(*objin))
-		objdir = file.NewDirOps(filepath.Dir(*objin))
+		objdir = file.NewDirOps(filepath.Dir(*objout))
 		lua = file.NewTextOpsMulti(
 			[]string{filepath.Join(*moddir, luasrcSubdir), filepath.Dir(*objin)},
 			filepath.Dir(*objout),
