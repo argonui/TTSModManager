@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -144,7 +144,7 @@ func prepForReverse(cPath, modfile string) (types.J, error) {
 				return nil, err
 			}
 		} else {
-			return nil, fmt.Errorf("Undefined error checking for subdirectory %s : %v", s, err)
+			return nil, fmt.Errorf("undefined error checking for subdirectory %s : %v", s, err)
 		}
 	}
 
@@ -155,7 +155,7 @@ func prepForReverse(cPath, modfile string) (types.J, error) {
 
 	defer mFile.Close()
 
-	b, err := ioutil.ReadAll(mFile)
+	b, err := io.ReadAll(mFile)
 	if err != nil {
 		return nil, err
 	}
