@@ -5,6 +5,7 @@ import (
 	"ModCreator/handler"
 	"ModCreator/objects"
 	"ModCreator/types"
+	"encoding/json"
 	"fmt"
 )
 
@@ -67,11 +68,23 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		}
 
 		createdFile := strKey + ext
-
-		err := r.LuaWriter.EncodeToFile(strVal, createdFile)
-		if err != nil {
-			return fmt.Errorf("lua.EncodeToFile(<value>, %s) : %v", createdFile, err)
+		
+		var jsonInterface map[string]interface{}
+		err := json.Unmarshal([]byte(strVal), &jsonInterface)
+		if err == nil {
+			// if it's JSON, use the JSONWriter
+			err := r.ObjWriter.WriteObj(jsonInterface, createdFile)
+			if err != nil {
+				return fmt.Errorf("j.WriteObj(<value>, %s) : %v", createdFile, err)
+			}
+		} else {
+			// default to the regular text writing
+			err := r.LuaWriter.EncodeToFile(strVal, createdFile)
+			if err != nil {
+				return fmt.Errorf("lua.EncodeToFile(<value>, %s) : %v", createdFile, err)
+			}
 		}
+
 		raw[strKey+pathExt] = createdFile
 		delete(raw, strKey)
 	}
