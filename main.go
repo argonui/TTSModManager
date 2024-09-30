@@ -15,7 +15,7 @@ import (
 
 var (
 	moddir     = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
-	addSrc     = flag.String("addsrc", "", "additional folder to check for Lua and XML require/include")
+	bonusdir   = flag.String("bonusdir", "", "additional folder to check for Lua and XML require/include")
 	rev        = flag.Bool("reverse", false, "instead of building a json from file structure, build file structure from json.")
 	writeToSrc = flag.Bool("writesrc", false, "when unbundling Lua, save the included 'require' files to the src/ directory.")
 	modfile    = flag.String("modfile", "", "where to read from when reversing.")
@@ -41,7 +41,7 @@ func main() {
 		[]string{
 			filepath.Join(*moddir, luasrcSubdir),
 			filepath.Join(*moddir, objectsSubdir),
-			filepath.Join(*addSrc, luasrcSubdir),
+			filepath.Join(*bonusdir, luasrcSubdir),
 		},
 		filepath.Join(*moddir, objectsSubdir),
 	)
@@ -49,7 +49,7 @@ func main() {
 		[]string{
 			filepath.Join(*moddir, xmlsrcSubdir),
 			filepath.Join(*moddir, objectsSubdir),
-			filepath.Join(*addSrc, xmlsrcSubdir),
+			filepath.Join(*bonusdir, xmlsrcSubdir),
 		},
 		filepath.Join(*moddir, objectsSubdir),
 	)
@@ -66,7 +66,7 @@ func main() {
 	// handling for saved objects instead of a full savegame
 	if *objin != "" {
 		objs = file.NewJSONOps(filepath.Dir(*objin))
-		objdir = file.NewDirOps(filepath.Dir(*objout))
+		objdir = file.NewDirOps(filepath.Dir(*objin))
 		lua = file.NewTextOpsMulti(
 			[]string{filepath.Join(*moddir, luasrcSubdir), filepath.Dir(*objin)},
 			filepath.Dir(*objout),
