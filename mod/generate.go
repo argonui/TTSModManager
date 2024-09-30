@@ -29,15 +29,15 @@ var (
 // Mod is used as the accurate representation of what gets printed when
 // module creation is done
 type Mod struct {
-	Data          types.J
-	RootRead      file.JSONReader
-	RootWrite     file.JSONWriter
-	Lua           file.TextReader
-	XML           file.TextReader
-	Modsettings   file.JSONReader
-	Objs          file.JSONReader
-	Objdirs       file.DirExplorer
-	SavedObj      bool
+	Data        types.J
+	RootRead    file.JSONReader
+	RootWrite   file.JSONWriter
+	Lua         file.TextReader
+	XML         file.TextReader
+	Modsettings file.JSONReader
+	Objs        file.JSONReader
+	Objdirs     file.DirExplorer
+	SavedObj    bool
 
 	// If not-empty: this holds the root filename for the object state json object
 	OnlyObjStates string
@@ -149,7 +149,11 @@ func (m *Mod) generate(raw types.J) error {
 
 // Print outputs internal representation of mod to json file with indents
 func (m *Mod) Print(basename string) error {
-	return m.RootWrite.WriteObj(m.Data, basename)
+	if m.SavedObj {
+		return m.RootWrite.WriteSavedObj(m.Data, basename)
+	} else {
+		return m.RootWrite.WriteObj(m.Data, basename)
+	}
 }
 
 func tryPut(d *types.J, from, to string, fun func(string) (interface{}, error)) {
