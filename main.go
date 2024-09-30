@@ -119,6 +119,7 @@ func main() {
 		RootRead:      rootops,
 		RootWrite:     outputOps,
 		OnlyObjStates: OnlyObjStates,
+		SavedObj:			 *savedobj,
 	}
 	err := m.GenerateFromConfig()
 	if err != nil {
