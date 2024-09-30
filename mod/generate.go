@@ -37,6 +37,7 @@ type Mod struct {
 	Modsettings   file.JSONReader
 	Objs          file.JSONReader
 	Objdirs       file.DirExplorer
+	SavedObj      bool
 
 	// If not-empty: this holds the root filename for the object state json object
 	OnlyObjStates string
