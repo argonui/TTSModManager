@@ -21,6 +21,7 @@ var (
 	modfile    = flag.String("modfile", "", "where to read from when reversing.")
 	objin      = flag.String("objin", "", "if non-empty, don't build/reverse a full mod, only an object state array")
 	objout     = flag.String("objout", "", "if building only object state list, output to this filename")
+	savedobj   = flag.Bool("savedobj", false, "if present, will add the boiler plate for TTS to recognize as saved object.")
 )
 
 var (
