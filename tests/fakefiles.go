@@ -78,6 +78,12 @@ func (f *FakeFiles) WriteObjArray(data []map[string]interface{}, path string) er
 	return nil
 }
 
+// WriteSavedObj satisfies JSONWriter
+func (f *FakeFiles) WriteSavedObj(data map[string]interface{}, path string) error {
+	f.Data[path] = data
+	return nil
+}
+
 // EncodeToFile satisfies LuaWriter
 func (f *FakeFiles) EncodeToFile(script, file string) error {
 	f.Fs[file] = script
