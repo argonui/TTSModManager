@@ -15,6 +15,7 @@ import (
 
 var (
 	moddir     = flag.String("moddir", "testdata/simple", "a directory containing tts mod configs")
+	addSrc     = flag.String("addsrc", "", "additional folder to check for Lua and XML require/include")
 	rev        = flag.Bool("reverse", false, "instead of building a json from file structure, build file structure from json.")
 	writeToSrc = flag.Bool("writesrc", false, "when unbundling Lua, save the included 'require' files to the src/ directory.")
 	modfile    = flag.String("modfile", "", "where to read from when reversing.")
@@ -37,11 +38,19 @@ func main() {
 	}
 
 	lua := file.NewTextOpsMulti(
-		[]string{filepath.Join(*moddir, luasrcSubdir), filepath.Join(*moddir, objectsSubdir)},
+		[]string{
+			filepath.Join(*moddir, luasrcSubdir),
+			filepath.Join(*moddir, objectsSubdir),
+			filepath.Join(*addSrc, luasrcSubdir),
+		},
 		filepath.Join(*moddir, objectsSubdir),
 	)
 	xml := file.NewTextOpsMulti(
-		[]string{filepath.Join(*moddir, xmlsrcSubdir), filepath.Join(*moddir, objectsSubdir)},
+		[]string{
+			filepath.Join(*moddir, xmlsrcSubdir),
+			filepath.Join(*moddir, objectsSubdir),
+			filepath.Join(*addSrc, xmlsrcSubdir),
+		},
 		filepath.Join(*moddir, objectsSubdir),
 	)
 	xmlSrc := file.NewTextOps(filepath.Join(*moddir, xmlsrcSubdir))
