@@ -23,6 +23,27 @@ type JSONReader interface {
 type JSONWriter interface {
 	WriteObj(map[string]interface{}, string) error
 	WriteObjArray([]map[string]interface{}, string) error
+	WriteSavedObj(map[string]interface{}, string) error
+}
+
+type SavedObject struct {
+	SaveName       string
+	Date           string
+	VersionNumber  string
+	GameMode       string
+	GameType       string
+	GameComplexity string
+	Tags           []string
+	Gravity        float64
+	PlayArea       float64
+	Table          string
+	Sky            string
+	Note           string
+	TabStates      map[string]interface{}
+	LuaScript      string
+	LuaScriptState string
+	XmlUI          string
+	ObjectStates   []map[string]interface{} // This will hold the original `m`
 }
 
 // NewJSONOps initializes our object on a directory
@@ -77,6 +98,51 @@ func (j *JSONOps) WriteObj(m map[string]interface{}, filename string) error {
 	if err != nil && !os.IsExist(err) {
 		return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
 	}
+	return os.WriteFile(p, b, 0644)
+}
+
+// WriteSavedObj writes a serialized JSON object to a file with the boilerplate for TTS saved objects.
+func (j *JSONOps) WriteSavedObj(m map[string]interface{}, filename string) error {
+	var b []byte
+	var err error
+
+	// Create a SavedObject struct and embed `m` in the ObjectStates field
+	savedObject := SavedObject{
+		SaveName:       "",
+		Date:           "",
+		VersionNumber:  "",
+		GameMode:       "",
+		GameType:       "",
+		GameComplexity: "",
+		Tags:           []string{},
+		Gravity:        0.5,
+		PlayArea:       0.5,
+		Table:          "",
+		Sky:            "",
+		Note:           "",
+		TabStates:      map[string]interface{}{},
+		LuaScript:      "",
+		LuaScriptState: "",
+		XmlUI:          "",
+		ObjectStates:   []map[string]interface{}{m}, // Embed the object here
+	}
+
+	b, err = json.MarshalIndent(savedObject, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	// Add an end-of-file newline
+	b = append(b, '\n')
+
+	// Ensure the path exists
+	p := path.Join(j.basepath, filename)
+	err = os.MkdirAll(path.Dir(p), 0750)
+	if err != nil && !os.IsExist(err) {
+		return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
+	}
+
+	// Write the JSON data to the file
 	return os.WriteFile(p, b, 0644)
 }
 
