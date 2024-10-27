@@ -2,10 +2,10 @@ package file
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path"
+	"path/filepath"
 )
 
 // DirCreator abstracts folder creation
@@ -53,19 +53,19 @@ func (d *DirOps) CreateDir(relpath, suggestion string) (string, error) {
 
 // ListFilesAndFolders allows for file exploration. returns relateive file or folder names
 func (d *DirOps) ListFilesAndFolders(relpath string) ([]string, []string, error) {
-	p := path.Join(d.base, relpath)
-	files, err := ioutil.ReadDir(p)
+	p := filepath.Join(d.base, relpath)
+	entries, err := os.ReadDir(p)
 	if err != nil {
-		return nil, nil, fmt.Errorf("ioutil.ReadDir(%s + %s) : %v", d.base, relpath, err)
+		return nil, nil, fmt.Errorf("os.ReadDir(%s + %s) : %v", d.base, relpath, err)
 	}
-	fnames := make([]string, 0)
-	folnames := make([]string, 0)
-	for _, file := range files {
-		if file.IsDir() {
-			folnames = append(folnames, path.Join(relpath, file.Name()))
-			continue
+
+	var fnames, folnames []string
+	for _, entry := range entries {
+		if entry.IsDir() {
+			folnames = append(folnames, filepath.Join(relpath, entry.Name()))
+		} else {
+			fnames = append(fnames, filepath.Join(relpath, entry.Name()))
 		}
-		fnames = append(fnames, path.Join(relpath, file.Name()))
 	}
 	return fnames, folnames, nil
 }

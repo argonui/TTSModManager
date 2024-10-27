@@ -2,7 +2,7 @@ package file
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path"
 )
@@ -42,7 +42,7 @@ func NewTextOpsMulti(readDirs []string, writeDir string) *TextOps {
 			}
 			defer sFile.Close()
 
-			b, err := ioutil.ReadAll(sFile)
+			b, err := io.ReadAll(sFile)
 			if err != nil {
 				return nil, fmt.Errorf("ReadAll(%s): %v", s, err)
 			}
