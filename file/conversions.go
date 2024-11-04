@@ -59,6 +59,36 @@ func ForceParseIntoStrArray(m *types.J, k string, dest *[]string) error {
 	return nil
 }
 
+func TryParseIntoStrMap(m *types.J, k string, dest *map[string]string) {
+	_ = ForceParseIntoStrMap(m, k, dest)
+}
+
+func ForceParseIntoStrMap(m *types.J, k string, dest *map[string]string) error {
+	raw, ok := (*m)[k]
+	if !ok {
+		return fmt.Errorf("key %s not found", k)
+	}
+	if rawmapstrings, ok := raw.(map[string]string); ok {
+		*dest = rawmapstrings
+		delete((*m), k)
+		return nil
+	}
+	if rawmap, ok := raw.(map[string]any); ok {
+		massaged := map[string]string{}
+		for k, v := range rawmap {
+			vstr, ok := v.(string)
+			if !ok {
+				return fmt.Errorf("m[%s] of type %T, not string", k, v)
+			}
+			massaged[k] = vstr
+		}
+		*dest = massaged
+		delete((*m), k)
+		return nil
+	}
+	return fmt.Errorf("key %s was not type map[string]string, was %T", k, raw)
+}
+
 // TryParseIntoInt will not throw error
 func TryParseIntoInt(m *types.J, k string, dest *int64) {
 	_ = ForceParseIntoInt(m, k, dest)
