@@ -18,7 +18,9 @@ type objConfig struct {
 	gmnotesPath        string
 	subObjDir          string
 	subObjOrder        []string // array of base filenames of subobjects
+	stateNames         map[string]string
 	subObj             []*objConfig
+	states             map[string]*objConfig
 }
 
 func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
@@ -41,6 +43,16 @@ func (o *objConfig) parseFromFile(filepath string, j file.JSONReader) error {
 			}
 			o.subObj = append(o.subObj, subo)
 		}
+		for stateID, oname := range o.stateNames {
+			stateO := &objConfig{}
+			relFilename := path.Join(path.Dir(filepath), o.subObjDir, fmt.Sprintf("%s.json", oname))
+
+			err = stateO.parseFromFile(relFilename, j)
+			if err != nil {
+				return fmt.Errorf("parseFromFile(%s): %v", relFilename, err)
+			}
+			o.states[stateID] = stateO
+		}
 	}
 	return nil
 }
@@ -58,11 +70,14 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 	o.guid = guid
 	o.subObj = []*objConfig{}
 	o.subObjOrder = []string{}
+	o.stateNames = map[string]string{}
+	o.states = map[string]*objConfig{}
 
 	file.TryParseIntoStr(&o.data, "LuaScriptState_path", &o.luascriptstatePath)
 	file.TryParseIntoStr(&o.data, "GMNotes_path", &o.gmnotesPath)
 	file.TryParseIntoStr(&o.data, "ContainedObjects_path", &o.subObjDir)
 	file.TryParseIntoStrArray(&o.data, "ContainedObjects_order", &o.subObjOrder)
+	file.TryParseIntoStrMap(&o.data, "States_path", &o.stateNames)
 
 	for _, needSmoothing := range []string{"Transform", "ColorDiffuse"} {
 		if v, ok := o.data[needSmoothing]; ok {
@@ -84,54 +99,36 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 		o.data["AttachedSnapPoints"] = sm
 	}
 
-	// apply smoothing to object states
 	if states, ok := o.data["States"]; ok {
 		statesMap, ok := states.(map[string]interface{})
 		if !ok {
-			return fmt.Errorf("type mismatch in States : %v", states)
+			return fmt.Errorf("type mismatch in States (%T): %v", states, states)
 		}
 		for stateName, stateData := range statesMap {
 			stateObj, ok := stateData.(map[string]interface{})
 			if !ok {
 				return fmt.Errorf("type mismatch in State %s : %v", stateName, stateData)
 			}
-
-			for _, needSmoothing := range []string{"Transform", "ColorDiffuse"} {
-				if v, ok := stateObj[needSmoothing]; ok {
-					stateObj[needSmoothing] = Smooth(v)
-				}
+			stateO := &objConfig{}
+			err := stateO.parseFromJSON(stateObj)
+			if err != nil {
+				return fmt.Errorf("parseFromJSON(%v): %v", stateObj, err)
 			}
-
-			if v, ok := stateObj["AltLookAngle"]; ok {
-				vv, err := SmoothAngle(v)
-				if err != nil {
-					return fmt.Errorf("SmoothAngle(<%s>) in State %s: %v", "AltLookAngle", stateName, err)
-				}
-				stateObj["AltLookAngle"] = vv
-			}
-
-			if sp, ok := stateObj["AttachedSnapPoints"]; ok {
-				sm, err := SmoothSnapPoints(sp)
-				if err != nil {
-					return fmt.Errorf("SmoothSnapPoints(<%s>) in State %s: %v", o.guid, stateName, err)
-				}
-				stateObj["AttachedSnapPoints"] = sm
-			}
-
-			statesMap[stateName] = stateObj
+			o.states[stateName] = stateO
+			o.stateNames[stateName] = stateO.getAGoodFileName()
 		}
-		o.data["States"] = statesMap
 	}
+	delete(o.data, "States")
 
 	if rawObjs, ok := o.data["ContainedObjects"]; ok {
 		rawArr, ok := rawObjs.([]interface{})
 		if !ok {
-			return fmt.Errorf("type mismatch in ContainedObjects : %v", rawArr)
+			return fmt.Errorf("type mismatch in ContainedObjects; want []any got %T", rawObjs)
 		}
 		for _, rawSubO := range rawArr {
 			subO, ok := rawSubO.(map[string]interface{})
 			if !ok {
-				return fmt.Errorf("type mismatch in ContainedObjects : %v", rawSubO)
+				return fmt.Errorf("type mismatch in ContainedObjects; want map[string]any got %T", rawSubO)
 			}
 			so := objConfig{}
 			if err := so.parseFromJSON(subO); err != nil {
@@ -198,6 +195,19 @@ func (o *objConfig) print(l, x file.TextReader) (J, error) {
 	if len(subs) > 0 {
 		out["ContainedObjects"] = subs
 	}
+
+	s := map[string]J{}
+	for name, state := range o.states {
+		printed, err := state.print(l, x)
+		if err != nil {
+			return nil, err
+		}
+		s[name] = printed
+	}
+	if len(s) > 0 {
+		out["States"] = s
+	}
+
 	return out, nil
 }
 
@@ -271,23 +281,39 @@ func (o *objConfig) printToFile(filepath string, p *Printer) error {
 	}
 
 	// recurse if need be
-	if o.subObj != nil && len(o.subObj) > 0 {
+	if len(o.subObj) > 0 || len(o.states) > 0 {
 		subdirName, err := p.Dir.CreateDir(filepath, o.getAGoodFileName())
 		if err != nil {
 			return fmt.Errorf("<%v>.CreateDir(%s, %s) : %v", o.guid, filepath, o.getAGoodFileName(), err)
 		}
 		out["ContainedObjects_path"] = subdirName
 		o.subObjDir = subdirName
+	}
+
+	if len(o.subObj) > 0 {
 		for _, subo := range o.subObj {
-			err = subo.printToFile(path.Join(filepath, subdirName), p)
+			err = subo.printToFile(path.Join(filepath, o.subObjDir), p)
 			if err != nil {
-				return fmt.Errorf("printing file %s: %v", path.Join(filepath, subdirName), err)
+				return fmt.Errorf("printing file %s: %v", path.Join(filepath, o.subObjDir), err)
 			}
 		}
 		if len(o.subObj) != len(o.subObjOrder) {
 			return fmt.Errorf("subobj order not getting filled in on %s", o.getAGoodFileName())
 		}
 		out["ContainedObjects_order"] = o.subObjOrder
+	}
+
+	if len(o.states) > 0 {
+		for _, state := range o.states {
+			err = state.printToFile(path.Join(filepath, o.subObjDir), p)
+			if err != nil {
+				return fmt.Errorf("printing file %s: %v", path.Join(filepath, o.subObjDir), err)
+			}
+		}
+		if len(o.stateNames) != len(o.states) {
+			return fmt.Errorf("sub state mismatch for %s", o.getAGoodFileName())
+		}
+		out["States_path"] = o.stateNames
 	}
 
 	// print self
@@ -362,7 +388,8 @@ func (d *db) print(l file.TextReader, x file.TextReader, order []string) (ObjArr
 // --foo.json (guid=1234)
 // --bar.json (guid=888)
 // --888/
-//    --baz.json (guid=999) << this is a child of bar.json
+//
+//	--baz.json (guid=999) << this is a child of bar.json
 func ParseAllObjectStates(l file.TextReader, x file.TextReader, j file.JSONReader, dir file.DirExplorer, order []string) ([]map[string]interface{}, error) {
 	d := db{
 		j:    j,
