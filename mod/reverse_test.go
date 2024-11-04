@@ -237,6 +237,142 @@ func TestReverse(t *testing.T) {
 			wantObjTexts: map[string]string{},
 			wantSrcTexts: map[string]string{},
 		},
+		{
+			name: "State tracking - 2",
+			input: map[string]interface{}{
+				"SaveName": "cool mod",
+				"ObjectStates": []map[string]interface{}{
+					{
+						"GUID": "parent",
+						"States": map[string]interface{}{
+							"2": map[string]interface{}{
+								"Autoraise": true,
+								"GUID":      "eda22b",
+							},
+						},
+					},
+				},
+			},
+			wantRootConfig: map[string]interface{}{
+				"SaveName":           "cool mod",
+				"ObjectStates_order": []interface{}{"parent"},
+			},
+			wantModSettings: map[string]types.J{},
+			wantObjs: map[string]types.J{
+				"parent.json": map[string]interface{}{
+					"GUID": "parent",
+					"States_path": map[string]string{
+						"2": "eda22b",
+					},
+					"ContainedObjects_path": "parent",
+				},
+				"parent/eda22b.json": map[string]interface{}{
+					"GUID":      "eda22b",
+					"Autoraise": true,
+				},
+			},
+			wantObjTexts: map[string]string{},
+			wantSrcTexts: map[string]string{},
+		},
+		{
+			name: "State tracking - 3",
+			input: map[string]interface{}{
+				"SaveName": "cool mod",
+				"ObjectStates": []map[string]interface{}{
+					{
+						"GUID": "parent",
+						"States": map[string]interface{}{
+							"2": map[string]interface{}{
+								"Autoraise": true,
+								"GUID":      "eda22b",
+							},
+							"3": map[string]interface{}{
+								"Autoraise": false,
+								"GUID":      "child3",
+							},
+						},
+					},
+				},
+			},
+			wantRootConfig: map[string]interface{}{
+				"SaveName":           "cool mod",
+				"ObjectStates_order": []interface{}{"parent"},
+			},
+			wantModSettings: map[string]types.J{},
+			wantObjs: map[string]types.J{
+				"parent.json": map[string]interface{}{
+					"GUID": "parent",
+					"States_path": map[string]string{
+						"2": "eda22b",
+						"3": "child3",
+					},
+					"ContainedObjects_path": "parent",
+				},
+				"parent/eda22b.json": map[string]interface{}{
+					"GUID":      "eda22b",
+					"Autoraise": true,
+				},
+				"parent/child3.json": map[string]interface{}{
+					"GUID":      "child3",
+					"Autoraise": false,
+				},
+			},
+			wantObjTexts: map[string]string{},
+			wantSrcTexts: map[string]string{},
+		},
+		{
+			name: "State tracking - checking recursion",
+			input: map[string]interface{}{
+				"SaveName": "cool mod",
+				"ObjectStates": []map[string]interface{}{
+					{
+						"GUID": "parent",
+						"States": map[string]interface{}{
+							"2": map[string]interface{}{
+								"Autoraise": true,
+								"GUID":      "eda22b",
+								"ContainedObjects": []any{
+									map[string]any{
+										"Description": "child of state 2",
+										"GUID":        "childstate2",
+										"LuaScript":   "var foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\n",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			wantRootConfig: map[string]interface{}{
+				"SaveName":           "cool mod",
+				"ObjectStates_order": []interface{}{"parent"},
+			},
+			wantModSettings: map[string]types.J{},
+			wantObjs: map[string]types.J{
+				"parent.json": map[string]interface{}{
+					"GUID": "parent",
+					"States_path": map[string]string{
+						"2": "eda22b",
+					},
+					"ContainedObjects_path": "parent",
+				},
+				"parent/eda22b.json": map[string]interface{}{
+					"GUID":                   "eda22b",
+					"Autoraise":              true,
+					"ContainedObjects_path":  "eda22b",
+					"ContainedObjects_order": []string{"childstate2"},
+				},
+				"parent/eda22b/childstate2.json": map[string]interface{}{
+					"Description":    "child of state 2",
+					"GUID":           "childstate2",
+					"LuaScript_path": "parent/eda22b/childstate2.ttslua",
+				},
+			},
+			wantSrcTexts: map[string]string{},
+			wantObjTexts: map[string]string{
+				"parent/eda22b/childstate2.ttslua": "var foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\n",
+			},
+		},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			finalOutput := tests.NewFF()

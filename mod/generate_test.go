@@ -54,6 +54,79 @@ func TestGenerate(t *testing.T) {
 				"DecalPallet":    nil,
 			},
 		},
+		{
+			name: "Object State recursive",
+			inputRoot: map[string]interface{}{
+				"SaveName":           "cool mod",
+				"ObjectStates_order": []interface{}{"parent"},
+			},
+			inputLuaSrc: map[string]string{
+				"parent/eda22b/childstate2.ttslua": "var foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\n",
+			},
+			inputOjbs: map[string]types.J{
+				"parent.json": map[string]interface{}{
+					"GUID": "parent",
+					"States_path": map[string]interface{}{
+						"2": "eda22b",
+					},
+					"ContainedObjects_path": "parent",
+				},
+				"parent/eda22b.json": map[string]interface{}{
+					"GUID":                   "eda22b",
+					"Autoraise":              true,
+					"ContainedObjects_path":  "eda22b",
+					"ContainedObjects_order": []string{"childstate2"},
+				},
+				"parent/eda22b/childstate2.json": map[string]interface{}{
+					"Description":    "child of state 2",
+					"GUID":           "childstate2",
+					"LuaScript_path": "parent/eda22b/childstate2.ttslua",
+				},
+			},
+			want: map[string]interface{}{
+				"SaveName": "cool mod",
+				"ObjectStates": []any{
+					map[string]any{
+						"GUID": "parent",
+						"States": map[string]interface{}{
+							"2": map[string]interface{}{
+								"Autoraise": true,
+								"GUID":      "eda22b",
+								"ContainedObjects": []any{
+									map[string]any{
+										"Description": "child of state 2",
+										"GUID":        "childstate2",
+										"LuaScript":   "var foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\n",
+									},
+								},
+							},
+						},
+					},
+				},
+				"CameraStates":   nil,
+				"ComponentTags":  nil,
+				"MusicPlayer":    nil,
+				"Sky":            "",
+				"TabStates":      nil,
+				"Note":           "",
+				"Table":          "",
+				"LuaScript":      "",
+				"LuaScriptState": "",
+				"SnapPoints":     nil,
+				"XmlUI":          "",
+				"Turns":          nil,
+				"VersionNumber":  "",
+				"GameMode":       "",
+				"GameType":       "",
+				"Hands":          nil,
+				"Grid":           nil,
+				"Lighting":       nil,
+				"GameComplexity": "",
+				"Decals":         nil,
+				"CustomUIAssets": nil,
+				"DecalPallet":    nil,
+			},
+		},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			rootff := &tests.FakeFiles{
