@@ -321,6 +321,54 @@ func TestReverse(t *testing.T) {
 			wantSrcTexts: map[string]string{},
 		},
 		{
+			name: "State tracking and sub objects",
+			input: map[string]interface{}{
+				"SaveName": "cool mod",
+				"ObjectStates": []map[string]interface{}{
+					{
+						"GUID": "parent",
+						"States": map[string]interface{}{
+							"2": map[string]interface{}{
+								"Autoraise": true,
+								"GUID":      "state2",
+							},
+						},
+						"ContainedObjects": []any{
+							map[string]any{
+								"Description": "contained object",
+								"GUID":        "co123",
+							},
+						},
+					},
+				},
+			},
+			wantRootConfig: map[string]interface{}{
+				"SaveName":           "cool mod",
+				"ObjectStates_order": []interface{}{"parent"},
+			},
+			wantModSettings: map[string]types.J{},
+			wantObjs: map[string]types.J{
+				"parent.json": map[string]interface{}{
+					"GUID": "parent",
+					"States_path": map[string]string{
+						"2": "state2",
+					},
+					"ContainedObjects_path":  "parent",
+					"ContainedObjects_order": []string{"co123"},
+				},
+				"parent/state2.json": map[string]interface{}{
+					"GUID":      "state2",
+					"Autoraise": true,
+				},
+				"parent/co123.json": map[string]interface{}{
+					"GUID":        "co123",
+					"Description": "contained object",
+				},
+			},
+			wantObjTexts: map[string]string{},
+			wantSrcTexts: map[string]string{},
+		},
+		{
 			name: "State tracking - checking recursion",
 			input: map[string]interface{}{
 				"SaveName": "cool mod",

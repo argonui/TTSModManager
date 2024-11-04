@@ -127,6 +127,74 @@ func TestGenerate(t *testing.T) {
 				"DecalPallet":    nil,
 			},
 		},
+		{
+			name: "Object State and contained object generation",
+			inputRoot: map[string]interface{}{
+				"SaveName":           "cool mod",
+				"ObjectStates_order": []interface{}{"parent"},
+			},
+			inputLuaSrc: map[string]string{},
+			inputOjbs: map[string]types.J{
+				"parent.json": map[string]interface{}{
+					"GUID": "parent",
+					"States_path": map[string]interface{}{
+						"2": "state2",
+					},
+					"ContainedObjects_path":  "parent",
+					"ContainedObjects_order": []string{"co123"},
+				},
+				"parent/state2.json": map[string]interface{}{
+					"GUID":      "state2",
+					"Autoraise": true,
+				},
+				"parent/co123.json": map[string]interface{}{
+					"Description": "contained object",
+					"GUID":        "co123",
+				},
+			},
+			want: map[string]interface{}{
+				"SaveName": "cool mod",
+				"ObjectStates": []any{
+					map[string]any{
+						"GUID": "parent",
+						"States": map[string]interface{}{
+							"2": map[string]interface{}{
+								"Autoraise": true,
+								"GUID":      "state2",
+							},
+						},
+						"ContainedObjects": []any{
+							map[string]any{
+								"GUID":        "co123",
+								"Description": "contained object",
+							},
+						},
+					},
+				},
+				"CameraStates":   nil,
+				"ComponentTags":  nil,
+				"MusicPlayer":    nil,
+				"Sky":            "",
+				"TabStates":      nil,
+				"Note":           "",
+				"Table":          "",
+				"LuaScript":      "",
+				"LuaScriptState": "",
+				"SnapPoints":     nil,
+				"XmlUI":          "",
+				"Turns":          nil,
+				"VersionNumber":  "",
+				"GameMode":       "",
+				"GameType":       "",
+				"Hands":          nil,
+				"Grid":           nil,
+				"Lighting":       nil,
+				"GameComplexity": "",
+				"Decals":         nil,
+				"CustomUIAssets": nil,
+				"DecalPallet":    nil,
+			},
+		},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			rootff := &tests.FakeFiles{
