@@ -102,6 +102,7 @@ func (j *JSONOps) WriteObj(m map[string]interface{}, filename string) error {
 }
 
 // WriteSavedObj writes a serialized JSON object to a file with the boilerplate for TTS saved objects.
+// For additional information, see saved-object-feature.md in the project repository.
 func (j *JSONOps) WriteSavedObj(m map[string]interface{}, filename string) error {
 	var b []byte
 	var err error
