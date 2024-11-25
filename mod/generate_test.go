@@ -14,9 +14,10 @@ func TestGenerate(t *testing.T) {
 		name             string
 		inputRoot        types.J
 		inputModSettings map[string]interface{}
-		inputOjbs        map[string]types.J
+		inputObjs        map[string]types.J
 		inputLuaSrc      map[string]string
 		inputObjTexts    map[string]string
+		flags            map[string]interface{}
 		want             map[string]interface{}
 	}{
 		{
@@ -63,7 +64,7 @@ func TestGenerate(t *testing.T) {
 			inputLuaSrc: map[string]string{
 				"parent/eda22b/childstate2.ttslua": "var foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\nvar foo = 42\n",
 			},
-			inputOjbs: map[string]types.J{
+			inputObjs: map[string]types.J{
 				"parent.json": map[string]interface{}{
 					"GUID": "parent",
 					"States_path": map[string]interface{}{
@@ -134,7 +135,7 @@ func TestGenerate(t *testing.T) {
 				"ObjectStates_order": []interface{}{"parent"},
 			},
 			inputLuaSrc: map[string]string{},
-			inputOjbs: map[string]types.J{
+			inputObjs: map[string]types.J{
 				"parent.json": map[string]interface{}{
 					"GUID": "parent",
 					"States_path": map[string]interface{}{
@@ -195,6 +196,39 @@ func TestGenerate(t *testing.T) {
 				"DecalPallet":    nil,
 			},
 		},
+		{
+			name: "Saved Object (Simple)",
+			inputRoot: map[string]interface{}{
+				"GUID":        "test123",
+				"Description": "A test object",
+			},
+			flags: map[string]interface{}{
+				"SavedObj": true,
+			},
+			want: map[string]interface{}{
+				"SaveName":       "",
+				"Date":           "",
+				"VersionNumber":  "",
+				"GameMode":       "",
+				"GameType":       "",
+				"GameComplexity": "",
+				"Tags":           []string{},
+				"Gravity":        0.5,
+				"PlayArea":       0.5,
+				"Table":          "",
+				"Sky":            "",
+				"Note":           "",
+				"LuaScript":      "",
+				"LuaScriptState": "",
+				"XmlUI":          "",
+				"ObjectStates": []interface{}{
+					map[string]interface{}{
+						"GUID":        "test123",
+						"Description": "A test object",
+					},
+				},
+			},
+		},	
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			rootff := &tests.FakeFiles{
@@ -207,7 +241,7 @@ func TestGenerate(t *testing.T) {
 			}
 			msff := &tests.FakeFiles{}
 			objs := &tests.FakeFiles{
-				Data: tc.inputOjbs,
+				Data: tc.inputObjs,
 				Fs:   tc.inputObjTexts,
 			}
 			m := Mod{
@@ -218,6 +252,11 @@ func TestGenerate(t *testing.T) {
 				Objs:        objs,
 				Objdirs:     objs,
 			}
+
+			if savedObjFlag, ok := tc.flags["SavedObj"]; ok && savedObjFlag == true {
+				m.SavedObj = true
+			}
+
 			err := m.GenerateFromConfig()
 			if err != nil {
 				t.Fatalf("Error reading config %v", err)
