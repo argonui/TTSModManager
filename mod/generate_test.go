@@ -198,10 +198,12 @@ func TestGenerate(t *testing.T) {
 		},
 		{
 			name: "Saved Object (Simple)",
-			inputRoot: map[string]interface{}{
-				"GUID":        "test123",
-				"Description": "A test object",
-			},
+			inputObjs: map[string]types.J{
+        "test123.json": map[string]interface{}{
+					"GUID":        "test123",
+					"Description": "A test object",
+        },
+    	},
 			flags: map[string]interface{}{
 				"OnlyObjStates": true,
 				"SavedObj": true,
@@ -246,6 +248,7 @@ func TestGenerate(t *testing.T) {
 				Data: tc.inputObjs,
 				Fs:   tc.inputObjTexts,
 			}
+			
 			m := Mod{
 				RootRead:    rootff,
 				RootWrite:   rootff,
@@ -256,7 +259,7 @@ func TestGenerate(t *testing.T) {
 			}
 
 			if OnlyObjStatesFlag, ok := tc.flags["OnlyObjStates"]; ok && OnlyObjStatesFlag == true {
-				//m.OnlyObjStates = filepath.Base(*objin)
+				m.OnlyObjStates = "test123.json"
 			}
 
 			if savedObjFlag, ok := tc.flags["SavedObj"]; ok && savedObjFlag == true {
