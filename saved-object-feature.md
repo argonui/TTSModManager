@@ -12,22 +12,22 @@ In addition to handling regular savegames, TTSMM supports generating "Saved Obje
 
 ### Key Differences: Regular Savegames vs. Saved Objects
 
-| Field            | Regular Savegame Value     | Saved Object Value                |
-| ---------------- | -------------------------- | --------------------------------- |
-| `SaveName`       | Populated with save name   | Empty (`""`)                      |
-| `Date`           | Timestamp of save creation | Empty (`""`)                      |
-| `VersionNumber`  | Current TTS version        | Empty (`""`)                      |
-| `GameMode`       | Game mode description      | Empty (`""`)                      |
-| `GameType`       | Type of game               | Empty (`""`)                      |
-| `GameComplexity` | Complexity descriptor      | Empty (`""`)                      |
-| `Tags`           | Array of tags              | Empty (`[]`)                      |
-| `Gravity`        | Physics gravity setting    | Default (`0.5`)                   |
-| `PlayArea`       | Play area scale            | Default (`0.5`)                   |
-| `Table`          | Table model used           | Empty (`""`)                      |
-| `Sky`            | Skybox setting             | Empty (`""`)                      |
-| `Note`           | Session note               | Empty (`""`)                      |
-| `TabStates`      | Tab states information     | Empty (`{}`)                      |
-| `LuaScript`      | Global Lua script content  | Empty (`""`)                      |
-| `LuaScriptState` | Lua script state data      | Empty (`""`)                      |
-| `XmlUI`          | XML UI data                | Empty (`""`)                      |
-| `ObjectStates`   | Array of game objects      | Populated with serialized objects |
+| Field            | Regular Savegame Value     | Saved Object Value    |
+| ---------------- | -------------------------- | --------------------- |
+| `SaveName`       | Populated with save name   | Empty (`""`)          |
+| `Date`           | Timestamp of save creation | Empty (`""`)          |
+| `VersionNumber`  | Current TTS version        | Empty (`""`)          |
+| `GameMode`       | Game mode description      | Empty (`""`)          |
+| `GameType`       | Type of game               | Empty (`""`)          |
+| `GameComplexity` | Complexity descriptor      | Empty (`""`)          |
+| `Tags`           | Array of tags              | Empty (`[]`)          |
+| `Gravity`        | Physics gravity setting    | Default (`0.5`)       |
+| `PlayArea`       | Play area scale            | Default (`0.5`)       |
+| `Table`          | Table model used           | Empty (`""`)          |
+| `Sky`            | Skybox setting             | Empty (`""`)          |
+| `Note`           | Session note               | Empty (`""`)          |
+| `TabStates`      | Tab states information     | Empty (`{}`)          |
+| `LuaScript`      | Global Lua script content  | Empty (`""`)          |
+| `LuaScriptState` | Lua script state data      | Empty (`""`)          |
+| `XmlUI`          | XML UI data                | Empty (`""`)          |
+| `ObjectStates`   | Array of game objects      | Array of game objects |
