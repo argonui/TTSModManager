@@ -215,7 +215,7 @@ func TestGenerate(t *testing.T) {
 				"GameMode":       "",
 				"GameType":       "",
 				"GameComplexity": "",
-				"Tags":           []string{},
+				"Tags":           []any{},
 				"Gravity":        0.5,
 				"PlayArea":       0.5,
 				"Table":          "",
