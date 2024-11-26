@@ -107,7 +107,6 @@ func (j *JSONOps) WriteSavedObj(m map[string]interface{}, filename string) error
 	var b []byte
 	var err error
 
-	// Create a SavedObject struct and embed `m` in the ObjectStates field
 	savedObject := SavedObject{
 		SaveName:       "",
 		Date:           "",
@@ -125,7 +124,7 @@ func (j *JSONOps) WriteSavedObj(m map[string]interface{}, filename string) error
 		LuaScript:      "",
 		LuaScriptState: "",
 		XmlUI:          "",
-		ObjectStates:   []map[string]interface{}{m}, // Embed the object here
+		ObjectStates:   []map[string]interface{}{m},
 	}
 
 	b, err = json.MarshalIndent(savedObject, "", "  ")
@@ -133,17 +132,16 @@ func (j *JSONOps) WriteSavedObj(m map[string]interface{}, filename string) error
 		return err
 	}
 
-	// Add an end-of-file newline
+	// end-of-file newline
 	b = append(b, '\n')
 
-	// Ensure the path exists
+	// ensure the path exists
 	p := path.Join(j.basepath, filename)
 	err = os.MkdirAll(path.Dir(p), 0750)
 	if err != nil && !os.IsExist(err) {
 		return fmt.Errorf("MkdirAll(%s): %v", path.Dir(p), err)
 	}
 
-	// Write the JSON data to the file
 	return os.WriteFile(p, b, 0644)
 }
 
