@@ -219,6 +219,7 @@ func TestGenerate(t *testing.T) {
 				"Table":          "",
 				"Sky":            "",
 				"Note":           "",
+				"TabStates":      map[string]interface{}{},
 				"LuaScript":      "",
 				"LuaScriptState": "",
 				"XmlUI":          "",
