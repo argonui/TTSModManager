@@ -203,6 +203,7 @@ func TestGenerate(t *testing.T) {
 				"Description": "A test object",
 			},
 			flags: map[string]interface{}{
+				"OnlyObjStates": true,
 				"SavedObj": true,
 			},
 			want: map[string]interface{}{
@@ -251,6 +252,10 @@ func TestGenerate(t *testing.T) {
 				Modsettings: msff,
 				Objs:        objs,
 				Objdirs:     objs,
+			}
+
+			if OnlyObjStatesFlag, ok := tc.flags["OnlyObjStates"]; ok && OnlyObjStatesFlag == true {
+				//m.OnlyObjStates = filepath.Base(*objin)
 			}
 
 			if savedObjFlag, ok := tc.flags["SavedObj"]; ok && savedObjFlag == true {
