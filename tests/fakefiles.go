@@ -78,6 +78,32 @@ func (f *FakeFiles) WriteObjArray(data []map[string]interface{}, path string) er
 	return nil
 }
 
+// WriteSavedObj satisfies JSONWriter and mimics the behavior of the real WriteSavedObj.
+func (f *FakeFiles) WriteSavedObj(data map[string]interface{}, path string) error {
+	savedObject := map[string]interface{}{
+		"SaveName":       "",
+		"Date":           "",
+		"VersionNumber":  "",
+		"GameMode":       "",
+		"GameType":       "",
+		"GameComplexity": "",
+		"Tags":           []any{},
+		"Gravity":        0.5,
+		"PlayArea":       0.5,
+		"Table":          "",
+		"Sky":            "",
+		"Note":           "",
+		"TabStates":      map[string]interface{}{},
+		"LuaScript":      "",
+		"LuaScriptState": "",
+		"XmlUI":          "",
+		"ObjectStates":   []map[string]interface{}{data},
+	}
+
+	f.Data[path] = savedObject
+	return nil
+}
+
 // EncodeToFile satisfies LuaWriter
 func (f *FakeFiles) EncodeToFile(script, file string) error {
 	f.Fs[file] = script
