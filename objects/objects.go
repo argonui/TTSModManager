@@ -322,8 +322,8 @@ func (o *objConfig) printToFile(filepath string, p *Printer) error {
 }
 
 func (o *objConfig) getAGoodFileName() string {
-	// This allows any letter or number from any language, plus _ and -
-	reg := regexp.MustCompile(`[^\p{L}\p{N}_-]+`)
+	// This allows any letter or number from any language, plus _, -, and !
+	reg := regexp.MustCompile(`[^\p{L}\p{N}_!-]+`)
 
 	keyname, err := o.tryGetNonEmptyStr("Nickname")
 	if err != nil {
