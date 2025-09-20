@@ -404,7 +404,14 @@ func TestName(t *testing.T) {
 				"Name":     "Card",
 			},
 			guid: "010509",
-			want: "OccultInvocation.010509",
+			want: "OccultInvocation!!!!.010509",
+		}, {
+				data: types.J{
+				"Nickname": "Verschwörung der Äxte!",
+				"Name":     "Card",
+			},
+			guid: "010511",
+			want: "VerschwörungderÄxte!.010511",
 		}, {
 			data: types.J{
 				"Name": "Card",
