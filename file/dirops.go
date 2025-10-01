@@ -34,7 +34,7 @@ func NewDirOps(p string) *DirOps {
 // CreateDir allows objects to abstract creation of sub directories without knowning the root path of the machine
 func (d *DirOps) CreateDir(relpath, suggestion string) (string, error) {
 	dirname := suggestion
-	err := os.Mkdir(path.Join(d.base, relpath, suggestion), 0644)
+	err := os.Mkdir(path.Join(d.base, relpath, suggestion), 0755)
 	tries := 0
 	if os.IsExist(err) {
 		return dirname, nil
@@ -43,7 +43,7 @@ func (d *DirOps) CreateDir(relpath, suggestion string) (string, error) {
 		log.Printf("error creating %s, trying again\n%v\n", path.Join(d.base, relpath, suggestion), err)
 		tries++
 		dirname = fmt.Sprintf("%s_%v", suggestion, tries)
-		err = os.Mkdir(path.Join(d.base, relpath, dirname), 0644)
+		err = os.Mkdir(path.Join(d.base, relpath, dirname), 0755)
 	}
 	if tries >= 100 {
 		return "", fmt.Errorf("could not find sutible name for sub directory based on suggestion %s; %v", suggestion, err)
