@@ -92,21 +92,22 @@ func main() {
 		if *objin != "" {
 			*modfile = *objin
 			objs = file.NewJSONOps(filepath.Dir(*objout))
+		} else {
+			// clear the objects directory to avoid orphaned files (by removing and recreating)
+			objectsPath := filepath.Join(*moddir, objectsSubdir)
+
+			if err := os.RemoveAll(objectsPath); err != nil {
+				log.Fatalf("Error clearing directory %s: %v", objectsPath, err)
+			}
+
+			if err := os.MkdirAll(objectsPath, 0755); err != nil {
+				log.Fatalf("Error recreating directory %s: %v", objectsPath, err)
+			}
 		}
+	
 		raw, err := prepForReverse(*moddir, *modfile)
 		if err != nil {
 			log.Fatalf("prepForReverse (%s) failed : %v", *modfile, err)
-		}
-
-		// clear the objects directory to avoid orphaned files (by removing and recreating)
-		objectsPath := filepath.Join(*moddir, objectsSubdir)
-
-		if err := os.RemoveAll(objectsPath); err != nil {
-			log.Fatalf("Error clearing directory %s: %v", objectsPath, err)
-		}
-
-		if err := os.MkdirAll(objectsPath, 0755); err != nil {
-			log.Fatalf("Error recreating directory %s: %v", objectsPath, err)
 		}
 
 		r := mod.Reverser{
