@@ -116,6 +116,11 @@ func (f *FakeFiles) CreateDir(a, b string) (string, error) {
 	return b, nil
 }
 
+// Clear satisfies DirCreator
+func (f *FakeFiles) Clear() error {
+	return nil
+}
+
 // ListFilesAndFolders satisfies DirExplorer
 func (f *FakeFiles) ListFilesAndFolders(relpath string) ([]string, []string, error) {
 	// ignore non json files. i don't think they Matter
