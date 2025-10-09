@@ -11,6 +11,7 @@ import (
 // DirCreator abstracts folder creation
 type DirCreator interface {
 	CreateDir(relpath string, suggestion string) (string, error)
+	Clear() error
 }
 
 // DirExplorer allows files and folders to be enumerated
@@ -49,6 +50,23 @@ func (d *DirOps) CreateDir(relpath, suggestion string) (string, error) {
 		return "", fmt.Errorf("could not find sutible name for sub directory based on suggestion %s; %v", suggestion, err)
 	}
 	return dirname, nil
+}
+
+// Clear removes all contents from the base directory and recreates it.
+func (d *DirOps) Clear() error {
+	log.Printf("Clearing directory: %s", d.base)
+
+	// Remove the directory and all its contents
+	if err := os.RemoveAll(d.base); err != nil {
+		return fmt.Errorf("error clearing directory %s: %w", d.base, err)
+	}
+
+	// Recreate the empty directory
+	if err := os.MkdirAll(d.base, 0755); err != nil {
+		return fmt.Errorf("error recreating directory %s: %w", d.base, err)
+	}
+
+	return nil
 }
 
 // ListFilesAndFolders allows for file exploration. returns relateive file or folder names

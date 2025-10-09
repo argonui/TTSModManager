@@ -94,14 +94,8 @@ func main() {
 			objs = file.NewJSONOps(filepath.Dir(*objout))
 		} else {
 			// clear the objects directory to avoid orphaned files (by removing and recreating)
-			objectsPath := filepath.Join(*moddir, objectsSubdir)
-
-			if err := os.RemoveAll(objectsPath); err != nil {
-				log.Fatalf("Error clearing directory %s: %v", objectsPath, err)
-			}
-
-			if err := os.MkdirAll(objectsPath, 0755); err != nil {
-				log.Fatalf("Error recreating directory %s: %v", objectsPath, err)
+			if err := objdir.Clear(); err != nil {
+				log.Fatalf("Failed to clear objects directory before writing: %v", err)
 			}
 		}
 	
