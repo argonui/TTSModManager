@@ -6,7 +6,17 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"time"
 )
+
+// Set of allowed file extensions for the safety check before clearing the objects folder
+var allowedExtensions = map[string]struct{}{
+	".json":           {},
+	".gmnotes":        {},
+	".luascriptstate": {},
+	".ttslua":         {},
+	".xml":            {},
+}
 
 // DirCreator abstracts folder creation
 type DirCreator interface {
@@ -52,9 +62,44 @@ func (d *DirOps) CreateDir(relpath, suggestion string) (string, error) {
 	return dirname, nil
 }
 
+// preClearCheck walks the directory and ensures all files have an allowed extension.
+// It returns an error if a file with a disallowed extension is found.
+func (d *DirOps) preClearCheck() error {
+	walkErr := filepath.Walk(d.base, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		// Skip directories
+		if info.IsDir() {
+			return nil
+		}
+
+		ext := filepath.Ext(info.Name())
+		if _, isAllowed := allowedExtensions[ext]; !isAllowed {
+			return fmt.Errorf("unsafe file type found: %s", path)
+		}
+		return nil
+	})
+
+	// If the directory doesn't exist, Walk returns an error. We treat this as "safe".
+	if os.IsNotExist(walkErr) {
+		return nil
+	}
+	return walkErr
+}
+
 // Clear removes all contents from the base directory and recreates it.
 func (d *DirOps) Clear() error {
-	log.Printf("Clearing directory: %s", d.base)
+	log.Println("Performing safety check...")
+	startTime := time.Now()
+
+	if err := d.preClearCheck(); err != nil {
+		return fmt.Errorf("pre-clear safety check failed, operation aborted: %w", err)
+	}
+
+	duration := time.Since(startTime)
+	log.Printf("Safety check passed in %v. Proceeding with clear.", duration)
 
 	// Remove the directory and all its contents
 	if err := os.RemoveAll(d.base); err != nil {
@@ -66,6 +111,7 @@ func (d *DirOps) Clear() error {
 		return fmt.Errorf("error recreating directory %s: %w", d.base, err)
 	}
 
+	log.Printf("Cleared and recreated directory: %s", d.base)
 	return nil
 }
 
