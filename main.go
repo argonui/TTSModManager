@@ -92,7 +92,13 @@ func main() {
 		if *objin != "" {
 			*modfile = *objin
 			objs = file.NewJSONOps(filepath.Dir(*objout))
+		} else {
+			// clear the objects directory to avoid orphaned files (by removing and recreating)
+			if err := objdir.Clear(); err != nil {
+				log.Fatalf("Failed to clear objects directory before writing: %v", err)
+			}
 		}
+	
 		raw, err := prepForReverse(*moddir, *modfile)
 		if err != nil {
 			log.Fatalf("prepForReverse (%s) failed : %v", *modfile, err)
