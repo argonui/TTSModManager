@@ -8,6 +8,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  # Run in the merge queue so its checks can gate merges into main.
+  merge_group:
 
 jobs:
 
