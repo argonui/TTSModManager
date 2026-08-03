@@ -91,9 +91,7 @@ func TestAllReverseThenBuild(t *testing.T) {
 				t.Fatalf("output.json not parsed : %v", err)
 			}
 			ignoreUnpredictable := func(k string, v interface{}) bool {
-				if _, ok := v.(float64); ok {
-					return true
-				}
+				// Date and EpochTime are regenerated on every build by design.
 				if k == "Date" || k == "EpochTime" {
 					return true
 				}
@@ -133,7 +131,11 @@ func TestAllReverseThenBuild(t *testing.T) {
 			normalizeBundledLua(want)
 			normalizeBundledLua(got)
 
-			if diff := cmp.Diff(want, got, cmpopts.IgnoreMapEntries(ignoreUnpredictable)); diff != "" {
+			// Floats are compared approximately rather than skipped. Smoothing rounds
+			// positions to 3dp, scale to 2dp, and colors to 5dp, so an absolute
+			// tolerance of 1e-4 comfortably absorbs rounding noise while still
+			// catching any real numeric corruption in the round trip.
+			if diff := cmp.Diff(want, got, cmpopts.IgnoreMapEntries(ignoreUnpredictable), cmpopts.EquateApprox(0, 1e-4)); diff != "" {
 				t.Errorf("want != got:\n%v\n", diff)
 			}
 		})

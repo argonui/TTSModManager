@@ -16,15 +16,18 @@ var (
 )
 
 func ignoreUnpredictable(k string, v interface{}) bool {
-	if _, ok := v.(float64); ok {
-		return true
-	}
+	// Date and EpochTime are regenerated on every build by design.
 	if k == "Date" || k == "EpochTime" {
 		return true
 	}
 
 	return false
 }
+
+// approxFloats compares float64 values with a small absolute tolerance
+// consistent with number smoothing (positions 3dp, scale 2dp, colors 5dp),
+// rather than ignoring them outright.
+var approxFloats = cmpopts.EquateApprox(0, 1e-4)
 
 func compareDelta(t *testing.T, filea, fileb string) error {
 	a, err := file.ReadRawFile(filea)
@@ -60,7 +63,7 @@ func compareDelta(t *testing.T, filea, fileb string) error {
 	delete(a, osKey)
 	delete(b, osKey)
 
-	if diff := cmp.Diff(a, b, cmpopts.IgnoreMapEntries(ignoreUnpredictable)); diff != "" {
+	if diff := cmp.Diff(a, b, cmpopts.IgnoreMapEntries(ignoreUnpredictable), approxFloats); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)
 	}
 	return nil
@@ -154,7 +157,7 @@ func compareObjs(t *testing.T, guid string, a, b map[string]interface{}) error {
 		return fmt.Errorf("in obj %s, one has sub-objects, the other does not", guid)
 	}
 
-	if diff := cmp.Diff(a, b, cmpopts.IgnoreMapEntries(ignoreUnpredictable)); diff != "" {
+	if diff := cmp.Diff(a, b, cmpopts.IgnoreMapEntries(ignoreUnpredictable), approxFloats); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)
 	}
 	return nil
