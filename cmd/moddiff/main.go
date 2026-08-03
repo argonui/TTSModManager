@@ -1,20 +1,44 @@
+// Command moddiff compares two Tabletop Simulator mod files and prints the
+// meaningful differences between them, ignoring values that are expected to
+// vary between otherwise-equivalent savegames (timestamps and numeric jitter).
+//
+// It exits 0 when the two mods are equivalent and non-zero when they differ or
+// when either file cannot be read.
+//
+// Usage:
+//
+//	moddiff -a path/to/first.json -b path/to/second.json
 package main
 
 import (
 	file "ModCreator/file"
 	"flag"
 	"fmt"
-	"testing"
+	"os"
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
 var (
-	modfilea = flag.String("moda", "", "where to read second mod from when comparing.")
-	modfileb = flag.String("modb", "", "where to read second mod from when comparing.")
+	modfilea = flag.String("a", "", "path to the first mod file to compare")
+	modfileb = flag.String("b", "", "path to the second mod file to compare")
 )
 
+// differ accumulates the human-readable differences discovered while comparing
+// two mods. It replaces the *testing.T that this logic used to lean on when it
+// lived in compare_test.go.
+type differ struct {
+	diffs []string
+}
+
+func (d *differ) reportf(format string, args ...interface{}) {
+	d.diffs = append(d.diffs, fmt.Sprintf(format, args...))
+}
+
+// ignoreUnpredictable reports whether a map entry should be skipped when
+// diffing. Numeric values and the Date/EpochTime fields drift between
+// otherwise-equivalent savegames, so comparing them only produces noise.
 func ignoreUnpredictable(k string, v interface{}) bool {
 	// Date and EpochTime are regenerated on every build by design.
 	if k == "Date" || k == "EpochTime" {
@@ -29,7 +53,7 @@ func ignoreUnpredictable(k string, v interface{}) bool {
 // rather than ignoring them outright.
 var approxFloats = cmpopts.EquateApprox(0, 1e-4)
 
-func compareDelta(t *testing.T, filea, fileb string) error {
+func compareDelta(d *differ, filea, fileb string) error {
 	a, err := file.ReadRawFile(filea)
 	if err != nil {
 		return err
@@ -55,16 +79,15 @@ func compareDelta(t *testing.T, filea, fileb string) error {
 	if err != nil {
 		return fmt.Errorf("cannot cast to obj array %v", err)
 	}
-	err = compareObjArrays(t, asubOs, bsubOs)
-	if err != nil {
-		t.Errorf("compareObjs(<>) : %v", err)
+	if err := compareObjArrays(d, asubOs, bsubOs); err != nil {
+		d.reportf("compareObjs(<>) : %v", err)
 	}
 
 	delete(a, osKey)
 	delete(b, osKey)
 
 	if diff := cmp.Diff(a, b, cmpopts.IgnoreMapEntries(ignoreUnpredictable), approxFloats); diff != "" {
-		t.Errorf("want != got:\n%v\n", diff)
+		d.reportf("want != got:\n%v\n", diff)
 	}
 	return nil
 }
@@ -86,7 +109,7 @@ func toObjArray(i interface{}) ([]map[string]interface{}, error) {
 	return arr, nil
 }
 
-func compareObjArrays(t *testing.T, a, b []map[string]interface{}) error {
+func compareObjArrays(d *differ, a, b []map[string]interface{}) error {
 	if len(a) != len(b) {
 		return fmt.Errorf("length mismatch %v vs %v", len(a), len(b))
 	}
@@ -103,8 +126,7 @@ func compareObjArrays(t *testing.T, a, b []map[string]interface{}) error {
 		if !ok {
 			return fmt.Errorf("b doesn't have GUID %s", k)
 		}
-		err = compareObjs(t, k, av, bv)
-		if err != nil {
+		if err := compareObjs(d, k, av, bv); err != nil {
 			return fmt.Errorf("object %s found diff: %v", k, err)
 		}
 	}
@@ -127,7 +149,7 @@ func convertToMetaMap(arr []map[string]interface{}) (map[string]map[string]inter
 	return m, nil
 }
 
-func compareObjs(t *testing.T, guid string, a, b map[string]interface{}) error {
+func compareObjs(d *differ, guid string, a, b map[string]interface{}) error {
 	subKey := "ContainedObjects"
 
 	aSub, aok := a[subKey]
@@ -144,8 +166,7 @@ func compareObjs(t *testing.T, guid string, a, b map[string]interface{}) error {
 			return err
 		}
 
-		err = compareObjArrays(t, aArr, bArr)
-		if err != nil {
+		if err := compareObjArrays(d, aArr, bArr); err != nil {
 			return fmt.Errorf("subObjects of %s[ContainedObjects] have diff: %v", guid, err)
 		}
 
@@ -158,19 +179,33 @@ func compareObjs(t *testing.T, guid string, a, b map[string]interface{}) error {
 	}
 
 	if diff := cmp.Diff(a, b, cmpopts.IgnoreMapEntries(ignoreUnpredictable), approxFloats); diff != "" {
-		t.Errorf("want != got:\n%v\n", diff)
+		d.reportf("want != got:\n%v\n", diff)
 	}
 	return nil
 }
 
-func TestDiff(t *testing.T) {
+func main() {
+	flag.Parse()
+
 	if *modfilea == "" || *modfileb == "" {
-		// if run automatically, ignore this test
-		return
+		fmt.Fprintln(os.Stderr, "both -a and -b must be set to mod file paths")
+		flag.Usage()
+		os.Exit(2)
 	}
 
-	err := compareDelta(t, *modfilea, *modfileb)
-	if err != nil {
-		t.Errorf("compareDelta(%s,%s) : %v", *modfilea, *modfileb, err)
+	d := &differ{}
+	if err := compareDelta(d, *modfilea, *modfileb); err != nil {
+		fmt.Fprintf(os.Stderr, "compareDelta(%s,%s) : %v\n", *modfilea, *modfileb, err)
+		os.Exit(1)
 	}
+
+	if len(d.diffs) > 0 {
+		for _, diff := range d.diffs {
+			fmt.Println(diff)
+		}
+		fmt.Fprintf(os.Stderr, "mods differ: found %d difference(s)\n", len(d.diffs))
+		os.Exit(1)
+	}
+
+	fmt.Println("no differences")
 }
