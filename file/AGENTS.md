@@ -39,13 +39,32 @@ way POSIX tools expect, without that newline leaking into the mod content and ap
 spurious character in TTS. The two halves are a matched pair — changing one without the other adds
 or eats a newline on every round trip.
 
-## `Clear` and its safety check
+## `Clear` and its safety checks
 
-`DirOps.Clear()` deletes and recreates a directory. Because it is destructive, `preClearCheck`
-first walks the tree and refuses if it finds a file whose extension is not in `allowedExtensions`
-(`.json`, `.gmnotes`, `.luascriptstate`, `.ttslua`, `.xml`). The intent is that the objects
-directory should only ever contain files this tool generated, so anything unrecognized means the
-path is wrong and deleting would destroy someone's work.
+`DirOps.Clear()` deletes and recreates a directory. Because it is destructive it runs two guards
+before touching anything.
+
+**Ownership marker.** After a successful clear, `Clear` drops a hidden sentinel file
+(`.ttsmm-managed`, the `managedMarker` constant) into the directory. On the next run that marker is
+proof the tool created the directory, so deleting it is safe. `Clear` refuses unless one of:
+
+- the directory does not exist,
+- the directory is empty,
+- the directory already contains the marker, or
+- the directory has no marker but every file passes the legacy extension allowlist
+  (`allowedExtensions`: `.json`, `.gmnotes`, `.luascriptstate`, `.ttslua`, `.xml`) — backward
+  compatibility for trees written before the marker existed; they clear once and gain a marker
+  going forward.
+
+A non-empty directory with no marker and unrecognized content (a mistargeted `--moddir` pointed at,
+say, `$HOME`) is refused with an error explaining how to proceed. This also resolves the older
+`.DS_Store`/`.gitkeep` false-positive, since a tool-created directory carries a marker and the
+extension check no longer gates it.
+
+**Path guard.** Independent of contents, `pathGuard` resolves the target to an absolute, cleaned
+path and refuses the filesystem root, the user's home directory, any ancestor of home, and
+suspiciously shallow single-segment paths — targets that are almost always a typo rather than a mod
+tree.
 
 ## `conversions.go`
 
