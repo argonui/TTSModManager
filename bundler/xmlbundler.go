@@ -59,8 +59,11 @@ func indentString(s string, indent string) string {
 	return strings.Join(final, "\n")
 }
 
-// UnbundleAllXML converts a bundled xml file to mapping of filenames to contents
-func UnbundleAllXML(rawxml string) (map[string]string, error) {
+// UnbundleAllXML converts a bundled xml file to mapping of filenames to
+// contents, alongside the name of the entry-point ("root") module. XML has no
+// per-bundle entry declaration, so the root is always the canonical Rootname;
+// it is returned so callers can treat Lua and XML unbundling uniformly.
+func UnbundleAllXML(rawxml string) (map[string]string, string, error) {
 	type inc struct {
 		name  string
 		start int
@@ -98,10 +101,10 @@ func UnbundleAllXML(rawxml string) (map[string]string, error) {
 		}
 	}
 	if len(stack) != 0 {
-		return nil, fmt.Errorf("Bundled xml left after finished reading file: %v", stack)
+		return nil, "", fmt.Errorf("Bundled xml left after finished reading file: %v", stack)
 	}
 	store[Rootname] = unindentAndJoin(xmlarray, "")
-	return store, nil
+	return store, Rootname, nil
 }
 
 func unindentAndJoin(raw []string, indent string) string {

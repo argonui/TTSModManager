@@ -17,7 +17,7 @@ type Handler struct {
 
 	key, keypath, extension string
 	bundle                  func(string, file.TextReader) (string, error)
-	unbundle                func(string) (map[string]string, error)
+	unbundle                func(string) (map[string]string, string, error)
 }
 
 // NewLuaHandler fills in relevant info for lua bundling
@@ -102,12 +102,12 @@ func (h *Handler) WhileWritingToFile(rawj map[string]interface{}, possiblefname 
 			h.key, rawscript, rawscript)
 	}
 
-	allScripts, err := h.unbundle(script)
+	allScripts, rootName, err := h.unbundle(script)
 	if err != nil {
 		return HandleAction{}, fmt.Errorf("UnbundleAll(...): %v", err)
 	}
 	// root bundle is promised to exist
-	rootscript, _ := allScripts[bundler.Rootname]
+	rootscript, _ := allScripts[rootName]
 	returnAction := HandleAction{Noop: false}
 	if len(rootscript) > 80 {
 		err = h.DefaultWriter.EncodeToFile(rootscript, possiblefname)
@@ -120,7 +120,7 @@ func (h *Handler) WhileWritingToFile(rawj map[string]interface{}, possiblefname 
 		returnAction.Key = h.key
 		returnAction.Value = rootscript
 	}
-	delete(allScripts, bundler.Rootname)
+	delete(allScripts, rootName)
 
 	for k, script := range allScripts {
 		fname := k

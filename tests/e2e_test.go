@@ -114,11 +114,11 @@ func TestAllReverseThenBuild(t *testing.T) {
 				if !ok {
 					t.Fatalf("non string found in luascript, found %T", gls)
 				}
-				wantBundles, err := bundler.UnbundleAll(wlss)
+				wantBundles, _, err := bundler.UnbundleAll(wlss)
 				if err != nil {
 					t.Fatalf("unbundle want : %v", err)
 				}
-				gotBundles, err := bundler.UnbundleAll(glss)
+				gotBundles, _, err := bundler.UnbundleAll(glss)
 				if err != nil {
 					t.Fatalf("unbundle got : %v", err)
 				}
