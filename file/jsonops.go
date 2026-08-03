@@ -60,7 +60,9 @@ func (j *JSONOps) ReadObj(filename string) (map[string]interface{}, error) {
 		return map[string]interface{}{}, err
 	}
 	var v map[string]interface{}
-	json.Unmarshal(b, &v)
+	if err := json.Unmarshal(b, &v); err != nil {
+		return map[string]interface{}{}, fmt.Errorf("json.Unmarshal(%s): %v", filename, err)
+	}
 	return v, nil
 }
 
@@ -71,7 +73,9 @@ func (j *JSONOps) ReadObjArray(filename string) ([]map[string]interface{}, error
 		return []map[string]interface{}{}, err
 	}
 	var v []map[string]interface{}
-	json.Unmarshal(b, &v)
+	if err := json.Unmarshal(b, &v); err != nil {
+		return []map[string]interface{}{}, fmt.Errorf("json.Unmarshal(%s): %v", filename, err)
+	}
 	return v, nil
 
 }
