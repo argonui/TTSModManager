@@ -85,15 +85,21 @@ func (m *Mod) generate(raw types.J) error {
 
 	ext := "_path"
 	for _, stringbased := range ExpectedStr {
-		tryPut(&m.Data, stringbased+ext, stringbased, luaGet)
+		if err := tryPut(&m.Data, stringbased+ext, stringbased, luaGet); err != nil {
+			return err
+		}
 	}
 
 	for _, objbased := range ExpectedObj {
-		tryPut(&m.Data, objbased+ext, objbased, plainObj)
+		if err := tryPut(&m.Data, objbased+ext, objbased, plainObj); err != nil {
+			return err
+		}
 	}
 
 	for _, objarraybased := range ExpectedObjArr {
-		tryPut(&m.Data, objarraybased+ext, objarraybased, objArray)
+		if err := tryPut(&m.Data, objarraybased+ext, objarraybased, objArray); err != nil {
+			return err
+		}
 	}
 
 	lh := handler.NewLuaHandler()
@@ -123,7 +129,10 @@ func (m *Mod) generate(raw types.J) error {
 	}
 
 	objOrder := []string{}
-	files, _, _ := m.Objdirs.ListFilesAndFolders("")
+	files, _, err := m.Objdirs.ListFilesAndFolders("")
+	if err != nil {
+		return fmt.Errorf("ListFilesAndFolders(\"\"): %v", err)
+	}
 	hasObjects := len(files) > 0
 
 	err = file.ForceParseIntoStrArray(&m.Data, "ObjectStates_order", &objOrder)
@@ -156,19 +165,19 @@ func (m *Mod) Print(basename string) error {
 	}
 }
 
-func tryPut(d *types.J, from, to string, fun func(string) (interface{}, error)) {
+func tryPut(d *types.J, from, to string, fun func(string) (interface{}, error)) error {
 	if d == nil {
 		log.Println("Nil objects")
-		return
+		return nil
 	}
 
 	var o interface{}
-	fromFile, ok := (*d)[from]
-	if !ok {
+	fromFile, pathPresent := (*d)[from]
+	if !pathPresent {
 		fromFile = ""
 		if _, ok := (*d)[to]; ok {
-			// if there is not special key, but there is existant key, don't replace anything.
-			return
+			// if there is no special key, but there is an existing key, don't replace anything.
+			return nil
 		}
 	}
 	filename, ok := fromFile.(string)
@@ -177,9 +186,15 @@ func tryPut(d *types.J, from, to string, fun func(string) (interface{}, error)) 
 		filename = ""
 	}
 
-	o, _ = fun(filename)
-	// ignore error for now
+	o, err := fun(filename)
+	if err != nil && pathPresent && filename != "" {
+		// A present *_path key naming a real file that fails to read is a broken
+		// pointer and must fail loudly. An absent key (empty filename) is a normal
+		// optional field, so stay lenient and fall through with the zero value.
+		return fmt.Errorf("could not resolve %q for key %q: %v", filename, to, err)
+	}
 
 	(*d)[to] = o
 	delete((*d), from)
+	return nil
 }
