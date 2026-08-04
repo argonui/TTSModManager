@@ -61,6 +61,14 @@ func main() {
 	objdir := file.NewDirOps(filepath.Join(*moddir, objectsSubdir))
 	rootops := file.NewJSONOps(*moddir)
 
+	// When generating a full mod with no explicit --modfile, default the output
+	// path to <moddir>/output.json. This must happen before basename/outputOps
+	// are derived, otherwise they are computed from an empty path (issue #93).
+	// Reverse mode uses --modfile as an input to read and must not be defaulted.
+	if !*rev && *modfile == "" {
+		*modfile = filepath.Join(*moddir, "output.json")
+	}
+
 	basename := filepath.Base(*modfile)
 	outputOps := file.NewJSONOps(filepath.Dir(*modfile))
 
@@ -92,16 +100,21 @@ func main() {
 		if *objin != "" {
 			*modfile = *objin
 			objs = file.NewJSONOps(filepath.Dir(*objout))
-		} else {
-			// clear the objects directory to avoid orphaned files (by removing and recreating)
-			if err := objdir.Clear(); err != nil {
-				log.Fatalf("Failed to clear objects directory before writing: %v", err)
-			}
 		}
-	
+
 		raw, err := prepForReverse(*moddir, *modfile)
 		if err != nil {
 			log.Fatalf("prepForReverse (%s) failed : %v", *modfile, err)
+		}
+
+		// Clear the objects directory to avoid orphaned files (by removing and
+		// recreating). This must run only after prepForReverse has successfully
+		// read and parsed the mod file, so a bad --modfile path can't wipe
+		// objects/ before failing (issue #90).
+		if *objin == "" {
+			if err := objdir.Clear(); err != nil {
+				log.Fatalf("Failed to clear objects directory before writing: %v", err)
+			}
 		}
 
 		r := mod.Reverser{
@@ -123,10 +136,6 @@ func main() {
 		}
 		return
 	}
-	if *modfile == "" {
-		*modfile = filepath.Join(*moddir, "output.json")
-	}
-
 	// setting this to empty instead of default return value (".") if not found
 	OnlyObjStates := filepath.Base(*objin)
 	if OnlyObjStates == "." {
@@ -146,8 +155,7 @@ func main() {
 	}
 	err := m.GenerateFromConfig()
 	if err != nil {
-		fmt.Printf("generateMod(<config>) : %v\n", err)
-		return
+		log.Fatalf("generateMod(<config>) : %v", err)
 	}
 	err = m.Print(basename)
 	if err != nil {
