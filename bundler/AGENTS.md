@@ -52,6 +52,8 @@ root back with `scripts[bundler.Rootname]` rather than a hardcoded string, and
 round trips — bundle then unbundle, or unbundle then bundle, and compare — since that is the
 property the rest of the tool depends on.
 
-Two end-to-end fixtures (`bundled_core`, `bundled_lua`) are currently on the deny list in
-[tests/e2e_test.go](../tests/e2e_test.go) because they require `src/` files the harness doesn't
-supply. Wiring those up would give bundling real integration coverage.
+Two end-to-end fixtures (`bundled_core` and `bundled_lua`) give bundling real integration coverage
+through [tests/e2e_test.go](../tests/e2e_test.go): each is reversed (unbundled to `src/`) and built
+back (re-bundled by resolving `require`), exercising the full round trip. `bundled_lua` nests its
+bundled script inside an object, so the harness compares every bundled `LuaScript` by module-name
+set at any depth, since bundling is formatting-sensitive.

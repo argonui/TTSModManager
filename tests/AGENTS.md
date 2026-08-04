@@ -47,8 +47,10 @@ What the comparison covers:
 - `Date` and `EpochTime` are excluded — they are regenerated on every build by design.
 - Any `float64` value is excluded. Numeric behavior is asserted in
   [objects/numbersmoother_test.go](../objects/numbersmoother_test.go) instead.
-- `bundled_core` and `bundled_lua` are on a deny list; they depend on `src/` files the harness
-  doesn't provide.
+- Every bundled `LuaScript` is compared by module-name set, not just the top-level one. A bundled
+  script found at any nesting depth (e.g. inside an object in `ObjectStates`) is normalized the
+  same way, so nested scripts are not held to a stricter byte-for-byte standard than the root.
+  Non-bundled scripts are still compared exactly.
 
 ## Fixture locations
 
