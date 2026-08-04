@@ -551,6 +551,64 @@ func TestPrintAllObjs(t *testing.T) {
 
 }
 
+// TestPrintObjectStatesCollision asserts that two sibling root objects whose
+// nicknames sanitize to the same getAGoodFileName() are a hard error rather
+// than a silent overwrite (issue #107).
+func TestPrintObjectStatesCollision(t *testing.T) {
+	for _, tc := range []struct {
+		name string
+		objs []map[string]interface{}
+	}{
+		{
+			// Objects inside containers can share a GUID in practice; two
+			// roots with the same GUID collapse to the same bare filename.
+			name: "shared guid",
+			objs: []map[string]interface{}{
+				{"GUID": "abc123"},
+				{"GUID": "abc123"},
+			},
+		},
+		{
+			// Nicknames differing only in stripped punctuation collapse to
+			// the same sanitized name.
+			name: "stripped punctuation",
+			objs: []map[string]interface{}{
+				{"GUID": "abc123", "Nickname": "My Deck ()"},
+				{"GUID": "abc123", "Nickname": "My Deck []"},
+			},
+		},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			ff := tests.NewFF()
+			p := &Printer{
+				Lua: ff,
+				Dir: ff,
+				J:   ff,
+			}
+			if _, err := p.PrintObjectStates("", tc.objs); err == nil {
+				t.Errorf("expected a filename collision error, got nil")
+			}
+		})
+	}
+}
+
+// TestContainedObjectCollision asserts that two contained (sibling) objects
+// that produce the same getAGoodFileName() cause parseFromJSON to error rather
+// than silently overwrite one another (issue #107).
+func TestContainedObjectCollision(t *testing.T) {
+	o := objConfig{}
+	err := o.parseFromJSON(map[string]interface{}{
+		"GUID": "parent1",
+		"ContainedObjects": []interface{}{
+			map[string]interface{}{"GUID": "dup", "Nickname": "Card"},
+			map[string]interface{}{"GUID": "dup", "Nickname": "Card"},
+		},
+	})
+	if err == nil {
+		t.Errorf("expected a filename collision error for contained objects, got nil")
+	}
+}
+
 func TestDBPrint(t *testing.T) {
 	ff := tests.NewFF()
 	for _, tc := range []struct {

@@ -140,6 +140,17 @@ func (o *objConfig) parseFromJSON(data map[string]interface{}) error {
 		delete(o.data, "ContainedObjects")
 	}
 
+	// Contained objects and states are all written into the same subdirectory
+	// (see printToFile), so their filenames must be collectively unique.
+	children := make([]*objConfig, 0, len(o.subObj)+len(o.states))
+	children = append(children, o.subObj...)
+	for _, st := range o.states {
+		children = append(children, st)
+	}
+	if err := checkFilenameCollisions(children); err != nil {
+		return fmt.Errorf("children of %q: %v", o.guid, err)
+	}
+
 	return nil
 }
 
@@ -337,6 +348,23 @@ func (o *objConfig) getAGoodFileName() string {
 	return n + "." + o.guid
 }
 
+// checkFilenameCollisions returns an error if any two objects in the slice
+// produce the same getAGoodFileName(). The name is both an object's on-disk
+// filename and its identity in the *_order arrays, so a collision among
+// siblings sharing a directory would silently overwrite the first object with
+// the second. It must be a hard error, not a silent overwrite (see issue #107).
+func checkFilenameCollisions(objs []*objConfig) error {
+	seen := map[string]string{} // filename -> guid that first produced it
+	for _, o := range objs {
+		name := o.getAGoodFileName()
+		if prevGUID, ok := seen[name]; ok {
+			return fmt.Errorf("filename collision: %q is produced by two sibling objects (GUIDs %q and %q); sibling filenames must be unique", name, prevGUID, o.guid)
+		}
+		seen[name] = o.guid
+	}
+	return nil
+}
+
 func (o *objConfig) tryGetNonEmptyStr(key string) (string, error) {
 	rawname, ok := o.data[key]
 	if !ok {
@@ -438,16 +466,23 @@ type Printer struct {
 func (p *Printer) PrintObjectStates(root string, objs []map[string]interface{}) ([]string, error) {
 	order := []string{}
 
+	ocs := make([]*objConfig, 0, len(objs))
 	for _, rootObj := range objs {
-		oc := objConfig{}
-
-		err := oc.parseFromJSON(rootObj)
-		if err != nil {
+		oc := &objConfig{}
+		if err := oc.parseFromJSON(rootObj); err != nil {
 			return nil, err
 		}
+		ocs = append(ocs, oc)
+	}
+	// Root objects all share the top-level objects directory, so their
+	// filenames must be unique or one would silently overwrite another.
+	if err := checkFilenameCollisions(ocs); err != nil {
+		return nil, fmt.Errorf("root objects: %v", err)
+	}
+
+	for _, oc := range ocs {
 		order = append(order, oc.getAGoodFileName())
-		err = oc.printToFile(root, p)
-		if err != nil {
+		if err := oc.printToFile(root, p); err != nil {
 			return nil, err
 		}
 	}
