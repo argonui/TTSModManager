@@ -33,7 +33,10 @@ func (f *FakeFiles) EncodeFromFile(s string) (string, error) {
 // ReadObj satisfies JSONReader
 func (f *FakeFiles) ReadObj(s string) (map[string]interface{}, error) {
 	if _, ok := f.Data[s]; !ok {
-		return nil, fmt.Errorf("fake file <%s> not found", s)
+		// Match the real JSONOps.ReadObj, which returns a non-nil empty map
+		// alongside the error so callers that ignore the error don't panic on
+		// a nil map.
+		return map[string]interface{}{}, fmt.Errorf("fake file <%s> not found", s)
 	}
 	b, err := json.MarshalIndent(f.Data[s], "", "  ")
 	if err != nil {
