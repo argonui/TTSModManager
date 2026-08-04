@@ -154,7 +154,7 @@ func normalizeBundledLua(v interface{}) {
 		for k, val := range t {
 			if k == "LuaScript" {
 				if s, ok := val.(string); ok && bundler.IsBundled(s) {
-					if modules, err := bundler.UnbundleAll(s); err == nil {
+					if modules, _, err := bundler.UnbundleAll(s); err == nil {
 						t[k] = mapOfKeys(modules)
 						continue
 					}
