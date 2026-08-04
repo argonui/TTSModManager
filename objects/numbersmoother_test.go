@@ -54,6 +54,19 @@ func TestSmooth(t *testing.T) {
 			},
 		},
 		{
+			name: "Rotation beyond a full turn",
+			input: map[string]interface{}{
+				"rotX": float64(-400),
+				"rotY": float64(400),
+				"rotZ": float64(-40),
+			},
+			want: map[string]interface{}{
+				"rotX": float64(320),
+				"rotY": float64(40),
+				"rotZ": float64(320),
+			},
+		},
+		{
 			name: "Color",
 			input: map[string]interface{}{
 				"r": 0.42513,
