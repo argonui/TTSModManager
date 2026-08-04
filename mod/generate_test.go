@@ -200,14 +200,14 @@ func TestGenerate(t *testing.T) {
 		{
 			name: "Saved Object (Simple)",
 			inputObjs: map[string]types.J{
-        "test123.json": map[string]interface{}{
+				"test123.json": map[string]interface{}{
 					"GUID":        "test123",
 					"Description": "A test object",
-        },
-    	},
+				},
+			},
 			flags: map[string]interface{}{
 				"OnlyObjStates": true,
-				"SavedObj": true,
+				"SavedObj":      true,
 			},
 			want: map[string]interface{}{
 				"SaveName":       "",

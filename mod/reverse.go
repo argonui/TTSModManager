@@ -21,7 +21,7 @@ type Reverser struct {
 	RootWrite         file.JSONWriter
 
 	// If not empty: holds the entire filename (C:...) of the json to read
-	OnlyObjState      string
+	OnlyObjState string
 }
 
 func (r *Reverser) writeOnlyObjStates(raw map[string]interface{}) error {
@@ -68,7 +68,7 @@ func (r *Reverser) Write(raw map[string]interface{}) error {
 		}
 
 		createdFile := strKey + ext
-		
+
 		var jsonInterface map[string]interface{}
 		err := json.Unmarshal([]byte(strVal), &jsonInterface)
 		if err == nil {
