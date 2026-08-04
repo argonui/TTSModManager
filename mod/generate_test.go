@@ -3,6 +3,7 @@ package mod
 import (
 	"ModCreator/tests"
 	"ModCreator/types"
+	"strings"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -286,5 +287,64 @@ func TestGenerate(t *testing.T) {
 				t.Errorf("want != got:\n%v\n", diff)
 			}
 		})
+	}
+}
+
+// TestGenerateBrokenPointer ensures that a present *_path key naming a file that
+// cannot be read fails loudly rather than silently producing an empty value.
+func TestGenerateBrokenPointer(t *testing.T) {
+	rootff := &tests.FakeFiles{
+		Data: map[string]types.J{
+			"config.json": map[string]interface{}{
+				// points at a lua file that was never written to disk
+				"LuaScriptState_path": "missing/does-not-exist.luascriptstate",
+			},
+		},
+	}
+	m := Mod{
+		RootRead:    rootff,
+		RootWrite:   rootff,
+		Lua:         &tests.FakeFiles{Fs: map[string]string{}},
+		Modsettings: &tests.FakeFiles{},
+		Objs:        &tests.FakeFiles{},
+		Objdirs:     &tests.FakeFiles{},
+	}
+	err := m.GenerateFromConfig()
+	if err == nil {
+		t.Fatalf("expected error for broken *_path pointer, got nil")
+	}
+	if !strings.Contains(err.Error(), "missing/does-not-exist.luascriptstate") {
+		t.Errorf("error should name the missing file, got: %v", err)
+	}
+}
+
+// TestGenerateAbsentOptionalKey ensures that an optional key that is simply
+// absent from config (no *_path and no inline value) stays lenient and does not
+// error.
+func TestGenerateAbsentOptionalKey(t *testing.T) {
+	rootff := &tests.FakeFiles{
+		Data: map[string]types.J{
+			"config.json": map[string]interface{}{
+				"SaveName": "a mod with no externalized optional fields",
+			},
+		},
+	}
+	m := Mod{
+		RootRead:    rootff,
+		RootWrite:   rootff,
+		Lua:         &tests.FakeFiles{Fs: map[string]string{}},
+		Modsettings: &tests.FakeFiles{},
+		Objs:        &tests.FakeFiles{},
+		Objdirs:     &tests.FakeFiles{},
+	}
+	if err := m.GenerateFromConfig(); err != nil {
+		t.Fatalf("absent optional keys should not error, got: %v", err)
+	}
+	if got := m.Data["SaveName"]; got != "a mod with no externalized optional fields" {
+		t.Errorf("SaveName not preserved, got %v", got)
+	}
+	// An absent optional string key is still filled with its zero value.
+	if got, ok := m.Data["LuaScriptState"]; !ok || got != "" {
+		t.Errorf("absent optional key LuaScriptState should be zero-valued, got %v (present=%v)", got, ok)
 	}
 }
