@@ -62,7 +62,7 @@ func TestUnbundleXML(t *testing.T) {
 `,
 	}
 
-	got, err := UnbundleAllXML(input)
+	got, _, err := UnbundleAllXML(input)
 	if err != nil {
 		t.Fatalf("UnbundleAllXML(): %v", err)
 	}

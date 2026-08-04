@@ -2,6 +2,7 @@ package bundler
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -253,9 +254,12 @@ var b = '3'
 end)
 return __bundle_require("__root")
 `
-	got, err := UnbundleAll(raw)
+	got, gotRoot, err := UnbundleAll(raw)
 	if err != nil {
 		t.Fatalf("expected no err, got %v", err)
+	}
+	if gotRoot != Rootname {
+		t.Errorf("want root %q, got %q", Rootname, gotRoot)
 	}
 	want := map[string]string{
 		Rootname: `require("core/AgendaDeck-other.foo")
@@ -265,6 +269,72 @@ require("core/AgendaDeck-other.foo")`,
 	}
 	if diff := cmp.Diff(want, got); diff != "" {
 		t.Errorf("want != got:\n%v\n", diff)
+	}
+}
+
+// foreignEntryBundle is a luabundle whose entry module is named "custom_entry"
+// rather than the usual "__root". Its alphabetically-last module, "zzz", is the
+// final registered block, so it is the block terminated by the entry line
+// `return __bundle_require("custom_entry")`.
+var foreignEntryBundle = metaprefix + "\n" +
+	`__bundle_register("custom_entry", function(require, _LOADED, __bundle_register, __bundle_modules)
+require("zzz")
+end)
+__bundle_register("zzz", function(require, _LOADED, __bundle_register, __bundle_modules)
+zzz_value = 1
+end)
+return __bundle_require("custom_entry")`
+
+// TestUnbundleForeignEntryName covers issue #95 failure mode (a): a bundle whose
+// entry module is not "__root" used to silently drop its alphabetically-last
+// module, because the scan regex hardcoded "__root" in its trailing alternation.
+func TestUnbundleForeignEntryName(t *testing.T) {
+	got, gotRoot, err := UnbundleAll(foreignEntryBundle)
+	if err != nil {
+		t.Fatalf("expected no err, got %v", err)
+	}
+	if gotRoot != "custom_entry" {
+		t.Errorf("expected detected root %q, got %q", "custom_entry", gotRoot)
+	}
+	want := map[string]string{
+		"custom_entry": `require("zzz")`,
+		// "zzz" must survive: it is the alphabetically-last module and was the
+		// one dropped before the fix.
+		"zzz": "zzz_value = 1",
+	}
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("want != got:\n%v\n", diff)
+	}
+}
+
+// TestNoCrossCallContamination covers issue #95 failure mode (b): unbundling a
+// bundle with a foreign entry name used to rewrite a mutable package global,
+// corrupting the entry name emitted by any later Bundle call. Now that the root
+// name is derived locally and returned, a subsequent Bundle is unaffected.
+func TestNoCrossCallContamination(t *testing.T) {
+	// This call rewrote the global Rootname in the buggy implementation.
+	if _, _, err := UnbundleAll(foreignEntryBundle); err != nil {
+		t.Fatalf("unbundling foreign-entry bundle: %v", err)
+	}
+
+	fr := &fakeLuaReader{fs: map[string]string{"dep.ttslua": "dep_value = 2"}}
+	got, err := Bundle(`require("dep")`, fr)
+	if err != nil {
+		t.Fatalf("expected no err, got %v", err)
+	}
+	if !strings.Contains(got, `__bundle_register("__root",`) {
+		t.Errorf("later Bundle output did not register a \"__root\" module:\n%s", got)
+	}
+	if !strings.Contains(got, `return __bundle_require("__root")`) {
+		t.Errorf("later Bundle output did not use \"__root\" as its entry line:\n%s", got)
+	}
+	// The bundle must round-trip: its entry must resolve to a registered module.
+	back, backRoot, err := UnbundleAll(got)
+	if err != nil {
+		t.Fatalf("re-unbundling later Bundle output: %v", err)
+	}
+	if _, ok := back[backRoot]; !ok {
+		t.Errorf("entry module %q not registered in re-bundled output", backRoot)
 	}
 }
 

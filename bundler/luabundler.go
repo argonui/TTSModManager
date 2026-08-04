@@ -59,10 +59,12 @@ end)(nil)`
 	funcsuffix        string = `end)`
 )
 
-// Rootname is the bundle name for the batch of raw lua
-var (
-	Rootname string = `__root`
-)
+// Rootname is the canonical bundle name for the entry-point module. luabundle
+// output produced by this package always uses it, and it is the default assumed
+// when a bundle does not declare a different entry. It is an immutable constant:
+// the actual entry name of a foreign bundle is detected per call and returned by
+// UnbundleAll, never stored globally.
+const Rootname string = `__root`
 
 // IsBundled keeps regex bundling logic to this file
 func IsBundled(rawlua string) bool {
@@ -79,7 +81,7 @@ func AnalyzeBundle(rawlua string, log func(s string, a ...interface{})) {
 		log("script is not bundled\n")
 		return
 	}
-	results, err := UnbundleAll(rawlua)
+	results, _, err := UnbundleAll(rawlua)
 	if err != nil {
 		log("Couldn't unbundle to analyze: %v", err)
 		return
@@ -89,37 +91,47 @@ func AnalyzeBundle(rawlua string, log func(s string, a ...interface{})) {
 	}
 }
 
-// UnbundleAll takes luacode generates all bundlenames and bundles
-func UnbundleAll(rawlua string) (map[string]string, error) {
+// UnbundleAll takes luacode and returns every registered module keyed by name,
+// alongside the name of the entry-point ("root") module. The root name is
+// detected locally from the bundle's `return __bundle_require("...")` line rather
+// than read from or written to package state, so concurrent or repeated calls
+// cannot contaminate one another. When the input is not bundled it is returned
+// as the sole module under the canonical Rootname.
+func UnbundleAll(rawlua string) (map[string]string, string, error) {
 	if !IsBundled(rawlua) {
-		return map[string]string{Rootname: rawlua}, nil
+		return map[string]string{Rootname: rawlua}, Rootname, nil
 	}
-	newRootInd := regexp.MustCompile(`__bundle_require\(".*"\)`).FindStringIndex(rawlua)
-	if newRootInd != nil {
-		Rootname = rawlua[newRootInd[0]+18 : newRootInd[1]-2]
+	rootName := Rootname
+	if m := regexp.MustCompile(`__bundle_require\("(.*)"\)`).FindStringSubmatch(rawlua); m != nil {
+		rootName = m[1]
 	}
 	scripts := map[string]string{}
-	r, err := findNextBundledScript(rawlua)
+	r, err := findNextBundledScript(rawlua, rootName)
 	for r.leftover != "" {
 		if err != nil {
-			return nil, fmt.Errorf("findNextBundledScript(%s): %v", rawlua, err)
+			return nil, "", fmt.Errorf("findNextBundledScript(%s): %v", rawlua, err)
 		}
 		scripts[r.name] = r.body
-		r, err = findNextBundledScript(r.leftover)
+		r, err = findNextBundledScript(r.leftover, rootName)
 	}
-	if _, ok := scripts[Rootname]; !ok {
-		return nil, fmt.Errorf("Failed to find root bundle")
+	if _, ok := scripts[rootName]; !ok {
+		return nil, "", fmt.Errorf("Failed to find root bundle")
 	}
 
-	return scripts, nil
+	return scripts, rootName, nil
 }
 
 type result struct {
 	name, body, leftover string
 }
 
-func findNextBundledScript(rawlua string) (result, error) {
-	root := regexp.MustCompile(`(?s)__bundle_register\("(.*?)", function\(require, _LOADED, __bundle_register, __bundle_modules\)[\r\n\s]+(.*?)[\r\n ]+end\)[\n\r]+(return __bundle_require\(\"__root\"\)|__bundle_register)+`)
+func findNextBundledScript(rawlua, rootName string) (result, error) {
+	// The final module in a bundle is terminated by the entry line
+	// `return __bundle_require("<rootName>")`; every earlier module is
+	// terminated by the next `__bundle_register`. Deriving the terminator from
+	// the detected root name (rather than hardcoding "__root") is what lets a
+	// bundle with a foreign entry name be scanned without losing its last module.
+	root := regexp.MustCompile(`(?s)__bundle_register\("(.*?)", function\(require, _LOADED, __bundle_register, __bundle_modules\)[\r\n\s]+(.*?)[\r\n ]+end\)[\n\r]+(return __bundle_require\("` + regexp.QuoteMeta(rootName) + `"\)|__bundle_register)+`)
 	m := root.FindStringSubmatchIndex(rawlua)
 	if m == nil {
 		return result{}, nil
@@ -140,13 +152,13 @@ func findNextBundledScript(rawlua string) (result, error) {
 
 // Unbundle extracts the root bundle per
 func Unbundle(rawlua string) (string, error) {
-	srcmap, err := UnbundleAll(rawlua)
+	srcmap, rootName, err := UnbundleAll(rawlua)
 	if err != nil {
 		return "", err
 	}
-	rt, ok := srcmap[Rootname]
+	rt, ok := srcmap[rootName]
 	if !ok {
-		return "", fmt.Errorf("Rootname not found in unbundled map")
+		return "", fmt.Errorf("root module %q not found in unbundled map", rootName)
 	}
 	return rt, nil
 }
