@@ -1,3 +1,6 @@
 TTSModManager.exe
 bash.exe.stackdump
 oryxBuildBinary
+
+# Ownership marker dropped into a tool-managed objects dir (see file/dirops.go)
+.ttsmm-managed
