@@ -114,8 +114,12 @@ func TestClearRemovesAndRecreates(t *testing.T) {
 	if err != nil {
 		t.Fatalf("ReadDir() after Clear: %v", err)
 	}
-	if len(entries) != 0 {
-		t.Errorf("expected empty directory after Clear, found %d entries", len(entries))
+	// Clear now drops the ownership marker into the recreated dir (#96),
+	// so the only permitted entry is that marker.
+	for _, e := range entries {
+		if e.Name() != managedMarker {
+			t.Errorf("expected only the ownership marker after Clear, found %q", e.Name())
+		}
 	}
 }
 
@@ -160,5 +164,126 @@ func TestListFilesAndFolders(t *testing.T) {
 	}
 	if diff := cmp.Diff([]string{"sub"}, folders); diff != "" {
 		t.Errorf("folders want != got:\n%v\n", diff)
+	}
+}
+
+// --- ownership-marker + path-guard tests (#96) ---
+
+func writeFile(t *testing.T, p, content string) {
+	t.Helper()
+	if err := os.WriteFile(p, []byte(content), 0644); err != nil {
+		t.Fatalf("could not write %s: %v", p, err)
+	}
+}
+
+func markerExists(dir string) bool {
+	_, err := os.Stat(filepath.Join(dir, managedMarker))
+	return err == nil
+}
+
+// (a) An unmarked, non-empty directory containing a disallowed file is refused, and its
+// contents are left untouched.
+func TestClearRefusesUnmarkedForeignContent(t *testing.T) {
+	dir := t.TempDir()
+	victim := filepath.Join(dir, "important.txt")
+	writeFile(t, victim, "the user's real data")
+
+	d := NewDirOps(dir)
+	if err := d.Clear(); err == nil {
+		t.Fatalf("expected Clear to refuse an unmarked directory with foreign content, got nil")
+	}
+
+	if _, err := os.Stat(victim); err != nil {
+		t.Fatalf("Clear deleted the user's file despite refusing: %v", err)
+	}
+}
+
+// (b) A directory that already carries the ownership marker clears successfully, and the
+// marker is present afterwards.
+func TestClearAllowsMarkedDirectory(t *testing.T) {
+	dir := t.TempDir()
+	writeFile(t, filepath.Join(dir, managedMarker), "managed")
+	// Even foreign content is fine once the marker proves we own the directory.
+	writeFile(t, filepath.Join(dir, "leftover.bin"), "stale")
+
+	d := NewDirOps(dir)
+	if err := d.Clear(); err != nil {
+		t.Fatalf("expected Clear to succeed on a marked directory, got %v", err)
+	}
+
+	if _, err := os.Stat(filepath.Join(dir, "leftover.bin")); !os.IsNotExist(err) {
+		t.Fatalf("expected old content to be removed, stat err = %v", err)
+	}
+	if !markerExists(dir) {
+		t.Fatalf("expected marker to be re-written after Clear")
+	}
+}
+
+// (c) An empty directory, and an absent directory, both clear and gain a marker.
+func TestClearEmptyAndAbsentGetMarker(t *testing.T) {
+	t.Run("empty", func(t *testing.T) {
+		dir := t.TempDir()
+		d := NewDirOps(dir)
+		if err := d.Clear(); err != nil {
+			t.Fatalf("expected Clear to succeed on empty directory, got %v", err)
+		}
+		if !markerExists(dir) {
+			t.Fatalf("expected marker after clearing empty directory")
+		}
+	})
+
+	t.Run("absent", func(t *testing.T) {
+		dir := filepath.Join(t.TempDir(), "does-not-exist-yet")
+		d := NewDirOps(dir)
+		if err := d.Clear(); err != nil {
+			t.Fatalf("expected Clear to succeed on absent directory, got %v", err)
+		}
+		if !markerExists(dir) {
+			t.Fatalf("expected marker after creating absent directory")
+		}
+	})
+}
+
+// Backward compatibility: an unmarked directory whose files all pass the legacy
+// extension allowlist still clears (and gains a marker going forward).
+func TestClearAllowsLegacyRecognizedContent(t *testing.T) {
+	dir := t.TempDir()
+	writeFile(t, filepath.Join(dir, "obj.json"), "{}")
+	writeFile(t, filepath.Join(dir, "script.ttslua"), "-- lua")
+
+	d := NewDirOps(dir)
+	if err := d.Clear(); err != nil {
+		t.Fatalf("expected Clear to succeed on legacy recognized content, got %v", err)
+	}
+	if !markerExists(dir) {
+		t.Fatalf("expected marker after clearing legacy directory")
+	}
+}
+
+// (d) The path guard refuses the filesystem root and the home directory outright.
+func TestPathGuardRefusesDangerousTargets(t *testing.T) {
+	if err := pathGuard(string(filepath.Separator)); err == nil {
+		t.Fatalf("expected path guard to refuse filesystem root")
+	}
+
+	home, err := os.UserHomeDir()
+	if err != nil || home == "" {
+		t.Skip("no home directory available on this platform")
+	}
+	if err := pathGuard(home); err == nil {
+		t.Fatalf("expected path guard to refuse home directory %q", home)
+	}
+
+	// Clear must also refuse the home directory, not just the raw guard.
+	d := NewDirOps(home)
+	if err := d.Clear(); err == nil {
+		t.Fatalf("expected Clear to refuse home directory %q", home)
+	}
+}
+
+// The path guard refuses suspiciously shallow single-segment paths.
+func TestPathGuardRefusesShallowPaths(t *testing.T) {
+	if err := pathGuard(string(filepath.Separator) + "objects"); err == nil {
+		t.Fatalf("expected path guard to refuse a single-segment path")
 	}
 }
