@@ -323,7 +323,7 @@ func TestObjPrintingToFile(t *testing.T) {
 				content: types.J{
 					"acknowledgedUpgradeVersions": []any{},
 					"optionPanel": map[string]any{
-						"cardLanguage": string("en"),
+						"cardLanguage":        string("en"),
 						"changePlayAreaImage": bool(false),
 						"playAreaConnectionColor": map[string]any{
 							"a": float64(1),
@@ -406,7 +406,7 @@ func TestName(t *testing.T) {
 			guid: "010509",
 			want: "OccultInvocation!!!!.010509",
 		}, {
-				data: types.J{
+			data: types.J{
 				"Nickname": "Verschwörung der Äxte!",
 				"Name":     "Card",
 			},

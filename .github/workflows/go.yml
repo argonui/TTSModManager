@@ -23,8 +23,18 @@ jobs:
       with:
         go-version: 1.18
 
+    - name: Format check
+      run: |
+        unformatted=$(gofmt -l .)
+        if [ -n "$unformatted" ]; then
+          echo "These files are not gofmt-clean:"; echo "$unformatted"; exit 1
+        fi
+
+    - name: Vet
+      run: go vet ./...
+
     - name: Build
       run: go build -v ./...
 
     - name: Test
-      run: go test -v ./...
+      run: go test -race -v ./...
