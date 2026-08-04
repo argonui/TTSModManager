@@ -355,8 +355,6 @@ func (o *objConfig) tryGetNonEmptyStr(key string) (string, error) {
 type db struct {
 	root map[string]*objConfig
 
-	all map[string]*objConfig
-
 	j   file.JSONReader
 	dir file.DirExplorer
 }
@@ -394,17 +392,16 @@ func ParseAllObjectStates(l file.TextReader, x file.TextReader, j file.JSONReade
 	d := db{
 		j:    j,
 		dir:  dir,
-		all:  map[string]*objConfig{},
 		root: map[string]*objConfig{},
 	}
-	err := d.parseFromFolder("", nil)
+	err := d.parseFromFolder("")
 	if err != nil {
 		return []map[string]interface{}{}, fmt.Errorf("parseFolder(%s): %v", "<root>", err)
 	}
 	return d.print(l, x, order)
 }
 
-func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
+func (d *db) parseFromFolder(relpath string) error {
 	filenames, _, err := d.dir.ListFilesAndFolders(relpath)
 	if err != nil {
 		return fmt.Errorf("ListFilesAndFolders(%s) : %v", relpath, err)
@@ -418,7 +415,7 @@ func (d *db) parseFromFolder(relpath string, parent *objConfig) error {
 		var o objConfig
 		err := o.parseFromFile(file, d.j)
 		if err != nil {
-			return fmt.Errorf("parseFromFile(%s, %v): %v", file, parent, err)
+			return fmt.Errorf("parseFromFile(%s): %v", file, err)
 		}
 		d.root[o.getAGoodFileName()] = &o
 	}
