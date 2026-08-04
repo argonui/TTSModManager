@@ -132,7 +132,7 @@ func bundledWithModule(t *testing.T, h *Handler, name, ext string) (string, stri
 		t.Fatalf("bundling fixture: %v", err)
 	}
 	// sanity: it must actually unbundle into more than just the root
-	all, err := h.unbundle(bundled)
+	all, _, err := h.unbundle(bundled)
 	if err != nil {
 		t.Fatalf("unbundling fixture: %v", err)
 	}
